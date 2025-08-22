@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: Test API
+  description: The test API.
+spec:
+  type: openapi
+  lifecycle: production
+  owner: api-evangelist
+  system: api-evangelist
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: Test API
+      license:
+        name: MIT
+    servers:
+      - url: http://example.com
+    paths:
+      /tests:
+        get:
+          summary: List all tests.
