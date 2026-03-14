@@ -1,0 +1,51 @@
+name: Backstage
+description: >-
+  Backstage is an open-source developer portal platform created by Spotify.
+  It provides a centralized software catalog, software templates (scaffolder),
+  TechDocs, and a plugin ecosystem for building customizable developer
+  portals. Backstage helps organizations manage their software ecosystem by
+  cataloging services, APIs, resources, and infrastructure, and provides
+  tooling for creating new projects from templates.
+url: https://backstage.io
+created: 2024-12-01
+modified: 2026-03-14
+tags:
+  - developer-portal
+  - software-catalog
+  - internal-developer-platform
+  - open-source
+  - spotify
+  - backstage
+apis:
+  - name: Backstage Catalog API
+    slug: catalog
+    description: >-
+      The Software Catalog REST API provides JSON-based endpoints for managing
+      and querying catalog entities, locations, and related metadata. The
+      catalog stores information about all software components, APIs,
+      resources, systems, domains, groups, and users in an organization.
+      Supports entity CRUD, filtering, full-text search, cursor-based
+      pagination, faceted queries, location management, entity validation,
+      and ancestry lookups.
+    url: https://backstage.io/docs/features/software-catalog/software-catalog-api/
+    type: openapi
+    lifecycle: production
+    properties:
+      - type: openapi
+        path: openapi/backstage-catalog-openapi.yml
+  - name: Backstage Scaffolder API
+    slug: scaffolder
+    description: >-
+      The Scaffolder (Software Templates) REST API provides endpoints for
+      creating, managing, and monitoring scaffolder tasks. It enables
+      programmatic execution of software templates to bootstrap new projects,
+      components, and other software assets. Supports task creation and
+      cancellation, real-time event streaming, log retrieval, template
+      parameter schema inspection, available action listing, and dry-run
+      execution for template validation.
+    url: https://backstage.io/docs/features/software-templates/
+    type: openapi
+    lifecycle: production
+    properties:
+      - type: openapi
+        path: openapi/backstage-scaffolder-openapi.yml

@@ -1,0 +1,870 @@
+openapi: 3.1.0
+info:
+  title: Backstage Catalog API
+  description: >-
+    The Backstage Software Catalog REST API provides JSON-based endpoints for
+    managing and querying catalog entities, locations, and related metadata.
+    The catalog is the core of Backstage, storing information about all
+    software components, APIs, resources, systems, domains, groups, and users
+    in an organization. External systems can leverage this API to interact
+    with the catalog programmatically.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Backstage Software Catalog API Documentation
+  url: https://backstage.io/docs/features/software-catalog/software-catalog-api/
+servers:
+  - url: https://localhost:7007/api/catalog
+    description: Local development server
+paths:
+  /entities:
+    get:
+      operationId: getEntities
+      summary: List entities (deprecated)
+      description: >-
+        Lists catalog entities. This endpoint is deprecated in favor of
+        GET /entities/by-query which provides cursor-based pagination and
+        more efficient querying.
+      deprecated: true
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter conditions to select a subset of entities. Each condition
+            is a key-value pair separated by = sign. Multiple conditions can
+            be provided and are ANDed together within a filter set. Multiple
+            filter query parameters represent OR logic between filter sets.
+          required: false
+          schema:
+            type: string
+          examples:
+            kindFilter:
+              summary: Filter by kind
+              value: kind=Component
+            multiFilter:
+              summary: Filter by kind and type
+              value: kind=Component,spec.type=service
+        - name: fields
+          in: query
+          description: >-
+            Comma-separated list of simplified JSON paths to select only
+            specific parts of the entity data structure.
+          required: false
+          schema:
+            type: string
+          example: metadata.name,metadata.namespace,kind
+        - name: order
+          in: query
+          description: >-
+            Ordering of the result set. Format is asc:field or desc:field.
+          required: false
+          schema:
+            type: string
+          example: asc:metadata.name
+      responses:
+        '200':
+          description: A list of entities matching the filter criteria.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entities/by-query:
+    get:
+      operationId: getEntitiesByQuery
+      summary: Query entities
+      description: >-
+        Query entities with support for filtering, full-text search,
+        ordering, and cursor-based pagination. This is the preferred
+        endpoint for listing and searching entities.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter conditions to select a subset of entities. Format is
+            key=value. Multiple conditions in one filter parameter are ANDed.
+            Multiple filter parameters represent OR logic.
+          required: false
+          schema:
+            type: string
+          example: kind=Component
+        - name: fields
+          in: query
+          description: >-
+            Comma-separated list of simplified JSON paths to select specific
+            parts of entity data.
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of entities to return. Default is 20.
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: orderField
+          in: query
+          description: >-
+            Field to order results by. Format is field,asc or field,desc.
+          required: false
+          schema:
+            type: string
+        - name: fullTextFilter
+          in: query
+          description: Full-text search filter applied to entities.
+          required: false
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: >-
+            Cursor for pagination. Use the cursor value from a previous
+            response to retrieve the next or previous batch of entities.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A paginated list of entities matching the query.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entity'
+                  totalItems:
+                    type: integer
+                    description: Total number of entities matching the query.
+                  pageInfo:
+                    type: object
+                    properties:
+                      nextCursor:
+                        type: string
+                        description: Cursor for the next page of results.
+                      prevCursor:
+                        type: string
+                        description: Cursor for the previous page of results.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entities/by-uid/{uid}:
+    get:
+      operationId: getEntityByUid
+      summary: Get entity by UID
+      description: Retrieves a single entity by its unique identifier.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: The unique identifier of the entity.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The entity matching the given UID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteEntityByUid
+      summary: Delete entity by UID
+      description: >-
+        Deletes an entity by its unique identifier. Returns an empty 204
+        response whether an entity with this UID existed or not.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: The unique identifier of the entity to delete.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Entity deleted successfully or did not exist.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entities/by-name/{kind}/{namespace}/{name}:
+    get:
+      operationId: getEntityByName
+      summary: Get entity by name
+      description: >-
+        Retrieves a single entity by its kind, namespace, and name. This is
+        the canonical way to fetch a specific known entity.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: kind
+          in: path
+          required: true
+          description: The kind of the entity (e.g., Component, API, System).
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          description: The namespace of the entity (usually 'default').
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          description: The name of the entity.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The entity matching the given kind, namespace, and name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entities/by-name/{kind}/{namespace}/{name}/ancestry:
+    get:
+      operationId: getEntityAncestry
+      summary: Get entity ancestry
+      description: >-
+        Retrieves the ancestry (parent chain) of an entity, showing which
+        entities and locations were involved in producing it.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The ancestry information for the entity.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rootEntityRef:
+                    type: string
+                    description: The entity reference of the root entity.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entity:
+                          $ref: '#/components/schemas/Entity'
+                        parentEntityRefs:
+                          type: array
+                          items:
+                            type: string
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entities/by-refs:
+    post:
+      operationId: getEntitiesByRefs
+      summary: Get entities by refs
+      description: >-
+        Retrieves multiple entities by their entity references in a single
+        request. This is more efficient than making individual requests.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - entityRefs
+              properties:
+                entityRefs:
+                  type: array
+                  items:
+                    type: string
+                  description: >-
+                    Array of entity references in the format
+                    kind:namespace/name.
+                fields:
+                  type: array
+                  items:
+                    type: string
+                  description: Fields to include in the response.
+      responses:
+        '200':
+          description: The entities matching the given references.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /refresh:
+    post:
+      operationId: refreshEntity
+      summary: Refresh entity
+      description: >-
+        Triggers a refresh of a specific entity, causing the catalog to
+        re-process its source location and update the entity data.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - entityRef
+              properties:
+                entityRef:
+                  type: string
+                  description: The entity reference to refresh.
+                  example: component:default/my-service
+      responses:
+        '200':
+          description: Refresh triggered successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /validate-entity:
+    post:
+      operationId: validateEntity
+      summary: Validate entity
+      description: >-
+        Validates that a passed-in entity has no errors in its schema.
+        This can be used to check entity definitions before registering them.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - entity
+                - location
+              properties:
+                entity:
+                  $ref: '#/components/schemas/Entity'
+                location:
+                  type: string
+                  description: The location reference for the entity.
+      responses:
+        '200':
+          description: Validation result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entity-facets:
+    get:
+      operationId: getEntityFacets
+      summary: Get entity facets
+      description: >-
+        Retrieves all unique values (facets) for given entity fields that
+        match the provided filters. Useful for building filter UIs.
+      tags:
+        - Entities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: facet
+          in: query
+          required: true
+          description: >-
+            The field to get facets for. Can be specified multiple times
+            for multiple facets.
+          schema:
+            type: string
+          example: kind
+        - name: filter
+          in: query
+          required: false
+          description: Optional filter to narrow the entities considered.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Facet values for the requested fields.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  facets:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          count:
+                            type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /locations:
+    get:
+      operationId: getLocations
+      summary: List locations
+      description: Lists all registered locations in the catalog.
+      tags:
+        - Locations
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of registered locations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createLocation
+      summary: Create a location
+      description: >-
+        Registers a new location in the catalog. The catalog will then
+        begin ingesting entities from this location.
+      tags:
+        - Locations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: dryRun
+          in: query
+          required: false
+          description: >-
+            If true, the location will not actually be created but
+            validated and the entities that would be ingested are returned.
+          schema:
+            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - type
+                - target
+              properties:
+                type:
+                  type: string
+                  description: >-
+                    The type of the location (e.g., url, file).
+                  example: url
+                target:
+                  type: string
+                  description: The target URL or path of the location.
+                  example: https://github.com/org/repo/blob/main/catalog-info.yaml
+      responses:
+        '201':
+          description: Location created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    $ref: '#/components/schemas/Location'
+                  entities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: A location with this target already exists.
+  /locations/{id}:
+    get:
+      operationId: getLocationById
+      summary: Get location by ID
+      description: Retrieves a specific location by its unique identifier.
+      tags:
+        - Locations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The location matching the given ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteLocation
+      summary: Delete location
+      description: >-
+        Removes a registered location and optionally all entities that
+        originated from it.
+      tags:
+        - Locations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Location deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /locations/by-entity/{kind}/{namespace}/{name}:
+    get:
+      operationId: getLocationByEntity
+      summary: Get location by entity
+      description: >-
+        Retrieves the location associated with a specific entity, identified
+        by its kind, namespace, and name.
+      tags:
+        - Locations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The location associated with the entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analyze-location:
+    post:
+      operationId: analyzeLocation
+      summary: Analyze location
+      description: >-
+        Analyzes a location to determine what entities would be generated
+        from it without actually registering the location.
+      tags:
+        - Locations
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - location
+              properties:
+                location:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    target:
+                      type: string
+      responses:
+        '200':
+          description: Analysis result showing potential entities.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  existingEntityRefs:
+                    type: array
+                    items:
+                      type: string
+                  generateEntities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entity:
+                          $ref: '#/components/schemas/Entity'
+                        fields:
+                          type: array
+                          items:
+                            type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Backstage token returned by the identity API. Required for
+        authenticated endpoints.
+  schemas:
+    Entity:
+      type: object
+      description: A Backstage catalog entity.
+      required:
+        - apiVersion
+        - kind
+        - metadata
+      properties:
+        apiVersion:
+          type: string
+          description: The API version of the entity schema.
+          example: backstage.io/v1alpha1
+        kind:
+          type: string
+          description: >-
+            The kind of entity. Common kinds include Component, API, System,
+            Domain, Resource, Group, User, Location, and Template.
+          example: Component
+        metadata:
+          $ref: '#/components/schemas/EntityMetadata'
+        spec:
+          type: object
+          description: >-
+            The specification of the entity. The schema varies depending on
+            the kind and type.
+          additionalProperties: true
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRelation'
+        status:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  level:
+                    type: string
+                    enum:
+                      - info
+                      - warning
+                      - error
+                  message:
+                    type: string
+                  error:
+                    type: object
+    EntityMetadata:
+      type: object
+      description: Metadata common to all entity kinds.
+      required:
+        - name
+      properties:
+        uid:
+          type: string
+          format: uuid
+          description: A globally unique identifier for the entity.
+        etag:
+          type: string
+          description: An opaque string that changes on each update.
+        name:
+          type: string
+          description: The name of the entity.
+          example: my-service
+        namespace:
+          type: string
+          description: The namespace the entity belongs to.
+          default: default
+        title:
+          type: string
+          description: A human-readable title for the entity.
+        description:
+          type: string
+          description: A human-readable description of the entity.
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs for labeling the entity.
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs for non-identifying metadata.
+        tags:
+          type: array
+          items:
+            type: string
+          description: A list of single-valued strings for classification.
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              title:
+                type: string
+              icon:
+                type: string
+              type:
+                type: string
+    EntityRelation:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of relation.
+          example: ownedBy
+        targetRef:
+          type: string
+          description: >-
+            The entity reference of the target entity.
+          example: group:default/my-team
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the location.
+        type:
+          type: string
+          description: The type of the location (e.g., url, file).
+        target:
+          type: string
+          description: The target URL or path of the location.
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
+tags:
+  - name: Entities
+    description: Endpoints for managing and querying catalog entities.
+  - name: Locations
+    description: Endpoints for managing catalog locations (entity sources).
