@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: Backstage Auth API
+  description: >-
+    The Backstage Auth API provides endpoints for authenticating users and
+    services with the Backstage backend. It supports multiple authentication
+    providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows,
+    token issuance, token refresh, and session management. The Auth API is
+    used by the Backstage frontend to initiate login flows and by backend
+    plugins to verify caller identity via Backstage tokens.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Backstage Auth Documentation
+  url: https://backstage.io/docs/auth/
+servers:
+  - url: https://localhost:7007/api/auth
+    description: Local development server
+paths:
+  /{provider}/start:
+    get:
+      operationId: startProviderAuth
+      summary: Start authentication flow
+      description: >-
+        Initiates the OAuth or authentication flow for the specified provider.
+        Redirects the user to the provider's login page. The flow type can be
+        specified as either a popup-based or redirect-based flow.
+      tags:
+        - Authentication
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: The authentication provider identifier (e.g., github, google, okta).
+          schema:
+            type: string
+            examples:
+              - github
+              - google
+              - okta
+        - name: flow
+          in: query
+          required: false
+          description: The authentication flow type.
+          schema:
+            type: string
+            enum:
+              - popup
+              - redirect
+        - name: env
+          in: query
+          required: false
+          description: The target environment for the authentication flow.
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the authentication provider's login page.
+        '404':
+          description: The specified authentication provider is not configured.
+  /{provider}/handler/frame:
+    get:
+      operationId: handleProviderFrame
+      summary: Handle authentication callback (popup flow)
+      description: >-
+        Handles the callback from the authentication provider during the
+        popup-based login flow. Processes the authorization code, exchanges
+        it for tokens, and posts the result back to the parent window.
+      tags:
+        - Authentication
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: The authentication provider identifier.
+          schema:
+            type: string
+        - name: code
+          in: query
+          required: false
+          description: The authorization code returned by the provider.
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          description: The state parameter for CSRF protection.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            Returns an HTML page that posts the authentication result to
+            the parent window.
+          content:
+            text/html:
+              schema:
+                type: string
+  /{provider}/refresh:
+    get:
+      operationId: refreshProviderToken
+      summary: Refresh authentication token
+      description: >-
+        Refreshes the access token for the specified authentication provider
+        using a stored refresh token. Returns a new Backstage token and
+        updated provider tokens.
+      tags:
+        - Authentication
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: The authentication provider identifier.
+          schema:
+            type: string
+        - name: optional
+          in: query
+          required: false
+          description: >-
+            If set, the refresh will not fail if no refresh token is
+            available but will return an empty response instead.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Refreshed token response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: No valid session or refresh token available.
+  /{provider}/logout:
+    post:
+      operationId: logoutProvider
+      summary: Logout from provider
+      description: >-
+        Logs the user out from the specified authentication provider by
+        clearing the session cookie and revoking tokens where supported.
+      tags:
+        - Authentication
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: The authentication provider identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully logged out.
+        '401':
+          description: No active session found.
+  /.well-known/backstage/auth/v1/jwks.json:
+    get:
+      operationId: getJwks
+      summary: Get JSON Web Key Set
+      description: >-
+        Returns the JSON Web Key Set (JWKS) used to verify Backstage tokens.
+        This endpoint is used by backend services to validate tokens issued
+        by the auth backend.
+      tags:
+        - Token Verification
+      responses:
+        '200':
+          description: The JWKS containing public keys for token verification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwksResponse'
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: backstage-auth
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AuthResponse:
+      type: object
+      properties:
+        backstageIdentity:
+          type: object
+          properties:
+            token:
+              type: string
+              description: The Backstage token for backend API calls.
+            identity:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: The identity type.
+                userEntityRef:
+                  type: string
+                  description: The entity reference for the user (e.g., user:default/guest).
+                ownershipEntityRefs:
+                  type: array
+                  items:
+                    type: string
+                  description: Entity references for groups and other ownership claims.
+        profile:
+          type: object
+          properties:
+            email:
+              type: string
+              description: The user's email address.
+            displayName:
+              type: string
+              description: The user's display name.
+            picture:
+              type: string
+              description: URL to the user's profile picture.
+        providerInfo:
+          type: object
+          properties:
+            accessToken:
+              type: string
+              description: The provider-specific access token.
+            expiresInSeconds:
+              type: number
+              description: Number of seconds until the access token expires.
+    JwksResponse:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: object
+            properties:
+              kty:
+                type: string
+              kid:
+                type: string
+              alg:
+                type: string
+              use:
+                type: string
+              n:
+                type: string
+              e:
+                type: string

@@ -1,0 +1,246 @@
+asyncapi: 3.0.0
+info:
+  title: Backstage Events System
+  version: 1.0.0
+  description: >-
+    The Backstage Events system provides a publish-subscribe mechanism for
+    broadcasting and consuming events within a Backstage instance. It enables
+    plugins to emit events when significant actions occur (such as catalog
+    entity changes, scaffolder task completions, or permission policy updates)
+    and allows other plugins or external systems to subscribe to those events
+    via HTTP webhooks or the internal event bus.
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  externalDocs:
+    description: Backstage Events Plugin Documentation
+    url: https://backstage.io/docs/plugins/backends-and-plugins/
+defaultContentType: application/json
+channels:
+  catalogEntityChange:
+    address: backstage/catalog/entity
+    description: >-
+      Events emitted when catalog entities are created, updated, or deleted.
+      These events are triggered by catalog processors and entity providers
+      when the state of the software catalog changes.
+    messages:
+      catalogEntityChangeMessage:
+        $ref: '#/components/messages/CatalogEntityChangeEvent'
+  catalogLocationChange:
+    address: backstage/catalog/location
+    description: >-
+      Events emitted when catalog locations are added, updated, or removed.
+    messages:
+      catalogLocationChangeMessage:
+        $ref: '#/components/messages/CatalogLocationChangeEvent'
+  scaffolderTaskComplete:
+    address: backstage/scaffolder/task
+    description: >-
+      Events emitted when a scaffolder task changes status, including
+      creation, completion, or failure.
+    messages:
+      scaffolderTaskCompleteMessage:
+        $ref: '#/components/messages/ScaffolderTaskEvent'
+  techdocsBuild:
+    address: backstage/techdocs/build
+    description: >-
+      Events emitted when TechDocs documentation is built or updated.
+    messages:
+      techdocsBuildMessage:
+        $ref: '#/components/messages/TechDocsBuildEvent'
+operations:
+  onCatalogEntityChange:
+    action: receive
+    channel:
+      $ref: '#/channels/catalogEntityChange'
+    summary: Receive catalog entity change events.
+    description: >-
+      Subscribe to notifications when catalog entities are created, updated,
+      or deleted from the software catalog.
+  onCatalogLocationChange:
+    action: receive
+    channel:
+      $ref: '#/channels/catalogLocationChange'
+    summary: Receive catalog location change events.
+  onScaffolderTaskComplete:
+    action: receive
+    channel:
+      $ref: '#/channels/scaffolderTaskComplete'
+    summary: Receive scaffolder task lifecycle events.
+  onTechDocsBuild:
+    action: receive
+    channel:
+      $ref: '#/channels/techdocsBuild'
+    summary: Receive TechDocs build events.
+components:
+  messages:
+    CatalogEntityChangeEvent:
+      name: CatalogEntityChangeEvent
+      title: Catalog Entity Change Event
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - topic
+          - eventPayload
+          - metadata
+        properties:
+          topic:
+            type: string
+            const: catalog
+            description: The event topic.
+          eventPayload:
+            type: object
+            required:
+              - action
+              - entity
+            properties:
+              action:
+                type: string
+                enum:
+                  - created
+                  - updated
+                  - deleted
+                description: The action that occurred.
+              entity:
+                type: object
+                properties:
+                  apiVersion:
+                    type: string
+                  kind:
+                    type: string
+                  metadata:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      namespace:
+                        type: string
+                      uid:
+                        type: string
+                description: The affected catalog entity.
+          metadata:
+            $ref: '#/components/schemas/EventMetadata'
+    CatalogLocationChangeEvent:
+      name: CatalogLocationChangeEvent
+      title: Catalog Location Change Event
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - topic
+          - eventPayload
+          - metadata
+        properties:
+          topic:
+            type: string
+            const: catalog
+          eventPayload:
+            type: object
+            properties:
+              action:
+                type: string
+                enum:
+                  - added
+                  - updated
+                  - removed
+              location:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  target:
+                    type: string
+          metadata:
+            $ref: '#/components/schemas/EventMetadata'
+    ScaffolderTaskEvent:
+      name: ScaffolderTaskEvent
+      title: Scaffolder Task Event
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - topic
+          - eventPayload
+          - metadata
+        properties:
+          topic:
+            type: string
+            const: scaffolder
+          eventPayload:
+            type: object
+            properties:
+              action:
+                type: string
+                enum:
+                  - created
+                  - processing
+                  - completed
+                  - failed
+                  - cancelled
+              taskId:
+                type: string
+              templateRef:
+                type: string
+                description: >-
+                  Entity reference of the template used
+                  (e.g., template:default/create-react-app).
+              createdBy:
+                type: string
+                description: Entity reference of the user who created the task.
+          metadata:
+            $ref: '#/components/schemas/EventMetadata'
+    TechDocsBuildEvent:
+      name: TechDocsBuildEvent
+      title: TechDocs Build Event
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - topic
+          - eventPayload
+          - metadata
+        properties:
+          topic:
+            type: string
+            const: techdocs
+          eventPayload:
+            type: object
+            properties:
+              action:
+                type: string
+                enum:
+                  - build_started
+                  - build_completed
+                  - build_failed
+              entityRef:
+                type: string
+                description: >-
+                  Entity reference for the documented entity
+                  (e.g., component:default/my-service).
+              buildTimestamp:
+                type: string
+                format: date-time
+          metadata:
+            $ref: '#/components/schemas/EventMetadata'
+  schemas:
+    EventMetadata:
+      type: object
+      properties:
+        source:
+          type: string
+          description: The source plugin or system that emitted the event.
+        eventId:
+          type: string
+          format: uuid
+          description: Unique identifier for this event.
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the event was emitted.
+        correlationId:
+          type: string
+          description: Correlation ID for tracing related events.

@@ -1,0 +1,372 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://backstage.io/schemas/entity.json",
+  "title": "Backstage Catalog Entity",
+  "description": "A catalog entity in Backstage representing a software component, API, resource, system, domain, group, user, location, or template within the software catalog.",
+  "type": "object",
+  "required": [
+    "apiVersion",
+    "kind",
+    "metadata"
+  ],
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "description": "The version of the entity schema. Typically 'backstage.io/v1alpha1' or 'backstage.io/v1beta1'.",
+      "examples": [
+        "backstage.io/v1alpha1",
+        "backstage.io/v1beta1"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "description": "The high-level type of the entity.",
+      "enum": [
+        "Component",
+        "API",
+        "Resource",
+        "System",
+        "Domain",
+        "Group",
+        "User",
+        "Location",
+        "Template",
+        "Type"
+      ]
+    },
+    "metadata": {
+      "$ref": "#/$defs/EntityMeta"
+    },
+    "spec": {
+      "type": "object",
+      "description": "The specification data describing the entity, specific to its kind.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The more specific type of the entity within its kind (e.g., service, library, openapi, grpc)."
+        },
+        "lifecycle": {
+          "type": "string",
+          "description": "The lifecycle stage of the entity (e.g., experimental, production, deprecated)."
+        },
+        "owner": {
+          "type": "string",
+          "description": "An entity reference to the owner of this entity (e.g., group:default/my-team)."
+        },
+        "system": {
+          "type": "string",
+          "description": "An entity reference to the system this entity belongs to."
+        },
+        "subcomponentOf": {
+          "type": "string",
+          "description": "An entity reference to the parent component."
+        },
+        "providesApis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity references to APIs provided by this component."
+        },
+        "consumesApis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity references to APIs consumed by this component."
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity references to components or resources this entity depends on."
+        },
+        "dependencyOf": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity references to components that depend on this entity."
+        },
+        "definition": {
+          "type": "string",
+          "description": "The definition of the API, such as an OpenAPI spec string or a reference to one."
+        },
+        "profile": {
+          "$ref": "#/$defs/UserProfile"
+        },
+        "memberOf": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Group entity references that a user is a member of."
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "User entity references that are members of a group."
+        },
+        "parent": {
+          "type": "string",
+          "description": "Entity reference to the parent group."
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity references to child groups."
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Targets for a Location entity pointing to catalog-info.yaml files."
+        },
+        "parameters": {
+          "description": "Template input parameters schema for Template entities.",
+          "oneOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          ]
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TemplateStep"
+          },
+          "description": "The sequence of actions to execute for a Template entity."
+        },
+        "output": {
+          "type": "object",
+          "description": "Output definitions for a Template entity.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/EntityRelation"
+      },
+      "description": "Relations to other entities, typically populated by the catalog processors."
+    },
+    "status": {
+      "$ref": "#/$defs/EntityStatus"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "EntityMeta": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "A globally unique identifier for this entity, assigned by the catalog."
+        },
+        "etag": {
+          "type": "string",
+          "description": "An opaque string that changes on every update, used for optimistic concurrency."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the entity, unique within its kind and namespace.",
+          "pattern": "^[a-zA-Z0-9._-]+$",
+          "minLength": 1,
+          "maxLength": 63
+        },
+        "namespace": {
+          "type": "string",
+          "description": "The namespace the entity belongs to.",
+          "default": "default",
+          "pattern": "^[a-zA-Z0-9._-]+$"
+        },
+        "title": {
+          "type": "string",
+          "description": "A human-readable title for the entity."
+        },
+        "description": {
+          "type": "string",
+          "description": "A human-readable description of the entity."
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Key-value labels attached to the entity."
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Key-value annotations attached to the entity (e.g., backstage.io/managed-by-location)."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9:._-]+$"
+          },
+          "description": "Tags associated with the entity for filtering and grouping."
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityLink"
+          },
+          "description": "External hyperlinks related to the entity."
+        }
+      },
+      "additionalProperties": false
+    },
+    "EntityLink": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the link."
+        },
+        "title": {
+          "type": "string",
+          "description": "A human-readable title for the link."
+        },
+        "icon": {
+          "type": "string",
+          "description": "An icon identifier for the link."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of link (e.g., dashboard, runbook, documentation)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "EntityRelation": {
+      "type": "object",
+      "required": [
+        "type",
+        "targetRef"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of relation (e.g., ownedBy, ownerOf, consumesApi, providesApi, dependsOn, partOf)."
+        },
+        "targetRef": {
+          "type": "string",
+          "description": "The entity reference of the target entity (e.g., group:default/my-team)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "EntityStatus": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "The type of status item."
+              },
+              "level": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "warning",
+                  "error"
+                ],
+                "description": "The severity level."
+              },
+              "message": {
+                "type": "string",
+                "description": "A human-readable status message."
+              },
+              "error": {
+                "type": "object",
+                "description": "Error details if applicable."
+              }
+            }
+          },
+          "description": "A list of status items for the entity."
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserProfile": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the user."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address of the user."
+        },
+        "picture": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the user's profile picture."
+        }
+      },
+      "additionalProperties": false
+    },
+    "TemplateStep": {
+      "type": "object",
+      "required": [
+        "id",
+        "action"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A unique identifier for this step within the template."
+        },
+        "name": {
+          "type": "string",
+          "description": "A human-readable name for the step."
+        },
+        "action": {
+          "type": "string",
+          "description": "The scaffolder action to execute (e.g., fetch:template, publish:github)."
+        },
+        "input": {
+          "type": "object",
+          "description": "Input parameters for the action.",
+          "additionalProperties": true
+        },
+        "if": {
+          "type": "string",
+          "description": "A conditional expression that determines whether the step should execute."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

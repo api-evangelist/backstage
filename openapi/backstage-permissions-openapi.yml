@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Backstage Permissions API
+  description: >-
+    The Backstage Permissions API provides endpoints for evaluating and
+    managing authorization decisions within Backstage. It enables plugins
+    to check whether a given user or service has permission to perform a
+    specific action. The framework supports policy-based authorization
+    with conditional rules that can be applied to resources.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Backstage Permissions Documentation
+  url: https://backstage.io/docs/permissions/overview
+servers:
+  - url: https://localhost:7007/api/permission
+    description: Local development server
+paths:
+  /authorize:
+    post:
+      operationId: authorize
+      summary: Evaluate permission requests
+      description: >-
+        Evaluates one or more permission requests and returns authorization
+        decisions. Each request specifies a permission and optionally a
+        resource reference. The permission policy is consulted to determine
+        whether each request should be allowed, denied, or conditionally
+        allowed with additional resource-level rules.
+      tags:
+        - Authorization
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - items
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PermissionRequest'
+                  description: Array of permission evaluation requests.
+      responses:
+        '200':
+          description: Authorization decisions for each request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PermissionDecision'
+        '400':
+          description: Invalid request format.
+        '401':
+          description: Authentication required.
+  /plugins/{pluginId}/apply-conditions:
+    post:
+      operationId: applyConditions
+      summary: Apply conditional permission rules
+      description: >-
+        Applies conditional authorization rules for a specific plugin.
+        When a permission decision includes conditions, those conditions
+        must be evaluated against the actual resource data. This endpoint
+        allows plugins to resolve conditional decisions into final
+        allow/deny results.
+      tags:
+        - Authorization
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pluginId
+          in: path
+          required: true
+          description: The plugin identifier that owns the resource type.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - items
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ConditionalRequest'
+      responses:
+        '200':
+          description: Resolved authorization decisions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PermissionDecision'
+        '400':
+          description: Invalid request format.
+        '401':
+          description: Authentication required.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    PermissionRequest:
+      type: object
+      required:
+        - permission
+      properties:
+        permission:
+          type: object
+          required:
+            - type
+            - name
+          properties:
+            type:
+              type: string
+              enum:
+                - basic
+                - resource
+              description: The permission type.
+            name:
+              type: string
+              description: The unique permission name.
+            resourceType:
+              type: string
+              description: The resource type for resource-based permissions.
+            attributes:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum:
+                    - create
+                    - read
+                    - update
+                    - delete
+                  description: The action being performed.
+        resourceRef:
+          type: string
+          description: >-
+            Reference to the specific resource being accessed
+            (e.g., component:default/my-service).
+    PermissionDecision:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          type: string
+          enum:
+            - ALLOW
+            - DENY
+            - CONDITIONAL
+          description: The authorization decision result.
+        pluginId:
+          type: string
+          description: The plugin responsible for condition evaluation.
+        resourceType:
+          type: string
+          description: The resource type for conditional decisions.
+        conditions:
+          type: object
+          description: >-
+            The conditions that must be evaluated against the resource
+            to produce a final decision. Only present when result is
+            CONDITIONAL.
+    ConditionalRequest:
+      type: object
+      required:
+        - resourceRef
+        - resourceType
+        - conditions
+      properties:
+        resourceRef:
+          type: string
+          description: Reference to the resource.
+        resourceType:
+          type: string
+          description: The resource type identifier.
+        conditions:
+          type: object
+          description: The conditions to evaluate against the resource.

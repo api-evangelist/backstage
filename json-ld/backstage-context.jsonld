@@ -1,0 +1,203 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "backstage": "https://backstage.io/vocab#",
+    "schema": "https://schema.org/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Entity": {
+      "@id": "backstage:Entity",
+      "@context": {
+        "apiVersion": {
+          "@id": "backstage:apiVersion",
+          "@type": "xsd:string"
+        },
+        "kind": {
+          "@id": "backstage:kind",
+          "@type": "xsd:string"
+        },
+        "metadata": {
+          "@id": "backstage:metadata",
+          "@type": "@id"
+        },
+        "spec": {
+          "@id": "backstage:spec",
+          "@type": "@id"
+        },
+        "relations": {
+          "@id": "backstage:relations",
+          "@container": "@set"
+        },
+        "status": {
+          "@id": "backstage:status",
+          "@type": "@id"
+        }
+      }
+    },
+    "EntityMeta": {
+      "@id": "backstage:EntityMeta",
+      "@context": {
+        "uid": {
+          "@id": "backstage:uid",
+          "@type": "xsd:string"
+        },
+        "etag": {
+          "@id": "backstage:etag",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "namespace": {
+          "@id": "backstage:namespace",
+          "@type": "xsd:string"
+        },
+        "title": {
+          "@id": "schema:alternateName",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "labels": {
+          "@id": "backstage:labels",
+          "@container": "@index"
+        },
+        "annotations": {
+          "@id": "backstage:annotations",
+          "@container": "@index"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "links": {
+          "@id": "backstage:links",
+          "@container": "@set"
+        }
+      }
+    },
+    "EntityLink": {
+      "@id": "backstage:EntityLink",
+      "@context": {
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "title": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "icon": {
+          "@id": "backstage:icon",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "backstage:linkType",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "EntityRelation": {
+      "@id": "backstage:EntityRelation",
+      "@context": {
+        "type": {
+          "@id": "backstage:relationType",
+          "@type": "xsd:string"
+        },
+        "targetRef": {
+          "@id": "backstage:targetRef",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "Component": {
+      "@id": "backstage:Component",
+      "rdfs:subClassOf": {
+        "@id": "backstage:Entity"
+      }
+    },
+    "API": {
+      "@id": "backstage:API",
+      "rdfs:subClassOf": {
+        "@id": "backstage:Entity"
+      }
+    },
+    "Resource": {
+      "@id": "backstage:Resource",
+      "rdfs:subClassOf": {
+        "@id": "backstage:Entity"
+      }
+    },
+    "System": {
+      "@id": "backstage:System",
+      "rdfs:subClassOf": {
+        "@id": "backstage:Entity"
+      }
+    },
+    "Domain": {
+      "@id": "backstage:Domain",
+      "rdfs:subClassOf": {
+        "@id": "backstage:Entity"
+      }
+    },
+    "Group": {
+      "@id": "backstage:Group",
+      "rdfs:subClassOf": {
+        "@id": "schema:Organization"
+      }
+    },
+    "User": {
+      "@id": "backstage:User",
+      "rdfs:subClassOf": {
+        "@id": "schema:Person"
+      }
+    },
+    "Location": {
+      "@id": "backstage:Location",
+      "rdfs:subClassOf": {
+        "@id": "backstage:Entity"
+      }
+    },
+    "Template": {
+      "@id": "backstage:Template",
+      "rdfs:subClassOf": {
+        "@id": "backstage:Entity"
+      }
+    },
+    "owner": {
+      "@id": "backstage:owner",
+      "@type": "xsd:string"
+    },
+    "lifecycle": {
+      "@id": "backstage:lifecycle",
+      "@type": "xsd:string"
+    },
+    "system": {
+      "@id": "backstage:system",
+      "@type": "xsd:string"
+    },
+    "providesApis": {
+      "@id": "backstage:providesApis",
+      "@container": "@set"
+    },
+    "consumesApis": {
+      "@id": "backstage:consumesApis",
+      "@container": "@set"
+    },
+    "dependsOn": {
+      "@id": "backstage:dependsOn",
+      "@container": "@set"
+    },
+    "memberOf": {
+      "@id": "schema:memberOf",
+      "@container": "@set"
+    },
+    "members": {
+      "@id": "schema:member",
+      "@container": "@set"
+    }
+  }
+}

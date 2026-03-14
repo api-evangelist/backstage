@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Backstage Search API
+  description: >-
+    The Backstage Search API provides endpoints for querying the Backstage
+    search index. It enables full-text search across all indexed content
+    including catalog entities, TechDocs pages, and any other content
+    indexed by search collators. The API supports filtering by document
+    type, pagination via cursors, and term-based queries.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Backstage Search Documentation
+  url: https://backstage.io/docs/features/search/
+servers:
+  - url: https://localhost:7007/api/search
+    description: Local development server
+paths:
+  /query:
+    get:
+      operationId: searchQuery
+      summary: Query the search index
+      description: >-
+        Performs a search query against the Backstage search index. Returns
+        matching documents with their metadata, ranked by relevance. Supports
+        filtering by document type, term-based queries, and cursor-based
+        pagination for large result sets.
+      tags:
+        - Search
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: term
+          in: query
+          required: false
+          description: The search term to query for.
+          schema:
+            type: string
+        - name: types
+          in: query
+          required: false
+          description: >-
+            Comma-separated list of document types to filter results
+            (e.g., software-catalog, techdocs).
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        - name: filters
+          in: query
+          required: false
+          description: >-
+            Key-value filter pairs to narrow search results. Filters are
+            specific to the document type.
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+          style: deepObject
+        - name: pageCursor
+          in: query
+          required: false
+          description: Cursor for pagination. Obtained from a previous search response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results matching the query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultSet'
+        '400':
+          description: Invalid search query parameters.
+        '401':
+          description: Authentication required.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    SearchResultSet:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+          description: Array of search result documents.
+        nextPageCursor:
+          type: string
+          description: Cursor to fetch the next page of results.
+        previousPageCursor:
+          type: string
+          description: Cursor to fetch the previous page of results.
+        numberOfResults:
+          type: integer
+          description: Total number of matching results.
+    SearchResult:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            The document type (e.g., software-catalog, techdocs).
+        document:
+          $ref: '#/components/schemas/SearchDocument'
+        rank:
+          type: number
+          description: Relevance rank of the result.
+        highlight:
+          type: object
+          properties:
+            preTag:
+              type: string
+            postTag:
+              type: string
+            fields:
+              type: object
+              additionalProperties:
+                type: string
+    SearchDocument:
+      type: object
+      required:
+        - title
+        - text
+        - location
+      properties:
+        title:
+          type: string
+          description: Title of the document.
+        text:
+          type: string
+          description: Text content of the document.
+        location:
+          type: string
+          description: URL or path to the original content.
+      additionalProperties: true

@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: Backstage TechDocs API
+  description: >-
+    The Backstage TechDocs API provides endpoints for generating, publishing,
+    and serving technical documentation for catalog entities. TechDocs uses
+    MkDocs under the hood to render Markdown documentation into static HTML
+    pages. The API supports fetching rendered documentation, syncing docs
+    from external storage, retrieving metadata, and managing documentation
+    lifecycle.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Backstage TechDocs Documentation
+  url: https://backstage.io/docs/features/techdocs/
+servers:
+  - url: https://localhost:7007/api/techdocs
+    description: Local development server
+paths:
+  /metadata/techdocs/{namespace}/{kind}/{name}:
+    get:
+      operationId: getTechDocsMetadata
+      summary: Get TechDocs metadata for an entity
+      description: >-
+        Returns the TechDocs metadata for a specific catalog entity, including
+        the site name, description, and build information.
+      tags:
+        - Metadata
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          description: The entity namespace.
+          schema:
+            type: string
+            default: default
+        - name: kind
+          in: path
+          required: true
+          description: The entity kind (e.g., Component, API).
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          description: The entity name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: TechDocs metadata for the entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechDocsMetadata'
+        '404':
+          description: No TechDocs found for the specified entity.
+  /metadata/entity/{namespace}/{kind}/{name}:
+    get:
+      operationId: getEntityMetadata
+      summary: Get entity metadata for TechDocs
+      description: >-
+        Returns catalog entity metadata relevant to TechDocs rendering,
+        including the entity name, description, and TechDocs annotations.
+      tags:
+        - Metadata
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Entity metadata for TechDocs.
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Entity not found.
+  /docs/{namespace}/{kind}/{name}:
+    get:
+      operationId: getTechDocsIndex
+      summary: Get TechDocs index page
+      description: >-
+        Returns the root index page of the rendered TechDocs documentation
+        for the specified entity. May trigger a sync if the documentation
+        is out of date.
+      tags:
+        - Documentation
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The rendered documentation HTML page.
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documentation not found for the entity.
+  /docs/{namespace}/{kind}/{name}/{path}:
+    get:
+      operationId: getTechDocsPage
+      summary: Get a specific TechDocs page or asset
+      description: >-
+        Returns a specific page or static asset from the rendered TechDocs
+        for the specified entity. The path is relative to the documentation
+        root.
+      tags:
+        - Documentation
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          description: Path to the documentation page or asset.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested documentation page or asset.
+        '404':
+          description: Page or asset not found.
+  /sync/{namespace}/{kind}/{name}:
+    post:
+      operationId: syncTechDocs
+      summary: Trigger TechDocs sync
+      description: >-
+        Triggers a synchronization of the TechDocs content for the specified
+        entity from the configured external storage provider.
+      tags:
+        - Sync
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sync completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Entity not found.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    TechDocsMetadata:
+      type: object
+      properties:
+        site_name:
+          type: string
+          description: The name of the documentation site.
+        site_description:
+          type: string
+          description: Description of the documentation site.
+        etag:
+          type: string
+          description: ETag for cache validation.
+        build_timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the last documentation build.
+        files:
+          type: array
+          items:
+            type: string
+          description: List of files in the documentation bundle.
