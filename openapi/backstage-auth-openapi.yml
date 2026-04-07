@@ -252,3 +252,6 @@ components:
                 type: string
               e:
                 type: string
+tags:
+  - name: Authentication
+  - name: Token Verification

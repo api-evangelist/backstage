@@ -201,3 +201,5 @@ components:
         conditions:
           type: object
           description: The conditions to evaluate against the resource.
+tags:
+  - name: Authorization

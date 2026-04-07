@@ -501,9 +501,9 @@ components:
                   message:
                     type: string
 tags:
+  - name: Actions
+    description: Endpoints for listing available scaffolder actions.
   - name: Tasks
     description: Endpoints for creating and managing scaffolder tasks.
   - name: Templates
     description: Endpoints for template metadata and parameter schemas.
-  - name: Actions
-    description: Endpoints for listing available scaffolder actions.

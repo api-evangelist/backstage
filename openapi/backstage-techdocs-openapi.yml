@@ -241,3 +241,7 @@ components:
           items:
             type: string
           description: List of files in the documentation bundle.
+tags:
+  - name: Documentation
+  - name: Metadata
+  - name: Sync

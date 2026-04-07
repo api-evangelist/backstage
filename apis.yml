@@ -6,8 +6,8 @@ apis:
     name: Backstage Catalog API
     tags:
       - Developer Portal
-      - Software Catalog
       - Entities
+      - Software Catalog
     humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
     properties:
       - url: https://backstage.io/docs/features/software-catalog/software-catalog-api/
@@ -25,8 +25,8 @@ apis:
     name: Backstage Scaffolder API
     tags:
       - Developer Portal
-      - Software Templates
       - Scaffolding
+      - Software Templates
     humanURL: https://backstage.io/docs/features/software-templates/
     properties:
       - url: https://backstage.io/docs/features/software-templates/
@@ -44,8 +44,8 @@ apis:
   - aid: backstage:auth-api
     name: Backstage Auth API
     tags:
-      - Developer Portal
       - Authentication
+      - Developer Portal
       - OAuth
     humanURL: https://backstage.io/docs/auth/
     properties:
@@ -83,8 +83,8 @@ apis:
     name: Backstage Search API
     tags:
       - Developer Portal
-      - Search
       - Discovery
+      - Search
     humanURL: https://backstage.io/docs/features/search/
     properties:
       - url: https://backstage.io/docs/features/search/
@@ -100,8 +100,8 @@ apis:
   - aid: backstage:permissions-api
     name: Backstage Permissions API
     tags:
-      - Developer Portal
       - Authorization
+      - Developer Portal
       - Permissions
     humanURL: https://backstage.io/docs/permissions/overview
     properties:
@@ -137,8 +137,8 @@ apis:
 name: Backstage
 tags:
   - Developer Portal
-  - Software Catalog
   - Internal Developer Platform
+  - Software Catalog
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party

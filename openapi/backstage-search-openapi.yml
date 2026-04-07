@@ -145,3 +145,5 @@ components:
           type: string
           description: URL or path to the original content.
       additionalProperties: true
+tags:
+  - name: Search
