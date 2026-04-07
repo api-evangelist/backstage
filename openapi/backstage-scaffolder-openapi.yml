@@ -25,7 +25,7 @@ paths:
   /v2/tasks:
     get:
       operationId: listTasks
-      summary: List scaffolder tasks
+      summary: Backstage List scaffolder tasks
       description: >-
         Lists scaffolder tasks, optionally filtered by the user who created
         them. Returns task metadata and status information.
@@ -56,7 +56,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createTask
-      summary: Create a scaffolder task
+      summary: Backstage Create a scaffolder task
       description: >-
         Creates a new scaffolder task to execute a software template. The task
         runs asynchronously and its progress can be monitored through the
@@ -107,7 +107,7 @@ paths:
   /v2/tasks/{taskId}:
     get:
       operationId: getTask
-      summary: Get task by ID
+      summary: Backstage Get task by ID
       description: Retrieves the details and current status of a scaffolder task.
       tags:
         - Tasks
@@ -134,7 +134,7 @@ paths:
   /v2/tasks/{taskId}/cancel:
     post:
       operationId: cancelTask
-      summary: Cancel a task
+      summary: Backstage Cancel a task
       description: Requests cancellation of a running scaffolder task.
       tags:
         - Tasks
@@ -156,7 +156,7 @@ paths:
   /v2/tasks/{taskId}/eventstream:
     get:
       operationId: getTaskEventStream
-      summary: Get task event stream
+      summary: Backstage Get task event stream
       description: >-
         Returns a server-sent event stream of task progress events. This
         endpoint streams real-time updates about the task execution including
@@ -191,7 +191,7 @@ paths:
   /v2/tasks/{taskId}/logs:
     get:
       operationId: getTaskLogs
-      summary: Get task logs
+      summary: Backstage Get task logs
       description: >-
         Retrieves the log entries for a scaffolder task, providing detailed
         information about each step of template execution.
@@ -242,7 +242,7 @@ paths:
   /v2/templates/{namespace}/{kind}/{name}/parameter-schema:
     get:
       operationId: getTemplateParameterSchema
-      summary: Get template parameter schema
+      summary: Backstage Get template parameter schema
       description: >-
         Retrieves the parameter schema for a specific template. This describes
         the input parameters the template accepts and their validation rules.
@@ -281,7 +281,7 @@ paths:
   /v2/actions:
     get:
       operationId: listActions
-      summary: List available actions
+      summary: Backstage List available actions
       description: >-
         Lists all available scaffolder actions that can be used in templates.
         Each action includes its ID, description, and input/output schemas.
@@ -303,7 +303,7 @@ paths:
   /v2/dry-run:
     post:
       operationId: dryRunTask
-      summary: Dry-run a template
+      summary: Backstage Dry-run a template
       description: >-
         Executes a template as a dry run without actually performing any
         side effects. Useful for testing and validating templates before

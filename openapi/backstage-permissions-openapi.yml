@@ -24,7 +24,7 @@ paths:
   /authorize:
     post:
       operationId: authorize
-      summary: Evaluate permission requests
+      summary: Backstage Evaluate permission requests
       description: >-
         Evaluates one or more permission requests and returns authorization
         decisions. Each request specifies a permission and optionally a
@@ -68,7 +68,7 @@ paths:
   /plugins/{pluginId}/apply-conditions:
     post:
       operationId: applyConditions
-      summary: Apply conditional permission rules
+      summary: Backstage Apply conditional permission rules
       description: >-
         Applies conditional authorization rules for a specific plugin.
         When a permission decision includes conditions, those conditions

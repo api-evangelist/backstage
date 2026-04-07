@@ -24,7 +24,7 @@ paths:
   /query:
     get:
       operationId: searchQuery
-      summary: Query the search index
+      summary: Backstage Query the search index
       description: >-
         Performs a search query against the Backstage search index. Returns
         matching documents with their metadata, ranked by relevance. Supports

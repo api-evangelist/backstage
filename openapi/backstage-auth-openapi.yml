@@ -25,7 +25,7 @@ paths:
   /{provider}/start:
     get:
       operationId: startProviderAuth
-      summary: Start authentication flow
+      summary: Backstage Start authentication flow
       description: >-
         Initiates the OAuth or authentication flow for the specified provider.
         Redirects the user to the provider's login page. The flow type can be
@@ -66,7 +66,7 @@ paths:
   /{provider}/handler/frame:
     get:
       operationId: handleProviderFrame
-      summary: Handle authentication callback (popup flow)
+      summary: Backstage Handle authentication callback (popup flow)
       description: >-
         Handles the callback from the authentication provider during the
         popup-based login flow. Processes the authorization code, exchanges
@@ -104,7 +104,7 @@ paths:
   /{provider}/refresh:
     get:
       operationId: refreshProviderToken
-      summary: Refresh authentication token
+      summary: Backstage Refresh authentication token
       description: >-
         Refreshes the access token for the specified authentication provider
         using a stored refresh token. Returns a new Backstage token and
@@ -140,7 +140,7 @@ paths:
   /{provider}/logout:
     post:
       operationId: logoutProvider
-      summary: Logout from provider
+      summary: Backstage Logout from provider
       description: >-
         Logs the user out from the specified authentication provider by
         clearing the session cookie and revoking tokens where supported.
@@ -163,7 +163,7 @@ paths:
   /.well-known/backstage/auth/v1/jwks.json:
     get:
       operationId: getJwks
-      summary: Get JSON Web Key Set
+      summary: Backstage Get JSON Web Key Set
       description: >-
         Returns the JSON Web Key Set (JWKS) used to verify Backstage tokens.
         This endpoint is used by backend services to validate tokens issued

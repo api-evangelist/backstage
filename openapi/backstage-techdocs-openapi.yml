@@ -25,7 +25,7 @@ paths:
   /metadata/techdocs/{namespace}/{kind}/{name}:
     get:
       operationId: getTechDocsMetadata
-      summary: Get TechDocs metadata for an entity
+      summary: Backstage Get TechDocs metadata for an entity
       description: >-
         Returns the TechDocs metadata for a specific catalog entity, including
         the site name, description, and build information.
@@ -65,7 +65,7 @@ paths:
   /metadata/entity/{namespace}/{kind}/{name}:
     get:
       operationId: getEntityMetadata
-      summary: Get entity metadata for TechDocs
+      summary: Backstage Get entity metadata for TechDocs
       description: >-
         Returns catalog entity metadata relevant to TechDocs rendering,
         including the entity name, description, and TechDocs annotations.
@@ -101,7 +101,7 @@ paths:
   /docs/{namespace}/{kind}/{name}:
     get:
       operationId: getTechDocsIndex
-      summary: Get TechDocs index page
+      summary: Backstage Get TechDocs index page
       description: >-
         Returns the root index page of the rendered TechDocs documentation
         for the specified entity. May trigger a sync if the documentation
@@ -138,7 +138,7 @@ paths:
   /docs/{namespace}/{kind}/{name}/{path}:
     get:
       operationId: getTechDocsPage
-      summary: Get a specific TechDocs page or asset
+      summary: Backstage Get a specific TechDocs page or asset
       description: >-
         Returns a specific page or static asset from the rendered TechDocs
         for the specified entity. The path is relative to the documentation
@@ -177,7 +177,7 @@ paths:
   /sync/{namespace}/{kind}/{name}:
     post:
       operationId: syncTechDocs
-      summary: Trigger TechDocs sync
+      summary: Backstage Trigger TechDocs sync
       description: >-
         Triggers a synchronization of the TechDocs content for the specified
         entity from the configured external storage provider.

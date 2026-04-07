@@ -25,7 +25,7 @@ paths:
   /entities:
     get:
       operationId: getEntities
-      summary: List entities (deprecated)
+      summary: Backstage List entities (deprecated)
       description: >-
         Lists catalog entities. This endpoint is deprecated in favor of
         GET /entities/by-query which provides cursor-based pagination and
@@ -84,7 +84,7 @@ paths:
   /entities/by-query:
     get:
       operationId: getEntitiesByQuery
-      summary: Query entities
+      summary: Backstage Query entities
       description: >-
         Query entities with support for filtering, full-text search,
         ordering, and cursor-based pagination. This is the preferred
@@ -169,7 +169,7 @@ paths:
   /entities/by-uid/{uid}:
     get:
       operationId: getEntityByUid
-      summary: Get entity by UID
+      summary: Backstage Get entity by UID
       description: Retrieves a single entity by its unique identifier.
       tags:
         - Entities
@@ -196,7 +196,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteEntityByUid
-      summary: Delete entity by UID
+      summary: Backstage Delete entity by UID
       description: >-
         Deletes an entity by its unique identifier. Returns an empty 204
         response whether an entity with this UID existed or not.
@@ -220,7 +220,7 @@ paths:
   /entities/by-name/{kind}/{namespace}/{name}:
     get:
       operationId: getEntityByName
-      summary: Get entity by name
+      summary: Backstage Get entity by name
       description: >-
         Retrieves a single entity by its kind, namespace, and name. This is
         the canonical way to fetch a specific known entity.
@@ -261,7 +261,7 @@ paths:
   /entities/by-name/{kind}/{namespace}/{name}/ancestry:
     get:
       operationId: getEntityAncestry
-      summary: Get entity ancestry
+      summary: Backstage Get entity ancestry
       description: >-
         Retrieves the ancestry (parent chain) of an entity, showing which
         entities and locations were involved in producing it.
@@ -314,7 +314,7 @@ paths:
   /entities/by-refs:
     post:
       operationId: getEntitiesByRefs
-      summary: Get entities by refs
+      summary: Backstage Get entities by refs
       description: >-
         Retrieves multiple entities by their entity references in a single
         request. This is more efficient than making individual requests.
@@ -360,7 +360,7 @@ paths:
   /refresh:
     post:
       operationId: refreshEntity
-      summary: Refresh entity
+      summary: Backstage Refresh entity
       description: >-
         Triggers a refresh of a specific entity, causing the catalog to
         re-process its source location and update the entity data.
@@ -389,7 +389,7 @@ paths:
   /validate-entity:
     post:
       operationId: validateEntity
-      summary: Validate entity
+      summary: Backstage Validate entity
       description: >-
         Validates that a passed-in entity has no errors in its schema.
         This can be used to check entity definitions before registering them.
@@ -434,7 +434,7 @@ paths:
   /entity-facets:
     get:
       operationId: getEntityFacets
-      summary: Get entity facets
+      summary: Backstage Get entity facets
       description: >-
         Retrieves all unique values (facets) for given entity fields that
         match the provided filters. Useful for building filter UIs.
@@ -482,7 +482,7 @@ paths:
   /locations:
     get:
       operationId: getLocations
-      summary: List locations
+      summary: Backstage List locations
       description: Lists all registered locations in the catalog.
       tags:
         - Locations
@@ -501,7 +501,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createLocation
-      summary: Create a location
+      summary: Backstage Create a location
       description: >-
         Registers a new location in the catalog. The catalog will then
         begin ingesting entities from this location.
@@ -558,7 +558,7 @@ paths:
   /locations/{id}:
     get:
       operationId: getLocationById
-      summary: Get location by ID
+      summary: Backstage Get location by ID
       description: Retrieves a specific location by its unique identifier.
       tags:
         - Locations
@@ -583,7 +583,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteLocation
-      summary: Delete location
+      summary: Backstage Delete location
       description: >-
         Removes a registered location and optionally all entities that
         originated from it.
@@ -607,7 +607,7 @@ paths:
   /locations/by-entity/{kind}/{namespace}/{name}:
     get:
       operationId: getLocationByEntity
-      summary: Get location by entity
+      summary: Backstage Get location by entity
       description: >-
         Retrieves the location associated with a specific entity, identified
         by its kind, namespace, and name.
@@ -645,7 +645,7 @@ paths:
   /analyze-location:
     post:
       operationId: analyzeLocation
-      summary: Analyze location
+      summary: Backstage Analyze location
       description: >-
         Analyzes a location to determine what entities would be generated
         from it without actually registering the location.
