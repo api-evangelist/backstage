@@ -1,0 +1,11 @@
+{
+  "keys": [
+    {
+      "kty": "sample-value",
+      "kid": "component:default/my-service",
+      "alg": "sample-value",
+      "use": "sample-value",
+      "n": "sample-value"
+    }
+  ]
+}

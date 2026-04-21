@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-structure/search-search-result-set-structure.json",
+  "name": "SearchResultSet",
+  "description": "SearchResultSet schema from Backstage search API",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SearchResult"
+      },
+      "description": "Array of search result documents."
+    },
+    "nextPageCursor": {
+      "type": "string",
+      "description": "Cursor to fetch the next page of results."
+    },
+    "previousPageCursor": {
+      "type": "string",
+      "description": "Cursor to fetch the previous page of results."
+    },
+    "numberOfResults": {
+      "type": "int32",
+      "description": "Total number of matching results."
+    }
+  }
+}

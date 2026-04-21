@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-structure/permissions-conditional-request-structure.json",
+  "name": "ConditionalRequest",
+  "description": "ConditionalRequest schema from Backstage permissions API",
+  "type": "object",
+  "properties": {
+    "resourceRef": {
+      "type": "string",
+      "description": "Reference to the resource."
+    },
+    "resourceType": {
+      "type": "string",
+      "description": "The resource type identifier."
+    },
+    "conditions": {
+      "type": "object",
+      "description": "The conditions to evaluate against the resource."
+    }
+  },
+  "required": [
+    "resourceRef",
+    "resourceType",
+    "conditions"
+  ]
+}

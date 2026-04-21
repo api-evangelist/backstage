@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-schema/permissions-permission-decision-schema.json",
+  "title": "PermissionDecision",
+  "description": "PermissionDecision schema from Backstage permissions API",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "DENY",
+        "CONDITIONAL"
+      ],
+      "description": "The authorization decision result."
+    },
+    "pluginId": {
+      "type": "string",
+      "description": "The plugin responsible for condition evaluation."
+    },
+    "resourceType": {
+      "type": "string",
+      "description": "The resource type for conditional decisions."
+    },
+    "conditions": {
+      "type": "object",
+      "description": "The conditions that must be evaluated against the resource to produce a final decision. Only present when result is CONDITIONAL."
+    }
+  },
+  "required": [
+    "result"
+  ]
+}

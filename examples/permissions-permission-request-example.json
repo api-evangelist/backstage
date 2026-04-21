@@ -1,0 +1,11 @@
+{
+  "permission": {
+    "type": "basic",
+    "name": "my-service",
+    "resourceType": "sample-value",
+    "attributes": {
+      "action": "create"
+    }
+  },
+  "resourceRef": "sample-value"
+}

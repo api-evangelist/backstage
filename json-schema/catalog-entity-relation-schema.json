@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-schema/catalog-entity-relation-schema.json",
+  "title": "EntityRelation",
+  "description": "EntityRelation schema from Backstage catalog API",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of relation.",
+      "example": "ownedBy"
+    },
+    "targetRef": {
+      "type": "string",
+      "description": "The entity reference of the target entity.",
+      "example": "group:default/my-team"
+    }
+  }
+}

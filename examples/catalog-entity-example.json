@@ -1,0 +1,19 @@
+{
+  "apiVersion": "backstage.io/v1alpha1",
+  "kind": "Component",
+  "metadata": "sample-value",
+  "spec": {},
+  "relations": [
+    "sample-value"
+  ],
+  "status": {
+    "items": [
+      {
+        "type": "sample-value",
+        "level": "info",
+        "message": "sample-value",
+        "error": {}
+      }
+    ]
+  }
+}

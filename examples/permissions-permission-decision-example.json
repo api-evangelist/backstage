@@ -1,0 +1,6 @@
+{
+  "result": "ALLOW",
+  "pluginId": "component:default/my-service",
+  "resourceType": "sample-value",
+  "conditions": {}
+}

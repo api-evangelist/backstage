@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-structure/auth-auth-response-structure.json",
+  "name": "AuthResponse",
+  "description": "AuthResponse schema from Backstage auth API",
+  "type": "object",
+  "properties": {
+    "backstageIdentity": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "The Backstage token for backend API calls."
+        },
+        "identity": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "The identity type."
+            },
+            "userEntityRef": {
+              "type": "string",
+              "description": "The entity reference for the user (e.g., user:default/guest)."
+            },
+            "ownershipEntityRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Entity references for groups and other ownership claims."
+            }
+          }
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The user's email address."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user's display name."
+        },
+        "picture": {
+          "type": "string",
+          "description": "URL to the user's profile picture."
+        }
+      }
+    },
+    "providerInfo": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string",
+          "description": "The provider-specific access token."
+        },
+        "expiresInSeconds": {
+          "type": "double",
+          "description": "Number of seconds until the access token expires."
+        }
+      }
+    }
+  }
+}

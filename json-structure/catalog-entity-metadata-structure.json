@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-structure/catalog-entity-metadata-structure.json",
+  "name": "EntityMetadata",
+  "description": "Metadata common to all entity kinds.",
+  "type": "object",
+  "properties": {
+    "uid": {
+      "type": "uuid",
+      "description": "A globally unique identifier for the entity."
+    },
+    "etag": {
+      "type": "string",
+      "description": "An opaque string that changes on each update."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the entity.",
+      "example": "my-service"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "The namespace the entity belongs to.",
+      "default": "default"
+    },
+    "title": {
+      "type": "string",
+      "description": "A human-readable title for the entity."
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of the entity."
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Key-value pairs for labeling the entity."
+    },
+    "annotations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Key-value pairs for non-identifying metadata."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of single-valued strings for classification."
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

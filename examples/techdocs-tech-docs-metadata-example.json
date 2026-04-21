@@ -1,0 +1,9 @@
+{
+  "site_name": "my-service",
+  "site_description": "sample-value",
+  "etag": "sample-value",
+  "build_timestamp": "sample-value",
+  "files": [
+    "sample-value"
+  ]
+}

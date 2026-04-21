@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-structure/techdocs-tech-docs-metadata-structure.json",
+  "name": "TechDocsMetadata",
+  "description": "TechDocsMetadata schema from Backstage techdocs API",
+  "type": "object",
+  "properties": {
+    "site_name": {
+      "type": "string",
+      "description": "The name of the documentation site."
+    },
+    "site_description": {
+      "type": "string",
+      "description": "Description of the documentation site."
+    },
+    "etag": {
+      "type": "string",
+      "description": "ETag for cache validation."
+    },
+    "build_timestamp": {
+      "type": "datetime",
+      "description": "Timestamp of the last documentation build."
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of files in the documentation bundle."
+    }
+  }
+}

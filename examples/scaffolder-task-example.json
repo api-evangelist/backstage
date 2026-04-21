@@ -1,0 +1,24 @@
+{
+  "id": "component:default/my-service",
+  "spec": {
+    "apiVersion": "sample-value",
+    "templateInfo": {
+      "entityRef": "sample-value"
+    },
+    "steps": [
+      {
+        "id": "component:default/my-service",
+        "name": "my-service",
+        "action": "sample-value",
+        "input": {}
+      }
+    ],
+    "output": {},
+    "parameters": {}
+  },
+  "status": "open",
+  "createdAt": "sample-value",
+  "lastHeartbeatAt": "sample-value",
+  "completedAt": "sample-value",
+  "createdBy": "sample-value"
+}

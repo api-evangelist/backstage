@@ -1,0 +1,5 @@
+{
+  "id": "component:default/my-service",
+  "type": "sample-value",
+  "target": "sample-value"
+}

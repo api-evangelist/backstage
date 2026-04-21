@@ -1,203 +1,220 @@
 {
   "@context": {
     "@version": 1.1,
-    "backstage": "https://backstage.io/vocab#",
-    "schema": "https://schema.org/",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "backstage": "https://backstage.io/schema/",
+    "schema": {
+      "@id": "backstage:schema",
+      "@type": "xsd:string"
+    },
+    "dcterms": "http://purl.org/dc/terms/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "Entity": {
-      "@id": "backstage:Entity",
-      "@context": {
-        "apiVersion": {
-          "@id": "backstage:apiVersion",
-          "@type": "xsd:string"
-        },
-        "kind": {
-          "@id": "backstage:kind",
-          "@type": "xsd:string"
-        },
-        "metadata": {
-          "@id": "backstage:metadata",
-          "@type": "@id"
-        },
-        "spec": {
-          "@id": "backstage:spec",
-          "@type": "@id"
-        },
-        "relations": {
-          "@id": "backstage:relations",
-          "@container": "@set"
-        },
-        "status": {
-          "@id": "backstage:status",
-          "@type": "@id"
-        }
-      }
-    },
-    "EntityMeta": {
-      "@id": "backstage:EntityMeta",
-      "@context": {
-        "uid": {
-          "@id": "backstage:uid",
-          "@type": "xsd:string"
-        },
-        "etag": {
-          "@id": "backstage:etag",
-          "@type": "xsd:string"
-        },
-        "name": {
-          "@id": "schema:name",
-          "@type": "xsd:string"
-        },
-        "namespace": {
-          "@id": "backstage:namespace",
-          "@type": "xsd:string"
-        },
-        "title": {
-          "@id": "schema:alternateName",
-          "@type": "xsd:string"
-        },
-        "description": {
-          "@id": "schema:description",
-          "@type": "xsd:string"
-        },
-        "labels": {
-          "@id": "backstage:labels",
-          "@container": "@index"
-        },
-        "annotations": {
-          "@id": "backstage:annotations",
-          "@container": "@index"
-        },
-        "tags": {
-          "@id": "schema:keywords",
-          "@container": "@set"
-        },
-        "links": {
-          "@id": "backstage:links",
-          "@container": "@set"
-        }
-      }
-    },
-    "EntityLink": {
-      "@id": "backstage:EntityLink",
-      "@context": {
-        "url": {
-          "@id": "schema:url",
-          "@type": "@id"
-        },
-        "title": {
-          "@id": "schema:name",
-          "@type": "xsd:string"
-        },
-        "icon": {
-          "@id": "backstage:icon",
-          "@type": "xsd:string"
-        },
-        "type": {
-          "@id": "backstage:linkType",
-          "@type": "xsd:string"
-        }
-      }
-    },
-    "EntityRelation": {
-      "@id": "backstage:EntityRelation",
-      "@context": {
-        "type": {
-          "@id": "backstage:relationType",
-          "@type": "xsd:string"
-        },
-        "targetRef": {
-          "@id": "backstage:targetRef",
-          "@type": "xsd:string"
-        }
-      }
-    },
-    "Component": {
-      "@id": "backstage:Component",
-      "rdfs:subClassOf": {
-        "@id": "backstage:Entity"
-      }
-    },
-    "API": {
-      "@id": "backstage:API",
-      "rdfs:subClassOf": {
-        "@id": "backstage:Entity"
-      }
-    },
-    "Resource": {
-      "@id": "backstage:Resource",
-      "rdfs:subClassOf": {
-        "@id": "backstage:Entity"
-      }
-    },
-    "System": {
-      "@id": "backstage:System",
-      "rdfs:subClassOf": {
-        "@id": "backstage:Entity"
-      }
-    },
-    "Domain": {
-      "@id": "backstage:Domain",
-      "rdfs:subClassOf": {
-        "@id": "backstage:Entity"
-      }
-    },
-    "Group": {
-      "@id": "backstage:Group",
-      "rdfs:subClassOf": {
-        "@id": "schema:Organization"
-      }
-    },
-    "User": {
-      "@id": "backstage:User",
-      "rdfs:subClassOf": {
-        "@id": "schema:Person"
-      }
-    },
-    "Location": {
-      "@id": "backstage:Location",
-      "rdfs:subClassOf": {
-        "@id": "backstage:Entity"
-      }
-    },
-    "Template": {
-      "@id": "backstage:Template",
-      "rdfs:subClassOf": {
-        "@id": "backstage:Entity"
-      }
-    },
-    "owner": {
-      "@id": "backstage:owner",
+    "Action": "backstage:Action",
+    "AuthResponse": "backstage:AuthResponse",
+    "Backstage Catalog Entity": "backstage:Backstage Catalog Entity",
+    "ConditionalRequest": "backstage:ConditionalRequest",
+    "Entity": "backstage:Entity",
+    "EntityMetadata": "backstage:EntityMetadata",
+    "EntityRelation": "backstage:EntityRelation",
+    "JwksResponse": "backstage:JwksResponse",
+    "Location": "backstage:Location",
+    "PermissionDecision": "backstage:PermissionDecision",
+    "PermissionRequest": "backstage:PermissionRequest",
+    "SearchDocument": "backstage:SearchDocument",
+    "SearchResult": "backstage:SearchResult",
+    "SearchResultSet": "backstage:SearchResultSet",
+    "Task": "backstage:Task",
+    "TechDocsMetadata": "backstage:TechDocsMetadata",
+    "annotations": {
+      "@id": "backstage:annotations",
       "@type": "xsd:string"
     },
-    "lifecycle": {
-      "@id": "backstage:lifecycle",
+    "apiVersion": {
+      "@id": "backstage:apiVersion",
       "@type": "xsd:string"
     },
-    "system": {
-      "@id": "backstage:system",
+    "backstageIdentity": {
+      "@id": "backstage:backstageIdentity",
       "@type": "xsd:string"
     },
-    "providesApis": {
-      "@id": "backstage:providesApis",
-      "@container": "@set"
+    "buildTimestamp": {
+      "@id": "backstage:build_timestamp",
+      "@type": "xsd:dateTime"
     },
-    "consumesApis": {
-      "@id": "backstage:consumesApis",
-      "@container": "@set"
+    "completedAt": {
+      "@id": "backstage:completedAt",
+      "@type": "xsd:dateTime"
     },
-    "dependsOn": {
-      "@id": "backstage:dependsOn",
-      "@container": "@set"
+    "conditions": {
+      "@id": "backstage:conditions",
+      "@type": "xsd:string"
     },
-    "memberOf": {
-      "@id": "schema:memberOf",
-      "@container": "@set"
+    "createdAt": {
+      "@id": "backstage:createdAt",
+      "@type": "xsd:dateTime"
     },
-    "members": {
-      "@id": "schema:member",
-      "@container": "@set"
+    "createdBy": {
+      "@id": "backstage:createdBy",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "document": {
+      "@id": "backstage:document",
+      "@type": "xsd:string"
+    },
+    "etag": {
+      "@id": "backstage:etag",
+      "@type": "xsd:string"
+    },
+    "files": {
+      "@id": "backstage:files",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "highlight": {
+      "@id": "backstage:highlight",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "backstage:id",
+      "@type": "xsd:string"
+    },
+    "keys": {
+      "@id": "backstage:keys",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "kind": {
+      "@id": "backstage:kind",
+      "@type": "xsd:string"
+    },
+    "labels": {
+      "@id": "backstage:labels",
+      "@type": "xsd:string"
+    },
+    "lastHeartbeatAt": {
+      "@id": "backstage:lastHeartbeatAt",
+      "@type": "xsd:dateTime"
+    },
+    "links": {
+      "@id": "backstage:links",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "backstage:location",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "backstage:metadata",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "namespace": {
+      "@id": "backstage:namespace",
+      "@type": "xsd:string"
+    },
+    "nextPageCursor": {
+      "@id": "backstage:nextPageCursor",
+      "@type": "xsd:string"
+    },
+    "numberOfResults": {
+      "@id": "backstage:numberOfResults",
+      "@type": "xsd:integer"
+    },
+    "permission": {
+      "@id": "backstage:permission",
+      "@type": "xsd:string"
+    },
+    "pluginId": {
+      "@id": "backstage:pluginId",
+      "@type": "xsd:string"
+    },
+    "previousPageCursor": {
+      "@id": "backstage:previousPageCursor",
+      "@type": "xsd:string"
+    },
+    "profile": {
+      "@id": "backstage:profile",
+      "@type": "xsd:string"
+    },
+    "providerInfo": {
+      "@id": "backstage:providerInfo",
+      "@type": "xsd:string"
+    },
+    "rank": {
+      "@id": "backstage:rank",
+      "@type": "xsd:string"
+    },
+    "relations": {
+      "@id": "backstage:relations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "resourceRef": {
+      "@id": "backstage:resourceRef",
+      "@type": "xsd:string"
+    },
+    "resourceType": {
+      "@id": "backstage:resourceType",
+      "@type": "xsd:string"
+    },
+    "result": {
+      "@id": "backstage:result",
+      "@type": "xsd:string"
+    },
+    "results": {
+      "@id": "backstage:results",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "siteDescription": {
+      "@id": "backstage:site_description",
+      "@type": "xsd:string"
+    },
+    "siteName": {
+      "@id": "backstage:site_name",
+      "@type": "xsd:string"
+    },
+    "spec": {
+      "@id": "backstage:spec",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "backstage:status",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "backstage:tags",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "target": {
+      "@id": "backstage:target",
+      "@type": "xsd:string"
+    },
+    "targetRef": {
+      "@id": "backstage:targetRef",
+      "@type": "xsd:string"
+    },
+    "text": {
+      "@id": "backstage:text",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "backstage:title",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "backstage:type",
+      "@type": "xsd:string"
+    },
+    "uid": {
+      "@id": "backstage:uid",
+      "@type": "xsd:string"
     }
   }
 }

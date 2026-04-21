@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-schema/permissions-permission-request-schema.json",
+  "title": "PermissionRequest",
+  "description": "PermissionRequest schema from Backstage permissions API",
+  "type": "object",
+  "properties": {
+    "permission": {
+      "type": "object",
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "basic",
+            "resource"
+          ],
+          "description": "The permission type."
+        },
+        "name": {
+          "type": "string",
+          "description": "The unique permission name."
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "The resource type for resource-based permissions."
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": [
+                "create",
+                "read",
+                "update",
+                "delete"
+              ],
+              "description": "The action being performed."
+            }
+          }
+        }
+      }
+    },
+    "resourceRef": {
+      "type": "string",
+      "description": "Reference to the specific resource being accessed (e.g., component:default/my-service)."
+    }
+  },
+  "required": [
+    "permission"
+  ]
+}

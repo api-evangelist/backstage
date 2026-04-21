@@ -1,0 +1,130 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Backstage Developer Portal"
+  description: >-
+    Unified developer portal workflow combining the Backstage Software Catalog, Scaffolder,
+    TechDocs, Search, Auth, and Permissions APIs. Serves platform engineers and developers
+    managing internal developer platforms.
+  tags:
+    - Backstage
+    - Developer Portal
+    - Internal Developer Platform
+    - Software Catalog
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      BACKSTAGE_TOKEN: BACKSTAGE_TOKEN
+
+capability:
+  consumes:
+    - import: backstage-catalog
+      location: ./shared/catalog-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: backstage-portal-api
+      description: "Unified REST API for Backstage developer portal management."
+      resources:
+        - path: /v1/entities
+          name: entities
+          description: Software catalog entities
+          operations:
+            - method: GET
+              name: list-entities
+              description: List all catalog entities
+              call: "backstage-catalog.list-entities"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/locations
+          name: locations
+          description: Catalog locations
+          operations:
+            - method: GET
+              name: list-locations
+              description: List catalog locations
+              call: "backstage-catalog.list-locations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-location
+              description: Register a new catalog location
+              call: "backstage-catalog.create-location"
+              with:
+                location_type: "rest.location_type"
+                location_target: "rest.location_target"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: backstage-portal-mcp
+      transport: http
+      description: "MCP server for AI-assisted Backstage developer portal management."
+      tools:
+        - name: list-catalog-entities
+          description: List all entities in the Backstage software catalog including components, APIs, resources, systems, and users
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "backstage-catalog.list-entities"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-catalog-entity
+          description: Get a specific catalog entity by kind, namespace, and name
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "backstage-catalog.get-entity-by-ref"
+          with:
+            kind: "tools.kind"
+            namespace: "tools.namespace"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: register-catalog-location
+          description: Register a new catalog location (GitHub repo URL, YAML file) to ingest entities
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "backstage-catalog.create-location"
+          with:
+            location_type: "tools.location_type"
+            location_target: "tools.location_target"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-catalog-locations
+          description: List all registered catalog locations
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "backstage-catalog.list-locations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-catalog-entity
+          description: Delete an entity from the software catalog
+          hints:
+            readOnly: false
+            destructive: true
+          call: "backstage-catalog.delete-entity"
+          with:
+            uid: "tools.uid"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,10 @@
+{
+  "type": "sample-value",
+  "document": "sample-value",
+  "rank": 18.52,
+  "highlight": {
+    "preTag": "sample-value",
+    "postTag": "sample-value",
+    "fields": {}
+  }
+}

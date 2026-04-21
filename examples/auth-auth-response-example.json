@@ -1,0 +1,21 @@
+{
+  "backstageIdentity": {
+    "token": "Bearer eyJhbGciOiJSUzI1NiJ9.example",
+    "identity": {
+      "type": "sample-value",
+      "userEntityRef": "sample-value",
+      "ownershipEntityRefs": [
+        "sample-value"
+      ]
+    }
+  },
+  "profile": {
+    "email": "sample-value",
+    "displayName": "my-service",
+    "picture": "sample-value"
+  },
+  "providerInfo": {
+    "accessToken": "Bearer eyJhbGciOiJSUzI1NiJ9.example",
+    "expiresInSeconds": 39.82
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-structure/search-search-document-structure.json",
+  "name": "SearchDocument",
+  "description": "SearchDocument schema from Backstage search API",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the document."
+    },
+    "text": {
+      "type": "string",
+      "description": "Text content of the document."
+    },
+    "location": {
+      "type": "string",
+      "description": "URL or path to the original content."
+    }
+  },
+  "required": [
+    "title",
+    "text",
+    "location"
+  ],
+  "additionalProperties": true
+}

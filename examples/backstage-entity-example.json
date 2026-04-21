@@ -1,0 +1,16 @@
+{
+  "apiVersion": "sample-value",
+  "kind": "Component",
+  "metadata": "sample-value",
+  "spec": {
+    "type": "sample-value",
+    "lifecycle": "sample-value",
+    "owner": "sample-value",
+    "system": "sample-value",
+    "subcomponentOf": "sample-value"
+  },
+  "relations": [
+    "sample-value"
+  ],
+  "status": "sample-value"
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-structure/scaffolder-task-structure.json",
+  "name": "Task",
+  "description": "Task schema from Backstage scaffolder API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the task."
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string"
+        },
+        "templateInfo": {
+          "type": "object",
+          "properties": {
+            "entityRef": {
+              "type": "string",
+              "description": "Reference to the template entity."
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string"
+              },
+              "input": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "output": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the task.",
+      "enum": [
+        "open",
+        "processing",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "createdAt": {
+      "type": "datetime"
+    },
+    "lastHeartbeatAt": {
+      "type": "datetime"
+    },
+    "completedAt": {
+      "type": "datetime"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the task."
+    }
+  }
+}

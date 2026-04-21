@@ -1,0 +1,288 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Backstage"
+  description: "Unified taxonomy for the Backstage developer portal platform covering the Software Catalog, Scaffolder, TechDocs, Search, Auth, and Permissions APIs."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: backstage-catalog
+      label: Backstage Catalog API
+      version: "1.0"
+      baseUrl: https://backstage.example.com/api/catalog
+      status: active
+    - namespace: backstage-scaffolder
+      label: Backstage Scaffolder API
+      version: "1.0"
+      baseUrl: https://backstage.example.com/api/scaffolder
+      status: active
+    - namespace: backstage-auth
+      label: Backstage Auth API
+      version: "1.0"
+      baseUrl: https://backstage.example.com/api/auth
+      status: active
+    - namespace: backstage-techdocs
+      label: Backstage TechDocs API
+      version: "1.0"
+      baseUrl: https://backstage.example.com/api/techdocs
+      status: active
+    - namespace: backstage-search
+      label: Backstage Search API
+      version: "1.0"
+      baseUrl: https://backstage.example.com/api/search
+      status: active
+    - namespace: backstage-permissions
+      label: Backstage Permissions API
+      version: "1.0"
+      baseUrl: https://backstage.example.com/api/permission
+      status: active
+
+  resources:
+    - name: entities
+      description: Software components, APIs, resources, systems, domains, groups, and users registered in the catalog
+      apis:
+        - backstage-catalog
+      actions:
+        - list
+        - get
+        - delete
+        - validate
+    - name: locations
+      description: Source control or URL references that the catalog ingests entities from
+      apis:
+        - backstage-catalog
+      actions:
+        - list
+        - create
+        - delete
+        - get
+    - name: scaffolder-tasks
+      description: Software template execution tasks for bootstrapping new projects
+      apis:
+        - backstage-scaffolder
+      actions:
+        - create
+        - get
+        - cancel
+        - list-events
+    - name: templates
+      description: Scaffolder software templates defining parameters and steps for project creation
+      apis:
+        - backstage-scaffolder
+      actions:
+        - list
+        - get-parameter-schema
+    - name: techdocs
+      description: Rendered technical documentation for catalog entities
+      apis:
+        - backstage-techdocs
+      actions:
+        - get
+        - sync
+        - list
+    - name: search-results
+      description: Search index results across catalog entities, TechDocs pages, and other content
+      apis:
+        - backstage-search
+      actions:
+        - query
+    - name: permissions
+      description: Authorization decisions for user/service actions within Backstage
+      apis:
+        - backstage-permissions
+      actions:
+        - evaluate
+        - get-metadata
+
+  actions:
+    - name: list
+      description: Retrieve a paginated list of resources
+      methods: [GET]
+      pattern: read
+    - name: get
+      description: Retrieve a single resource by identifier
+      methods: [GET]
+      pattern: read
+    - name: create
+      description: Create a new resource
+      methods: [POST]
+      pattern: write
+    - name: delete
+      description: Remove a resource
+      methods: [DELETE]
+      pattern: destructive
+    - name: validate
+      description: Validate entity format and references
+      methods: [POST]
+      pattern: read
+    - name: sync
+      description: Synchronize documentation from source to storage
+      methods: [POST]
+      pattern: write
+    - name: query
+      description: Full-text search across indexed content
+      methods: [GET]
+      pattern: read
+    - name: evaluate
+      description: Evaluate permission authorization decisions
+      methods: [POST]
+      pattern: read
+    - name: cancel
+      description: Cancel an in-progress task
+      methods: [POST]
+      pattern: write
+
+  schemas:
+    core:
+      - name: Entity
+        description: A software catalog entity (Component, API, Resource, System, Domain, Group, User)
+        key_properties:
+          - apiVersion
+          - kind
+          - metadata
+          - spec
+      - name: EntityMeta
+        description: Entity metadata including name, namespace, labels, and annotations
+        key_properties:
+          - name
+          - namespace
+          - uid
+          - annotations
+          - labels
+          - tags
+      - name: Location
+        description: A catalog source location pointing to entity descriptor files
+        key_properties:
+          - id
+          - type
+          - target
+
+  parameters:
+    pagination:
+      - name: cursor
+        description: Cursor for paginating through large result sets
+      - name: limit
+        description: Maximum number of items to return per page
+      - name: offset
+        description: Number of items to skip for pagination
+    filters:
+      - name: filter
+        description: Entity filter expressions (e.g., kind=Component,metadata.name=my-service)
+      - name: fields
+        description: Limit entity fields returned in the response
+    search:
+      - name: term
+        description: Full-text search query term
+      - name: types
+        description: Document types to search (e.g., software-catalog, techdocs)
+
+  enums:
+    entity-kinds:
+      - Component
+      - API
+      - Resource
+      - System
+      - Domain
+      - Group
+      - User
+      - Template
+      - Location
+    entity-lifecycle:
+      - experimental
+      - production
+      - deprecated
+    entity-type-component:
+      - service
+      - website
+      - library
+      - documentation
+
+  authentication:
+    schemes:
+      - name: BackstageToken
+        type: bearer
+        description: Backstage identity token or service-to-service token
+
+capability:
+  workflows:
+    - name: Developer Portal
+      file: capabilities/developer-portal.yaml
+      description: Unified workflow for managing entities, locations, scaffolding, documentation, and search
+      apis_combined:
+        - backstage-catalog
+      tool_count: 5
+      personas:
+        - Platform Engineer
+        - Developer
+      domains:
+        - Developer Portal
+        - Internal Developer Platform
+
+  personas:
+    - id: platform-engineer
+      name: Platform Engineer
+      description: Engineer building and maintaining the internal developer platform and Backstage configuration
+      workflows:
+        - Developer Portal
+    - id: developer
+      name: Developer
+      description: Software developer using Backstage to discover services, bootstrap projects, and read documentation
+      workflows:
+        - Developer Portal
+
+  domains:
+    - name: Software Catalog
+      description: Central inventory of all software components, APIs, and resources
+      resources:
+        - entities
+        - locations
+      workflows:
+        - Developer Portal
+    - name: Developer Productivity
+      description: Scaffolding, documentation, and search to accelerate development
+      resources:
+        - scaffolder-tasks
+        - techdocs
+        - search-results
+      workflows:
+        - Developer Portal
+
+  namespaces:
+    - namespace: backstage-catalog
+      type: consumed
+    - namespace: backstage-portal-api
+      type: rest-exposed
+      port: 8080
+    - namespace: backstage-portal-mcp
+      type: mcp-exposed
+      port: 9080
+
+  binds:
+    - name: BACKSTAGE_TOKEN
+      description: Backstage authorization token for API calls
+      workflows:
+        - Developer Portal
+
+crossReference:
+  - resource: entities
+    operations:
+      - listEntities
+      - getEntityByRef
+      - deleteEntity
+      - validateEntity
+    workflows:
+      - Developer Portal
+    personas:
+      - Platform Engineer
+      - Developer
+  - resource: locations
+    operations:
+      - listLocations
+      - createLocation
+      - deleteLocation
+    workflows:
+      - Developer Portal
+    personas:
+      - Platform Engineer

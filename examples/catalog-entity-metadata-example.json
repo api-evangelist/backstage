@@ -1,0 +1,21 @@
+{
+  "uid": "component:default/my-service",
+  "etag": "sample-value",
+  "name": "my-service",
+  "namespace": "my-service",
+  "title": "sample-value",
+  "description": "sample-value",
+  "labels": {},
+  "annotations": {},
+  "tags": [
+    "sample-value"
+  ],
+  "links": [
+    {
+      "url": "https://example.com/path",
+      "title": "sample-value",
+      "icon": "sample-value",
+      "type": "sample-value"
+    }
+  ]
+}

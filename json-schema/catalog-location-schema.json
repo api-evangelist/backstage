@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/json-schema/catalog-location-schema.json",
+  "title": "Location",
+  "description": "Location schema from Backstage catalog API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the location."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the location (e.g., url, file)."
+    },
+    "target": {
+      "type": "string",
+      "description": "The target URL or path of the location."
+    }
+  }
+}
