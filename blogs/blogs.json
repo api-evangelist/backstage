@@ -1,0 +1,13 @@
+{
+  "repo": "backstage",
+  "feeds": [
+    {
+      "source": "https://backstage.io/blog/",
+      "feed_url": "https://backstage.io/blog/rss.xml",
+      "saved": 10,
+      "title": "Backstage Software Catalog and Developer Platform Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:23:29Z"
+}
