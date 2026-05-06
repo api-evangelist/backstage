@@ -4,115 +4,66 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Backstage
 providerId: backstage
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Developer Portal
-  - Internal Developer Platform
-  - Software Catalog
   - Open Source
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Backstage API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Backstage is a self-hosted open-source application; there is no central provider-published
+  rate limit. Rate limits in a Backstage deployment derive from (a) the operator's own ingress / API
+  gateway, (b) the underlying integrations (GitHub, GitLab, Bitbucket, Jenkins, Kubernetes, etc.) which
+  Backstage proxies, and (c) the database / queue backends. Commercial distributions (Spotify Portal,
+  Roadie, RHDH) may publish their own SaaS-tenant limits.
+notes: As an open-source self-hosted framework, Backstage itself does not enforce or publish API rate
+  limits. Limits below are integration-derived and operator-configured rather than Backstage-defined.
+sources:
+  - https://backstage.io/docs/
+  - https://backstage.io/docs/overview/architecture-overview
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Backstage Catalog API
-      - Backstage Scaffolder API
-      - Backstage Auth API
-      - Backstage TechDocs API
-      - Backstage Search API
-      - Backstage Permissions API
-      - Backstage Events System
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Backstage Catalog API
-      - Backstage Scaffolder API
-      - Backstage Auth API
-      - Backstage TechDocs API
-      - Backstage Search API
-      - Backstage Permissions API
-      - Backstage Events System
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Backstage Catalog API
-      - Backstage Scaffolder API
-      - Backstage Auth API
-      - Backstage TechDocs API
-      - Backstage Search API
-      - Backstage Permissions API
-      - Backstage Events System
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Backstage Catalog API
-      - Backstage Scaffolder API
-      - Backstage Auth API
-      - Backstage TechDocs API
-      - Backstage Search API
-      - Backstage Permissions API
-      - Backstage Events System
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Backstage Catalog API
-      - Backstage Scaffolder API
-      - Backstage Auth API
-      - Backstage TechDocs API
-      - Backstage Search API
-      - Backstage Permissions API
-      - Backstage Events System
+  - name: Operator-configured ingress rate limit
+    scope: deployment
+    metric: varies
+    limit: see operator's reverse proxy / API gateway configuration
+  - name: GitHub integration throttling
+    scope: integration
+    metric: varies
+    limit: see GitHub REST/GraphQL rate limits (5,000 req/hour authenticated, 15,000 GraphQL points/hour)
+  - name: GitLab integration throttling
+    scope: integration
+    metric: varies
+    limit: see GitLab.com or self-hosted GitLab rate limit settings
+  - name: Bitbucket integration throttling
+    scope: integration
+    metric: varies
+    limit: see Bitbucket API rate limits (1,000 req/hour anonymous; higher authenticated)
+  - name: Kubernetes API throttling
+    scope: integration
+    metric: varies
+    limit: see kube-apiserver QPS / Burst configuration on target cluster
+  - name: TechDocs build queue
+    scope: deployment
+    metric: varies
+    limit: operator-configured
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Configure backend rate limiting
+    description: Production Backstage deployments should add rate limiting at the reverse proxy / API
+      gateway tier (e.g., NGINX limit_req, Envoy local_rate_limit) to protect the backend.
+  - name: Cache integration calls
+    description: Backstage caches catalog data in its database; tune refresh intervals to avoid hammering
+      upstream GitHub/GitLab/Jenkins APIs.
+  - name: Honor upstream Retry-After
+    description: Plugins that proxy upstream APIs should propagate Retry-After to consumers and back
+      off when 429 is returned.
+  - name: Use authenticated tokens
+    description: Always integrate with GitHub/GitLab using authenticated tokens (PAT or GitHub App) to
+      get the higher rate-limit allotment.
+  - name: Distribute Scaffolder workers
+    description: For high template-execution volume, deploy multiple Scaffolder workers behind a queue
+      to avoid synchronous bottlenecks.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
