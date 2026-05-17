@@ -154,7 +154,7 @@ common:
   description: 'null'
 - url: https://backstage.io/docs/getting-started/
   name: Backstage Getting Started
-  type: Getting Started
+  type: GettingStarted
   description: 'null'
 - url: https://backstage.io/blog/
   name: Backstage Blog
@@ -162,7 +162,7 @@ common:
   description: 'null'
 - url: https://github.com/backstage
   name: Backstage GitHub Organization
-  type: GitHub Organization
+  type: GitHubOrganization
   description: 'null'
 - url: https://github.com/backstage/backstage
   name: Backstage GitHub Repository
@@ -170,7 +170,7 @@ common:
   description: 'null'
 - url: https://github.com/backstage/backstage/releases
   name: Backstage Releases
-  type: Change Log
+  type: ChangeLog
   description: 'null'
 - url: https://discord.gg/backstage-687207715902193673
   name: Backstage Discord Community
@@ -184,7 +184,7 @@ common:
   url: json-schema/backstage-entity-schema.json
   name: Backstage Entity JSON Schema
   description: 'null'
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/backstage-context.jsonld
   name: Backstage JSON-LD Context
   description: 'null'
