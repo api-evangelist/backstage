@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Backstage TechDocs API — Sync
+  description: 'Backstage TechDocs API — Sync. 1 operations. Lead operation: Backstage Trigger TechDocs sync. Self-contained
+    Naftiko capability covering one Backstage business surface.'
+  tags:
+  - Backstage
+  - Sync
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BACKSTAGE_API_KEY: BACKSTAGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: techdocs-sync
+    baseUri: https://localhost:7007/api/techdocs
+    description: Backstage TechDocs API — Sync business capability. Self-contained, no shared references.
+    resources:
+    - name: sync-namespace-kind-name
+      path: /sync/{namespace}/{kind}/{name}
+      operations:
+      - name: synctechdocs
+        method: POST
+        description: Backstage Trigger TechDocs sync
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: kind
+          in: path
+          type: string
+          required: true
+        - name: name
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BACKSTAGE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: techdocs-sync-rest
+    port: 8080
+    description: REST adapter for Backstage TechDocs API — Sync. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/sync/{namespace}/{kind}/{name}
+      name: sync-namespace-kind-name
+      description: REST surface for sync-namespace-kind-name.
+      operations:
+      - method: POST
+        name: synctechdocs
+        description: Backstage Trigger TechDocs sync
+        call: techdocs-sync.synctechdocs
+        with:
+          namespace: rest.namespace
+          kind: rest.kind
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: techdocs-sync-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Backstage TechDocs API — Sync. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: backstage-trigger-techdocs-sync
+      description: Backstage Trigger TechDocs sync
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: techdocs-sync.synctechdocs
+      with:
+        namespace: tools.namespace
+        kind: tools.kind
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.

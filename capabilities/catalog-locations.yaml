@@ -1,0 +1,282 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Backstage Catalog API — Locations
+  description: 'Backstage Catalog API — Locations. 6 operations. Lead operation: Backstage Analyze location. Self-contained
+    Naftiko capability covering one Backstage business surface.'
+  tags:
+  - Backstage
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BACKSTAGE_API_KEY: BACKSTAGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: catalog-locations
+    baseUri: https://localhost:7007/api/catalog
+    description: Backstage Catalog API — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: analyze-location
+      path: /analyze-location
+      operations:
+      - name: analyzelocation
+        method: POST
+        description: Backstage Analyze location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: locations
+      path: /locations
+      operations:
+      - name: getlocations
+        method: GET
+        description: Backstage List locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlocation
+        method: POST
+        description: Backstage Create a location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dryRun
+          in: query
+          type: boolean
+          description: If true, the location will not actually be created but validated and the entities that would be ingested
+            are returned.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: locations-by-entity-kind-namespace-name
+      path: /locations/by-entity/{kind}/{namespace}/{name}
+      operations:
+      - name: getlocationbyentity
+        method: GET
+        description: Backstage Get location by entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kind
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: name
+          in: path
+          type: string
+          required: true
+    - name: locations-id
+      path: /locations/{id}
+      operations:
+      - name: getlocationbyid
+        method: GET
+        description: Backstage Get location by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: deletelocation
+        method: DELETE
+        description: Backstage Delete location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BACKSTAGE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: catalog-locations-rest
+    port: 8080
+    description: REST adapter for Backstage Catalog API — Locations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/analyze-location
+      name: analyze-location
+      description: REST surface for analyze-location.
+      operations:
+      - method: POST
+        name: analyzelocation
+        description: Backstage Analyze location
+        call: catalog-locations.analyzelocation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/locations
+      name: locations
+      description: REST surface for locations.
+      operations:
+      - method: GET
+        name: getlocations
+        description: Backstage List locations
+        call: catalog-locations.getlocations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlocation
+        description: Backstage Create a location
+        call: catalog-locations.createlocation
+        with:
+          dryRun: rest.dryRun
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/locations/by-entity/{kind}/{namespace}/{name}
+      name: locations-by-entity-kind-namespace-name
+      description: REST surface for locations-by-entity-kind-namespace-name.
+      operations:
+      - method: GET
+        name: getlocationbyentity
+        description: Backstage Get location by entity
+        call: catalog-locations.getlocationbyentity
+        with:
+          kind: rest.kind
+          namespace: rest.namespace
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/locations/{id}
+      name: locations-id
+      description: REST surface for locations-id.
+      operations:
+      - method: GET
+        name: getlocationbyid
+        description: Backstage Get location by ID
+        call: catalog-locations.getlocationbyid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletelocation
+        description: Backstage Delete location
+        call: catalog-locations.deletelocation
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: catalog-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Backstage Catalog API — Locations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: backstage-analyze-location
+      description: Backstage Analyze location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: catalog-locations.analyzelocation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-list-locations
+      description: Backstage List locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-locations.getlocations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-create-location
+      description: Backstage Create a location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: catalog-locations.createlocation
+      with:
+        dryRun: tools.dryRun
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-get-location-entity
+      description: Backstage Get location by entity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-locations.getlocationbyentity
+      with:
+        kind: tools.kind
+        namespace: tools.namespace
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-get-location-id
+      description: Backstage Get location by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-locations.getlocationbyid
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-delete-location
+      description: Backstage Delete location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: catalog-locations.deletelocation
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

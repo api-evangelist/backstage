@@ -1,0 +1,525 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Backstage Catalog API — Entities
+  description: 'Backstage Catalog API — Entities. 10 operations. Lead operation: Backstage List entities (deprecated). Self-contained
+    Naftiko capability covering one Backstage business surface.'
+  tags:
+  - Backstage
+  - Entities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BACKSTAGE_API_KEY: BACKSTAGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: catalog-entities
+    baseUri: https://localhost:7007/api/catalog
+    description: Backstage Catalog API — Entities business capability. Self-contained, no shared references.
+    resources:
+    - name: entities
+      path: /entities
+      operations:
+      - name: getentities
+        method: GET
+        description: Backstage List entities (deprecated)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter conditions to select a subset of entities. Each condition is a key-value pair separated by =
+            sign. Multiple conditions can be provided and are ANDed toge
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of simplified JSON paths to select only specific parts of the entity data structure.
+        - name: order
+          in: query
+          type: string
+          description: Ordering of the result set. Format is asc:field or desc:field.
+    - name: entities-by-name-kind-namespace-name
+      path: /entities/by-name/{kind}/{namespace}/{name}
+      operations:
+      - name: getentitybyname
+        method: GET
+        description: Backstage Get entity by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kind
+          in: path
+          type: string
+          description: The kind of the entity (e.g., Component, API, System).
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          description: The namespace of the entity (usually 'default').
+          required: true
+        - name: name
+          in: path
+          type: string
+          description: The name of the entity.
+          required: true
+    - name: entities-by-name-kind-namespace-name-ancestry
+      path: /entities/by-name/{kind}/{namespace}/{name}/ancestry
+      operations:
+      - name: getentityancestry
+        method: GET
+        description: Backstage Get entity ancestry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kind
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: name
+          in: path
+          type: string
+          required: true
+    - name: entities-by-query
+      path: /entities/by-query
+      operations:
+      - name: getentitiesbyquery
+        method: GET
+        description: Backstage Query entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter conditions to select a subset of entities. Format is key=value. Multiple conditions in one filter
+            parameter are ANDed. Multiple filter parameters represe
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of simplified JSON paths to select specific parts of entity data.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of entities to return. Default is 20.
+        - name: orderField
+          in: query
+          type: string
+          description: Field to order results by. Format is field,asc or field,desc.
+        - name: fullTextFilter
+          in: query
+          type: string
+          description: Full-text search filter applied to entities.
+        - name: cursor
+          in: query
+          type: string
+          description: Cursor for pagination. Use the cursor value from a previous response to retrieve the next or previous
+            batch of entities.
+    - name: entities-by-refs
+      path: /entities/by-refs
+      operations:
+      - name: getentitiesbyrefs
+        method: POST
+        description: Backstage Get entities by refs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: entities-by-uid-uid
+      path: /entities/by-uid/{uid}
+      operations:
+      - name: getentitybyuid
+        method: GET
+        description: Backstage Get entity by UID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uid
+          in: path
+          type: string
+          description: The unique identifier of the entity.
+          required: true
+      - name: deleteentitybyuid
+        method: DELETE
+        description: Backstage Delete entity by UID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uid
+          in: path
+          type: string
+          description: The unique identifier of the entity to delete.
+          required: true
+    - name: entity-facets
+      path: /entity-facets
+      operations:
+      - name: getentityfacets
+        method: GET
+        description: Backstage Get entity facets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: facet
+          in: query
+          type: string
+          description: The field to get facets for. Can be specified multiple times for multiple facets.
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: Optional filter to narrow the entities considered.
+    - name: refresh
+      path: /refresh
+      operations:
+      - name: refreshentity
+        method: POST
+        description: Backstage Refresh entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: validate-entity
+      path: /validate-entity
+      operations:
+      - name: validateentity
+        method: POST
+        description: Backstage Validate entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BACKSTAGE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: catalog-entities-rest
+    port: 8080
+    description: REST adapter for Backstage Catalog API — Entities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/entities
+      name: entities
+      description: REST surface for entities.
+      operations:
+      - method: GET
+        name: getentities
+        description: Backstage List entities (deprecated)
+        call: catalog-entities.getentities
+        with:
+          filter: rest.filter
+          fields: rest.fields
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/entities/by-name/{kind}/{namespace}/{name}
+      name: entities-by-name-kind-namespace-name
+      description: REST surface for entities-by-name-kind-namespace-name.
+      operations:
+      - method: GET
+        name: getentitybyname
+        description: Backstage Get entity by name
+        call: catalog-entities.getentitybyname
+        with:
+          kind: rest.kind
+          namespace: rest.namespace
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/entities/by-name/{kind}/{namespace}/{name}/ancestry
+      name: entities-by-name-kind-namespace-name-ancestry
+      description: REST surface for entities-by-name-kind-namespace-name-ancestry.
+      operations:
+      - method: GET
+        name: getentityancestry
+        description: Backstage Get entity ancestry
+        call: catalog-entities.getentityancestry
+        with:
+          kind: rest.kind
+          namespace: rest.namespace
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/entities/by-query
+      name: entities-by-query
+      description: REST surface for entities-by-query.
+      operations:
+      - method: GET
+        name: getentitiesbyquery
+        description: Backstage Query entities
+        call: catalog-entities.getentitiesbyquery
+        with:
+          filter: rest.filter
+          fields: rest.fields
+          limit: rest.limit
+          orderField: rest.orderField
+          fullTextFilter: rest.fullTextFilter
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/entities/by-refs
+      name: entities-by-refs
+      description: REST surface for entities-by-refs.
+      operations:
+      - method: POST
+        name: getentitiesbyrefs
+        description: Backstage Get entities by refs
+        call: catalog-entities.getentitiesbyrefs
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/entities/by-uid/{uid}
+      name: entities-by-uid-uid
+      description: REST surface for entities-by-uid-uid.
+      operations:
+      - method: GET
+        name: getentitybyuid
+        description: Backstage Get entity by UID
+        call: catalog-entities.getentitybyuid
+        with:
+          uid: rest.uid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteentitybyuid
+        description: Backstage Delete entity by UID
+        call: catalog-entities.deleteentitybyuid
+        with:
+          uid: rest.uid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/entity-facets
+      name: entity-facets
+      description: REST surface for entity-facets.
+      operations:
+      - method: GET
+        name: getentityfacets
+        description: Backstage Get entity facets
+        call: catalog-entities.getentityfacets
+        with:
+          facet: rest.facet
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/refresh
+      name: refresh
+      description: REST surface for refresh.
+      operations:
+      - method: POST
+        name: refreshentity
+        description: Backstage Refresh entity
+        call: catalog-entities.refreshentity
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/validate-entity
+      name: validate-entity
+      description: REST surface for validate-entity.
+      operations:
+      - method: POST
+        name: validateentity
+        description: Backstage Validate entity
+        call: catalog-entities.validateentity
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: catalog-entities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Backstage Catalog API — Entities. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: backstage-list-entities-deprecated
+      description: Backstage List entities (deprecated)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-entities.getentities
+      with:
+        filter: tools.filter
+        fields: tools.fields
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-get-entity-name
+      description: Backstage Get entity by name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-entities.getentitybyname
+      with:
+        kind: tools.kind
+        namespace: tools.namespace
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-get-entity-ancestry
+      description: Backstage Get entity ancestry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-entities.getentityancestry
+      with:
+        kind: tools.kind
+        namespace: tools.namespace
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-query-entities
+      description: Backstage Query entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-entities.getentitiesbyquery
+      with:
+        filter: tools.filter
+        fields: tools.fields
+        limit: tools.limit
+        orderField: tools.orderField
+        fullTextFilter: tools.fullTextFilter
+        cursor: tools.cursor
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-get-entities-refs
+      description: Backstage Get entities by refs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: catalog-entities.getentitiesbyrefs
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-get-entity-uid
+      description: Backstage Get entity by UID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-entities.getentitybyuid
+      with:
+        uid: tools.uid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-delete-entity-uid
+      description: Backstage Delete entity by UID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: catalog-entities.deleteentitybyuid
+      with:
+        uid: tools.uid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-get-entity-facets
+      description: Backstage Get entity facets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-entities.getentityfacets
+      with:
+        facet: tools.facet
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-refresh-entity
+      description: Backstage Refresh entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: catalog-entities.refreshentity
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: backstage-validate-entity
+      description: Backstage Validate entity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: catalog-entities.validateentity
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Backstage Scaffolder API — Templates
+  description: 'Backstage Scaffolder API — Templates. 1 operations. Lead operation: Backstage Get template parameter schema.
+    Self-contained Naftiko capability covering one Backstage business surface.'
+  tags:
+  - Backstage
+  - Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BACKSTAGE_API_KEY: BACKSTAGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: scaffolder-templates
+    baseUri: https://localhost:7007/api/scaffolder
+    description: Backstage Scaffolder API — Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-templates-namespace-kind-name-parameter-schema
+      path: /v2/templates/{namespace}/{kind}/{name}/parameter-schema
+      operations:
+      - name: gettemplateparameterschema
+        method: GET
+        description: Backstage Get template parameter schema
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: kind
+          in: path
+          type: string
+          required: true
+        - name: name
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BACKSTAGE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: scaffolder-templates-rest
+    port: 8080
+    description: REST adapter for Backstage Scaffolder API — Templates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/templates/{namespace}/{kind}/{name}/parameter-schema
+      name: v2-templates-namespace-kind-name-parameter-schema
+      description: REST surface for v2-templates-namespace-kind-name-parameter-schema.
+      operations:
+      - method: GET
+        name: gettemplateparameterschema
+        description: Backstage Get template parameter schema
+        call: scaffolder-templates.gettemplateparameterschema
+        with:
+          namespace: rest.namespace
+          kind: rest.kind
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: scaffolder-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Backstage Scaffolder API — Templates. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: backstage-get-template-parameter-schema
+      description: Backstage Get template parameter schema
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: scaffolder-templates.gettemplateparameterschema
+      with:
+        namespace: tools.namespace
+        kind: tools.kind
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
