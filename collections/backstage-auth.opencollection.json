@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Backstage Auth API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage Start authentication flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/:provider/start",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "path",
+                "description": "The authentication provider identifier (e.g., github, google, okta)."
+              },
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query",
+                "description": "The authentication flow type."
+              },
+              {
+                "name": "env",
+                "value": "",
+                "type": "query",
+                "description": "The target environment for the authentication flow."
+              }
+            ]
+          },
+          "docs": "Initiates the OAuth or authentication flow for the specified provider. Redirects the user to the provider's login page. The flow type can be specified as either a popup-based or redirect-based flow."
+        },
+        {
+          "info": {
+            "name": "Backstage Handle authentication callback (popup flow)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/:provider/handler/frame",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "path",
+                "description": "The authentication provider identifier."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "The authorization code returned by the provider."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The state parameter for CSRF protection."
+              }
+            ]
+          },
+          "docs": "Handles the callback from the authentication provider during the popup-based login flow. Processes the authorization code, exchanges it for tokens, and posts the result back to the parent window."
+        },
+        {
+          "info": {
+            "name": "Backstage Refresh authentication token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/:provider/refresh",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "path",
+                "description": "The authentication provider identifier."
+              },
+              {
+                "name": "optional",
+                "value": "",
+                "type": "query",
+                "description": "If set, the refresh will not fail if no refresh token is available but will return an empty response instead."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "backstage-auth",
+              "value": "{{backstage-auth}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Refreshes the access token for the specified authentication provider using a stored refresh token. Returns a new Backstage token and updated provider tokens."
+        },
+        {
+          "info": {
+            "name": "Backstage Logout from provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/auth/:provider/logout",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "path",
+                "description": "The authentication provider identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "backstage-auth",
+              "value": "{{backstage-auth}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Logs the user out from the specified authentication provider by clearing the session cookie and revoking tokens where supported."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Token Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage Get JSON Web Key Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/.well-known/backstage/auth/v1/jwks.json"
+          },
+          "docs": "Returns the JSON Web Key Set (JWKS) used to verify Backstage tokens. This endpoint is used by backend services to validate tokens issued by the auth backend."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

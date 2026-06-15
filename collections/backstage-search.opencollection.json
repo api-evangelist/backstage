@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Backstage Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage Query the search index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/search/query",
+            "params": [
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "The search term to query for."
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of document types to filter results (e.g., software-catalog, techdocs)."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Key-value filter pairs to narrow search results. Filters are specific to the document type."
+              },
+              {
+                "name": "pageCursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination. Obtained from a previous search response."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Performs a search query against the Backstage search index. Returns matching documents with their metadata, ranked by relevance. Supports filtering by document type, term-based queries, and cursor-based pagination for large result sets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

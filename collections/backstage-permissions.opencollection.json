@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Backstage Permissions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage Evaluate permission requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/permission/authorize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Evaluates one or more permission requests and returns authorization decisions. Each request specifies a permission and optionally a resource reference. The permission policy is consulted to determine whether each request should be allowed, denied, or conditionally allowed with additional resource-level rules."
+        },
+        {
+          "info": {
+            "name": "Backstage Apply conditional permission rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/permission/plugins/:pluginId/apply-conditions",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "The plugin identifier that owns the resource type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Applies conditional authorization rules for a specific plugin. When a permission decision includes conditions, those conditions must be evaluated against the actual resource data. This endpoint allows plugins to resolve conditional decisions into final allow/deny results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
