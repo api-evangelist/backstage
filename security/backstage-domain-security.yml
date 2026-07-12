@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: backstage.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 15:01:52 2026 GMT
+  hsts: false
+domains:
+- domain: backstage.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

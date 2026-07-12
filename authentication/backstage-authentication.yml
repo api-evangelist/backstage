@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/backstage-auth-openapi.yml, openapi/backstage-catalog-openapi.yml, openapi/backstage-permissions-openapi.yml,
+  openapi/backstage-scaffolder-openapi.yml, openapi/backstage-search-openapi.yml, openapi/backstage-techdocs-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - cookie
+schemes:
+- name: cookieAuth
+  type: apiKey
+  in: cookie
+  parameter: backstage-auth
+  sources:
+  - openapi/backstage-auth-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/backstage-auth-openapi.yml
+  - openapi/backstage-catalog-openapi.yml
+  - openapi/backstage-permissions-openapi.yml
+  - openapi/backstage-scaffolder-openapi.yml
+  - openapi/backstage-search-openapi.yml
+  - openapi/backstage-techdocs-openapi.yml
