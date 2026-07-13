@@ -1,6 +1,22 @@
+# backstage — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - path-params-casing: snake @ 88% (n=41)
+#   - query-params-casing: snake @ 79% (n=24)
+#   - operationid-casing: camel @ 97% (n=38)
+#   - schema-names-casing: pascal @ 100% (n=15)
+#   - schema-properties-casing: snake @ 73% (n=60)
+#   - operation-security-required: 35/38 ops declare per-op security
+#   - pagination params observed: ['cursor', 'limit']
+#   - merge: kept 21 existing, added 6 measured, upgraded 0
+#   - added: servers-https-only, path-params-casing, query-params-casing, schema-names-casing, schema-properties-casing, operation-security-required
+extends:
+  - spectral:oas
 rules:
-
-  # INFO / METADATA
   info-title-required:
     description: Info must have a title
     severity: error
@@ -8,7 +24,6 @@ rules:
     then:
       field: title
       function: truthy
-
   info-description-required:
     description: Info must have a description
     severity: warn
@@ -16,7 +31,6 @@ rules:
     then:
       field: description
       function: truthy
-
   info-version-required:
     description: Info must have a version
     severity: error
@@ -24,8 +38,6 @@ rules:
     then:
       field: version
       function: truthy
-
-  # OPENAPI VERSION
   openapi-version-3:
     description: Must use OpenAPI 3.0.x or 3.1.x
     severity: error
@@ -34,9 +46,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\."
-
-  # SERVERS
+        match: ^3\.
   servers-defined:
     description: Servers must be defined
     severity: warn
@@ -44,8 +54,6 @@ rules:
     then:
       field: servers
       function: truthy
-
-  # PATHS — NAMING CONVENTIONS
   paths-kebab-case:
     description: Path segments should use kebab-case
     severity: warn
@@ -53,8 +61,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^(/[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*|/\\{[a-zA-Z0-9_]+\\})*)*$"
-
+        match: ^(/[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*|/\{[a-zA-Z0-9_]+\})*)*$
   paths-no-trailing-slash:
     description: Paths must not have trailing slashes
     severity: warn
@@ -62,9 +69,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: "/$"
-
-  # OPERATIONS
+        notMatch: /$
   operation-summary-required:
     description: Every operation must have a summary
     severity: error
@@ -72,7 +77,6 @@ rules:
     then:
       field: summary
       function: truthy
-
   operation-description-required:
     description: Every operation must have a description
     severity: warn
@@ -80,7 +84,6 @@ rules:
     then:
       field: description
       function: truthy
-
   operation-id-required:
     description: Every operation must have an operationId
     severity: error
@@ -88,7 +91,6 @@ rules:
     then:
       field: operationId
       function: truthy
-
   operation-id-camel-case:
     description: OperationIds should use camelCase
     severity: warn
@@ -96,8 +98,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-zA-Z0-9]*$"
-
+        match: ^[a-z][a-zA-Z0-9]*$
   operation-tags-required:
     description: Every operation must have at least one tag
     severity: warn
@@ -105,7 +106,6 @@ rules:
     then:
       field: tags
       function: truthy
-
   operation-summary-backstage-prefix:
     description: Operation summaries should start with "Backstage"
     severity: info
@@ -113,9 +113,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^Backstage"
-
-  # PARAMETERS
+        match: ^Backstage
   parameter-description-required:
     description: All parameters must have descriptions
     severity: warn
@@ -123,8 +121,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # RESPONSES
   response-success-required:
     description: Every operation must have at least one 2xx response
     severity: error
@@ -132,7 +128,6 @@ rules:
     then:
       field: responses
       function: truthy
-
   response-description-required:
     description: Every response must have a description
     severity: error
@@ -140,7 +135,6 @@ rules:
     then:
       field: description
       function: truthy
-
   response-401-defined:
     description: Protected operations should define a 401 response
     severity: info
@@ -148,8 +142,6 @@ rules:
     then:
       field: responses.401
       function: truthy
-
-  # SCHEMAS
   schema-type-defined:
     description: All schemas should have a type
     severity: warn
@@ -157,8 +149,6 @@ rules:
     then:
       field: type
       function: truthy
-
-  # SECURITY
   security-schemes-defined:
     description: Security schemes must be defined if auth is used
     severity: info
@@ -166,8 +156,6 @@ rules:
     then:
       field: securitySchemes
       function: truthy
-
-  # HTTP METHOD CONVENTIONS
   get-no-request-body:
     description: GET operations must not have a request body
     severity: error
@@ -175,11 +163,59 @@ rules:
     then:
       field: requestBody
       function: falsy
-
-  # GENERAL QUALITY
   no-empty-descriptions:
     description: Descriptions must not be empty strings
     severity: warn
     given: $..description
     then:
+      function: truthy
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  operation-security-required:
+    description: Every operation should declare its security requirements.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: security
       function: truthy
