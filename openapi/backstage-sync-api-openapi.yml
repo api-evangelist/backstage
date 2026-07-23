@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: Backstage Auth Actions Sync API
+  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:7007/api/auth
+  description: Local development server
+tags:
+- name: Sync
+paths:
+  /sync/{namespace}/{kind}/{name}:
+    post:
+      operationId: syncTechDocs
+      summary: Backstage Trigger TechDocs sync
+      description: Triggers a synchronization of the TechDocs content for the specified entity from the configured external storage provider.
+      tags:
+      - Sync
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sync completed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Entity not found.
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: backstage-auth
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Backstage Auth Documentation
+  url: https://backstage.io/docs/auth/

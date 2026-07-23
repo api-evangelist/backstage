@@ -1,12 +1,7 @@
 openapi: 3.1.0
 info:
-  title: Backstage Permissions API
-  description: >-
-    The Backstage Permissions API provides endpoints for evaluating and
-    managing authorization decisions within Backstage. It enables plugins
-    to check whether a given user or service has permission to perform a
-    specific action. The framework supports policy-based authorization
-    with conditional rules that can be applied to resources.
+  title: Backstage Auth Actions Authorization API
+  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
   version: 1.0.0
   contact:
     name: Backstage
@@ -14,27 +9,21 @@ info:
   license:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-externalDocs:
-  description: Backstage Permissions Documentation
-  url: https://backstage.io/docs/permissions/overview
 servers:
-  - url: https://localhost:7007/api/permission
-    description: Local development server
+- url: https://localhost:7007/api/auth
+  description: Local development server
+tags:
+- name: Authorization
 paths:
   /authorize:
     post:
       operationId: authorize
       summary: Backstage Evaluate permission requests
-      description: >-
-        Evaluates one or more permission requests and returns authorization
-        decisions. Each request specifies a permission and optionally a
-        resource reference. The permission policy is consulted to determine
-        whether each request should be allowed, denied, or conditionally
-        allowed with additional resource-level rules.
+      description: Evaluates one or more permission requests and returns authorization decisions. Each request specifies a permission and optionally a resource reference. The permission policy is consulted to determine whether each request should be allowed, denied, or conditionally allowed with additional resource-level rules.
       tags:
-        - Authorization
+      - Authorization
       security:
-        - bearerAuth: []
+      - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -42,7 +31,7 @@ paths:
             schema:
               type: object
               required:
-                - items
+              - items
               properties:
                 items:
                   type: array
@@ -69,23 +58,18 @@ paths:
     post:
       operationId: applyConditions
       summary: Backstage Apply conditional permission rules
-      description: >-
-        Applies conditional authorization rules for a specific plugin.
-        When a permission decision includes conditions, those conditions
-        must be evaluated against the actual resource data. This endpoint
-        allows plugins to resolve conditional decisions into final
-        allow/deny results.
+      description: Applies conditional authorization rules for a specific plugin. When a permission decision includes conditions, those conditions must be evaluated against the actual resource data. This endpoint allows plugins to resolve conditional decisions into final allow/deny results.
       tags:
-        - Authorization
+      - Authorization
       security:
-        - bearerAuth: []
+      - bearerAuth: []
       parameters:
-        - name: pluginId
-          in: path
-          required: true
-          description: The plugin identifier that owns the resource type.
-          schema:
-            type: string
+      - name: pluginId
+        in: path
+        required: true
+        description: The plugin identifier that owns the resource type.
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -93,7 +77,7 @@ paths:
             schema:
               type: object
               required:
-                - items
+              - items
               properties:
                 items:
                   type: array
@@ -116,28 +100,39 @@ paths:
         '401':
           description: Authentication required.
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
+    ConditionalRequest:
+      type: object
+      required:
+      - resourceRef
+      - resourceType
+      - conditions
+      properties:
+        resourceRef:
+          type: string
+          description: Reference to the resource.
+        resourceType:
+          type: string
+          description: The resource type identifier.
+        conditions:
+          type: object
+          description: The conditions to evaluate against the resource.
     PermissionRequest:
       type: object
       required:
-        - permission
+      - permission
       properties:
         permission:
           type: object
           required:
-            - type
-            - name
+          - type
+          - name
           properties:
             type:
               type: string
               enum:
-                - basic
-                - resource
+              - basic
+              - resource
               description: The permission type.
             name:
               type: string
@@ -151,27 +146,25 @@ components:
                 action:
                   type: string
                   enum:
-                    - create
-                    - read
-                    - update
-                    - delete
+                  - create
+                  - read
+                  - update
+                  - delete
                   description: The action being performed.
         resourceRef:
           type: string
-          description: >-
-            Reference to the specific resource being accessed
-            (e.g., component:default/my-service).
+          description: Reference to the specific resource being accessed (e.g., component:default/my-service).
     PermissionDecision:
       type: object
       required:
-        - result
+      - result
       properties:
         result:
           type: string
           enum:
-            - ALLOW
-            - DENY
-            - CONDITIONAL
+          - ALLOW
+          - DENY
+          - CONDITIONAL
           description: The authorization decision result.
         pluginId:
           type: string
@@ -181,25 +174,16 @@ components:
           description: The resource type for conditional decisions.
         conditions:
           type: object
-          description: >-
-            The conditions that must be evaluated against the resource
-            to produce a final decision. Only present when result is
-            CONDITIONAL.
-    ConditionalRequest:
-      type: object
-      required:
-        - resourceRef
-        - resourceType
-        - conditions
-      properties:
-        resourceRef:
-          type: string
-          description: Reference to the resource.
-        resourceType:
-          type: string
-          description: The resource type identifier.
-        conditions:
-          type: object
-          description: The conditions to evaluate against the resource.
-tags:
-  - name: Authorization
+          description: The conditions that must be evaluated against the resource to produce a final decision. Only present when result is CONDITIONAL.
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: backstage-auth
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Backstage Auth Documentation
+  url: https://backstage.io/docs/auth/

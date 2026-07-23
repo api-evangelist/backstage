@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Backstage Auth Actions Documentation API
+  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:7007/api/auth
+  description: Local development server
+tags:
+- name: Documentation
+paths:
+  /docs/{namespace}/{kind}/{name}:
+    get:
+      operationId: getTechDocsIndex
+      summary: Backstage Get TechDocs index page
+      description: Returns the root index page of the rendered TechDocs documentation for the specified entity. May trigger a sync if the documentation is out of date.
+      tags:
+      - Documentation
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The rendered documentation HTML page.
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documentation not found for the entity.
+  /docs/{namespace}/{kind}/{name}/{path}:
+    get:
+      operationId: getTechDocsPage
+      summary: Backstage Get a specific TechDocs page or asset
+      description: Returns a specific page or static asset from the rendered TechDocs for the specified entity. The path is relative to the documentation root.
+      tags:
+      - Documentation
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: path
+        in: path
+        required: true
+        description: Path to the documentation page or asset.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested documentation page or asset.
+        '404':
+          description: Page or asset not found.
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: backstage-auth
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Backstage Auth Documentation
+  url: https://backstage.io/docs/auth/

@@ -1,0 +1,390 @@
+openapi: 3.1.0
+info:
+  title: Backstage Auth Actions Locations API
+  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
+  version: 1.0.0
+  contact:
+    name: Backstage
+    url: https://backstage.io
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:7007/api/auth
+  description: Local development server
+tags:
+- name: Locations
+  description: Endpoints for managing catalog locations (entity sources).
+paths:
+  /locations:
+    get:
+      operationId: getLocations
+      summary: Backstage List locations
+      description: Lists all registered locations in the catalog.
+      tags:
+      - Locations
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: A list of registered locations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createLocation
+      summary: Backstage Create a location
+      description: Registers a new location in the catalog. The catalog will then begin ingesting entities from this location.
+      tags:
+      - Locations
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: dryRun
+        in: query
+        required: false
+        description: If true, the location will not actually be created but validated and the entities that would be ingested are returned.
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - type
+              - target
+              properties:
+                type:
+                  type: string
+                  description: The type of the location (e.g., url, file).
+                  example: url
+                target:
+                  type: string
+                  description: The target URL or path of the location.
+                  example: https://github.com/org/repo/blob/main/catalog-info.yaml
+      responses:
+        '201':
+          description: Location created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    $ref: '#/components/schemas/Location'
+                  entities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: A location with this target already exists.
+  /locations/{id}:
+    get:
+      operationId: getLocationById
+      summary: Backstage Get location by ID
+      description: Retrieves a specific location by its unique identifier.
+      tags:
+      - Locations
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The location matching the given ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteLocation
+      summary: Backstage Delete location
+      description: Removes a registered location and optionally all entities that originated from it.
+      tags:
+      - Locations
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Location deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /locations/by-entity/{kind}/{namespace}/{name}:
+    get:
+      operationId: getLocationByEntity
+      summary: Backstage Get location by entity
+      description: Retrieves the location associated with a specific entity, identified by its kind, namespace, and name.
+      tags:
+      - Locations
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The location associated with the entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analyze-location:
+    post:
+      operationId: analyzeLocation
+      summary: Backstage Analyze location
+      description: Analyzes a location to determine what entities would be generated from it without actually registering the location.
+      tags:
+      - Locations
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - location
+              properties:
+                location:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    target:
+                      type: string
+      responses:
+        '200':
+          description: Analysis result showing potential entities.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  existingEntityRefs:
+                    type: array
+                    items:
+                      type: string
+                  generateEntities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entity:
+                          $ref: '#/components/schemas/Entity'
+                        fields:
+                          type: array
+                          items:
+                            type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    EntityMetadata:
+      type: object
+      description: Metadata common to all entity kinds.
+      required:
+      - name
+      properties:
+        uid:
+          type: string
+          format: uuid
+          description: A globally unique identifier for the entity.
+        etag:
+          type: string
+          description: An opaque string that changes on each update.
+        name:
+          type: string
+          description: The name of the entity.
+          example: my-service
+        namespace:
+          type: string
+          description: The namespace the entity belongs to.
+          default: default
+        title:
+          type: string
+          description: A human-readable title for the entity.
+        description:
+          type: string
+          description: A human-readable description of the entity.
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs for labeling the entity.
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs for non-identifying metadata.
+        tags:
+          type: array
+          items:
+            type: string
+          description: A list of single-valued strings for classification.
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              title:
+                type: string
+              icon:
+                type: string
+              type:
+                type: string
+    Entity:
+      type: object
+      description: A Backstage catalog entity.
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      properties:
+        apiVersion:
+          type: string
+          description: The API version of the entity schema.
+          example: backstage.io/v1alpha1
+        kind:
+          type: string
+          description: The kind of entity. Common kinds include Component, API, System, Domain, Resource, Group, User, Location, and Template.
+          example: Component
+        metadata:
+          $ref: '#/components/schemas/EntityMetadata'
+        spec:
+          type: object
+          description: The specification of the entity. The schema varies depending on the kind and type.
+          additionalProperties: true
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRelation'
+        status:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  level:
+                    type: string
+                    enum:
+                    - info
+                    - warning
+                    - error
+                  message:
+                    type: string
+                  error:
+                    type: object
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the location.
+        type:
+          type: string
+          description: The type of the location (e.g., url, file).
+        target:
+          type: string
+          description: The target URL or path of the location.
+    EntityRelation:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of relation.
+          example: ownedBy
+        targetRef:
+          type: string
+          description: The entity reference of the target entity.
+          example: group:default/my-team
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: backstage-auth
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Backstage Auth Documentation
+  url: https://backstage.io/docs/auth/
