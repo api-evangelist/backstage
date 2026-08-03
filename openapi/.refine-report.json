@@ -1,0 +1,36 @@
+{
+  "provider": "backstage",
+  "sources": [
+    "backstage-actions-api-openapi.yml",
+    "backstage-authentication-api-openapi.yml",
+    "backstage-authorization-api-openapi.yml",
+    "backstage-documentation-api-openapi.yml",
+    "backstage-entities-api-openapi.yml",
+    "backstage-locations-api-openapi.yml",
+    "backstage-metadata-api-openapi.yml",
+    "backstage-search-api-openapi.yml",
+    "backstage-sync-api-openapi.yml",
+    "backstage-tasks-api-openapi.yml",
+    "backstage-templates-api-openapi.yml",
+    "backstage-token-verification-api-openapi.yml"
+  ],
+  "outputs": [
+    "backstage-actions-api-openapi.yml",
+    "backstage-authentication-api-openapi.yml",
+    "backstage-authorization-api-openapi.yml",
+    "backstage-documentation-api-openapi.yml",
+    "backstage-entities-api-openapi.yml",
+    "backstage-locations-api-openapi.yml",
+    "backstage-metadata-api-openapi.yml",
+    "backstage-search-api-openapi.yml",
+    "backstage-sync-api-openapi.yml",
+    "backstage-tasks-api-openapi.yml",
+    "backstage-templates-api-openapi.yml",
+    "backstage-token-verification-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
