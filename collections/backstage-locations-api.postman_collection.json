@@ -1,0 +1,1234 @@
+{
+  "item": [
+    {
+      "id": "44f44e34-fe0e-45eb-bf5b-7b2b092f1d71",
+      "name": "Locations",
+      "description": {
+        "content": "Endpoints for managing catalog locations (entity sources).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1db6a07b-bb72-4f7d-935e-e293bd86c9fc",
+          "name": "Backstage List locations",
+          "request": {
+            "name": "Backstage List locations",
+            "description": {
+              "content": "Lists all registered locations in the catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a35c1108-91eb-4c20-afb5-6f4fe8bac677",
+              "name": "A list of registered locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"target\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"target\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79d3efe9-e7df-42a2-b21b-9cabc80ef49c",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63275376-49fa-4b7f-9f1f-10bc02c7f0be",
+          "name": "Backstage Create a location",
+          "request": {
+            "name": "Backstage Create a location",
+            "description": {
+              "content": "Registers a new location in the catalog. The catalog will then begin ingesting entities from this location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dryRun",
+                  "value": "<boolean>",
+                  "description": "If true, the location will not actually be created but validated and the entities that would be ingested are returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"target\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa4afb94-9ba7-4e68-88bd-a70ac34a7e60",
+              "name": "Location created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"url\",\n  \"target\": \"https://github.com/org/repo/blob/main/catalog-info.yaml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"location\": {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"target\": \"string\"\n  },\n  \"entities\": [\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"my-service\",\n        \"uid\": \"e6a97536-5cd3-c405-c072-e79f2c036f51\",\n        \"etag\": \"string\",\n        \"namespace\": \"default\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"links\": [\n          {\n            \"url\": \"http://JvROHYSQZvulPswjRE.fyc5wZmkkHEUL4H03bFo+I5U3+r\",\n            \"title\": \"string\",\n            \"icon\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"url\": \"http://QOWgkQKtDUeDMkpUlgQ.iodhqUC7KsEImFsKItKhpfMf\",\n            \"title\": \"string\",\n            \"icon\": \"string\",\n            \"type\": \"string\"\n          }\n        ]\n      },\n      \"spec\": {\n        \"key_0\": \"string\"\n      },\n      \"relations\": [\n        {\n          \"type\": \"ownedBy\",\n          \"targetRef\": \"group:default/my-team\"\n        },\n        {\n          \"type\": \"ownedBy\",\n          \"targetRef\": \"group:default/my-team\"\n        }\n      ],\n      \"status\": {\n        \"items\": [\n          {\n            \"type\": \"string\",\n            \"level\": \"info\",\n            \"message\": \"string\",\n            \"error\": {}\n          },\n          {\n            \"type\": \"string\",\n            \"level\": \"error\",\n            \"message\": \"string\",\n            \"error\": {}\n          }\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"my-service\",\n        \"uid\": \"56016c47-6ed3-2df8-7a9f-19e96ba18b75\",\n        \"etag\": \"string\",\n        \"namespace\": \"default\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"links\": [\n          {\n            \"url\": \"https://XxeayqqUDfdRwVUiMRNdEDFGe.bmjloguxmP1lT-iEAhlsV6Hm09xlZfG+ktLC7un8jNCZ0YFjztfXRNre\",\n            \"title\": \"string\",\n            \"icon\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"url\": \"https://KjVxQsmlxIMvUQYDwCIxdU.htzkvTp2NdOYDbXJE+KcOxhPgmtxnHobo,TBqxrYqAy7BgMlLU,Kr6FmzPBh9ru\",\n            \"title\": \"string\",\n            \"icon\": \"string\",\n            \"type\": \"string\"\n          }\n        ]\n      },\n      \"spec\": {\n        \"key_0\": \"string\",\n        \"key_1\": true,\n        \"key_2\": 3679\n      },\n      \"relations\": [\n        {\n          \"type\": \"ownedBy\",\n          \"targetRef\": \"group:default/my-team\"\n        },\n        {\n          \"type\": \"ownedBy\",\n          \"targetRef\": \"group:default/my-team\"\n        }\n      ],\n      \"status\": {\n        \"items\": [\n          {\n            \"type\": \"string\",\n            \"level\": \"error\",\n            \"message\": \"string\",\n            \"error\": {}\n          },\n          {\n            \"type\": \"string\",\n            \"level\": \"warning\",\n            \"message\": \"string\",\n            \"error\": {}\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "874a2ad6-a7f3-498c-9ecb-ef6b3b5b4a53",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"url\",\n  \"target\": \"https://github.com/org/repo/blob/main/catalog-info.yaml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5a913d3-7c31-4f9e-b0cb-f8d0a0dfe0a3",
+              "name": "A location with this target already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"url\",\n  \"target\": \"https://github.com/org/repo/blob/main/catalog-info.yaml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dbc5aac-93ed-4ef7-af8e-c52f7ce1f970",
+          "name": "Backstage Get location by ID",
+          "request": {
+            "name": "Backstage Get location by ID",
+            "description": {
+              "content": "Retrieves a specific location by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b73df9e2-1aff-4f70-aec8-a02731a92bca",
+              "name": "The location matching the given ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"target\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57440390-135e-40ee-b28f-77f5ade5d693",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9002241-3f67-4746-8095-5023e98a195f",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed83f70c-6c64-4cd4-ad3e-85dbaa68bdbf",
+          "name": "Backstage Delete location",
+          "request": {
+            "name": "Backstage Delete location",
+            "description": {
+              "content": "Removes a registered location and optionally all entities that originated from it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1ebe515f-15db-478b-995d-6a0cf9fdbad7",
+              "name": "Location deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f144e9a-6845-4942-944c-326b7a7cd237",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3513ff3d-15bf-4461-8247-f73287d9fcec",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0561ea27-8d2f-4d60-a342-3214849216fd",
+          "name": "Backstage Get location by entity",
+          "request": {
+            "name": "Backstage Get location by entity",
+            "description": {
+              "content": "Retrieves the location associated with a specific entity, identified by its kind, namespace, and name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                "by-entity",
+                ":kind",
+                ":namespace",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "kind",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "32d7a4c2-07e8-4dde-8053-c567d44a4ec3",
+              "name": "The location associated with the entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "by-entity",
+                    ":kind",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "kind",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"target\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e0ee5d7-b542-46c7-b796-5ea07d6bf098",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "by-entity",
+                    ":kind",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "kind",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cce408dd-16f2-4ec2-99c3-6b81a8ed0503",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "by-entity",
+                    ":kind",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "kind",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3c69f0e-5217-47ef-b93e-d4d8fe74d477",
+          "name": "Backstage Analyze location",
+          "request": {
+            "name": "Backstage Analyze location",
+            "description": {
+              "content": "Analyzes a location to determine what entities would be generated from it without actually registering the location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analyze-location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": {\n    \"type\": \"<string>\",\n    \"target\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da389796-68b3-4467-9ff5-f549bb8ca8c5",
+              "name": "Analysis result showing potential entities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": {\n    \"type\": \"<string>\",\n    \"target\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"existingEntityRefs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"generateEntities\": [\n    {\n      \"entity\": {\n        \"apiVersion\": \"backstage.io/v1alpha1\",\n        \"kind\": \"Component\",\n        \"metadata\": {\n          \"name\": \"my-service\",\n          \"uid\": \"61419637-f5c5-becf-d0bb-def03c1ad086\",\n          \"etag\": \"string\",\n          \"namespace\": \"default\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"labels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"links\": [\n            {\n              \"url\": \"http://eZPqpymtDgreRJmGm.vjvkHNV++ThlpN\",\n              \"title\": \"string\",\n              \"icon\": \"string\",\n              \"type\": \"string\"\n            },\n            {\n              \"url\": \"https://fLadondzsyxtaQABGOQ.cbyoUbNY.F.okegZzNdQwaVjcZV+UxDWwFavEAnIXwKXd.M65lH8kJERTaCaxP3rd\",\n              \"title\": \"string\",\n              \"icon\": \"string\",\n              \"type\": \"string\"\n            }\n          ]\n        },\n        \"spec\": {\n          \"key_0\": true\n        },\n        \"relations\": [\n          {\n            \"type\": \"ownedBy\",\n            \"targetRef\": \"group:default/my-team\"\n          },\n          {\n            \"type\": \"ownedBy\",\n            \"targetRef\": \"group:default/my-team\"\n          }\n        ],\n        \"status\": {\n          \"items\": [\n            {\n              \"type\": \"string\",\n              \"level\": \"warning\",\n              \"message\": \"string\",\n              \"error\": {}\n            },\n            {\n              \"type\": \"string\",\n              \"level\": \"info\",\n              \"message\": \"string\",\n              \"error\": {}\n            }\n          ]\n        }\n      },\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"entity\": {\n        \"apiVersion\": \"backstage.io/v1alpha1\",\n        \"kind\": \"Component\",\n        \"metadata\": {\n          \"name\": \"my-service\",\n          \"uid\": \"19bcabf7-10e9-4092-d696-f13aefab762d\",\n          \"etag\": \"string\",\n          \"namespace\": \"default\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"labels\": {\n            \"key_0\": \"string\"\n          },\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"links\": [\n            {\n              \"url\": \"https://qsGCjtvNFSbewmkDDDp.qwhoHhkB.SstSnPbUv4h33Og5MqAxZrHbylcj8rfXZzQQgSi2vaOFz8c\",\n              \"title\": \"string\",\n              \"icon\": \"string\",\n              \"type\": \"string\"\n            },\n            {\n              \"url\": \"http://aQtZcFCLiitBztdRxLACLF.roxgeTMXb8ijoYSQN6IID\",\n              \"title\": \"string\",\n              \"icon\": \"string\",\n              \"type\": \"string\"\n            }\n          ]\n        },\n        \"spec\": {\n          \"key_0\": 6863.858559252062,\n          \"key_1\": \"string\"\n        },\n        \"relations\": [\n          {\n            \"type\": \"ownedBy\",\n            \"targetRef\": \"group:default/my-team\"\n          },\n          {\n            \"type\": \"ownedBy\",\n            \"targetRef\": \"group:default/my-team\"\n          }\n        ],\n        \"status\": {\n          \"items\": [\n            {\n              \"type\": \"string\",\n              \"level\": \"warning\",\n              \"message\": \"string\",\n              \"error\": {}\n            },\n            {\n              \"type\": \"string\",\n              \"level\": \"error\",\n              \"message\": \"string\",\n              \"error\": {}\n            }\n          ]\n        }\n      },\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a9c4bc8-dc15-4551-8b8a-ee11d68b8698",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": {\n    \"type\": \"<string>\",\n    \"target\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:7007/api/auth",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1966510f-3b6e-4d4d-9ff4-bd2622ca1538",
+    "name": "Backstage Auth Actions Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
+      "type": "text/plain"
+    }
+  }
+}

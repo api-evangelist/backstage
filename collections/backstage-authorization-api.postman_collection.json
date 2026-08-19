@@ -1,0 +1,474 @@
+{
+  "item": [
+    {
+      "id": "a32ed415-77df-40d3-ab8d-f719057ecec3",
+      "name": "Authorization",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "311d9ed1-008c-40ea-aba6-a2b9b4be6976",
+          "name": "Backstage Evaluate permission requests",
+          "request": {
+            "name": "Backstage Evaluate permission requests",
+            "description": {
+              "content": "Evaluates one or more permission requests and returns authorization decisions. Each request specifies a permission and optionally a resource reference. The permission policy is consulted to determine whether each request should be allowed, denied, or conditionally allowed with additional resource-level rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"<string>\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"<string>\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "208aa8f9-cc09-4806-85c3-8d8e722f8db6",
+              "name": "Authorization decisions for each request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"read\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa3bf9f7-bc69-4458-a315-f949502dfbb4",
+              "name": "Invalid request format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"read\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60770997-ff1a-42dd-926c-07b2d3c8b82a",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"read\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97c3d0fc-b574-49f8-a6d1-c3334c687aef",
+          "name": "Backstage Apply conditional permission rules",
+          "request": {
+            "name": "Backstage Apply conditional permission rules",
+            "description": {
+              "content": "Applies conditional authorization rules for a specific plugin. When a permission decision includes conditions, those conditions must be evaluated against the actual resource data. This endpoint allows plugins to resolve conditional decisions into final allow/deny results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId",
+                "apply-conditions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pluginId",
+                  "description": "(Required) The plugin identifier that owns the resource type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": \"<object>\"\n    },\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2ece5c1-4ef8-4468-add7-1b617557991b",
+              "name": "Resolved authorization decisions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId",
+                    "apply-conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin identifier that owns the resource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5728948e-e138-4147-9cb0-4c42d0e0ed96",
+              "name": "Invalid request format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId",
+                    "apply-conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin identifier that owns the resource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8726785b-0ef6-47ee-926c-31001f8e846f",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId",
+                    "apply-conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pluginId",
+                      "description": "(Required) The plugin identifier that owns the resource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:7007/api/auth",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7dcc4b31-3430-4294-81fc-34bd1cb85f87",
+    "name": "Backstage Auth Actions Authorization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
+      "type": "text/plain"
+    }
+  }
+}

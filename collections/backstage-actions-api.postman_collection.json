@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "e013a781-e876-4269-974c-b622952cbdfb",
+      "name": "Actions",
+      "description": {
+        "content": "Endpoints for listing available scaffolder actions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dfb134af-b74a-4cd6-8003-561cd0564ea8",
+          "name": "Backstage List available actions",
+          "request": {
+            "name": "Backstage List available actions",
+            "description": {
+              "content": "Lists all available scaffolder actions that can be used in templates. Each action includes its ID, description, and input/output schemas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "76fb9cde-29d3-49c3-a253-6dc66470d8c3",
+              "name": "A list of available scaffolder actions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"fetch:plain\",\n    \"description\": \"string\",\n    \"schema\": {\n      \"input\": {},\n      \"output\": {}\n    }\n  },\n  {\n    \"id\": \"fetch:plain\",\n    \"description\": \"string\",\n    \"schema\": {\n      \"input\": {},\n      \"output\": {}\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca336590-9769-449d-b4c9-458c89762395",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:7007/api/auth",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3a4e4582-2ce0-4640-84b2-637a1399504d",
+    "name": "Backstage Auth Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
+      "type": "text/plain"
+    }
+  }
+}

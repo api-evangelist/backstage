@@ -1,0 +1,305 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Backstage Auth Actions Entities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage List entities (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/entities",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter conditions to select a subset of entities. Each condition is a key-value pair separated by = sign. Multiple conditions can be provided and are ANDed together within a filter set. Multiple filter query parameters represent OR logic between filter sets."
+              },
+              {
+                "name": "fields",
+                "value": "metadata.name,metadata.namespace,kind",
+                "type": "query",
+                "description": "Comma-separated list of simplified JSON paths to select only specific parts of the entity data structure."
+              },
+              {
+                "name": "order",
+                "value": "asc:metadata.name",
+                "type": "query",
+                "description": "Ordering of the result set. Format is asc:field or desc:field."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists catalog entities. This endpoint is deprecated in favor of GET /entities/by-query which provides cursor-based pagination and more efficient querying."
+        },
+        {
+          "info": {
+            "name": "Backstage Query entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/entities/by-query",
+            "params": [
+              {
+                "name": "filter",
+                "value": "kind=Component",
+                "type": "query",
+                "description": "Filter conditions to select a subset of entities. Format is key=value. Multiple conditions in one filter parameter are ANDed. Multiple filter parameters represent OR logic."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of simplified JSON paths to select specific parts of entity data."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of entities to return. Default is 20."
+              },
+              {
+                "name": "orderField",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by. Format is field,asc or field,desc."
+              },
+              {
+                "name": "fullTextFilter",
+                "value": "",
+                "type": "query",
+                "description": "Full-text search filter applied to entities."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination. Use the cursor value from a previous response to retrieve the next or previous batch of entities."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query entities with support for filtering, full-text search, ordering, and cursor-based pagination. This is the preferred endpoint for listing and searching entities."
+        },
+        {
+          "info": {
+            "name": "Backstage Get entity by UID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/entities/by-uid/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the entity."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a single entity by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Backstage Delete entity by UID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:7007/api/auth/entities/by-uid/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the entity to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an entity by its unique identifier. Returns an empty 204 response whether an entity with this UID existed or not."
+        },
+        {
+          "info": {
+            "name": "Backstage Get entity by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/entities/by-name/:kind/:namespace/:name",
+            "params": [
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path",
+                "description": "The kind of the entity (e.g., Component, API, System)."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The namespace of the entity (usually 'default')."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the entity."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a single entity by its kind, namespace, and name. This is the canonical way to fetch a specific known entity."
+        },
+        {
+          "info": {
+            "name": "Backstage Get entity ancestry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/entities/by-name/:kind/:namespace/:name/ancestry",
+            "params": [
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the ancestry (parent chain) of an entity, showing which entities and locations were involved in producing it."
+        },
+        {
+          "info": {
+            "name": "Backstage Get entities by refs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/auth/entities/by-refs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves multiple entities by their entity references in a single request. This is more efficient than making individual requests."
+        },
+        {
+          "info": {
+            "name": "Backstage Refresh entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/auth/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Triggers a refresh of a specific entity, causing the catalog to re-process its source location and update the entity data."
+        },
+        {
+          "info": {
+            "name": "Backstage Validate entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/auth/validate-entity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Validates that a passed-in entity has no errors in its schema. This can be used to check entity definitions before registering them."
+        },
+        {
+          "info": {
+            "name": "Backstage Get entity facets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/entity-facets",
+            "params": [
+              {
+                "name": "facet",
+                "value": "kind",
+                "type": "query",
+                "description": "The field to get facets for. Can be specified multiple times for multiple facets."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter to narrow the entities considered."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all unique values (facets) for given entity fields that match the provided filters. Useful for building filter UIs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

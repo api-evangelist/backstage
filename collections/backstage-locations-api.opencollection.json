@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Backstage Auth Actions Locations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage List locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/locations",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists all registered locations in the catalog."
+        },
+        {
+          "info": {
+            "name": "Backstage Create a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/auth/locations",
+            "params": [
+              {
+                "name": "dryRun",
+                "value": "",
+                "type": "query",
+                "description": "If true, the location will not actually be created but validated and the entities that would be ingested are returned."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Registers a new location in the catalog. The catalog will then begin ingesting entities from this location."
+        },
+        {
+          "info": {
+            "name": "Backstage Get location by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/locations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a specific location by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Backstage Delete location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:7007/api/auth/locations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes a registered location and optionally all entities that originated from it."
+        },
+        {
+          "info": {
+            "name": "Backstage Get location by entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/locations/by-entity/:kind/:namespace/:name",
+            "params": [
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the location associated with a specific entity, identified by its kind, namespace, and name."
+        },
+        {
+          "info": {
+            "name": "Backstage Analyze location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/auth/analyze-location",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Analyzes a location to determine what entities would be generated from it without actually registering the location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

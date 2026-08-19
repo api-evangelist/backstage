@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Backstage Auth Actions Sync API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sync",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage Trigger TechDocs sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:7007/api/auth/sync/:namespace/:kind/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Triggers a synchronization of the TechDocs content for the specified entity from the configured external storage provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

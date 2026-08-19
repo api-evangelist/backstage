@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Backstage Auth Actions Documentation API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documentation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backstage Get TechDocs index page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/docs/:namespace/:kind/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the root index page of the rendered TechDocs documentation for the specified entity. May trigger a sync if the documentation is out of date."
+        },
+        {
+          "info": {
+            "name": "Backstage Get a specific TechDocs page or asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:7007/api/auth/docs/:namespace/:kind/:name/:path",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the documentation page or asset."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a specific page or static asset from the rendered TechDocs for the specified entity. The path is relative to the documentation root."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
