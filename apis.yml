@@ -5,6 +5,10 @@ apis:
   name: Backstage Events System
   tags:
   - Developer Portal
+  - Event
+  - Webhook
+  tags_raw:
+  - Developer Portal
   - Events
   - Webhooks
   humanURL: https://backstage.io/docs/plugins/backends-and-plugins/
@@ -213,6 +217,8 @@ apis:
   description: Endpoints for creating and managing scaffolder tasks.
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -273,6 +279,11 @@ apis:
     url: https://backstage.io/docs/permissions/overview
 name: Backstage
 tags:
+  - Developer Portal
+  - Internal Developer Platform
+  - Software Catalog
+  - Open-Source
+tags_raw:
   - Developer Portal
   - Internal Developer Platform
   - Software Catalog
