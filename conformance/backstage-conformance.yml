@@ -1,0 +1,120 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  well-known/backstage-demo-oauth-authorization-server.json,
+  well-known/backstage-demo-oauth-protected-resource.json (both HTTP 200, probed 2026-09-04),
+  mcp/backstage-mcp-tools-list.json, openapi/*.yaml, and the Backstage docs
+provider: Backstage
+providerId: backstage
+description: >-
+  Cross-cutting standards Backstage's own contracts assert. Every `conforms: true` below is backed
+  either by a document fetched from a running Backstage backend or by a declaration inside a
+  first-party specification. Backstage is a CNCF Incubating open-source project with no hosted
+  service, so audit-style compliance regimes (SOC 2, ISO 27001, PCI) do not apply to it and are not
+  claimed.
+conformance:
+  - id: openapi-3.1
+    conforms: true
+    evidence: >-
+      Six of the seven first-party specs declare openapi: 3.1.0 and are generated from the plugin
+      routers by @backstage/repo-tools; the auth definition declares 3.0.1.
+    files: [openapi/backstage-catalog-backend-openapi.yaml, openapi/backstage-scaffolder-backend-openapi.yaml]
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      https://demo.backstage.io/.well-known/oauth-authorization-server — authorization_code grant,
+      token, revocation and registration endpoints.
+  - id: oauth2-pkce-rfc7636
+    conforms: true
+    evidence: 'code_challenge_methods_supported: [S256, plain] in the authorization server metadata.'
+  - id: rfc8414-authorization-server-metadata
+    conforms: true
+    evidence: A conformant document is served at /.well-known/oauth-authorization-server.
+  - id: rfc9728-protected-resource-metadata
+    conforms: true
+    evidence: >-
+      /.well-known/oauth-protected-resource/api/mcp-actions/v1 returns resource +
+      authorization_servers + scopes_supported for the MCP endpoint.
+  - id: rfc7591-dynamic-client-registration
+    conforms: true
+    evidence: 'registration_endpoint: https://demo.backstage.io/api/auth/v1/register'
+  - id: rfc7009-token-revocation
+    conforms: true
+    evidence: 'revocation_endpoint: https://demo.backstage.io/api/auth/v1/revoke'
+  - id: oidc
+    conforms: partial
+    evidence: >-
+      The auth backend publishes an issuer, jwks_uri, userinfo_endpoint, id_token signing
+      algorithms and the openid scope, but serves them at /.well-known/oauth-authorization-server;
+      /.well-known/openid-configuration is not served on the probed hosts.
+  - id: client-id-metadata-documents
+    conforms: true
+    evidence: >-
+      'client_id_metadata_document_supported: true' in the authorization server metadata, and the
+      MCP Actions docs describe CIMD-based client identification.
+    note: An emerging OAuth client-identification draft, notable because MCP clients rely on it.
+  - id: mcp-2025-06-18
+    conforms: true
+    evidence: >-
+      initialize on https://demo.backstage.io/api/mcp-actions/v1 returned protocolVersion
+      2025-06-18 with a tools capability; tools/list returned 13 tools with JSON Schema draft-07
+      inputSchemas and MCP tool annotations.
+  - id: json-schema-draft-07
+    conforms: true
+    evidence: Every MCP tool inputSchema declares $schema http://json-schema.org/draft-07/schema#.
+  - id: cursor-pagination
+    conforms: true
+    evidence: >-
+      openapi/backstage-catalog-backend-openapi.yaml#/components/parameters/cursor with
+      pageInfo.nextCursor / prevCursor in the response.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors use a custom { error, request, response } envelope as application/json, not
+      application/problem+json. See errors/backstage-problem-types.yml.
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header in any first-party spec. Backstage publishes per-action idempotency
+      HINTS (Actions Registry attributes) but no replay-deduplication mechanism. See
+      conventions/backstage-conventions.yml.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: Deprecation is signalled in package changelogs and TSDoc release stages, not in HTTP headers.
+  - id: agent-skills
+    conforms: true
+    evidence: >-
+      https://backstage.io/.well-known/skills/index.json (HTTP 200) with six SKILL.md files, each
+      carrying the name/description frontmatter the skills.sh convention requires.
+domain_standards:
+  market: internal developer platforms / software catalogs
+  note: >-
+    Reward-only field. The IDP market has no ratified interchange standard; Backstage's own
+    Software Catalog entity model (apiVersion/kind/metadata/spec, catalog-info.yaml) has become the
+    de-facto one that other IDPs implement, but it is a project-defined model rather than a
+    standards-body specification, so nothing is claimed here.
+  candidates_checked:
+    - standard: CloudEvents
+      present: false
+      note: >-
+        The events plugin defines its own event envelope (topic + eventPayload) rather than
+        CloudEvents. Checked openapi/backstage-events-backend-openapi.yaml.
+    - standard: SCIM
+      present: false
+      note: Org ingestion uses per-provider entity providers, not SCIM.
+    - standard: OpenTelemetry
+      present: partial
+      note: >-
+        Backstage documents OpenTelemetry instrumentation for its backend
+        (https://backstage.io/docs/tutorials/setup-opentelemetry) but it is an operational concern,
+        not part of any published contract, so it is not asserted as contract conformance.
+certifications:
+  published: false
+  note: >-
+    No trust center and no certifications — expected for a self-hosted open-source project that
+    operates no service. Compliance is the adopter's, for their own deployment.
+governance:
+  foundation: Cloud Native Computing Foundation (CNCF)
+  stage: Incubating
+  license: Apache-2.0
+  evidence: https://github.com/backstage/backstage (LICENSE) and the CNCF project listing

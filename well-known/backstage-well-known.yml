@@ -1,0 +1,115 @@
+generated: '2026-09-04'
+method: probed
+source: live HTTP probes of every host this record knows, 2026-09-04
+provider: Backstage
+providerId: backstage
+note: >-
+  Backstage is self-hosted, so backstage.io is a documentation/marketing host and serves none of the
+  conventional discovery documents — it does, however, serve a first-party Agent Skills index at
+  /.well-known/skills/index.json. The Backstage project's public demo instance
+  (demo.backstage.io) runs a real Backstage backend and therefore serves the OAuth discovery
+  documents an adopter's own deployment would serve. A 200 that returns the Backstage single-page
+  app shell is recorded as a MISS, not a document.
+hosts:
+  - host: backstage.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+      - path: /.well-known/skills/index.json
+        status: 200
+        file: well-known/backstage-skills-index.json
+        content_type: application/json
+        note: >-
+          First-party Agent Skills index published by the Backstage project; 6 skills, each
+          resolvable at /.well-known/skills/<name>/SKILL.md. Saved verbatim, and the skills
+          themselves are in skills/.
+  - host: www.backstage.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+      - path: /.well-known/skills/index.json
+        status: 200
+        file: well-known/backstage-skills-index.json
+        content_type: application/json
+        note: Same document as the apex host.
+  - host: demo.backstage.io
+    note: The Backstage project's public demo deployment — a real Backstage backend.
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: well-known/backstage-demo-oauth-authorization-server.json
+        content_type: application/json
+        note: >-
+          RFC 8414 authorization server metadata. issuer https://demo.backstage.io/api/auth,
+          authorization_code grant, PKCE S256, dynamic client registration, revocation endpoint,
+          and client_id_metadata_document_supported: true (CIMD).
+      - path: /.well-known/oauth-protected-resource/api/mcp-actions/v1
+        status: 200
+        file: well-known/backstage-demo-oauth-protected-resource.json
+        content_type: application/json
+        note: >-
+          RFC 9728 protected resource metadata for the MCP Actions endpoint; names the authorization
+          server and the openid scope.
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: null
+        content_type: text/html
+        note: SPA shell, not a document — recorded as a miss.
+      - path: /.well-known/security.txt
+        status: 200
+        file: null
+        content_type: text/html
+        note: SPA shell, not a document — recorded as a miss.
+      - path: /.well-known/api-catalog
+        status: 200
+        file: null
+        content_type: text/html
+        note: SPA shell, not a document — recorded as a miss.
+      - path: /.well-known/agent-card.json
+        status: 200
+        file: null
+        content_type: text/html
+        note: SPA shell, not an AgentCard — recorded as a miss. No A2A agent card was found.
+      - path: /.well-known/skills/index.json
+        status: 200
+        file: null
+        content_type: text/html
+        note: SPA shell — the skills index lives on backstage.io, not the demo instance.

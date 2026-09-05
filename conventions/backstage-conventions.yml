@@ -1,0 +1,171 @@
+generated: '2026-09-04'
+method: derived
+source: >-
+  openapi/backstage-catalog-backend-openapi.yaml, openapi/backstage-scaffolder-backend-openapi.yaml,
+  openapi/backstage-notifications-backend-openapi.yaml, openapi/backstage-events-backend-openapi.yaml,
+  mcp/backstage-mcp-tools-list.json, plus https://backstage.io/docs/backend-system/core-services/actions-registry
+  and https://backstage.io/docs/features/software-catalog/software-catalog-api/
+provider: Backstage
+providerId: backstage
+description: >-
+  Cross-cutting runtime semantics of the Backstage plugin APIs, read from the project's own OpenAPI
+  documents and the Actions Registry documentation. Backstage is self-hosted, so several
+  conventions that a SaaS would fix (rate limiting, throttle headers, tenancy) are the operator's,
+  not the project's.
+auth_style:
+  scheme: bearer
+  header: "Authorization: Bearer <backstage-token>"
+  detail: >-
+    Every first-party plugin OpenAPI declares one securityScheme named `JWT` (http/bearer). A
+    `backstage-auth` cookie is used for browser-side static/TechDocs requests. The MCP Actions
+    endpoint additionally speaks OAuth (see authentication/ and scopes/).
+  see: authentication/backstage-authentication.yml
+idempotency:
+  coverage: none
+  mechanism: none
+  header: null
+  detail: >-
+    No Idempotency-Key (or equivalent) header appears anywhere in the seven first-party OpenAPI
+    documents, and the docs describe no request-replay deduplication. A retried POST /v2/tasks
+    creates a second scaffolder task. This is an honest zero, not an unchecked field.
+  declaration_not_mechanism:
+    note: >-
+      Backstage DOES publish a machine-readable idempotency DECLARATION, which is a different thing
+      from replay protection: every action in the Actions Registry carries `idempotent`,
+      `readOnly` and `destructive` attributes, surfaced to MCP clients as idempotentHint /
+      readOnlyHint / destructiveHint annotations. That tells an agent whether repeating a call is
+      SAFE; it does not make the server deduplicate one.
+    docs: https://backstage.io/docs/backend-system/core-services/actions-registry#action-attributes-reference
+    observed: mcp/backstage-mcp-tools-list.json
+    non_idempotent_tools: [catalog.register-entity, scaffolder.execute-template]
+pagination:
+  style: cursor (primary), offset/limit (secondary)
+  params: [cursor, limit, offset, orderField, filter, fields, totalItems]
+  response_fields: [items, pageInfo.nextCursor, pageInfo.prevCursor, totalItems]
+  detail: >-
+    GET/POST /entities/by-query is the canonical paged surface: pass `cursor` and read the next
+    cursor back from `pageInfo.nextCursor`. The scaffolder task list and the notifications list use
+    limit/offset. The unpaged GET /entities is the older endpoint the docs steer callers away from.
+  source: openapi/backstage-catalog-backend-openapi.yaml#/components/parameters/cursor
+filtering_and_field_selection:
+  filter: >-
+    `filter` takes key=value conditions ANDed within a set; repeating the parameter ORs the sets.
+    POST /entities/by-query takes a structured predicate `query` object instead.
+  sparse_fields: "`fields` selects a subset of entity properties (dot-path, e.g. metadata.name)."
+  facets: GET/POST /entity-facets returns counts for a given facet path.
+  full_text: fullTextFilterTerm + fullTextFilterFields on the by-query surface.
+metadata:
+  detail: >-
+    Catalog entities carry metadata.annotations (namespaced key/value, the extension point every
+    plugin uses), metadata.labels and metadata.tags. Annotations are the documented place to hang
+    custom data on an entity.
+request_id_tracing:
+  header: null
+  detail: >-
+    No request-id or correlation header is declared in the specs. Backstage emits structured
+    backend logs and audit events (see the audit-events docs per plugin) rather than returning a
+    trace identifier to callers.
+versioning:
+  detail: Path-segment versions where a plugin has moved (scaffolder /v2, events /bus/v1); package semver otherwise.
+  see: lifecycle/backstage-lifecycle.yml
+error_envelope:
+  format: custom-json
+  rfc9457: false
+  content_type: application/json
+  shape: "{ error: { name, message, stack?, code? }, request: { method, url }, response: { statusCode } }"
+  see: errors/backstage-problem-types.yml
+rate_limit_signaling:
+  headers: []
+  detail: >-
+    The project publishes no rate limits and returns no RateLimit-* headers; any throttling comes
+    from the operator's ingress or from the upstream integrations Backstage proxies.
+  see: rate-limits/backstage-rate-limits.yml
+dry_run_mode:
+  available: true
+  operations:
+    - operationId: DryRun
+      path: POST /v2/dry-run
+      spec: openapi/backstage-scaffolder-backend-openapi.yaml
+      detail: >-
+        Executes a scaffolder template against supplied files/values and returns the log and the
+        resulting file tree without creating anything. Also exposed as the MCP tool
+        scaffolder.dry-run-template.
+    - operationId: ValidateEntity
+      path: POST /validate-entity
+      spec: openapi/backstage-catalog-backend-openapi.yaml
+      detail: Validates catalog-info.yaml content without registering it.
+    - operationId: AnalyzeLocation
+      path: POST /analyze-location
+      spec: openapi/backstage-catalog-backend-openapi.yaml
+      detail: Inspects a location and reports what would be discovered there.
+  grade: verified
+reversibility:
+  grade: verified
+  summary: >-
+    Backstage's two consequential write surfaces both publish a reversal path, and the scaffolder's
+    window is stated in the API itself rather than only in prose.
+  write_surfaces:
+    - surface: Scaffolder task execution
+      write_operation: Scaffold (POST /v2/tasks)
+      reversal_operation: CancelTask (POST /v2/tasks/{taskId}/cancel)
+      window: >-
+        While the task is still running. The task status model (open / processing / completed /
+        failed / cancelled) is declared in the spec, and cancel applies to a task that has not yet
+        reached a terminal state; a completed task cannot be cancelled and the artifacts it
+        published (repositories, PRs) are not undone by Backstage.
+      window_source: openapi/backstage-scaffolder-backend-openapi.yaml
+      docs: https://backstage.io/docs/features/software-templates/
+      secondary_reversal:
+        operation: Retry (POST /v2/tasks/{taskId}/retry)
+        note: Re-runs a failed task from its recoverable step rather than undoing it.
+      rehearsal: DryRun (POST /v2/dry-run)
+      caveat: >-
+        Cancellation stops Backstage's execution; it does not roll back side effects an already-run
+        step created in an external system.
+    - surface: Catalog registration
+      write_operation: CreateLocation (POST /locations)
+      reversal_operation: DeleteLocation (DELETE /locations/{id})
+      window: >-
+        Unbounded — a Location may be deleted at any time, which unregisters it and the entities it
+        owns. Registration is a pointer to a catalog-info.yaml, so deleting it removes the
+        registration, not the underlying source file.
+      window_source: https://backstage.io/docs/features/software-catalog/software-catalog-api/
+      mcp_equivalent: catalog.unregister-entity
+    - surface: Catalog entity deletion
+      write_operation: DeleteEntityByUid (DELETE /entities/by-uid/{uid})
+      reversal_operation: RefreshEntity (POST /refresh) / re-registration
+      window: >-
+        Effectively immediate and automatic while the owning Location still exists — the catalog
+        re-ingests the entity on the next processing cycle. There is no undelete for an orphaned
+        entity.
+      window_source: https://backstage.io/docs/features/software-catalog/software-catalog-api/
+      confidence: medium
+  agent_gap: >-
+    Neither CancelTask nor Retry is exposed as an MCP tool, so an agent that calls
+    scaffolder.execute-template has no MCP path to stop it. See mcp/backstage-tool-crosswalk.yml.
+cross_links:
+  errors: errors/backstage-problem-types.yml
+  lifecycle: lifecycle/backstage-lifecycle.yml
+  authentication: authentication/backstage-authentication.yml
+  rate_limits: rate-limits/backstage-rate-limits.yml
+  agentic_access: agentic-access/backstage-agentic-access.yml
+known_spec_defects:
+  note: >-
+    Recorded, not repaired — the enrichment contract forbids overwriting an existing servers[]
+    block, so this is logged for a follow-up rather than edited in place.
+  items:
+    - files: openapi/backstage-*-api-openapi.yml (the 12 tag-split refined specs)
+      defect: >-
+        Every refined split carries servers[0].url https://localhost:7007/api/auth, inherited from
+        the auth document during an earlier per-tag split. Only the authentication and token
+        verification splits are actually mounted under /api/auth; the entities and locations splits
+        belong under /api/catalog, actions/tasks/templates under /api/scaffolder, documentation /
+        metadata / sync under /api/techdocs, authorization under /api/permission and search under
+        /api/search.
+      corrected_bases: >-
+        The correct per-plugin bases are now recorded on each apis[].baseURL as
+        https://{backstageHost}/api/<plugin>.
+      unaffected: >-
+        The seven first-party specs fetched verbatim from the Backstage monorepo
+        (openapi/backstage-*-backend-openapi.yaml and openapi/backstage-auth-backend-openapi.yaml)
+        carry the upstream servers blocks and are correct.

@@ -1,0 +1,189 @@
+generated: '2026-09-04'
+method: derived
+source: >-
+  mcp/backstage-mcp-tools-list.json (live tools/list, 13 tools) bound against
+  openapi/backstage-catalog-backend-openapi.yaml, openapi/backstage-scaffolder-backend-openapi.yaml,
+  openapi/backstage-search-backend-openapi.yaml, openapi/backstage-notifications-backend-openapi.yaml,
+  openapi/backstage-events-backend-openapi.yaml, openapi/backstage-auth-backend-openapi.yaml,
+  openapi/backstage-dynamic-features-openapi.yaml
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage projects the same data core through two surfaces: the plugin REST APIs (first-party
+  OpenAPI, 55 operations) and the MCP Actions Backend (13 tools observed live). They overlap but
+  neither contains the other — the MCP surface adds two composed/identity tools with no REST
+  equivalent, and the REST surface exposes 42 operations no tool covers.
+surfaces:
+  openapi:
+    - file: openapi/backstage-catalog-backend-openapi.yaml
+      operations: 20
+      gated: false
+    - file: openapi/backstage-scaffolder-backend-openapi.yaml
+      operations: 11
+      gated: false
+    - file: openapi/backstage-notifications-backend-openapi.yaml
+      operations: 12
+      gated: false
+    - file: openapi/backstage-events-backend-openapi.yaml
+      operations: 3
+      gated: false
+    - file: openapi/backstage-auth-backend-openapi.yaml
+      operations: 4
+      gated: false
+    - file: openapi/backstage-search-backend-openapi.yaml
+      operations: 1
+      gated: false
+    - file: openapi/backstage-dynamic-features-openapi.yaml
+      operations: 1
+      gated: false
+  graphql: null
+  mcp:
+    url: https://demo.backstage.io/api/mcp-actions/v1
+    gated: false
+    note: >-
+      Public demo instance; answered tools/list anonymously. Production deployments are self-hosted
+      at https://{backstage-host}/api/mcp-actions/v1 and are behind the operator's auth.
+crosswalk:
+  - tool: catalog.get-catalog-entity
+    category: catalog
+    rest: [GetEntityByName]
+    binding: direct
+    confidence: high
+    note: Tool inputs kind/namespace/name map 1:1 to the path parameters of GET /entities/by-name/{kind}/{namespace}/{name}.
+  - tool: catalog.query-catalog-entities
+    category: catalog
+    rest: [QueryEntitiesByPredicate, GetEntitiesByQuery]
+    binding: direct
+    confidence: high
+    note: >-
+      The tool takes a predicate `query` plus fields/limit/offset/orderFields/fullTextFilter/cursor,
+      which is the POST /entities/by-query request body; GET /entities/by-query is the query-string twin.
+  - tool: catalog.validate-entity
+    category: catalog
+    rest: [ValidateEntity]
+    binding: direct
+    confidence: high
+  - tool: catalog.register-entity
+    category: catalog
+    rest: [CreateLocation]
+    binding: direct
+    confidence: high
+    note: locationUrl becomes the Location entity target; POST /locations.
+  - tool: catalog.unregister-entity
+    category: catalog
+    rest: [DeleteLocation, DeleteEntityByUid]
+    binding: composite
+    confidence: medium
+    note: >-
+      Unregistering removes the Location entity and the entities it owns; the REST equivalent needs
+      the location delete plus entity deletes. Marked medium because the tool composes them.
+  - tool: catalog.refresh-catalog-entity
+    category: catalog
+    rest: [RefreshEntity]
+    binding: direct
+    confidence: high
+  - tool: scaffolder.list-scaffolder-tasks
+    category: scaffolder
+    rest: [ListTasks]
+    binding: direct
+    confidence: high
+  - tool: scaffolder.list-scaffolder-actions
+    category: scaffolder
+    rest: [ListActions]
+    binding: direct
+    confidence: high
+  - tool: scaffolder.execute-template
+    category: scaffolder
+    rest: [Scaffold]
+    binding: direct
+    confidence: high
+    note: templateRef/values/secrets are the POST /v2/tasks request body.
+  - tool: scaffolder.dry-run-template
+    category: scaffolder
+    rest: [DryRun]
+    binding: direct
+    confidence: high
+    note: POST /v2/dry-run — the rehearsal path for scaffolder.execute-template.
+  - tool: scaffolder.get-scaffolder-task-logs
+    category: scaffolder
+    rest: [StreamLogsPolling]
+    binding: adapted
+    confidence: medium
+    note: >-
+      GET /v2/tasks/{taskId}/events is an event stream with an `after` cursor; the tool returns a
+      polled log slice with the same taskId/after inputs.
+mcp_only:
+  - tool: auth.who-am-i
+    reason: >-
+      Resolves the caller's identity to a catalog entity. The auth plugin's OpenAPI covers only the
+      browser OAuth flow (start / frame handler / refresh / logout) and publishes no identity read
+      operation, so there is no public REST equivalent.
+  - tool: catalog.get-catalog-model-description
+    reason: >-
+      Composed, agent-facing output — a markdown description of the live catalog model (kinds,
+      annotations, labels, tags, relations). No REST operation returns it.
+rest_only:
+  catalog:
+    - GetEntities
+    - GetEntityByUid
+    - DeleteEntityByUid
+    - GetEntityAncestryByName
+    - GetEntitiesByRefs
+    - GetEntityFacets
+    - QueryEntityFacetsByPredicate
+    - GetLocations
+    - GetLocationsByQuery
+    - GetLocation
+    - UpdateLocation
+    - getLocationByEntity
+    - AnalyzeLocation
+  scaffolder:
+    - GetTemplateParameterSchema
+    - GetTask
+    - CancelTask
+    - Retry
+    - Autocomplete
+    - ListTemplatingExtensions
+  events:
+    - PostEvent
+    - PutSubscription
+    - GetSubscriptionEvents
+  notifications:
+    - ListNotifications
+    - CreateNotifications
+    - UpdateNotifications
+    - GetNotification
+    - GetStatus
+    - GetSettings
+    - UpdateSettings
+    - GetTopics
+    - ListNotificationsLegacy
+    - CreateNotificationsLegacy
+    - UpdateNotificationsLegacy
+    - GetNotificationLegacy
+  auth:
+    - GET /start
+    - GET /frame/handler
+    - GET /refresh
+    - POST /logout
+  search:
+    - Query
+  dynamic-features:
+    - GetRemotes
+notes:
+  - >-
+    search.query and notifications.get-notifications are documented well-known actions
+    (https://backstage.io/docs/ai/well-known-actions) whose plugins are not installed on the demo
+    instance. When enabled they bind to search `Query` and notifications `ListNotifications`
+    respectively; they are listed under rest_only here because the tools were not observed live.
+  - >-
+    Reversal coverage differs by surface: the scaffolder REST API exposes CancelTask and Retry, but
+    neither is exposed as an MCP tool, so an agent that fires scaffolder.execute-template cannot
+    cancel it through MCP.
+coverage:
+  mcp_tools: 13
+  tools_bound_to_rest: 11
+  mcp_only: 2
+  rest_operations: 55
+  rest_operations_with_a_tool: 13
+  rest_only: 42

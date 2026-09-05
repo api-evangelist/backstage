@@ -1,0 +1,69 @@
+# Backstage
+
+> Backstage is an open-source framework for building developer portals, created at Spotify and
+> donated to the Cloud Native Computing Foundation, where it is an Incubating project. It is
+> SELF-HOSTED: there is no vendor-operated API. Every API below runs on the adopter's own backend
+> (default local host localhost:7007), and the specifications are published by the project in its
+> own monorepo. Licensed Apache-2.0.
+
+Generated 2026-09-04 by the API Evangelist enrichment pipeline from the Backstage repository at
+https://github.com/backstage/backstage and the documentation at https://backstage.io/docs/.
+No /llms.txt is published by the project (probed: https://backstage.io/llms.txt → 404).
+
+## How to reach a Backstage API
+
+Base URL template: https://{your-backstage-host}/api/{plugin}
+Auth: Authorization: Bearer <backstage-token> (a `JWT` http/bearer securityScheme in every spec).
+There is no public production endpoint. The project runs a public demo instance at
+https://demo.backstage.io/ which answers anonymously and is a demo, not a service.
+
+## API specifications (first-party, fetched verbatim)
+
+- [Software Catalog API](https://raw.githubusercontent.com/backstage/backstage/master/plugins/catalog-backend/src/schema/openapi.yaml): 20 operations — entities, entity queries, facets, locations, validate and analyze. Mounted at /api/catalog.
+- [Scaffolder API](https://raw.githubusercontent.com/backstage/backstage/master/plugins/scaffolder-backend/src/schema/openapi.yaml): 11 operations — templates, tasks, dry-run, cancel, retry, log stream. Mounted at /api/scaffolder (paths under /v2).
+- [Notifications API](https://raw.githubusercontent.com/backstage/backstage/master/plugins/notifications-backend/src/schema/openapi.yaml): 12 operations — list, create, update, settings, topics, status. Mounted at /api/notifications.
+- [Events API](https://raw.githubusercontent.com/backstage/backstage/master/plugins/events-backend/src/schema/openapi.yaml): 3 operations — publish an event, create a durable subscription, read subscription events. Mounted at /api/events (paths under /bus/v1).
+- [Search API](https://raw.githubusercontent.com/backstage/backstage/master/plugins/search-backend/src/schema/openapi.yaml): 1 operation — query the search index. Mounted at /api/search.
+- [Auth API](https://raw.githubusercontent.com/backstage/backstage/master/docs/openapi/definitions/auth.yaml): 4 operations — the browser OAuth flow (start, frame handler, refresh, logout). Mounted at /api/auth.
+- [Dynamic Feature Service](https://raw.githubusercontent.com/backstage/backstage/master/packages/backend-dynamic-feature-service/src/schema/openapi.yaml): 1 operation — list loaded remotes.
+
+## Agent surfaces
+
+- [MCP Actions Backend](https://backstage.io/docs/ai/mcp-actions): a first-party MCP server, installed as @backstage/plugin-mcp-actions-backend and served at https://{your-backstage-host}/api/mcp-actions/v1 over Streamable HTTP. 13 tools observed live on the demo instance, covering catalog read/query/register/unregister/refresh/validate, scaffolder list/execute/dry-run/logs, and auth.who-am-i. Every tool carries readOnly / idempotent / destructive annotations taken from the Actions Registry.
+- [Well-known actions](https://backstage.io/docs/ai/well-known-actions): the reference list of actions that ship with Backstage.
+- [Published Agent Skills](https://backstage.io/.well-known/skills/index.json): six SKILL.md files for engineers building on Backstage — MUI→BUI migration, frontend system migrations (app, plugin support, full plugin), analytics instrumentation, and onboarding a backend plugin to the typed OpenAPI tooling. Install with `npx skills add https://backstage.io`.
+- OAuth discovery for MCP clients: /.well-known/oauth-authorization-server and /.well-known/oauth-protected-resource/api/mcp-actions/v1 on a running Backstage backend. authorization_code + PKCE S256, dynamic client registration, and Client ID Metadata Documents.
+
+## Documentation
+
+- [Documentation home](https://backstage.io/docs/)
+- [Getting started](https://backstage.io/docs/getting-started/)
+- [Software Catalog API reference](https://backstage.io/docs/features/software-catalog/software-catalog-api/)
+- [Software Templates](https://backstage.io/docs/features/software-templates/)
+- [TechDocs](https://backstage.io/docs/features/techdocs/)
+- [Search](https://backstage.io/docs/features/search/)
+- [Permissions framework](https://backstage.io/docs/permissions/overview)
+- [Authentication](https://backstage.io/docs/auth/)
+- [Release and versioning policy](https://backstage.io/docs/overview/versioning-policy)
+- [Deprecations](https://backstage.io/docs/api/deprecations)
+- [CLI commands](https://backstage.io/docs/tooling/cli/commands)
+- [Plugin directory](https://backstage.io/plugins/)
+- [Roadmap](https://backstage.io/docs/overview/roadmap/)
+- [Support](https://backstage.io/docs/overview/support)
+
+## Packages
+
+All first-party packages are on npm under the @backstage scope, Apache-2.0, released monthly.
+Notable: @backstage/create-app (bootstrapper), @backstage/cli (toolchain, also `auth login` and
+`actions execute`), @backstage/catalog-client (catalog REST client), @backstage/catalog-model,
+@backstage/plugin-mcp-actions-backend, @backstage/ui (Backstage UI design system).
+
+## What Backstage does NOT publish
+
+- No rate limits and no RateLimit-* headers — throttling is the operator's ingress.
+- No pricing or plans — the framework is free under Apache-2.0; commercial distributions are separate companies.
+- No status page and no SLA — there is no shared hosted service.
+- No Idempotency-Key mechanism; idempotency is declared per action as a hint, not enforced.
+- No RFC 9457 problem+json; errors use a { error, request, response } envelope.
+- No A2A agent card (/.well-known/agent-card.json → 404 on backstage.io).
+- No security.txt (404); vulnerabilities go to https://hackerone.com/spotify per SECURITY.md.

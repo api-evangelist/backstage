@@ -31,6 +31,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "backstage-actions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-authentication-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-authorization-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-documentation-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-entities-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-locations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-metadata-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-sync-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-tasks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-templates-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "backstage-token-verification-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

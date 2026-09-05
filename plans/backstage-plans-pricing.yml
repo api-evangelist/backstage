@@ -117,3 +117,19 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+plan_count: 4
+verified: '2026-09-04'
+verification:
+  method: searched
+  note: >-
+    Re-checked 2026-09-04. Backstage itself publishes NO pricing page — https://backstage.io/pricing
+    returns 404 — because the framework is free under Apache-2.0 and self-hosted. The plans listed
+    above beyond the open-source tier belong to third-party commercial distributions (Spotify
+    Portal, Roadie, Red Hat Developer Hub), not to the Backstage project, and none of them publishes
+    a machine-readable price for the Backstage-derived product.
+  evidence:
+    - {url: 'https://backstage.io/pricing', status: 404}
+    - {url: 'https://backstage.io/docs/overview/what-is-backstage', status: 200}
+    - {url: 'https://github.com/backstage/backstage', status: 200, note: 'Apache-2.0 LICENSE'}
+  provider_published_paid_plans: 0

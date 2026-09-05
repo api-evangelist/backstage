@@ -1,0 +1,43 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://demo.backstage.io/ (HTTP 200) and https://backstage.io/docs/getting-started/ —
+  live probes 2026-09-04
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage has no test-mode/live-mode key split, because there is no vendor-operated API to key
+  into. What it offers instead is stronger in one respect and weaker in another: the project runs a
+  fully public demo deployment anyone can browse and call, and every adopter's local `yarn dev`
+  instance is itself a sandbox. There are no published test credentials, test cards or fixture
+  values, and none are invented here.
+hosted_demo:
+  url: https://demo.backstage.io/
+  status: 200
+  auth: none observed — the catalog and the MCP Actions endpoint both answered anonymously
+  surfaces_confirmed:
+    - {name: Portal UI, url: 'https://demo.backstage.io/', status: 200}
+    - {name: Software Templates, url: 'https://demo.backstage.io/create', status: 200}
+    - {name: MCP Actions endpoint, url: 'https://demo.backstage.io/api/mcp-actions/v1', status: 200, note: 'answered initialize + tools/list'}
+    - {name: OAuth authorization server metadata, url: 'https://demo.backstage.io/.well-known/oauth-authorization-server', status: 200}
+  caveat: >-
+    This is a demo, not a sandbox tier with a support commitment. Data resets are at the project's
+    discretion and it carries no SLA.
+local_sandbox:
+  command: "npx @backstage/create-app@latest && yarn dev"
+  default_host: http://localhost:7007
+  docs: https://backstage.io/docs/getting-started/
+  detail: >-
+    The documented onboarding path stands up a complete Backstage instance with an in-memory
+    catalog and SQLite storage — the real product, running locally, which is why every first-party
+    OpenAPI declares localhost:7007 as its example server.
+dry_run:
+  available: true
+  detail: >-
+    The scaffolder exposes POST /v2/dry-run (MCP tool scaffolder.dry-run-template) to execute a
+    template against supplied values and return the log and resulting file tree without creating
+    anything. POST /validate-entity does the same for catalog descriptors.
+  see: conventions/backstage-conventions.yml
+test_key_prefixes: []
+test_values: []
+time_simulation: false

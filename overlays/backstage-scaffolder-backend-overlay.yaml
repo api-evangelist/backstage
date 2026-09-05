@@ -1,0 +1,32 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Backstage Software Templates (Scaffolder) API
+  version: 1.0.0
+extends: openapi/backstage-scaffolder-backend-openapi.yaml
+x-generated: '2026-09-04'
+x-method: generated
+x-source: API Evangelist enrichment pipeline; extends the first-party spec fetched verbatim from github.com/backstage/backstage
+x-note: 'The upstream spec declares servers: [{url: "/"}] because Backstage is self-hosted and the plugin
+  router is mounted under the backend host. This overlay records the real server template and the canonical
+  documentation link WITHOUT modifying the original document.'
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: backstage
+    x-apievangelist-source: https://github.com/backstage/backstage
+    x-self-hosted: true
+- target: $
+  update:
+    externalDocs:
+      description: Backstage Software Templates (Scaffolder) API documentation
+      url: https://backstage.io/docs/features/software-templates/
+- target: $.servers
+  update:
+  - url: /
+    description: "Upstream default \u2014 the plugin router is mounted on the Backstage backend host."
+  - url: https://{backstageHost}/api/scaffolder
+    description: Self-hosted Backstage backend. Default local development host is localhost:7007.
+    variables:
+      backstageHost:
+        default: localhost:7007
+        description: "Host of the operator\u2019s own Backstage backend."

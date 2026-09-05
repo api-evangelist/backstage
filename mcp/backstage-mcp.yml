@@ -1,0 +1,127 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  https://backstage.io/docs/ai/mcp-actions (documentation) and a live anonymous
+  tools/list probe of https://demo.backstage.io/api/mcp-actions/v1 (HTTP 200, 13 tools)
+provider: Backstage
+providerId: backstage
+name: Backstage MCP Actions Backend
+description: >-
+  Backstage ships a first-party MCP server as the @backstage/plugin-mcp-actions-backend plugin. It
+  exposes every action registered with the Backstage Actions Registry as an MCP tool over the
+  Streamable HTTP transport, served by the adopter's own Backstage backend at /api/mcp-actions/v1.
+  Because Backstage is self-hosted there is no vendor-operated production endpoint; the Backstage
+  project does, however, run a public demo instance whose MCP endpoint answered an unauthenticated
+  tools/list during this pass, so the tool set below is observed, not inferred.
+deployment:
+  mode: both
+  endpoint: https://demo.backstage.io/api/mcp-actions/v1
+  endpoint_note: >-
+    This is the Backstage project's public DEMO instance, not a production API. It answered
+    initialize (serverInfo "My Backstage Demo", version 0.2.2-next.0, protocolVersion 2025-06-18)
+    and tools/list anonymously on 2026-09-04. Real adopters run their own endpoint at
+    https://<their-backstage-host>/api/mcp-actions/v1.
+  install: "yarn --cwd packages/backend add @backstage/plugin-mcp-actions-backend"
+  package: https://www.npmjs.com/package/@backstage/plugin-mcp-actions-backend
+  auth: oauth
+  auth_note: >-
+    The demo instance answers anonymously. In a configured deployment the endpoint sits behind the
+    Backstage auth stack; the plugin documents OAuth via Client ID Metadata Documents (CIMD).
+  verified: probed
+transport: streamable-http
+self_hosted_endpoint_template: https://{backstage-host}/api/mcp-actions/v1
+named_servers:
+  description: >-
+    mcpActions.servers config splits the action set into focused sub-servers, each on its own path.
+    The default server at /api/mcp-actions/v1 always exposes every registered action.
+  examples:
+    - https://{backstage-host}/api/mcp-actions/v1/catalog
+    - https://{backstage-host}/api/mcp-actions/v1/scaffolder
+server_info_observed:
+  name: My Backstage Demo
+  version: 0.2.2-next.0
+  protocolVersion: '2025-06-18'
+  capabilities: [tools]
+tools_source: mcp/backstage-mcp-tools-list.json
+tool_count: 13
+tools:
+  - name: auth.who-am-i
+    title: Who Am I
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: catalog.get-catalog-model-description
+    title: Get a Catalog Model Description
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: catalog.get-catalog-entity
+    title: Get Catalog Entity
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: catalog.validate-entity
+    title: Validate Catalog Entity
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: catalog.register-entity
+    title: Register entity in the Catalog
+    read_only: false
+    idempotent: false
+    destructive: false
+  - name: catalog.unregister-entity
+    title: Unregister entity from the Catalog
+    read_only: false
+    idempotent: true
+    destructive: true
+  - name: catalog.query-catalog-entities
+    title: Query Catalog Entities
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: catalog.refresh-catalog-entity
+    title: Refresh Catalog Entity
+    read_only: false
+    idempotent: true
+    destructive: false
+  - name: scaffolder.list-scaffolder-tasks
+    title: List Scaffolder Tasks
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: scaffolder.dry-run-template
+    title: Dry Run Scaffolder Template
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: scaffolder.list-scaffolder-actions
+    title: List Scaffolder Actions
+    read_only: true
+    idempotent: true
+    destructive: false
+  - name: scaffolder.execute-template
+    title: Execute Scaffolder Template
+    read_only: false
+    idempotent: false
+    destructive: true
+  - name: scaffolder.get-scaffolder-task-logs
+    title: Get Scaffolder Task Logs
+    read_only: true
+    idempotent: true
+    destructive: false
+documented_but_not_exposed_on_demo:
+  note: >-
+    https://backstage.io/docs/ai/well-known-actions lists two further well-known actions that the
+    demo instance does not have enabled (their plugins are not installed there).
+  actions:
+    - notifications.get-notifications
+    - search.query
+annotations_note: >-
+  Every tool carries MCP annotations derived from the Actions Registry attributes
+  (readOnlyHint / idempotentHint / destructiveHint / openWorldHint). This is Backstage's
+  machine-readable consequence signal and it feeds agentic-access and conventions.
+docs:
+  - https://backstage.io/docs/ai/mcp-actions
+  - https://backstage.io/docs/ai/well-known-actions
+  - https://backstage.io/docs/backend-system/core-services/actions-registry

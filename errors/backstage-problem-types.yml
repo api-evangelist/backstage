@@ -1,0 +1,98 @@
+generated: '2026-09-04'
+method: derived
+source: >-
+  openapi/backstage-catalog-backend-openapi.yaml, openapi/backstage-scaffolder-backend-openapi.yaml,
+  openapi/backstage-auth-backend-openapi.yaml, openapi/backstage-dynamic-features-openapi.yaml
+provider: Backstage
+providerId: backstage
+format: custom-json
+rfc9457: false
+description: >-
+  Backstage does not use RFC 9457 problem+json. Every first-party plugin OpenAPI declares one
+  shared `Error` schema returned as application/json, and the backend maps a small set of named
+  error classes onto HTTP status codes. The catalogue below is derived from the error responses
+  actually declared in the specs plus the error-class names those specs and the backend error
+  package use; it is not a provider-published error reference, because the project publishes none.
+envelope:
+  content_type: application/json
+  schema:
+    error:
+      name: "Error class name, e.g. InputError, NotFoundError, ConflictError, NotAllowedError"
+      message: Human-readable message
+      code: Optional machine code
+      stack: Optional stack trace (development only)
+    request:
+      method: HTTP method of the failing request
+      url: URL of the failing request
+    response:
+      statusCode: The HTTP status code
+  required: [error, response]
+  source: openapi/backstage-catalog-backend-openapi.yaml#/components/schemas/Error
+problem_types:
+  - status: 400
+    name: InputError
+    title: Malformed or invalid request
+    detail: >-
+      Declared on 22 operations across the catalog (15), scaffolder (6) and dynamic feature service
+      (1) specs. Raised for an unparseable filter, an invalid entity ref, a bad cursor, or a
+      request body that fails schema validation.
+    remediation: >-
+      Correct the parameter or body and retry. Safe to retry — no state was changed.
+    retryable: false
+  - status: 401
+    name: AuthenticationError
+    title: Missing or invalid credentials
+    detail: >-
+      Declared on the auth plugin's refresh and logout operations. Also what a plugin backend
+      returns when the Authorization bearer token is absent, expired or not verifiable.
+    remediation: Obtain a fresh Backstage token (or complete the OAuth flow) and retry.
+    retryable: true
+  - status: 403
+    name: NotAllowedError
+    title: Denied by the permissions framework
+    detail: >-
+      Declared on the scaffolder (2 operations). Raised when the Backstage Permissions policy
+      denies the named permission for this identity — distinct from 401, which is about identity
+      rather than authorization.
+    remediation: >-
+      Have the operator grant the relevant permission in their permission policy. See
+      https://backstage.io/docs/permissions/overview.
+    retryable: false
+  - status: 404
+    name: NotFoundError
+    title: Entity, location or task does not exist
+    detail: >-
+      Not enumerated per-operation in the specs, but the documented behaviour of the by-name /
+      by-uid / task lookups. An unregistered entity ref and a deleted task both surface here.
+    remediation: Verify the entity ref, uid or taskId.
+    retryable: false
+    confidence: medium
+  - status: 409
+    name: ConflictError
+    title: Conflicting state
+    detail: >-
+      Declared once, on the scaffolder. Raised where the requested transition conflicts with the
+      current state — for example cancelling or retrying a task that is not in a compatible status.
+    remediation: Re-read the task state and act on the current status.
+    retryable: false
+  - status: 500
+    name: Error
+    title: Unhandled backend error
+    detail: >-
+      The generic envelope with the originating error class name. Because Backstage is self-hosted,
+      a 500 is frequently the operator's integration (SCM, database, search engine) failing behind
+      the plugin rather than a defect in Backstage itself.
+    remediation: Check the backend logs of the operator's Backstage deployment.
+    retryable: true
+counts:
+  operations_with_declared_error_responses: 27
+  distinct_status_codes: [400, 401, 403, 409]
+  status_codes_documented_only_in_prose: [404, 500]
+docs_searched:
+  - url: https://backstage.io/docs/features/software-catalog/software-catalog-api/
+    result: no dedicated error-code reference page published
+  - url: https://backstage.io/docs/backend-system/
+    result: error classes described in the backend system docs, not as a numbered registry
+gap_for_provider: >-
+  Backstage publishes no error reference page and no error `code` registry, so the `code` field of
+  the envelope is undocumented. Callers must switch on error.name.

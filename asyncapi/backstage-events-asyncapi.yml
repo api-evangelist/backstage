@@ -17,7 +17,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   externalDocs:
     description: Backstage Events Plugin Documentation
-    url: https://backstage.io/docs/plugins/backends-and-plugins/
+    url: https://backstage.io/docs/plugins/backend-plugin
 defaultContentType: application/json
 channels:
   catalogEntityChange:

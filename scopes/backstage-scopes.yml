@@ -1,0 +1,36 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://demo.backstage.io/.well-known/oauth-authorization-server and
+  https://demo.backstage.io/.well-known/oauth-protected-resource/api/mcp-actions/v1 (both HTTP 200),
+  plus https://backstage.io/docs/ai/mcp-actions
+provider: Backstage
+providerId: backstage
+docs: https://backstage.io/docs/ai/mcp-actions
+description: >-
+  Backstage's first-party plugin OpenAPIs declare a bearer `JWT` scheme with no oauth2 flows and no
+  scopes, so there is no scope surface on the REST APIs. A real OAuth scope surface does exist on
+  the MCP Actions endpoint: the protected-resource and authorization-server metadata documents
+  served by a running Backstage backend advertise a single scope. Authorization inside Backstage is
+  not scope-based — it is the Permissions framework, which evaluates named permissions
+  (e.g. catalog.entity.read) through a policy, and that is a different mechanism from OAuth scopes.
+authorization_server:
+  issuer: https://demo.backstage.io/api/auth
+  observed_on: demo.backstage.io
+  grant_types_supported: [authorization_code]
+  code_challenge_methods_supported: [S256, plain]
+  dynamic_client_registration: true
+  client_id_metadata_document_supported: true
+  revocation_endpoint: https://demo.backstage.io/api/auth/v1/revoke
+scopes:
+  - name: openid
+    description: >-
+      The only scope advertised in scopes_supported by both the authorization server metadata and
+      the MCP Actions protected-resource metadata. It carries OIDC identity, not per-resource
+      permission.
+    source: /.well-known/oauth-authorization-server
+scope_count: 1
+authorization_model_note: >-
+  Fine-grained access is enforced by the Backstage Permissions framework rather than OAuth scopes.
+  See https://backstage.io/docs/permissions/overview — permissions are named
+  (<plugin>.<resource>.<action>) and resolved by a policy that can attach conditional rules.

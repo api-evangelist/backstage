@@ -1,0 +1,72 @@
+generated: '2026-09-04'
+method: searched
+source: https://backstage.io/.well-known/skills/index.json
+provider: Backstage
+providerId: backstage
+description: >-
+  Agent Skills published by the Backstage project itself at a well-known endpoint on backstage.io
+  and installable with `npx skills add https://backstage.io`. These files are saved VERBATIM as
+  fetched — API Evangelist authored none of them.
+publisher: Backstage (backstage/backstage)
+install: "npx skills add https://backstage.io"
+index_url: https://backstage.io/.well-known/skills/index.json
+index_file: well-known/backstage-skills-index.json
+docs:
+  - https://backstage.io/docs/ai/skills
+  - https://backstage.io/docs/ai/well-known-skills
+skills:
+  - name: mui-to-bui-migration
+    file: skills/backstage-mui-to-bui-migration.md
+    source: https://backstage.io/.well-known/skills/mui-to-bui-migration/SKILL.md
+    description: >-
+      Migrate Backstage plugins from Material-UI (MUI) to Backstage UI (BUI). Use this skill when
+      migrating components, updating imports, replacing styling patterns, or converting MUI
+      components to their BUI equivalents.
+  - name: app-frontend-system-migration
+    file: skills/backstage-app-frontend-system-migration.md
+    source: https://backstage.io/.well-known/skills/app-frontend-system-migration/SKILL.md
+    description: >-
+      Migrate a Backstage app from the old frontend system to the new one, including the hybrid
+      migration phase and the full migration of routes, sidebar, plugins, APIs and themes.
+  - name: plugin-new-frontend-system-support
+    file: skills/backstage-plugin-new-frontend-system-support.md
+    source: https://backstage.io/.well-known/skills/plugin-new-frontend-system-support/SKILL.md
+    description: >-
+      Add new frontend system support to an existing Backstage plugin while keeping the old system
+      working.
+  - name: plugin-full-frontend-system-migration
+    file: skills/backstage-plugin-full-frontend-system-migration.md
+    source: https://backstage.io/.well-known/skills/plugin-full-frontend-system-migration/SKILL.md
+    description: >-
+      Fully migrate a Backstage plugin to the new frontend system, dropping all old system support.
+  - name: plugin-analytics-instrumentation
+    file: skills/backstage-plugin-analytics-instrumentation.md
+    source: https://backstage.io/.well-known/skills/plugin-analytics-instrumentation/SKILL.md
+    description: >-
+      Instrument a Backstage frontend plugin with analytics events using the Backstage Analytics
+      API, including deciding whether an interaction warrants an event and testing the behaviour.
+  - name: onboard-to-openapi-server
+    file: skills/backstage-onboard-to-openapi-server.md
+    source: https://backstage.io/.well-known/skills/onboard-to-openapi-server/SKILL.md
+    description: >-
+      Migrate an existing Backstage backend plugin's hand-written Express router to the typed
+      OpenAPI tooling, optionally adding typed client generation and migrating router tests.
+skill_count: 6
+scope_note: >-
+  These are DEVELOPMENT skills for engineers building on Backstage, not runtime API-calling skills.
+  The runtime agent surface is the MCP Actions Backend (mcp/backstage-mcp.yml), whose 13 tools carry
+  their own inputSchemas.
+generated_skills:
+  note: >-
+    Authored by the API Evangelist enrichment pipeline (method: generated), not by Backstage.
+    Every operationId and MCP tool name referenced in them was verified against
+    openapi/*.yaml and mcp/backstage-mcp-tools-list.json.
+  skills:
+    - name: backstage-register-catalog-entity
+      file: skills/backstage-register-catalog-entity.md
+      method: generated
+      api: Backstage Software Catalog API
+    - name: backstage-run-software-template
+      file: skills/backstage-run-software-template.md
+      method: generated
+      api: Backstage Scaffolder API

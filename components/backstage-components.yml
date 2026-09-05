@@ -1,0 +1,43 @@
+generated: '2026-09-04'
+method: searched
+source: https://ui.backstage.io/ and https://www.npmjs.com/package/@backstage/ui
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage's client-side surface is a React component system, not an embeddable widget or a hosted
+  iframe. Two families matter: Backstage UI (BUI), the design-system component library that
+  replaced Material UI, and the plugin extension system through which a plugin contributes pages,
+  cards and entity-page content into someone else's portal. Both are consumed as npm packages
+  inside a Backstage app — there is no script-tag or CDN distribution.
+distribution: npm only (no CDN / script-tag build)
+families:
+  - name: Backstage UI (BUI)
+    package: '@backstage/ui'
+    version: 0.17.1
+    published: '2026-08-18'
+    docs: https://ui.backstage.io/
+    description: >-
+      The first-party design system and component library for Backstage plugins and apps —
+      layout primitives, form and data components, and the theming layer. The project publishes a
+      migration skill for moving a plugin off Material UI onto BUI
+      (skills/backstage-mui-to-bui-migration.md).
+    predecessor:
+      package: '@backstage/canon'
+      version: 0.6.0
+      published: '2025-07-15'
+      note: Earlier name for the same effort; superseded by @backstage/ui and no longer released.
+  - name: Frontend plugin extensions
+    packages: ['@backstage/frontend-plugin-api', '@backstage/core-plugin-api', '@backstage/plugin-catalog-react']
+    description: >-
+      The extension system a plugin uses to mount UI into an app: pages, nav items, entity-page
+      cards and content. This is how third parties embed their product inside a customer's
+      Backstage portal, and it is the closest Backstage analogue to an embeddable component.
+    docs: https://backstage.io/docs/frontend-system/
+  - name: API definition widgets
+    package: '@backstage/plugin-api-docs'
+    description: >-
+      Renderers that display an API entity's definition inside the catalog — OpenAPI (Swagger UI),
+      AsyncAPI and GraphQL widgets. Relevant here because they make Backstage a consumer of the
+      same artifacts this pipeline produces.
+loaders: []
+embedded_dashboards: false

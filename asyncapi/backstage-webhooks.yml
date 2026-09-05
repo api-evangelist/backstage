@@ -1,0 +1,48 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  https://github.com/backstage/backstage/blob/master/plugins/events-backend/README.md and
+  openapi/backstage-events-backend-openapi.yaml
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage's events plugin is an INBOUND webhook receiver, not an outbound webhook sender. It
+  opens an HTTP ingress per configured topic and republishes what arrives onto the internal
+  EventsService bus, where plugin subscribers consume it. There is no vendor endpoint to register a
+  callback with — the operator configures which topics exist on their own deployment, so the
+  catalogue below is a shape, and the concrete topic list is per-installation.
+direction: inbound
+package: '@backstage/plugin-events-backend'
+ingress:
+  path_template: "POST https://{backstage-host}/api/events/http/{topic}"
+  enablement: >-
+    Only topics listed under `events.http.topics` in app-config.yaml get an endpoint; nothing is
+    exposed by default.
+  config_example: |
+    events:
+      http:
+        topics:
+          - github
+          - bitbucketCloud
+  validation: >-
+    The eventsPlugin extension point accepts a request validator per topic, which is where
+    signature verification (e.g. an SCM provider's HMAC header) is installed. Backstage ships the
+    hook; the module or the operator supplies the check.
+common_topics:
+  note: Topics named in the project's own README and modules. Not an exhaustive or enforced list.
+  values: [github, gitlab, bitbucketCloud, azureDevOps]
+bus_api:
+  note: >-
+    Alongside the HTTP ingress, the events plugin publishes a durable subscription API in its
+    first-party OpenAPI.
+  operations:
+    - {operationId: PostEvent, path: 'POST /bus/v1/events', detail: Publish an event onto the bus.}
+    - {operationId: PutSubscription, path: 'PUT /bus/v1/subscriptions/{subscriptionId}', detail: Create or update a durable subscription.}
+    - {operationId: GetSubscriptionEvents, path: 'GET /bus/v1/subscriptions/{subscriptionId}/events', detail: Read events for a subscription.}
+  spec: openapi/backstage-events-backend-openapi.yaml
+asyncapi_spec: asyncapi/backstage-events-asyncapi.yml
+outbound_webhooks:
+  exists: false
+  note: >-
+    Backstage does not call out to subscriber-registered URLs. Delivery to external systems is done
+    by writing an event subscriber inside the Backstage backend.

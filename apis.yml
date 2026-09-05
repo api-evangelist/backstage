@@ -11,9 +11,17 @@ apis:
   - Developer Portal
   - Events
   - Webhooks
-  humanURL: https://backstage.io/docs/plugins/backends-and-plugins/
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
   properties:
-  - url: https://backstage.io/docs/plugins/backends-and-plugins/
+  - type: OpenAPI
+    url: openapi/backstage-events-backend-openapi.yaml
+    name: Backstage Events API (first-party, plugins/events-backend/src/schema/openapi.yaml)
+  - type: Overlay
+    url: overlays/backstage-events-backend-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - url: https://backstage.io/docs/plugins/backend-plugin
     type: Documentation
   - url: asyncapi/backstage-events-asyncapi.yml
     type: AsyncAPI
@@ -29,6 +37,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Actions
+  baseURL: https://{backstageHost}/api/scaffolder
   properties:
   - type: OpenAPI
     url: openapi/backstage-actions-api-openapi.yml
@@ -50,7 +59,11 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Authentication
+  baseURL: https://{backstageHost}/api/auth
   properties:
+  - type: OpenAPI
+    url: openapi/backstage-auth-backend-openapi.yaml
+    name: Backstage Auth API (first-party, docs/openapi/definitions/auth.yaml)
   - type: OpenAPI
     url: openapi/backstage-authentication-api-openapi.yml
   - type: Documentation
@@ -71,6 +84,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Authorization
+  baseURL: https://{backstageHost}/api/permission
   properties:
   - type: OpenAPI
     url: openapi/backstage-authorization-api-openapi.yml
@@ -92,6 +106,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Documentation
+  baseURL: https://{backstageHost}/api/techdocs
   properties:
   - type: OpenAPI
     url: openapi/backstage-documentation-api-openapi.yml
@@ -113,7 +128,18 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Entities
+  baseURL: https://{backstageHost}/api/catalog
   properties:
+  - type: ToolCrosswalk
+    url: mcp/backstage-tool-crosswalk.yml
+    name: MCP tool to REST operation crosswalk
+  - type: OpenAPI
+    url: openapi/backstage-catalog-backend-openapi.yaml
+    name: Backstage Software Catalog API (first-party, plugins/catalog-backend/src/schema/openapi.yaml)
+  - type: Overlay
+    url: overlays/backstage-catalog-backend-overlay.yaml
+  - type: DataModel
+    url: data-model/backstage-data-model.yml
   - type: OpenAPI
     url: openapi/backstage-entities-api-openapi.yml
   - type: Documentation
@@ -134,6 +160,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Locations
+  baseURL: https://{backstageHost}/api/catalog
   properties:
   - type: OpenAPI
     url: openapi/backstage-locations-api-openapi.yml
@@ -155,6 +182,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Metadata
+  baseURL: https://{backstageHost}/api/techdocs
   properties:
   - type: OpenAPI
     url: openapi/backstage-metadata-api-openapi.yml
@@ -176,7 +204,13 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Search
+  baseURL: https://{backstageHost}/api/search
   properties:
+  - type: OpenAPI
+    url: openapi/backstage-search-backend-openapi.yaml
+    name: Backstage Search API (first-party, plugins/search-backend/src/schema/openapi.yaml)
+  - type: Overlay
+    url: overlays/backstage-search-backend-overlay.yaml
   - type: OpenAPI
     url: openapi/backstage-search-api-openapi.yml
   - type: Documentation
@@ -197,6 +231,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Sync
+  baseURL: https://{backstageHost}/api/techdocs
   properties:
   - type: OpenAPI
     url: openapi/backstage-sync-api-openapi.yml
@@ -220,7 +255,13 @@ apis:
   - Task
   tags_raw:
   - Tasks
+  baseURL: https://{backstageHost}/api/scaffolder
   properties:
+  - type: OpenAPI
+    url: openapi/backstage-scaffolder-backend-openapi.yaml
+    name: Backstage Scaffolder API (first-party, plugins/scaffolder-backend/src/schema/openapi.yaml)
+  - type: Overlay
+    url: overlays/backstage-scaffolder-backend-overlay.yaml
   - type: OpenAPI
     url: openapi/backstage-tasks-api-openapi.yml
   - type: Documentation
@@ -241,6 +282,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Templates
+  baseURL: https://{backstageHost}/api/scaffolder
   properties:
   - type: OpenAPI
     url: openapi/backstage-templates-api-openapi.yml
@@ -262,6 +304,7 @@ apis:
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
   - Token Verification
+  baseURL: https://{backstageHost}/api/auth
   properties:
   - type: OpenAPI
     url: openapi/backstage-token-verification-api-openapi.yml
@@ -277,17 +320,65 @@ apis:
     url: https://backstage.io/docs/features/search/
   - type: Documentation
     url: https://backstage.io/docs/permissions/overview
+- aid: backstage:backstage-notifications-api
+  name: Backstage Notifications API
+  description: >-
+    The Backstage Notifications API delivers user- and group-addressed notifications inside a
+    Backstage portal. Plugins create notifications with a topic, severity and link; users list,
+    read, mark and save them, manage per-topic delivery settings, and query unread status. It is
+    served by @backstage/plugin-notifications-backend on the operator's own Backstage backend at
+    /api/notifications, and the OpenAPI below is published first-party in the Backstage monorepo.
+  humanURL: https://backstage.io/docs/notifications/
+  baseURL: https://{backstageHost}/api/notifications
+  tags:
+  - Notifications
+  - Developer Portal
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-notifications-backend-openapi.yaml
+    name: Backstage Notifications API (first-party, plugins/notifications-backend/src/schema/openapi.yaml)
+  - type: Overlay
+    url: overlays/backstage-notifications-backend-overlay.yaml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+- aid: backstage:backstage-dynamic-features-api
+  name: Backstage Dynamic Feature Service API
+  description: >-
+    The Backstage dynamic feature service reports the dynamically loaded frontend and backend
+    remotes present in a running Backstage instance. It is the introspection surface behind
+    dynamic plugin loading, served by @backstage/backend-dynamic-feature-service at
+    /api/.backstage/dynamic-features, and its OpenAPI is published first-party in the Backstage
+    monorepo.
+  humanURL: https://backstage.io/docs/backend-system/
+  baseURL: https://{backstageHost}/api/.backstage/dynamic-features
+  tags:
+  - Plugins
+  - Developer Portal
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-dynamic-features-openapi.yaml
+    name: Backstage Dynamic Feature Service (first-party, packages/backend-dynamic-feature-service/src/schema/openapi.yaml)
+  - type: Overlay
+    url: overlays/backstage-dynamic-features-overlay.yaml
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
 name: Backstage
 tags:
   - Developer Portal
   - Internal Developer Platform
   - Software Catalog
   - Open-Source
+  - Platform Engineering
+  - Software Templates
+  - CNCF
 tags_raw:
   - Developer Portal
   - Internal Developer Platform
   - Software Catalog
   - Open Source
+  - Platform Engineering
+  - Software Templates
+  - CNCF
 type: Index
 deliveryModel:
   model: unknown
@@ -318,58 +409,117 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/backstage.png
 access: 3rd-Party
 common:
+  - type: MCPServer
+    url: mcp/backstage-mcp.yml
+    name: Backstage MCP Actions Backend
+  - type: Packages
+    url: packages/backstage-packages.yml
+    name: Backstage npm packages
+  - type: SDKs
+    url: packages/backstage-packages.yml
+    name: Backstage first-party client libraries
+  - type: WellKnown
+    url: well-known/backstage-well-known.yml
+    name: Well-known document probe
+  - type: LLMsTxt
+    url: llms/backstage-llms.txt
+    name: Backstage llms.txt
+  - type: AgentSkill
+    url: skills/_index.yml
+    name: Backstage published Agent Skills
+  - type: Conformance
+    url: conformance/backstage-conformance.yml
+    name: Standards conformance
+  - type: ErrorCatalog
+    url: errors/backstage-problem-types.yml
+    name: Backstage error catalog
+  - type: Lifecycle
+    url: lifecycle/backstage-lifecycle.yml
+    name: Release and versioning lifecycle
+  - type: Deprecation
+    url: lifecycle/backstage-lifecycle.yml
+    name: Backstage deprecation policy
+  - type: OAuthScopes
+    url: scopes/backstage-scopes.yml
+    name: OAuth scopes for the MCP Actions endpoint
+  - type: VulnerabilityDisclosure
+    url: security/backstage-vulnerability-disclosure.yml
+    name: Vulnerability disclosure program
+  - type: Security
+    url: security/backstage-vulnerability-disclosure.yml
+    name: Backstage security policy
+  - type: Sandbox
+    url: sandbox/backstage-sandbox.yml
+    name: Public demo instance and local sandbox
+  - type: Conventions
+    url: conventions/backstage-conventions.yml
+    name: API conventions, dry-run and reversibility
+  - type: ChangeLog
+    url: changelog/backstage-changelog.yml
+    name: Backstage changelog artifact
+  - type: CLI
+    url: cli/backstage-cli.yml
+    name: Backstage CLI
+  - type: Components
+    url: components/backstage-components.yml
+    name: Backstage UI component families
+  - type: DataModel
+    url: data-model/backstage-data-model.yml
+    name: Software Catalog entity graph
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+    name: Events plugin HTTP webhook ingress
+  - type: Roadmap
+    url: https://backstage.io/docs/overview/roadmap/
+    name: Backstage Roadmap
+  - type: APIReference
+    url: https://backstage.io/docs/features/software-catalog/software-catalog-api/
+    name: Software Catalog API reference
+  - type: Support
+    url: https://backstage.io/docs/overview/support
+    name: Backstage Support
+  - type: DeveloperPortal
+    url: https://backstage.io/docs/
+    name: Backstage developer documentation portal
   - type: AgenticAccess
     url: agentic-access/backstage-agentic-access.yml
   - type: DomainSecurity
     url: security/backstage-domain-security.yml
   - type: Authentication
     url: authentication/backstage-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/showcase/backstage-from-spotify
   - url: https://backstage.io/
     name: Backstage Website
     type: Website
-    description: 'null'
   - url: https://backstage.io/docs/
     name: Backstage Documentation
     type: Documentation
-    description: 'null'
   - url: https://backstage.io/docs/getting-started/
     name: Backstage Getting Started
     type: GettingStarted
-    description: 'null'
   - url: https://backstage.io/blog/
     name: Backstage Blog
     type: Blog
-    description: 'null'
   - url: https://github.com/backstage
     name: Backstage GitHub Organization
     type: GitHubOrganization
-    description: 'null'
   - url: https://github.com/backstage/backstage
     name: Backstage GitHub Repository
     type: GitHubRepository
-    description: 'null'
   - url: https://github.com/backstage/backstage/releases
     name: Backstage Releases
     type: ChangeLog
-    description: 'null'
   - url: https://discord.gg/backstage-687207715902193673
     name: Backstage Discord Community
     type: Community
-    description: 'null'
   - url: https://backstage.io/plugins/
     name: Backstage Plugin Directory
     type: Developer Tools
-    description: 'null'
   - type: JSONSchema
     url: json-schema/backstage-entity-schema.json
     name: Backstage Entity JSON Schema
-    description: 'null'
   - type: JSONLD
     url: json-ld/backstage-context.jsonld
     name: Backstage JSON-LD Context
-    description: 'null'
   - type: SpectralRules
     url: rules/backstage-spectral-rules.yml
   - type: Vocabulary
@@ -418,7 +568,7 @@ common:
       - name: Datadog
         description: Surface monitoring dashboards within Backstage.
 created: '2024-12-01'
-modified: '2026-04-21'
+modified: '2026-09-04'
 position: Consuming
 description: >-
   Backstage is an open-source developer portal platform created by Spotify. It provides a centralized software catalog,
@@ -429,3 +579,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 specificationVersion: '0.23'
+x-enrichment:
+  date: '2026-09-04'
+  status: enriched
+  artifacts_added: 43
+  pass: local-v3

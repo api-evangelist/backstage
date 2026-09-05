@@ -1,0 +1,62 @@
+generated: '2026-09-04'
+method: searched
+source: https://github.com/backstage/backstage/releases (GitHub Releases API, read 2026-09-04)
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage publishes a dated changelog in two places: GitHub Releases for each platform release,
+  and a per-package CHANGELOG.md in every npm package. Breaking changes are flagged inline with a
+  "**BREAKING**:" prefix, which makes the changelog machine-scannable for upgrade risk.
+scheme: "Platform releases <major>.<minor>.<patch> (not semver); packages semver"
+current_version: v1.54.6
+current_version_date: '2026-08-28'
+next_line_version: v1.55.0-next.1
+next_line_date: '2026-09-01'
+cadence: Monthly main-line release, weekly next-line release
+locations:
+  - type: releases
+    url: https://github.com/backstage/backstage/releases
+  - type: release-notes
+    url: https://backstage.io/docs/releases/v1.54.0
+    note: Per-release upgrade notes on the docs site.
+  - type: package-changelog
+    url: https://github.com/backstage/backstage/blob/master/packages/core-plugin-api/CHANGELOG.md
+    note: One CHANGELOG.md per package, the authoritative record for breaking changes.
+  - type: deprecations
+    url: https://backstage.io/docs/api/deprecations
+breaking_change_marker: "**BREAKING**: (and **BREAKING PRODUCERS**: for producer-side interface changes)"
+recent_entries:
+  - version: v1.55.0-next.1
+    date: '2026-09-01'
+    line: next
+    breaking: unknown
+  - version: v1.54.6
+    date: '2026-08-28'
+    line: main
+    breaking: false
+    note: Patch release on the current main line.
+  - version: v1.53.2
+    date: '2026-08-28'
+    line: main
+    breaking: false
+  - version: v1.52.1
+    date: '2026-06-26'
+    line: main
+    breaking: false
+  - version: v1.51.3
+    date: '2026-08-29'
+    line: main
+    breaking: false
+    note: Maintenance patch on an older supported line — evidence of the backport policy in practice.
+  - version: v1.50.5
+    date: '2026-08-29'
+    line: main
+    breaking: false
+  - version: v1.49.6
+    date: '2026-08-29'
+    line: main
+    breaking: false
+window_note: >-
+  Only the most recent releases are listed. Three separate older lines (1.49, 1.50, 1.51) received
+  patches on the same day as the current line, which is the security-backport policy visible in the
+  release record.

@@ -1,0 +1,155 @@
+generated: '2026-09-04'
+method: searched
+source: https://registry.npmjs.org/ (unauthenticated registry metadata) + https://backstage.io/docs/getting-started/
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage ships its framework, backend plugins and clients as first-party npm packages under the
+  @backstage scope, published from the backstage/backstage monorepo under Apache-2.0. There is no
+  vendor-hosted API, so these packages are simultaneously the SDK, the server and the deployable
+  product: an adopter installs them into their own app. Versions and dates below were read from the
+  npm registry metadata endpoint on 2026-09-04.
+registries_checked:
+  - registry: npm
+    result: 12 first-party packages confirmed
+  - registry: PyPI
+    result: no first-party Backstage packages
+  - registry: Maven Central
+    result: no first-party Backstage packages
+  - registry: crates.io
+    result: no first-party Backstage packages
+  - registry: RubyGems
+    result: no first-party Backstage packages
+  - registry: pkg.go.dev
+    result: no first-party Backstage packages
+packages:
+  - name: '@backstage/cli'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/cli
+    version: 0.36.5
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: CLI for developing Backstage plugins and apps. Also indexed in cli/backstage-cli.yml.
+  - name: '@backstage/create-app'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/create-app
+    version: 0.9.1
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: Scaffolds a new Backstage app; the documented entry point (npx @backstage/create-app@latest).
+  - name: '@backstage/catalog-client'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/catalog-client
+    version: 1.16.1
+    published: '2026-07-14'
+    license: Apache-2.0
+    note: >-
+      Isomorphic client for the catalog backend REST API — the closest thing Backstage publishes to a
+      conventional API SDK. Wraps openapi/backstage-catalog-backend-openapi.yaml.
+  - name: '@backstage/catalog-model'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/catalog-model
+    version: 1.10.0
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: Entity kinds, types and validators for the software catalog data model.
+  - name: '@backstage/backend-defaults'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/backend-defaults
+    version: 0.16.1
+    published: '2026-08-29'
+    license: Apache-2.0
+  - name: '@backstage/core-plugin-api'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/core-plugin-api
+    version: 1.12.9
+    published: '2026-08-18'
+    license: Apache-2.0
+  - name: '@backstage/plugin-catalog-backend'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/plugin-catalog-backend
+    version: 3.5.1
+    published: '2026-08-29'
+    license: Apache-2.0
+    note: Serves openapi/backstage-catalog-backend-openapi.yaml.
+  - name: '@backstage/plugin-scaffolder-backend'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/plugin-scaffolder-backend
+    version: 3.3.1
+    published: '2026-08-29'
+    license: Apache-2.0
+    note: Serves openapi/backstage-scaffolder-backend-openapi.yaml.
+  - name: '@backstage/plugin-search-backend'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/plugin-search-backend
+    version: 2.1.6
+    published: '2026-08-20'
+    license: Apache-2.0
+    note: Serves openapi/backstage-search-backend-openapi.yaml.
+  - name: '@backstage/plugin-events-backend'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/plugin-events-backend
+    version: 0.6.5
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: Serves openapi/backstage-events-backend-openapi.yaml (event bus + HTTP webhook ingestion).
+  - name: '@backstage/plugin-notifications-backend'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/plugin-notifications-backend
+    version: 0.6.8
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: Serves openapi/backstage-notifications-backend-openapi.yaml.
+  - name: '@backstage/plugin-mcp-actions-backend'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/plugin-mcp-actions-backend
+    version: 0.2.1
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: >-
+      The MCP server itself, installed into the adopter's own backend. See mcp/backstage-mcp.yml.
+  - name: '@backstage/ui'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/ui
+    version: 0.17.1
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: Backstage UI (BUI) component library. See components/backstage-components.yml.
+  - name: '@backstage/repo-tools'
+    registry: npm
+    official: true
+    language: TypeScript
+    url: https://www.npmjs.com/package/@backstage/repo-tools
+    version: 0.19.0
+    published: '2026-08-18'
+    license: Apache-2.0
+    note: Includes the OpenAPI schema/codegen tooling that produces the plugin openapi.yaml files.
+currency_note: >-
+  Every first-party package above published within the last three weeks of the probe date
+  (2026-07-14 to 2026-08-29). No abandonment signal.

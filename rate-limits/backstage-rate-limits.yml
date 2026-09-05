@@ -70,3 +70,18 @@ policies:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+limit_count: 0
+verified: '2026-09-04'
+verification:
+  method: searched
+  note: >-
+    Backstage publishes NO rate limits of its own, and none of the seven first-party plugin
+    OpenAPI documents declares a 429 response or a RateLimit-* / Retry-After header. limit_count is
+    therefore an honest 0. The `limits:` list above is derived operator and upstream-integration
+    guidance, not provider-published limits, and must not be read as Backstage-enforced.
+  response_headers: []
+  status_on_exhaustion: null
+  evidence:
+    - {url: 'https://backstage.io/docs/', status: 200}
+    - {url: 'https://raw.githubusercontent.com/backstage/backstage/master/plugins/catalog-backend/src/schema/openapi.yaml', status: 200, note: 'no 429 and no RateLimit headers declared'}

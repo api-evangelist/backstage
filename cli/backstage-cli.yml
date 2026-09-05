@@ -1,0 +1,109 @@
+generated: '2026-09-04'
+method: searched
+source: https://backstage.io/docs/tooling/cli/commands
+provider: Backstage
+providerId: backstage
+name: Backstage CLI
+description: >-
+  Backstage ships a first-party CLI (`backstage-cli`, published as @backstage/cli) plus a project
+  bootstrapper (@backstage/create-app). The CLI is primarily a build/dev toolchain for a Backstage
+  monorepo, but it now also carries an `auth` module that logs the CLI in to a running Backstage
+  instance and an `actions` module that lists and executes Backstage actions from the terminal —
+  the same actions the MCP Actions Backend exposes as tools.
+packages:
+  - '@backstage/cli'
+  - '@backstage/create-app'
+  - '@backstage/repo-tools'
+install:
+  - method: npx
+    command: "npx @backstage/create-app@latest"
+    note: Documented entry point — scaffolds a new Backstage app.
+  - method: yarn
+    command: "yarn add --dev @backstage/cli"
+  - method: invoke
+    command: "yarn backstage-cli <command>"
+docs:
+  overview: https://backstage.io/docs/tooling/cli/overview
+  commands: https://backstage.io/docs/tooling/cli/commands
+  build_system: https://backstage.io/docs/tooling/cli/build-system
+command_groups:
+  - group: auth
+    purpose: Authenticate the CLI against a running Backstage instance.
+    commands:
+      - {command: "auth login", description: Log in the CLI to a Backstage instance}
+      - {command: "auth logout", description: Log out and clear stored credentials}
+      - {command: "auth show", description: Show details of an authenticated instance}
+      - {command: "auth list", description: List authenticated instances}
+      - {command: "auth print-token", description: Print an access token to stdout}
+      - {command: "auth select", description: Select the default instance}
+  - group: actions
+    purpose: List and run Backstage actions — the CLI twin of the MCP tool surface.
+    commands:
+      - {command: "actions list", description: List available actions from configured plugin sources}
+      - {command: "actions execute", description: Execute an action}
+      - {command: "actions sources add", description: Add a plugin source for action discovery}
+      - {command: "actions sources list", description: List configured plugin sources}
+      - {command: "actions sources remove", description: Remove a plugin source}
+  - group: build
+    commands:
+      - {command: "repo start", description: Start packages for local development}
+      - {command: "repo build", description: Build packages in the project}
+      - {command: "repo clean", description: Delete cache and output directories across the project}
+      - {command: "package start", description: Start a package for local development}
+      - {command: "package build", description: Build a package for production deployment or publishing}
+      - {command: "package bundle", description: Bundle a plugin for dynamic loading (experimental)}
+      - {command: "package clean", description: Delete cache directories}
+      - {command: "package prepack", description: Prepare a package for packaging before publishing}
+      - {command: "package postpack", description: Restore changes made by prepack}
+      - {command: "build-workspace", description: Build a temporary dist workspace from provided packages}
+  - group: config
+    commands:
+      - {command: "config:docs", description: Browse the configuration reference documentation}
+      - {command: "config:print", description: Print the app configuration}
+      - {command: "config:check", description: Validate that configuration loads and matches schema}
+      - {command: "config:schema", description: Print the configuration schema}
+  - group: github
+    commands:
+      - {command: "create-github-app", description: Create a new GitHub App in your organization}
+  - group: info
+    commands:
+      - {command: "info", description: Show helpful information for debugging and reporting bugs}
+  - group: lint
+    commands:
+      - {command: "package lint", description: Lint a package}
+      - {command: "repo lint", description: Lint all packages in the project}
+  - group: maintenance
+    commands:
+      - {command: "repo fix", description: Automatically fix packages in the project}
+      - {command: "repo list-deprecations", description: List deprecations}
+  - group: migrate
+    commands:
+      - {command: "versions:bump", description: Bump Backstage packages to the latest versions}
+      - {command: "versions:migrate", description: Migrate plugins to the @backstage-community namespace}
+      - {command: "migrate package-roles", description: Add package role field to packages}
+      - {command: "migrate package-scripts", description: Set package scripts according to each package role}
+      - {command: "migrate package-exports", description: Synchronize package subpath export definitions}
+      - {command: "migrate package-lint-configs", description: Migrate to @backstage/cli/config/eslint-factory}
+      - {command: "migrate react-router-deps", description: Migrate react-router dependencies to peer dependencies}
+  - group: new
+    commands:
+      - {command: "new", description: Open an interactive guide to creating new things in your app}
+  - group: test
+    commands:
+      - {command: "repo test", description: Run tests across the project}
+      - {command: "package test", description: Run tests for a single package}
+  - group: translations
+    commands:
+      - {command: "translations export", description: Export translation messages to JSON files}
+      - {command: "translations import", description: Generate translation resource wiring code}
+  - group: package-manager
+    commands:
+      - {command: "pm verify-patches", description: Verify Yarn patch references and health}
+key_flows:
+  - name: Create and run a portal
+    steps: ["npx @backstage/create-app@latest", "yarn dev"]
+  - name: Upgrade a Backstage project
+    steps: ["yarn backstage-cli versions:bump", "yarn backstage-cli repo fix", "yarn backstage-cli repo list-deprecations"]
+  - name: Call the platform from the terminal
+    steps: ["yarn backstage-cli auth login", "yarn backstage-cli actions list", "yarn backstage-cli actions execute"]
+command_count: 46

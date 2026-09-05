@@ -1,0 +1,144 @@
+generated: '2026-09-04'
+method: derived
+source: >-
+  openapi/backstage-catalog-backend-openapi.yaml (components.schemas),
+  openapi/backstage-scaffolder-backend-openapi.yaml, openapi/backstage-notifications-backend-openapi.yaml,
+  openapi/backstage-events-backend-openapi.yaml, plus
+  https://backstage.io/docs/features/software-catalog/descriptor-format
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage's data model is unusual: the catalog is a graph of loosely-typed Entities where the
+  relationships are FIRST-CLASS DATA rather than foreign keys. Every entity carries a
+  `relations[]` array of {type, targetRef} edges resolved by the catalog processing loop, so the
+  ERD below describes edge TYPES, not join columns. Entity identity is the entity ref
+  `<kind>:<namespace>/<name>`, which is the reference string used everywhere in the API.
+identity:
+  primary_ref: "<kind>:<namespace>/<name> (e.g. component:default/artist-service)"
+  surrogate_id: uid (opaque, used by /entities/by-uid/{uid})
+  namespace_default: default
+entities:
+  - name: Entity
+    schema: '#/components/schemas/Entity'
+    description: The base shape common to every kind — apiVersion, kind, metadata, spec, relations.
+    fields: [apiVersion, kind, metadata, spec, relations]
+  - name: EntityMeta
+    schema: '#/components/schemas/EntityMeta'
+    description: name, namespace, uid, etag, title, description, labels, annotations, tags, links.
+  - name: EntityRelation
+    schema: '#/components/schemas/EntityRelation'
+    description: A directed typed edge — {type, targetRef} — from this entity to another.
+  - name: Location
+    schema: '#/components/schemas/Location'
+    description: >-
+      A registered source of entities — {id, type, target, entityRef}. Registering a catalog-info
+      file creates a Location; deleting it unregisters everything it owns.
+  - name: EntityFacet
+    schema: '#/components/schemas/EntityFacet'
+    description: Aggregate counts over a facet path, used to build catalog filters.
+  - name: Task
+    spec: openapi/backstage-scaffolder-backend-openapi.yaml
+    description: A scaffolder template execution with status, spec, createdAt and log events.
+  - name: Notification
+    spec: openapi/backstage-notifications-backend-openapi.yaml
+    description: A user-addressed notification with topic, severity, read/saved state and origin.
+  - name: Event
+    spec: openapi/backstage-events-backend-openapi.yaml
+    description: A bus message — {topic, eventPayload} — delivered to durable subscriptions.
+kinds:
+  note: >-
+    The well-known entity kinds Backstage's catalog model defines. These are the `kind` values the
+    Entity schema is polymorphic over; each has its own spec shape in the descriptor format docs.
+  values: [Component, API, Resource, System, Domain, Group, User, Location, Template]
+  source: https://backstage.io/docs/features/software-catalog/descriptor-format
+relationships:
+  note: >-
+    Relation types are emitted in pairs (one direction each) by the catalog's built-in processors.
+    Each row is has_many because an entity may hold any number of edges of a given type.
+  edges:
+    - from: Component
+      to: Group|User
+      type: ownedBy
+      inverse: ownerOf
+      cardinality: has_one
+      via: spec.owner
+    - from: Component
+      to: System
+      type: partOf
+      inverse: hasPart
+      cardinality: has_one
+      via: spec.system
+    - from: Component
+      to: API
+      type: providesApi
+      inverse: apiProvidedBy
+      cardinality: has_many
+      via: spec.providesApis
+    - from: Component
+      to: API
+      type: consumesApi
+      inverse: apiConsumedBy
+      cardinality: has_many
+      via: spec.consumesApis
+    - from: Component
+      to: Component
+      type: dependsOn
+      inverse: dependencyOf
+      cardinality: has_many
+      via: spec.dependsOn
+    - from: Component
+      to: Resource
+      type: dependsOn
+      inverse: dependencyOf
+      cardinality: has_many
+      via: spec.dependsOn
+    - from: Component
+      to: Component
+      type: parentOf
+      inverse: childOf
+      cardinality: has_many
+      via: spec.subcomponentOf
+    - from: System
+      to: Domain
+      type: partOf
+      inverse: hasPart
+      cardinality: has_one
+      via: spec.domain
+    - from: Group
+      to: Group
+      type: childOf
+      inverse: parentOf
+      cardinality: has_one
+      via: spec.parent
+    - from: User
+      to: Group
+      type: memberOf
+      inverse: hasMember
+      cardinality: has_many
+      via: spec.memberOf
+    - from: Location
+      to: Entity
+      type: (ownership by ingestion)
+      cardinality: has_many
+      via: Location.target
+      note: >-
+        Not a `relations[]` edge — the catalog tracks which Location produced each entity, and
+        DELETE /locations/{id} removes them together.
+    - from: Task
+      to: Template
+      type: templateRef
+      cardinality: has_one
+      via: spec.templateInfo
+      note: Scaffolder task points at the Template entity it executed.
+traversal_operations:
+  - operationId: GetEntityAncestryByName
+    detail: Walks the ingestion ancestry of an entity back to its Location.
+  - operationId: GetEntitiesByRefs
+    detail: Batch-resolves a list of entity refs — the intended way to hydrate relations[].
+  - operationId: GetEntityFacets
+    detail: Aggregates over a facet path for filter UIs.
+id_prefixes:
+  note: >-
+    Backstage uses no typed id prefixes (no cus_/acct_ style). Identity is carried by the entity
+    ref string, and uid is an opaque UUID.
+render: null

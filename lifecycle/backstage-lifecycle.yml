@@ -1,0 +1,92 @@
+generated: '2026-09-04'
+method: searched
+source: https://backstage.io/docs/overview/versioning-policy
+provider: Backstage
+providerId: backstage
+description: >-
+  Backstage publishes a written release and versioning policy covering two release lines, a
+  deprecation path for breaking changes, security backport windows, and per-export release stages.
+  It is a self-hosted open-source platform, so there is no vendor status page and no hosted SLA —
+  availability is the adopter's own concern.
+versioning:
+  scheme: "<major>.<minor>.<patch>, explicitly NOT semver at the release level"
+  package_scheme: semver, per npm package, decoupled from the release version
+  current_main_release: v1.54.6
+  current_main_release_date: '2026-08-28'
+  current_next_release: v1.55.0-next.1
+  current_next_release_date: '2026-09-01'
+  api_versioning: >-
+    Plugin REST paths carry their own version segments where they have moved (the scaffolder is on
+    /v2, the events bus on /bus/v1); the catalog, search and notifications plugins serve unversioned
+    paths and evolve under the package policy.
+release_lines:
+  - name: main
+    cadence: Monthly — the Tuesday before the third Wednesday of each month
+    since: '2022-03'
+    detail: >-
+      Each scheduled release increments the minor version and may contain new functionality,
+      breaking changes and bug fixes. Patch releases are unscheduled and only address critical bugs.
+  - name: next
+    cadence: Weekly, on Tuesdays
+    detail: Preview of the upcoming main-line release; fewer guarantees around breaking changes.
+deprecation_policy:
+  published: true
+  url: https://backstage.io/docs/overview/versioning-policy#release-versioning-policy
+  deprecations_reference: https://backstage.io/docs/api/deprecations
+  rules:
+    - Breaking changes to packages at >=1.0.0 are made only when necessary, and where possible a deprecation path is provided first.
+    - A deprecation must have shipped in at least one main-line release before the export can be removed.
+    - Breaking changes are prefixed "**BREAKING**:" in the package CHANGELOG, with a documented upgrade path.
+    - Producer-side interface breaks are marked "**BREAKING PRODUCERS**:".
+    - "@alpha / @beta exports may break with a minor bump and no deprecation period."
+  http_headers:
+    sunset: false
+    deprecation: false
+    note: >-
+      Deprecation is expressed in package changelogs and TSDoc release stages, not in RFC 8594
+      Sunset/Deprecation response headers.
+release_stages:
+  - stage: '@public'
+    meaning: Stable, exported from the main package entry point.
+  - stage: '@beta'
+    meaning: Accessed via <package>/beta or <package>/alpha imports.
+  - stage: '@alpha'
+    meaning: Unstable, accessed via <package>/alpha imports.
+deprecated_operations:
+  source: openapi/backstage-catalog-backend-openapi.yaml, openapi/backstage-notifications-backend-openapi.yaml
+  entries:
+    - operationId: ListNotificationsLegacy
+      path: GET /
+      note: Legacy unprefixed notifications route superseded by GET /notifications.
+    - operationId: CreateNotificationsLegacy
+      path: POST /
+      note: Superseded by POST /notifications.
+    - operationId: UpdateNotificationsLegacy
+      path: POST /update
+      note: Superseded by POST /notifications/update.
+    - operationId: GetNotificationLegacy
+      path: GET /{id}
+      note: Superseded by GET /notifications/{id}.
+    - operationId: GetEntities
+      path: GET /entities
+      note: >-
+        The Backstage docs steer callers to GET/POST /entities/by-query for cursor-based pagination;
+        the first-party catalog OpenAPI still serves GET /entities without a deprecated flag.
+support_windows:
+  security_backports: >-
+    High and critical severity vulnerabilities are backported to releases from the last 6 months
+    where feasible.
+  bug_fixes: Applied to the next release only; reports must reproduce on the most recent release.
+  nodejs: Two adjacent even-numbered releases; Node.js 22 and 24 as of release 1.46.0.
+  typescript: The last 3 TypeScript versions (roughly a 6-9 month window).
+  postgresql: The last 5 major PostgreSQL versions.
+status_page:
+  exists: false
+  note: >-
+    None, and correctly so — Backstage runs inside the adopter's own infrastructure, so there is no
+    shared service whose status could be published. The public demo instance (demo.backstage.io) is
+    a demo, not an SLA-bearing service.
+sla:
+  exists: false
+  note: No hosted service, therefore no service level agreement from the project.
+changelog: changelog/backstage-changelog.yml
