@@ -1,36 +1,6 @@
 aid: backstage
 url: https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/apis.yml
 apis:
-- aid: backstage:events-system
-  name: Backstage Events System
-  tags:
-  - Developer Portal
-  - Event
-  - Webhook
-  tags_raw:
-  - Developer Portal
-  - Events
-  - Webhooks
-  humanURL: https://backstage.io/docs/plugins/backend-plugin
-  baseURL: https://{backstageHost}/api/events
-  properties:
-  - type: OpenAPI
-    url: openapi/backstage-events-backend-openapi.yaml
-    name: Backstage Events API (first-party, plugins/events-backend/src/schema/openapi.yaml)
-  - type: Overlay
-    url: overlays/backstage-events-backend-overlay.yaml
-  - type: Webhooks
-    url: asyncapi/backstage-webhooks.yml
-  - url: https://backstage.io/docs/plugins/backend-plugin
-    type: Documentation
-  - url: asyncapi/backstage-events-asyncapi.yml
-    type: AsyncAPI
-  description: >-
-    The Backstage Events system provides a publish-subscribe mechanism for broadcasting and consuming
-    events within a Backstage instance. It enables plugins to emit events when significant actions occur
-    (such as catalog entity changes, scaffolder task completions, or permission policy updates) and allows
-    other plugins or external systems to subscribe to those events via HTTP webhooks or the internal event
-    bus.
 - aid: backstage:backstage-actions-api
   name: Backstage Actions API
   description: Endpoints for listing available scaffolder actions.
@@ -61,9 +31,6 @@ apis:
   - Authentication
   baseURL: https://{backstageHost}/api/auth
   properties:
-  - type: OpenAPI
-    url: openapi/backstage-auth-backend-openapi.yaml
-    name: Backstage Auth API (first-party, docs/openapi/definitions/auth.yaml)
   - type: OpenAPI
     url: openapi/backstage-authentication-api-openapi.yml
   - type: Documentation
@@ -110,38 +77,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/backstage-documentation-api-openapi.yml
-  - type: Documentation
-    url: https://backstage.io/docs/features/software-catalog/software-catalog-api/
-  - type: Documentation
-    url: https://backstage.io/docs/features/software-templates/
-  - type: Documentation
-    url: https://backstage.io/docs/auth/
-  - type: Documentation
-    url: https://backstage.io/docs/features/techdocs/
-  - type: Documentation
-    url: https://backstage.io/docs/features/search/
-  - type: Documentation
-    url: https://backstage.io/docs/permissions/overview
-- aid: backstage:backstage-entities-api
-  name: Backstage Entities API
-  description: Endpoints for managing and querying catalog entities.
-  humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
-  tags:
-  - Entities
-  baseURL: https://{backstageHost}/api/catalog
-  properties:
-  - type: ToolCrosswalk
-    url: mcp/backstage-tool-crosswalk.yml
-    name: MCP tool to REST operation crosswalk
-  - type: OpenAPI
-    url: openapi/backstage-catalog-backend-openapi.yaml
-    name: Backstage Software Catalog API (first-party, plugins/catalog-backend/src/schema/openapi.yaml)
-  - type: Overlay
-    url: overlays/backstage-catalog-backend-overlay.yaml
-  - type: DataModel
-    url: data-model/backstage-data-model.yml
-  - type: OpenAPI
-    url: openapi/backstage-entities-api-openapi.yml
   - type: Documentation
     url: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   - type: Documentation
@@ -206,9 +141,6 @@ apis:
   - Search
   baseURL: https://{backstageHost}/api/search
   properties:
-  - type: OpenAPI
-    url: openapi/backstage-search-backend-openapi.yaml
-    name: Backstage Search API (first-party, plugins/search-backend/src/schema/openapi.yaml)
   - type: Overlay
     url: overlays/backstage-search-backend-overlay.yaml
   - type: OpenAPI
@@ -257,9 +189,6 @@ apis:
   - Tasks
   baseURL: https://{backstageHost}/api/scaffolder
   properties:
-  - type: OpenAPI
-    url: openapi/backstage-scaffolder-backend-openapi.yaml
-    name: Backstage Scaffolder API (first-party, plugins/scaffolder-backend/src/schema/openapi.yaml)
   - type: Overlay
     url: overlays/backstage-scaffolder-backend-overlay.yaml
   - type: OpenAPI
@@ -320,46 +249,244 @@ apis:
     url: https://backstage.io/docs/features/search/
   - type: Documentation
     url: https://backstage.io/docs/permissions/overview
-- aid: backstage:backstage-notifications-api
-  name: Backstage Notifications API
-  description: >-
-    The Backstage Notifications API delivers user- and group-addressed notifications inside a
-    Backstage portal. Plugins create notifications with a topic, severity and link; users list,
-    read, mark and save them, manage per-topic delivery settings, and query unread status. It is
-    served by @backstage/plugin-notifications-backend on the operator's own Backstage backend at
-    /api/notifications, and the OpenAPI below is published first-party in the Backstage monorepo.
-  humanURL: https://backstage.io/docs/notifications/
-  baseURL: https://{backstageHost}/api/notifications
+- aid: backstage:backstage-autocomplete-api
+  name: Backstage Autocomplete API
+  description: The Autocomplete API from Backstage — 1 operation(s) for autocomplete.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
   tags:
-  - Notifications
-  - Developer Portal
+  - Autocomplete
   properties:
   - type: OpenAPI
-    url: openapi/backstage-notifications-backend-openapi.yaml
-    name: Backstage Notifications API (first-party, plugins/notifications-backend/src/schema/openapi.yaml)
-  - type: Overlay
-    url: overlays/backstage-notifications-backend-overlay.yaml
+    url: openapi/backstage-autocomplete-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
   - type: Documentation
     url: https://backstage.io/docs/notifications/
-- aid: backstage:backstage-dynamic-features-api
-  name: Backstage Dynamic Feature Service API
-  description: >-
-    The Backstage dynamic feature service reports the dynamically loaded frontend and backend
-    remotes present in a running Backstage instance. It is the introspection surface behind
-    dynamic plugin loading, served by @backstage/backend-dynamic-feature-service at
-    /api/.backstage/dynamic-features, and its OpenAPI is published first-party in the Backstage
-    monorepo.
-  humanURL: https://backstage.io/docs/backend-system/
-  baseURL: https://{backstageHost}/api/.backstage/dynamic-features
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-bus-api
+  name: Backstage Bus API
+  description: The Bus API from Backstage — 3 operation(s) for bus.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
   tags:
-  - Plugins
-  - Developer Portal
+  - Bus
   properties:
   - type: OpenAPI
-    url: openapi/backstage-dynamic-features-openapi.yaml
-    name: Backstage Dynamic Feature Service (first-party, packages/backend-dynamic-feature-service/src/schema/openapi.yaml)
-  - type: Overlay
-    url: overlays/backstage-dynamic-features-overlay.yaml
+    url: openapi/backstage-bus-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-dry-run-api
+  name: Backstage Dry Run API
+  description: The Dry Run API from Backstage — 1 operation(s) for dry run.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Dry Run
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-dry-run-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-entity-api
+  name: Backstage Entity API
+  description: The Entity API from Backstage — 9 operation(s) for entity.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Entity
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-entity-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-notifications-api
+  name: Backstage Notifications API
+  description: The Notifications API from Backstage — 5 operation(s) for notifications.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-notifications-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-provider-api
+  name: Backstage Provider API
+  description: List of endpoints per provider
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - provider
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-provider-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-remotes-api
+  name: Backstage Remotes API
+  description: The Remotes API from Backstage — 1 operation(s) for remotes.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Remotes
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-remotes-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-settings-api
+  name: Backstage Settings API
+  description: The Settings API from Backstage — 1 operation(s) for settings.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-settings-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-status-api
+  name: Backstage Status API
+  description: The Status API from Backstage — 1 operation(s) for status.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-status-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-templating-extensions-api
+  name: Backstage Templating Extensions API
+  description: The Templating Extensions API from Backstage — 1 operation(s) for templating extensions.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Templating Extensions
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-templating-extensions-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-topics-api
+  name: Backstage Topics API
+  description: The Topics API from Backstage — 1 operation(s) for topics.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Topics
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-topics-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
+  - type: Documentation
+    url: https://backstage.io/docs/backend-system/
+- aid: backstage:backstage-update-api
+  name: Backstage Update API
+  description: The Update API from Backstage — 1 operation(s) for update.
+  humanURL: https://backstage.io/docs/plugins/backend-plugin
+  baseURL: https://{backstageHost}/api/events
+  tags:
+  - Update
+  properties:
+  - type: OpenAPI
+    url: openapi/backstage-update-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/backstage-webhooks.yml
+  - type: Documentation
+    url: https://backstage.io/docs/plugins/backend-plugin
+  - type: AsyncAPI
+    url: asyncapi/backstage-events-asyncapi.yml
+  - type: Documentation
+    url: https://backstage.io/docs/notifications/
   - type: Documentation
     url: https://backstage.io/docs/backend-system/
 name: Backstage
@@ -371,7 +498,6 @@ tags:
   - Platform Engineering
   - Software Templates
   - CNCF
-  - Developer Tools
 tags_raw:
   - Developer Portal
   - Internal Developer Platform
@@ -410,6 +536,14 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/backstage.png
 access: 3rd-Party
 common:
+  - type: Overlay
+    url: overlays/backstage-catalog-backend-overlay.yaml
+  - type: Overlay
+    url: overlays/backstage-events-backend-overlay.yaml
+  - type: Overlay
+    url: overlays/backstage-notifications-backend-overlay.yaml
+  - type: Overlay
+    url: overlays/backstage-dynamic-features-overlay.yaml
   - type: MCPServer
     url: mcp/backstage-mcp.yml
     name: Backstage MCP Actions Backend
