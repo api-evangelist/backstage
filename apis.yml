@@ -94,6 +94,8 @@ apis:
   description: Endpoints for managing catalog locations (entity sources).
   humanURL: https://backstage.io/docs/features/software-catalog/software-catalog-api/
   tags:
+  - Location
+  tags_raw:
   - Locations
   baseURL: https://{backstageHost}/api/catalog
   properties:
@@ -335,6 +337,8 @@ apis:
   humanURL: https://backstage.io/docs/plugins/backend-plugin
   baseURL: https://{backstageHost}/api/events
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -355,6 +359,8 @@ apis:
   humanURL: https://backstage.io/docs/plugins/backend-plugin
   baseURL: https://{backstageHost}/api/events
   tags:
+  - Providers
+  tags_raw:
   - provider
   properties:
   - type: OpenAPI
@@ -455,6 +461,8 @@ apis:
   humanURL: https://backstage.io/docs/plugins/backend-plugin
   baseURL: https://{backstageHost}/api/events
   tags:
+  - Topic
+  tags_raw:
   - Topics
   properties:
   - type: OpenAPI
@@ -474,7 +482,8 @@ apis:
   description: The Update API from Backstage — 1 operation(s) for update.
   humanURL: https://backstage.io/docs/plugins/backend-plugin
   baseURL: https://{backstageHost}/api/events
-  tags:
+  tags: []
+  tags_raw:
   - Update
   properties:
   - type: OpenAPI
