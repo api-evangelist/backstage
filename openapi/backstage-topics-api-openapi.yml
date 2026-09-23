@@ -1,0 +1,147 @@
+openapi: 3.2.0
+info:
+  title: notifications Topics API
+  version: '1'
+  description: The Backstage backend plugin that powers user notifications.
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact: {}
+servers:
+- url: /
+tags:
+- name: Topics
+paths:
+  /topics:
+    get:
+      operationId: GetTopics
+      description: List notification topics that the user has received notifications on.
+      parameters:
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/read'
+      - $ref: '#/components/parameters/saved'
+      - $ref: '#/components/parameters/createdAfter'
+      - $ref: '#/components/parameters/minimumSeverity'
+      responses:
+        '200':
+          description: The list of topics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTopicsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      tags:
+      - Topics
+      summary: Get topics
+      x-summary-source: derived
+components:
+  parameters:
+    search:
+      name: search
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+    saved:
+      name: saved
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+    read:
+      name: read
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+    createdAfter:
+      name: createdAfter
+      in: query
+      required: false
+      allowReserved: true
+      description: ISO 8601 date-time string. Validated by the handler.
+      schema:
+        type: string
+    minimumSeverity:
+      name: minimumSeverity
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        $ref: '#/components/schemas/NotificationSeverity'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - request
+      - response
+    NotificationSeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - normal
+      - low
+    GetTopicsResponse:
+      type: object
+      required:
+      - topics
+      properties:
+        topics:
+          type: array
+          items:
+            type: string
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

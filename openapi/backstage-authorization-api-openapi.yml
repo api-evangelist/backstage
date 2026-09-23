@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Backstage Auth Actions Authorization API
-  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
+  title: Backstage Permissions Authorization API
+  description: The Backstage Permissions API provides endpoints for evaluating and managing authorization decisions within Backstage. It enables plugins to check whether a given user or service has permission to perform a specific action. The framework supports policy-based authorization with conditional rules that can be applied to resources.
   version: 1.0.0
   contact:
     name: Backstage
@@ -10,7 +10,7 @@ info:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-- url: https://localhost:7007/api/auth
+- url: https://localhost:7007/api/permission
   description: Local development server
 tags:
 - name: Authorization
@@ -101,43 +101,6 @@ paths:
           description: Authentication required.
 components:
   schemas:
-    PermissionRequest:
-      type: object
-      required:
-      - permission
-      properties:
-        permission:
-          type: object
-          required:
-          - type
-          - name
-          properties:
-            type:
-              type: string
-              enum:
-              - basic
-              - resource
-              description: The permission type.
-            name:
-              type: string
-              description: The unique permission name.
-            resourceType:
-              type: string
-              description: The resource type for resource-based permissions.
-            attributes:
-              type: object
-              properties:
-                action:
-                  type: string
-                  enum:
-                  - create
-                  - read
-                  - update
-                  - delete
-                  description: The action being performed.
-        resourceRef:
-          type: string
-          description: Reference to the specific resource being accessed (e.g., component:default/my-service).
     ConditionalRequest:
       type: object
       required:
@@ -175,15 +138,48 @@ components:
         conditions:
           type: object
           description: The conditions that must be evaluated against the resource to produce a final decision. Only present when result is CONDITIONAL.
+    PermissionRequest:
+      type: object
+      required:
+      - permission
+      properties:
+        permission:
+          type: object
+          required:
+          - type
+          - name
+          properties:
+            type:
+              type: string
+              enum:
+              - basic
+              - resource
+              description: The permission type.
+            name:
+              type: string
+              description: The unique permission name.
+            resourceType:
+              type: string
+              description: The resource type for resource-based permissions.
+            attributes:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum:
+                  - create
+                  - read
+                  - update
+                  - delete
+                  description: The action being performed.
+        resourceRef:
+          type: string
+          description: Reference to the specific resource being accessed (e.g., component:default/my-service).
   securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: backstage-auth
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
 externalDocs:
-  description: Backstage Auth Documentation
-  url: https://backstage.io/docs/auth/
+  description: Backstage Permissions Documentation
+  url: https://backstage.io/docs/permissions/overview

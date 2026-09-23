@@ -1,0 +1,92 @@
+openapi: 3.2.0
+info:
+  title: notifications Status API
+  version: '1'
+  description: The Backstage backend plugin that powers user notifications.
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact: {}
+servers:
+- url: /
+tags:
+- name: Status
+paths:
+  /status:
+    get:
+      operationId: GetStatus
+      description: Get the unread/read counts for the current user.
+      responses:
+        '200':
+          description: The current user's notification status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationStatus'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      tags:
+      - Status
+      summary: Get status
+      x-summary-source: derived
+components:
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - request
+      - response
+    NotificationStatus:
+      type: object
+      required:
+      - unread
+      - read
+      properties:
+        unread:
+          type: integer
+        read:
+          type: integer
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

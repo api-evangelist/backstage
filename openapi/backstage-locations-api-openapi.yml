@@ -1,390 +1,798 @@
 openapi: 3.2.0
 info:
-  title: Backstage Auth Actions Locations API
-  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
-  version: 1.0.0
-  contact:
-    name: Backstage
-    url: https://backstage.io
+  title: catalog Locations API
+  version: '1'
+  description: The API surface consists of a few distinct groups of functionality.
   license:
     name: Apache-2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact: {}
 servers:
-- url: https://localhost:7007/api/auth
-  description: Local development server
+- url: /
 tags:
 - name: Locations
-  description: Endpoints for managing catalog locations (entity sources).
 paths:
   /locations:
-    get:
-      operationId: getLocations
-      summary: Backstage List locations
-      description: Lists all registered locations in the catalog.
+    post:
+      operationId: CreateLocation
       tags:
       - Locations
+      description: Create a location for a given target.
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exists:
+                    type: boolean
+                  entities:
+                    items:
+                      $ref: '#/components/schemas/Entity'
+                    type: array
+                  location:
+                    $ref: '#/components/schemas/Location'
+                required:
+                - entities
+                - location
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
       security:
-      - bearerAuth: []
+      - {}
+      - JWT: []
+      parameters:
+      - in: query
+        name: dryRun
+        required: false
+        allowReserved: true
+        schema:
+          type: string
+      - in: query
+        name: onConflict
+        required: false
+        allowReserved: true
+        schema:
+          type: string
+          enum:
+          - refresh
+          - reject
+        description: Behavior when the location already exists. 'reject' (default) returns a 409 error, 'refresh' triggers a refresh of the existing location entity and returns 201.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target:
+                  type: string
+                type:
+                  type: string
+              required:
+              - target
+              - type
+      summary: Create location
+      x-summary-source: derived
+    get:
+      operationId: GetLocations
+      tags:
+      - Locations
+      description: Get all locations
       responses:
         '200':
-          description: A list of registered locations.
+          description: Ok
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Location'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+                  type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Location'
+                  required:
+                  - data
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters: []
+      summary: Get locations
+      x-summary-source: derived
+  /locations/by-query:
     post:
-      operationId: createLocation
-      summary: Backstage Create a location
-      description: Registers a new location in the catalog. The catalog will then begin ingesting entities from this location.
+      operationId: GetLocationsByQuery
       tags:
       - Locations
+      description: Query for locations
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsQueryResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
       security:
-      - bearerAuth: []
-      parameters:
-      - name: dryRun
-        in: query
+      - {}
+      - JWT: []
+      requestBody:
         required: false
-        description: If true, the location will not actually be created but validated and the entities that would be ingested are returned.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cursor:
+                  type: string
+                limit:
+                  type: number
+                query:
+                  $ref: '#/components/schemas/JsonObject'
+      summary: Get locations by query
+      x-summary-source: derived
+  /locations/{id}:
+    get:
+      operationId: GetLocation
+      tags:
+      - Locations
+      description: Get a location by id.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - in: path
+        name: id
+        required: true
         schema:
-          type: boolean
+          type: string
+      summary: Get location
+      x-summary-source: derived
+    put:
+      operationId: UpdateLocation
+      tags:
+      - Locations
+      description: Update the type and target of an existing location by id.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              required:
-              - type
-              - target
-              properties:
-                type:
-                  type: string
-                  description: The type of the location (e.g., url, file).
-                  example: url
-                target:
-                  type: string
-                  description: The target URL or path of the location.
-                  example: https://github.com/org/repo/blob/main/catalog-info.yaml
-      responses:
-        '201':
-          description: Location created successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  location:
-                    $ref: '#/components/schemas/Location'
-                  entities:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Entity'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '409':
-          description: A location with this target already exists.
-  /locations/{id}:
-    get:
-      operationId: getLocationById
-      summary: Backstage Get location by ID
-      description: Retrieves a specific location by its unique identifier.
-      tags:
-      - Locations
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+              $ref: '#/components/schemas/LocationInput'
       responses:
         '200':
-          description: The location matching the given ID.
+          description: Ok
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Location'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-    delete:
-      operationId: deleteLocation
-      summary: Backstage Delete location
-      description: Removes a registered location and optionally all entities that originated from it.
-      tags:
-      - Locations
+        default:
+          $ref: '#/components/responses/ErrorResponse'
       security:
-      - bearerAuth: []
+      - {}
+      - JWT: []
       parameters:
-      - name: id
-        in: path
+      - in: path
+        name: id
         required: true
         schema:
           type: string
+      summary: Update location
+      x-summary-source: derived
+    delete:
+      operationId: DeleteLocation
+      tags:
+      - Locations
+      description: Delete a location by id.
       responses:
         '204':
-          description: Location deleted successfully.
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+          description: No content
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      summary: Delete location
+      x-summary-source: derived
   /locations/by-entity/{kind}/{namespace}/{name}:
     get:
       operationId: getLocationByEntity
-      summary: Backstage Get location by entity
-      description: Retrieves the location associated with a specific entity, identified by its kind, namespace, and name.
       tags:
       - Locations
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: kind
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: namespace
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: name
-        in: path
-        required: true
-        schema:
-          type: string
+      description: Get a location for entity.
       responses:
         '200':
-          description: The location associated with the entity.
+          description: Ok
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Location'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - in: path
+        name: kind
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      summary: Get location by entity
+      x-summary-source: derived
   /analyze-location:
     post:
-      operationId: analyzeLocation
-      summary: Backstage Analyze location
-      description: Analyzes a location to determine what entities would be generated from it without actually registering the location.
+      operationId: AnalyzeLocation
       tags:
       - Locations
+      description: Validate a given location.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeLocationResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
       security:
-      - bearerAuth: []
+      - {}
+      - JWT: []
+      parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
+              properties:
+                catalogFileName:
+                  type: string
+                location:
+                  $ref: '#/components/schemas/LocationInput'
               required:
               - location
-              properties:
-                location:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                    target:
-                      type: string
-      responses:
-        '200':
-          description: Analysis result showing potential entities.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  existingEntityRefs:
-                    type: array
-                    items:
-                      type: string
-                  generateEntities:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        entity:
-                          $ref: '#/components/schemas/Entity'
-                        fields:
-                          type: array
-                          items:
-                            type: string
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+      summary: Analyze location
+      x-summary-source: derived
 components:
   schemas:
-    EntityMetadata:
+    AnalyzeLocationGenerateEntity:
       type: object
-      description: Metadata common to all entity kinds.
-      required:
-      - name
       properties:
-        uid:
-          type: string
-          format: uuid
-          description: A globally unique identifier for the entity.
-        etag:
-          type: string
-          description: An opaque string that changes on each update.
-        name:
-          type: string
-          description: The name of the entity.
-          example: my-service
-        namespace:
-          type: string
-          description: The namespace the entity belongs to.
-          default: default
-        title:
-          type: string
-          description: A human-readable title for the entity.
-        description:
-          type: string
-          description: A human-readable description of the entity.
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-          description: Key-value pairs for labeling the entity.
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Key-value pairs for non-identifying metadata.
-        tags:
+        fields:
           type: array
           items:
-            type: string
-          description: A list of single-valued strings for classification.
-        links:
+            $ref: '#/components/schemas/AnalyzeLocationEntityField'
+        entity:
+          $ref: '#/components/schemas/RecursivePartialEntity'
+      required:
+      - fields
+      - entity
+      description: 'This is some form of representation of what the analyzer could deduce.
+
+        We should probably have a chat about how this can best be conveyed to
+
+        the frontend. It''ll probably contain a (possibly incomplete) entity, plus
+
+        enough info for the frontend to know what form data to show to the user
+
+        for overriding/completing the info.'
+      additionalProperties: false
+    LocationsQueryResponse:
+      type: object
+      properties:
+        items:
           type: array
           items:
-            type: object
-            properties:
-              url:
-                type: string
-                format: uri
-              title:
-                type: string
-              icon:
-                type: string
-              type:
-                type: string
+            $ref: '#/components/schemas/Location'
+          description: The list of locations paginated by a specific query.
+        totalItems:
+          type: number
+        pageInfo:
+          type: object
+          properties:
+            nextCursor:
+              type: string
+              description: The cursor for the next batch of locations.
+      required:
+      - items
+      - totalItems
+      - pageInfo
+      additionalProperties: false
+    AnalyzeLocationResponse:
+      type: object
+      properties:
+        generateEntities:
+          items:
+            $ref: '#/components/schemas/AnalyzeLocationGenerateEntity'
+          type: array
+        existingEntityFiles:
+          items:
+            $ref: '#/components/schemas/AnalyzeLocationExistingEntity'
+          type: array
+      required:
+      - generateEntities
+      - existingEntityFiles
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+            stack:
+              type: string
+            code:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - response
+      additionalProperties: {}
+    RecursivePartialEntityRelation:
+      type: object
+      properties:
+        targetRef:
+          type: string
+          description: The entity ref of the target of this relation.
+        type:
+          type: string
+          description: The type of the relation.
+      description: A relation of a specific type to another entity in the catalog.
+      additionalProperties: false
     Entity:
       type: object
-      description: A Backstage catalog entity.
-      required:
-      - apiVersion
-      - kind
-      - metadata
       properties:
-        apiVersion:
-          type: string
-          description: The API version of the entity schema.
-          example: backstage.io/v1alpha1
-        kind:
-          type: string
-          description: The kind of entity. Common kinds include Component, API, System, Domain, Resource, Group, User, Location, and Template.
-          example: Component
-        metadata:
-          $ref: '#/components/schemas/EntityMetadata'
-        spec:
-          type: object
-          description: The specification of the entity. The schema varies depending on the kind and type.
-          additionalProperties: true
         relations:
           type: array
           items:
             $ref: '#/components/schemas/EntityRelation'
-        status:
-          type: object
-          properties:
+          description: The relations that this entity has with other entities.
+        spec:
+          $ref: '#/components/schemas/JsonObject'
+        metadata:
+          $ref: '#/components/schemas/EntityMeta'
+        kind:
+          type: string
+          description: The high level entity type being described.
+        apiVersion:
+          type: string
+          description: 'The version of specification format for this particular entity that
+
+            this is written against.'
+      required:
+      - metadata
+      - kind
+      - apiVersion
+      description: The parts of the format that's common to all versions/kinds of entity.
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
+    RecursivePartialEntityMeta:
+      allOf:
+      - $ref: '#/components/schemas/JsonObject'
+      - type: object
+        properties:
+          links:
+            type: array
             items:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                  level:
-                    type: string
-                    enum:
-                    - info
-                    - warning
-                    - error
-                  message:
-                    type: string
-                  error:
-                    type: object
+              $ref: '#/components/schemas/EntityLink'
+            description: A list of external hyperlinks related to the entity.
+          tags:
+            type: array
+            items:
+              type: string
+            description: 'A list of single-valued strings, to for example classify catalog entities in
+
+              various ways.'
+          annotations:
+            $ref: '#/components/schemas/MapStringString'
+          labels:
+            $ref: '#/components/schemas/MapStringString'
+          description:
+            type: string
+            description: 'A short (typically relatively few words, on one line) description of the
+
+              entity.'
+          title:
+            type: string
+            description: 'A display name of the entity, to be presented in user interfaces instead
+
+              of the `name` property above, when available.
+
+              This field is sometimes useful when the `name` is cumbersome or ends up
+
+              being perceived as overly technical. The title generally does not have
+
+              as stringent format requirements on it, so it may contain special
+
+              characters and be more explanatory. Do keep it very short though, and
+
+              avoid situations where a title can be confused with the name of another
+
+              entity, or where two entities share a title.
+
+              Note that this is only for display purposes, and may be ignored by some
+
+              parts of the code. Entity references still always make use of the `name`
+
+              property, not the title.'
+          namespace:
+            type: string
+            description: The namespace that the entity belongs to.
+          name:
+            type: string
+            description: 'The name of the entity.
+
+              Must be unique within the catalog at any given point in time, for any
+
+              given namespace + kind pair. This value is part of the technical
+
+              identifier of the entity, and as such it will appear in URLs, database
+
+              tables, entity references, and similar. It is subject to restrictions
+
+              regarding what characters are allowed.
+
+              If you want to use a different, more human readable string with fewer
+
+              restrictions on it in user interfaces, see the `title` field below.'
+          etag:
+            type: string
+            description: 'An opaque string that changes for each update operation to any part of
+
+              the entity, including metadata.
+
+              This field can not be set by the user at creation time, and the server
+
+              will reject an attempt to do so. The field will be populated in read
+
+              operations. The field can (optionally) be specified when performing
+
+              update or delete operations, and the server will then reject the
+
+              operation if it does not match the current stored value.'
+          uid:
+            type: string
+            description: 'A globally unique ID for the entity.
+
+              This field can not be set by the user at creation time, and the server
+
+              will reject an attempt to do so. The field will be populated in read
+
+              operations. The field can (optionally) be specified when performing
+
+              update or delete operations, but the server is free to reject requests
+
+              that do so in such a way that it breaks semantics.'
+        description: Metadata fields common to all versions/kinds of entity.
+      additionalProperties: false
     Location:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier of the location.
-        type:
-          type: string
-          description: The type of the location (e.g., url, file).
         target:
           type: string
-          description: The target URL or path of the location.
-    EntityRelation:
+        type:
+          type: string
+        id:
+          type: string
+        entityRef:
+          type: string
+          description: The entity ref of the corresponding Location kind entity, e.g. location:default/generated-<sha1hex>.
+      required:
+      - target
+      - type
+      - id
+      - entityRef
+      description: Entity location for a specific entity.
+      additionalProperties: false
+    EntityLink:
       type: object
       properties:
         type:
           type: string
-          description: The type of relation.
-          example: ownedBy
+          description: An optional value to categorize links into specific groups
+        icon:
+          type: string
+          description: An optional semantic key that represents a visual icon.
+        title:
+          type: string
+          description: An optional descriptive title for the link.
+        url:
+          type: string
+          description: The url to the external site, document, etc.
+      required:
+      - url
+      description: A link to external information that is related to the entity.
+      additionalProperties: false
+    AnalyzeLocationEntityField:
+      type: object
+      properties:
+        description:
+          type: string
+          description: 'A text to show to the user to inform about the choices made. Like, it could say
+
+            "Found a CODEOWNERS file that covers this target, so we suggest leaving this
+
+            field empty; which would currently make it owned by X" where X is taken from the
+
+            codeowners file.'
+        value:
+          oneOf:
+          - type: string
+          - type: 'null'
+        state:
+          type: string
+          enum:
+          - analysisSuggestedValue
+          - analysisSuggestedNoValue
+          - needsUserInput
+          description: The outcome of the analysis for this particular field
+        field:
+          type: string
+          description: 'e.g. "spec.owner"? The frontend needs to know how to "inject" the field into the
+
+            entity again if the user wants to change it'
+      required:
+      - description
+      - value
+      - state
+      - field
+      additionalProperties: false
+    RecursivePartialEntity:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          description: 'The version of specification format for this particular entity that
+
+            this is written against.'
+        kind:
+          type: string
+          description: The high level entity type being described.
+        metadata:
+          $ref: '#/components/schemas/RecursivePartialEntityMeta'
+        spec:
+          $ref: '#/components/schemas/JsonObject'
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecursivePartialEntityRelation'
+          description: The relations that this entity has with other entities.
+      description: Makes all keys of an entire hierarchy optional.
+      additionalProperties: false
+    LocationSpec:
+      type: object
+      properties:
+        target:
+          type: string
+        type:
+          type: string
+      required:
+      - target
+      - type
+      description: Holds the entity location information.
+      additionalProperties: false
+    MapStringString:
+      type: object
+      properties: {}
+      additionalProperties:
+        type: string
+      description: Construct a type with a set of properties K of type T
+    LocationInput:
+      type: object
+      properties:
+        type:
+          type: string
+        target:
+          type: string
+      required:
+      - type
+      - target
+      additionalProperties: false
+    AnalyzeLocationExistingEntity:
+      type: object
+      properties:
+        entity:
+          $ref: '#/components/schemas/Entity'
+        isRegistered:
+          type: boolean
+        location:
+          $ref: '#/components/schemas/LocationSpec'
+      required:
+      - entity
+      - isRegistered
+      - location
+      description: 'If the folder pointed to already contained catalog info yaml files, they are
+
+        read and emitted like this so that the frontend can inform the user that it
+
+        located them and can make sure to register them as well if they weren''t
+
+        already'
+      additionalProperties: false
+    EntityRelation:
+      type: object
+      properties:
         targetRef:
           type: string
-          description: The entity reference of the target entity.
-          example: group:default/my-team
+          description: The entity ref of the target of this relation.
+        type:
+          type: string
+          description: The type of the relation.
+      required:
+      - targetRef
+      - type
+      description: A relation of a specific type to another entity in the catalog.
+      additionalProperties: false
+    EntityMeta:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityLink'
+          description: A list of external hyperlinks related to the entity.
+        tags:
+          type: array
+          items:
+            type: string
+          description: 'A list of single-valued strings, to for example classify catalog entities in
+
+            various ways.'
+        annotations:
+          $ref: '#/components/schemas/MapStringString'
+        labels:
+          $ref: '#/components/schemas/MapStringString'
+        description:
+          type: string
+          description: 'A short (typically relatively few words, on one line) description of the
+
+            entity.'
+        title:
+          type: string
+          description: 'A display name of the entity, to be presented in user interfaces instead
+
+            of the `name` property above, when available.
+
+            This field is sometimes useful when the `name` is cumbersome or ends up
+
+            being perceived as overly technical. The title generally does not have
+
+            as stringent format requirements on it, so it may contain special
+
+            characters and be more explanatory. Do keep it very short though, and
+
+            avoid situations where a title can be confused with the name of another
+
+            entity, or where two entities share a title.
+
+            Note that this is only for display purposes, and may be ignored by some
+
+            parts of the code. Entity references still always make use of the `name`
+
+            property, not the title.'
+        namespace:
+          type: string
+          description: The namespace that the entity belongs to.
+        name:
+          type: string
+          description: 'The name of the entity.
+
+            Must be unique within the catalog at any given point in time, for any
+
+            given namespace + kind pair. This value is part of the technical
+
+            identifier of the entity, and as such it will appear in URLs, database
+
+            tables, entity references, and similar. It is subject to restrictions
+
+            regarding what characters are allowed.
+
+            If you want to use a different, more human readable string with fewer
+
+            restrictions on it in user interfaces, see the `title` field below.'
+        etag:
+          type: string
+          description: 'An opaque string that changes for each update operation to any part of
+
+            the entity, including metadata.
+
+            This field can not be set by the user at creation time, and the server
+
+            will reject an attempt to do so. The field will be populated in read
+
+            operations. The field can (optionally) be specified when performing
+
+            update or delete operations, and the server will then reject the
+
+            operation if it does not match the current stored value.'
+        uid:
+          type: string
+          description: 'A globally unique ID for the entity.
+
+            This field can not be set by the user at creation time, and the server
+
+            will reject an attempt to do so. The field will be populated in read
+
+            operations. The field can (optionally) be specified when performing
+
+            update or delete operations, but the server is free to reject requests
+
+            that do so in such a way that it breaks semantics.'
+      required:
+      - name
+      description: Metadata fields common to all versions/kinds of entity.
+      additionalProperties: {}
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    ErrorResponse:
+      description: An error response from the backend.
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  message:
-                    type: string
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  message:
-                    type: string
+            $ref: '#/components/schemas/Error'
   securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: backstage-auth
-    bearerAuth:
+    JWT:
       type: http
       scheme: bearer
       bearerFormat: JWT
-externalDocs:
-  description: Backstage Auth Documentation
-  url: https://backstage.io/docs/auth/

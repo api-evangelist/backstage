@@ -1,3 +1,5 @@
+# x-archived-from: backstage-auth-backend-openapi.yaml
+# x-archived-on: 2026-09-16
 openapi: 3.0.1
 info:
   title: Auth API

@@ -1,59 +1,81 @@
 openapi: 3.2.0
 info:
-  title: Backstage Auth Actions API
-  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
-  version: 1.0.0
-  contact:
-    name: Backstage
-    url: https://backstage.io
-  license:
-    name: Apache-2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
+  title: Backstage Actions API
+  version: '1.0'
+  description: 'Operations tagged Actions across 2 of this provider''s published API definitions: backstage-scaffolder-backend-openapi.yaml, backstage-scaffolder-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://localhost:7007/api/auth
+- url: /
+- url: https://localhost:7007/api/scaffolder
   description: Local development server
 tags:
 - name: Actions
-  description: Endpoints for listing available scaffolder actions.
 paths:
   /v2/actions:
     get:
-      operationId: listActions
-      summary: Backstage List available actions
-      description: Lists all available scaffolder actions that can be used in templates. Each action includes its ID, description, and input/output schemas.
-      tags:
-      - Actions
-      security:
-      - bearerAuth: []
+      operationId: ListActions
+      description: Returns a list of all installed actions.
       responses:
         '200':
-          description: A list of available scaffolder actions.
+          description: Ok
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Action'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+                $ref: '#/components/schemas/ListActionsResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters: []
+      tags:
+      - Actions
+      summary: List actions
+      x-summary-source: derived
+    servers:
+    - url: /
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  message:
-                    type: string
   schemas:
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
     Action:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        examples:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionExample'
+        schema:
+          type: object
+          properties:
+            input:
+              $ref: '#/components/schemas/JsonObject'
+            output:
+              $ref: '#/components/schemas/JsonObject'
+      required:
+      - id
+      description: The response shape for a single action in the `listActions` call to the `scaffolder-backend`
+    ActionExample:
+      type: object
+      properties:
+        description:
+          type: string
+        example:
+          type: string
+      required:
+      - description
+      - example
+      description: A single action example
+    ListActionsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Action'
+      description: The response shape for the `listActions` call to the `scaffolder-backend`
+    Action_2:
       type: object
       properties:
         id:
@@ -72,15 +94,34 @@ components:
             output:
               type: object
               description: JSON Schema for the action output.
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
   securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: backstage-auth
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: Backstage token returned by the identity API.
 externalDocs:
-  description: Backstage Auth Documentation
-  url: https://backstage.io/docs/auth/
+  description: Backstage Software Templates Documentation
+  url: https://backstage.io/docs/features/software-templates/
+x-refined-from:
+- backstage-scaffolder-backend-openapi.yaml
+- backstage-scaffolder-openapi.yml

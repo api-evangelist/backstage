@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Backstage Auth Actions Sync API
-  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
+  title: Backstage TechDocs Sync API
+  description: The Backstage TechDocs API provides endpoints for generating, publishing, and serving technical documentation for catalog entities. TechDocs uses MkDocs under the hood to render Markdown documentation into static HTML pages. The API supports fetching rendered documentation, syncing docs from external storage, retrieving metadata, and managing documentation lifecycle.
   version: 1.0.0
   contact:
     name: Backstage
@@ -10,7 +10,7 @@ info:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-- url: https://localhost:7007/api/auth
+- url: https://localhost:7007/api/techdocs
   description: Local development server
 tags:
 - name: Sync
@@ -54,14 +54,10 @@ paths:
           description: Entity not found.
 components:
   securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: backstage-auth
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
 externalDocs:
-  description: Backstage Auth Documentation
-  url: https://backstage.io/docs/auth/
+  description: Backstage TechDocs Documentation
+  url: https://backstage.io/docs/features/techdocs/

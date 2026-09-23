@@ -1,85 +1,55 @@
 openapi: 3.2.0
 info:
-  title: Backstage Auth Actions Tasks API
-  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
-  version: 1.0.0
-  contact:
-    name: Backstage
-    url: https://backstage.io
-  license:
-    name: Apache-2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
+  title: Backstage Tasks API
+  version: '1.0'
+  description: 'Operations tagged Tasks across 2 of this provider''s published API definitions: backstage-scaffolder-backend-openapi.yaml, backstage-scaffolder-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://localhost:7007/api/auth
+- url: /
+- url: https://localhost:7007/api/scaffolder
   description: Local development server
 tags:
 - name: Tasks
-  description: Endpoints for creating and managing scaffolder tasks.
 paths:
   /v2/tasks:
     get:
-      operationId: listTasks
-      summary: Backstage List scaffolder tasks
-      description: Lists scaffolder tasks, optionally filtered by the user who created them. Returns task metadata and status information.
-      tags:
-      - Tasks
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: createdBy
-        in: query
-        required: false
-        description: Filter tasks by the user who created them.
-        schema:
-          type: string
+      operationId: ListTasks
+      description: Returns a list of tasks, filtering by ownership and/or status if given.
       responses:
         '200':
-          description: A list of scaffolder tasks.
+          description: Ok
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  tasks:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Task'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-    post:
-      operationId: createTask
-      summary: Backstage Create a scaffolder task
-      description: Creates a new scaffolder task to execute a software template. The task runs asynchronously and its progress can be monitored through the event stream or logs endpoints.
+                $ref: '#/components/schemas/ListTasksResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - $ref: '#/components/parameters/createdBy'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/status'
       tags:
       - Tasks
-      security:
-      - bearerAuth: []
+      summary: List tasks
+      x-summary-source: derived
+    post:
+      operationId: Scaffold
+      description: 'Executes the scaffolding of a component, given a template and its
+
+        parameter values.'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              required:
-              - templateRef
-              - values
-              properties:
-                templateRef:
-                  type: string
-                  description: The entity reference of the template to execute.
-                  example: template:default/create-react-app
-                values:
-                  type: object
-                  description: The input values for the template parameters.
-                  additionalProperties: true
-                secrets:
-                  type: object
-                  description: Secret values to pass to the template (not persisted).
-                  additionalProperties:
-                    type: string
+              $ref: '#/components/schemas/ScaffolderScaffoldOptions'
       responses:
         '201':
-          description: Task created successfully.
+          description: Created
           content:
             application/json:
               schema:
@@ -87,58 +57,157 @@ paths:
                 properties:
                   id:
                     type: string
-                    description: The unique identifier of the created task.
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-  /v2/tasks/{taskId}:
-    get:
-      operationId: getTask
-      summary: Backstage Get task by ID
-      description: Retrieves the details and current status of a scaffolder task.
-      tags:
-      - Tasks
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: taskId
-        in: path
-        required: true
-        description: The unique identifier of the task.
-        schema:
-          type: string
-      responses:
-        '200':
-          description: The task details.
+                required:
+                - id
+        '400':
+          description: Validation errors.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-  /v2/tasks/{taskId}/cancel:
-    post:
-      operationId: cancelTask
-      summary: Backstage Cancel a task
-      description: Requests cancellation of a running scaffolder task.
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ValidationError'
+                required:
+                - errors
+      security:
+      - {}
+      - JWT: []
+      parameters: []
       tags:
       - Tasks
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: taskId
-        in: path
-        required: true
-        schema:
-          type: string
+      summary: Scaffold
+      x-summary-source: derived
+    servers:
+    - url: /
+  /v2/tasks/{taskId}:
+    get:
+      operationId: GetTask
+      description: Get a task by ID.
       responses:
         '200':
-          description: Cancellation requested successfully.
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerializedTask'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - $ref: '#/components/parameters/taskId'
+      tags:
+      - Tasks
+      summary: Get task
+      x-summary-source: derived
+    servers:
+    - url: /
+  /v2/tasks/{taskId}/cancel:
+    post:
+      operationId: CancelTask
+      description: Sends a signal to a task broker to cancel the running task by taskId.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/TaskStatus'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - $ref: '#/components/parameters/taskId'
+      tags:
+      - Tasks
+      summary: Cancel task
+      x-summary-source: derived
+    servers:
+    - url: /
+  /v2/tasks/{taskId}/retry:
+    post:
+      operationId: Retry
+      description: Starts the task again from the point where it failed.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                secrets:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                required:
+                - id
+        '400':
+          description: Validation errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ValidationError'
+                required:
+                - errors
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - $ref: '#/components/parameters/taskId'
+      tags:
+      - Tasks
+      summary: Retry
+      x-summary-source: derived
+    servers:
+    - url: /
+  /v2/tasks/{taskId}/events:
+    get:
+      operationId: StreamLogsPolling
+      description: Get events for a task by ID.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerializedTaskEvent'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+      parameters:
+      - $ref: '#/components/parameters/eventsAfter'
+      - $ref: '#/components/parameters/taskId'
+      tags:
+      - Tasks
+      summary: Stream logs polling
+      x-summary-source: derived
+    servers:
+    - url: /
   /v2/tasks/{taskId}/eventstream:
     get:
       operationId: getTaskEventStream
@@ -171,6 +240,9 @@ paths:
           $ref: '#/components/responses/NotFound'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: https://localhost:7007/api/scaffolder
+      description: Local development server
   /v2/tasks/{taskId}/logs:
     get:
       operationId: getTaskLogs
@@ -220,6 +292,9 @@ paths:
           $ref: '#/components/responses/NotFound'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: https://localhost:7007/api/scaffolder
+      description: Local development server
   /v2/dry-run:
     post:
       operationId: dryRunTask
@@ -303,37 +378,252 @@ paths:
                     additionalProperties: true
         '401':
           $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: https://localhost:7007/api/scaffolder
+      description: Local development server
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  message:
-                    type: string
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  message:
-                    type: string
+  parameters:
+    createdBy:
+      name: createdBy
+      in: query
+      description: Created by
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
+    taskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return in the response.
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
+    order:
+      name: order
+      in: query
+      description: Order
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip in the query page.
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
+    status:
+      name: status
+      in: query
+      description: Status
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
+    eventsAfter:
+      name: after
+      in: query
+      description: Offset event ID to stream events after.
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
   schemas:
+    TaskStatus:
+      type: string
+      enum:
+      - cancelled
+      - completed
+      - failed
+      - open
+      - processing
+      - skipped
+      description: The status of each step of the Task
+    ValidationError:
+      type: object
+      properties:
+        path:
+          type: array
+          items:
+            oneOf:
+            - type: string
+            - type: integer
+        property:
+          type: string
+        message:
+          type: string
+        instance:
+          type: object
+        name:
+          type: string
+        argument:
+          oneOf:
+          - type: boolean
+          - type: number
+          - type: object
+          - type: string
+        stack:
+          type: string
+      required:
+      - path
+      - property
+      - message
+      - schema
+      - instance
+      - name
+      - argument
+      - stack
+      additionalProperties: {}
+    ScaffolderScaffoldOptions:
+      type: object
+      properties:
+        templateRef:
+          type: string
+        values:
+          type: object
+          additionalProperties: {}
+        secrets:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - templateRef
+      - values
+      description: The input options to the `scaffold` method of the `ScaffolderClient`.
+    SerializedTaskEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        isTaskRecoverable:
+          type: boolean
+        taskId:
+          type: string
+        body:
+          allOf:
+          - $ref: '#/components/schemas/JsonObject'
+          - type: object
+            properties:
+              message:
+                type: string
+              status:
+                $ref: '#/components/schemas/TaskStatus'
+              stepId:
+                type: string
+            required:
+            - message
+        type:
+          $ref: '#/components/schemas/TaskEventType'
+        createdAt:
+          type: string
+      required:
+      - id
+      - taskId
+      - body
+      - type
+      - createdAt
+      description: SerializedTaskEvent
+    ListTasksResponse:
+      type: object
+      properties:
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerializedTask'
+        totalTasks:
+          type: number
+      required:
+      - tasks
+      description: The response shape for the `listTasks` call to the `scaffolder-backend`
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+            stack:
+              type: string
+            code:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - response
+      additionalProperties: {}
+    TaskEventType:
+      type: string
+      description: TaskEventType
+      enum:
+      - cancelled
+      - completion
+      - log
+      - recovered
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
+    SerializedTask:
+      type: object
+      properties:
+        id:
+          type: string
+        spec:
+          type: object
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+        createdAt:
+          type: string
+        lastHeartbeatAt:
+          type: string
+        createdBy:
+          type: string
+      required:
+      - id
+      - spec
+      - status
+      - createdAt
+      description: SerializedTask
     Task:
       type: object
       properties:
@@ -391,15 +681,54 @@ components:
         createdBy:
           type: string
           description: The user who created the task.
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
   securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: backstage-auth
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: Backstage token returned by the identity API.
 externalDocs:
-  description: Backstage Auth Documentation
-  url: https://backstage.io/docs/auth/
+  description: Backstage Software Templates Documentation
+  url: https://backstage.io/docs/features/software-templates/
+x-refined-from:
+- backstage-scaffolder-backend-openapi.yaml
+- backstage-scaffolder-openapi.yml

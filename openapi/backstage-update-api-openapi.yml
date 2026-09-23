@@ -1,0 +1,184 @@
+openapi: 3.2.0
+info:
+  title: notifications Update API
+  version: '1'
+  description: The Backstage backend plugin that powers user notifications.
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact: {}
+servers:
+- url: /
+tags:
+- name: Update
+paths:
+  /update:
+    post:
+      operationId: UpdateNotificationsLegacy
+      deprecated: true
+      description: Deprecated alias for `POST /notifications/update`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNotificationsRequest'
+      responses:
+        '200':
+          description: The notifications that were updated.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      tags:
+      - Update
+      summary: Update notifications legacy
+      x-summary-source: derived
+components:
+  schemas:
+    NotificationResponsePayload:
+      description: Response variant of NotificationPayload. Optional string fields may be returned as null when unset.
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        link:
+          type:
+          - string
+          - 'null'
+        severity:
+          $ref: '#/components/schemas/NotificationSeverity'
+        topic:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type: object
+          additionalProperties: true
+    Notification:
+      type: object
+      required:
+      - id
+      - user
+      - created
+      - origin
+      - payload
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the notification.
+        user:
+          type:
+          - string
+          - 'null'
+          description: User entity reference, or null for broadcast notifications.
+        created:
+          type: string
+          format: date-time
+        saved:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        read:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        origin:
+          type: string
+          description: Origin of the notification (the sender's reference).
+        payload:
+          $ref: '#/components/schemas/NotificationResponsePayload'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - request
+      - response
+    NotificationSeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - normal
+      - low
+    UpdateNotificationsRequest:
+      type: object
+      required:
+      - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+        read:
+          type: boolean
+        saved:
+          type: boolean
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

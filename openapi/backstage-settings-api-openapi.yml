@@ -1,0 +1,154 @@
+openapi: 3.2.0
+info:
+  title: notifications Settings API
+  version: '1'
+  description: The Backstage backend plugin that powers user notifications.
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact: {}
+servers:
+- url: /
+tags:
+- name: Settings
+paths:
+  /settings:
+    get:
+      operationId: GetSettings
+      description: Get the current user's notification settings, merged with defaults.
+      responses:
+        '200':
+          description: Effective notification settings for the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSettings'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      tags:
+      - Settings
+      summary: Get settings
+      x-summary-source: derived
+    post:
+      operationId: UpdateSettings
+      description: Update the current user's notification settings.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationSettings'
+      responses:
+        '200':
+          description: Effective notification settings for the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSettings'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      tags:
+      - Settings
+      summary: Update settings
+      x-summary-source: derived
+components:
+  schemas:
+    OriginSetting:
+      type: object
+      required:
+      - id
+      - enabled
+      properties:
+        id:
+          type: string
+        enabled:
+          type: boolean
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopicSetting'
+    NotificationSettings:
+      type: object
+      required:
+      - channels
+      properties:
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelSetting'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - request
+      - response
+    ChannelSetting:
+      type: object
+      required:
+      - id
+      - origins
+      properties:
+        id:
+          type: string
+        enabled:
+          type: boolean
+        origins:
+          type: array
+          items:
+            $ref: '#/components/schemas/OriginSetting'
+    TopicSetting:
+      type: object
+      required:
+      - id
+      - enabled
+      properties:
+        id:
+          type: string
+        enabled:
+          type: boolean
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

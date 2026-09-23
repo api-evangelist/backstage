@@ -1,60 +1,137 @@
 openapi: 3.2.0
 info:
-  title: Backstage Auth Actions Templates API
-  description: The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
-  version: 1.0.0
-  contact:
-    name: Backstage
-    url: https://backstage.io
-  license:
-    name: Apache-2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
+  title: Backstage Templates API
+  version: '1.0'
+  description: 'Operations tagged Templates across 2 of this provider''s published API definitions: backstage-scaffolder-backend-openapi.yaml, backstage-scaffolder-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://localhost:7007/api/auth
+- url: /
+- url: https://localhost:7007/api/scaffolder
   description: Local development server
 tags:
 - name: Templates
-  description: Endpoints for template metadata and parameter schemas.
 paths:
   /v2/templates/{namespace}/{kind}/{name}/parameter-schema:
     get:
-      operationId: getTemplateParameterSchema
-      summary: Backstage Get template parameter schema
-      description: Retrieves the parameter schema for a specific template. This describes the input parameters the template accepts and their validation rules.
-      tags:
-      - Templates
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: namespace
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: kind
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: name
-        in: path
-        required: true
-        schema:
-          type: string
+      operationId: GetTemplateParameterSchema
+      description: Get template parameter schema.
       responses:
         '200':
-          description: The parameter schema for the template.
+          description: Ok
           content:
             application/json:
               schema:
-                type: object
-                description: JSON Schema describing the template parameters.
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+                $ref: '#/components/schemas/TemplateParameterSchema'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+      - {}
+      - JWT: []
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/kind'
+      - $ref: '#/components/parameters/name'
+      tags:
+      - Templates
+      summary: Get template parameter schema
+      x-summary-source: derived
+    servers:
+    - url: /
 components:
+  parameters:
+    name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    kind:
+      name: kind
+      in: path
+      required: true
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+            stack:
+              type: string
+            code:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - response
+      additionalProperties: {}
+    TemplateParameterSchema:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              schema:
+                type: object
+            required:
+            - title
+            - schema
+      required:
+      - title
+      - steps
+      description: 'The shape of each entry of parameters which gets rendered
+
+        as a separate step in the wizard input'
+      additionalProperties: {}
   responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid authentication token.
       content:
@@ -84,14 +161,18 @@ components:
                   message:
                     type: string
   securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: backstage-auth
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: Backstage token returned by the identity API.
 externalDocs:
-  description: Backstage Auth Documentation
-  url: https://backstage.io/docs/auth/
+  description: Backstage Software Templates Documentation
+  url: https://backstage.io/docs/features/software-templates/
+x-refined-from:
+- backstage-scaffolder-backend-openapi.yaml
+- backstage-scaffolder-openapi.yml
