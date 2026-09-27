@@ -203,6 +203,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    NotificationRecipients:
+      oneOf:
+      - type: object
+        required:
+        - type
+        - entityRef
+        properties:
+          type:
+            type: string
+            enum:
+            - entity
+          entityRef:
+            $ref: '#/components/schemas/EntityRef'
+          excludeEntityRef:
+            $ref: '#/components/schemas/EntityRef'
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - broadcast
     NotificationResponsePayload:
       description: Response variant of NotificationPayload. Optional string fields may be returned as null when unset.
       type: object
@@ -236,75 +259,13 @@ components:
         metadata:
           type: object
           additionalProperties: true
-    NotificationRecipients:
-      oneOf:
-      - type: object
-        required:
-        - type
-        - entityRef
-        properties:
-          type:
-            type: string
-            enum:
-            - entity
-          entityRef:
-            $ref: '#/components/schemas/EntityRef'
-          excludeEntityRef:
-            $ref: '#/components/schemas/EntityRef'
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - broadcast
-    ListNotificationsResponse:
-      type: object
-      required:
-      - totalCount
-      - notifications
-      properties:
-        totalCount:
-          type: integer
-        notifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Notification'
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            name:
-              type: string
-            message:
-              type: string
-          required:
-          - name
-          - message
-        request:
-          type: object
-          properties:
-            method:
-              type: string
-            url:
-              type: string
-          required:
-          - method
-          - url
-        response:
-          type: object
-          properties:
-            statusCode:
-              type: number
-          required:
-          - statusCode
-      required:
-      - error
-      - request
-      - response
+    NotificationSeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - normal
+      - low
     Notification:
       type: object
       required:
@@ -345,6 +306,76 @@ components:
           description: Origin of the notification (the sender's reference).
         payload:
           $ref: '#/components/schemas/NotificationResponsePayload'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - request
+      - response
+    NotificationSendOptions:
+      type: object
+      required:
+      - recipients
+      - payload
+      properties:
+        recipients:
+          $ref: '#/components/schemas/NotificationRecipients'
+        payload:
+          $ref: '#/components/schemas/NotificationPayload'
+    ListNotificationsResponse:
+      type: object
+      required:
+      - totalCount
+      - notifications
+      properties:
+        totalCount:
+          type: integer
+        notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notification'
+    OrderField:
+      description: One or more "field,direction" pairs, given as a single string or an array of strings.
+      oneOf:
+      - type: string
+      - type: array
+        items:
+          type: string
+    EntityRef:
+      description: A single entity ref, or a list of entity refs.
+      oneOf:
+      - type: string
+      - type: array
+        items:
+          type: string
     NotificationPayload:
       type: object
       required:
@@ -374,20 +405,6 @@ components:
           type: object
           description: Optional additional customizable metadata.
           additionalProperties: true
-    EntityRef:
-      description: A single entity ref, or a list of entity refs.
-      oneOf:
-      - type: string
-      - type: array
-        items:
-          type: string
-    NotificationSeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - normal
-      - low
     UpdateNotificationsRequest:
       type: object
       required:
@@ -401,83 +418,7 @@ components:
           type: boolean
         saved:
           type: boolean
-    NotificationSendOptions:
-      type: object
-      required:
-      - recipients
-      - payload
-      properties:
-        recipients:
-          $ref: '#/components/schemas/NotificationRecipients'
-        payload:
-          $ref: '#/components/schemas/NotificationPayload'
-    OrderField:
-      description: One or more "field,direction" pairs, given as a single string or an array of strings.
-      oneOf:
-      - type: string
-      - type: array
-        items:
-          type: string
   parameters:
-    minimumSeverity:
-      name: minimumSeverity
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        $ref: '#/components/schemas/NotificationSeverity'
-    limit:
-      name: limit
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: integer
-        minimum: 0
-    offset:
-      name: offset
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: integer
-        minimum: 0
-    topic:
-      name: topic
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-    notificationId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    createdAfter:
-      name: createdAfter
-      in: query
-      required: false
-      allowReserved: true
-      description: ISO 8601 date-time string. Validated by the handler.
-      schema:
-        type: string
-    orderField:
-      name: orderField
-      in: query
-      required: false
-      allowReserved: true
-      description: One or more "field,direction" pairs. Direction is "asc" or "desc". Pass multiple to express compound sorts.
-      schema:
-        $ref: '#/components/schemas/OrderField'
-    search:
-      name: search
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
     saved:
       name: saved
       in: query
@@ -498,6 +439,65 @@ components:
         enum:
         - 'true'
         - 'false'
+    search:
+      name: search
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+    topic:
+      name: topic
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+    notificationId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    orderField:
+      name: orderField
+      in: query
+      required: false
+      allowReserved: true
+      description: One or more "field,direction" pairs. Direction is "asc" or "desc". Pass multiple to express compound sorts.
+      schema:
+        $ref: '#/components/schemas/OrderField'
+    offset:
+      name: offset
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
+    createdAfter:
+      name: createdAfter
+      in: query
+      required: false
+      allowReserved: true
+      description: ISO 8601 date-time string. Validated by the handler.
+      schema:
+        type: string
+    minimumSeverity:
+      name: minimumSeverity
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        $ref: '#/components/schemas/NotificationSeverity'
+    limit:
+      name: limit
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
   responses:
     ErrorResponse:
       description: An error response from the backend.

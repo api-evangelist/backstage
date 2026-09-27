@@ -101,43 +101,6 @@ paths:
           description: Authentication required.
 components:
   schemas:
-    ConditionalRequest:
-      type: object
-      required:
-      - resourceRef
-      - resourceType
-      - conditions
-      properties:
-        resourceRef:
-          type: string
-          description: Reference to the resource.
-        resourceType:
-          type: string
-          description: The resource type identifier.
-        conditions:
-          type: object
-          description: The conditions to evaluate against the resource.
-    PermissionDecision:
-      type: object
-      required:
-      - result
-      properties:
-        result:
-          type: string
-          enum:
-          - ALLOW
-          - DENY
-          - CONDITIONAL
-          description: The authorization decision result.
-        pluginId:
-          type: string
-          description: The plugin responsible for condition evaluation.
-        resourceType:
-          type: string
-          description: The resource type for conditional decisions.
-        conditions:
-          type: object
-          description: The conditions that must be evaluated against the resource to produce a final decision. Only present when result is CONDITIONAL.
     PermissionRequest:
       type: object
       required:
@@ -175,6 +138,43 @@ components:
         resourceRef:
           type: string
           description: Reference to the specific resource being accessed (e.g., component:default/my-service).
+    PermissionDecision:
+      type: object
+      required:
+      - result
+      properties:
+        result:
+          type: string
+          enum:
+          - ALLOW
+          - DENY
+          - CONDITIONAL
+          description: The authorization decision result.
+        pluginId:
+          type: string
+          description: The plugin responsible for condition evaluation.
+        resourceType:
+          type: string
+          description: The resource type for conditional decisions.
+        conditions:
+          type: object
+          description: The conditions that must be evaluated against the resource to produce a final decision. Only present when result is CONDITIONAL.
+    ConditionalRequest:
+      type: object
+      required:
+      - resourceRef
+      - resourceType
+      - conditions
+      properties:
+        resourceRef:
+          type: string
+          description: Reference to the resource.
+        resourceType:
+          type: string
+          description: The resource type identifier.
+        conditions:
+          type: object
+          description: The conditions to evaluate against the resource.
   securitySchemes:
     bearerAuth:
       type: http

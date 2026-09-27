@@ -40,6 +40,12 @@ paths:
     - url: /
 components:
   parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
     name:
       name: name
       in: path
@@ -52,13 +58,35 @@ components:
       required: true
       schema:
         type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
+    TemplateParameterSchema:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              schema:
+                type: object
+            required:
+            - title
+            - schema
+      required:
+      - title
+      - steps
+      description: 'The shape of each entry of parameters which gets rendered
+
+        as a separate step in the wizard input'
+      additionalProperties: {}
     Error:
       type: object
       properties:
@@ -97,34 +125,6 @@ components:
       - error
       - response
       additionalProperties: {}
-    TemplateParameterSchema:
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        steps:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              description:
-                type: string
-              schema:
-                type: object
-            required:
-            - title
-            - schema
-      required:
-      - title
-      - steps
-      description: 'The shape of each entry of parameters which gets rendered
-
-        as a separate step in the wizard input'
-      additionalProperties: {}
   responses:
     ErrorResponse:
       description: An error response from the backend.
@@ -132,8 +132,8 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid authentication token.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -146,8 +146,8 @@ components:
                     type: string
                   message:
                     type: string
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid authentication token.
       content:
         application/json:
           schema:

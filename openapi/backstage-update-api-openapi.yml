@@ -43,6 +43,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    NotificationSeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - normal
+      - low
     NotificationResponsePayload:
       description: Response variant of NotificationPayload. Optional string fields may be returned as null when unset.
       type: object
@@ -116,6 +123,19 @@ components:
           description: Origin of the notification (the sender's reference).
         payload:
           $ref: '#/components/schemas/NotificationResponsePayload'
+    UpdateNotificationsRequest:
+      type: object
+      required:
+      - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+        read:
+          type: boolean
+        saved:
+          type: boolean
     Error:
       type: object
       properties:
@@ -150,26 +170,6 @@ components:
       - error
       - request
       - response
-    NotificationSeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - normal
-      - low
-    UpdateNotificationsRequest:
-      type: object
-      required:
-      - ids
-      properties:
-        ids:
-          type: array
-          items:
-            type: string
-        read:
-          type: boolean
-        saved:
-          type: boolean
   responses:
     ErrorResponse:
       description: An error response from the backend.

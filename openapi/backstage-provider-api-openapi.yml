@@ -194,6 +194,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Refresh-Cookie:
+      type: object
+      properties:
+        provider-refresh-token:
+          type: string
+        maxAge:
+          type: integer
+        secure:
+          type: boolean
+        sameSite:
+          type: string
+        domain:
+          type: string
+        path:
+          type: string
+        httpOnly:
+          type: boolean
     AuthError:
       type: object
       properties:
@@ -228,23 +245,6 @@ components:
       type: object
       properties:
         provider-nonce:
-          type: string
-        maxAge:
-          type: integer
-        secure:
-          type: boolean
-        sameSite:
-          type: string
-        domain:
-          type: string
-        path:
-          type: string
-        httpOnly:
-          type: boolean
-    Refresh-Cookie:
-      type: object
-      properties:
-        provider-refresh-token:
           type: string
         maxAge:
           type: integer

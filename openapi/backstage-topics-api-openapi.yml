@@ -39,50 +39,23 @@ paths:
       summary: Get topics
       x-summary-source: derived
 components:
-  parameters:
-    search:
-      name: search
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-    saved:
-      name: saved
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-        enum:
-        - 'true'
-        - 'false'
-    read:
-      name: read
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-        enum:
-        - 'true'
-        - 'false'
-    createdAfter:
-      name: createdAfter
-      in: query
-      required: false
-      allowReserved: true
-      description: ISO 8601 date-time string. Validated by the handler.
-      schema:
-        type: string
-    minimumSeverity:
-      name: minimumSeverity
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        $ref: '#/components/schemas/NotificationSeverity'
   schemas:
+    GetTopicsResponse:
+      type: object
+      required:
+      - topics
+      properties:
+        topics:
+          type: array
+          items:
+            type: string
+    NotificationSeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - normal
+      - low
     Error:
       type: object
       properties:
@@ -117,22 +90,49 @@ components:
       - error
       - request
       - response
-    NotificationSeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - normal
-      - low
-    GetTopicsResponse:
-      type: object
-      required:
-      - topics
-      properties:
-        topics:
-          type: array
-          items:
-            type: string
+  parameters:
+    search:
+      name: search
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+    minimumSeverity:
+      name: minimumSeverity
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        $ref: '#/components/schemas/NotificationSeverity'
+    createdAfter:
+      name: createdAfter
+      in: query
+      required: false
+      allowReserved: true
+      description: ISO 8601 date-time string. Validated by the handler.
+      schema:
+        type: string
+    saved:
+      name: saved
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+    read:
+      name: read
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
   responses:
     ErrorResponse:
       description: An error response from the backend.

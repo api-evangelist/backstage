@@ -122,25 +122,7 @@ paths:
       summary: Get subscription events
       x-summary-source: derived
 components:
-  responses:
-    ErrorResponse:
-      description: An error response from the backend.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Event:
-      type: object
-      required:
-      - topic
-      - payload
-      properties:
-        topic:
-          type: string
-          description: The topic that the event is published on
-        payload:
-          description: The event payload
     Error:
       type: object
       properties:
@@ -175,6 +157,17 @@ components:
       - error
       - request
       - response
+    Event:
+      type: object
+      required:
+      - topic
+      - payload
+      properties:
+        topic:
+          type: string
+          description: The topic that the event is published on
+        payload:
+          description: The event payload
   parameters:
     subscriptionId:
       name: subscriptionId
@@ -182,6 +175,13 @@ components:
       required: true
       schema:
         type: string
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     JWT:
       type: http

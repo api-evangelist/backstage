@@ -106,6 +106,63 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    DryRunResult:
+      type: object
+      properties:
+        log:
+          type: array
+          items:
+            type: object
+            properties:
+              body:
+                allOf:
+                - $ref: '#/components/schemas/JsonObject'
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                    status:
+                      $ref: '#/components/schemas/TaskStatus'
+                    stepId:
+                      type: string
+                  required:
+                  - message
+            required:
+            - body
+        directoryContents:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerializedFile'
+        output:
+          $ref: '#/components/schemas/JsonObject'
+      required:
+      - log
+      - directoryContents
+      - output
+    TaskStatus:
+      type: string
+      enum:
+      - cancelled
+      - completed
+      - failed
+      - open
+      - processing
+      - skipped
+      description: The status of each step of the Task
+    SerializedFile:
+      type: object
+      properties:
+        path:
+          type: string
+        content:
+          type: string
+        executable:
+          type: boolean
+        symlink:
+          type: boolean
+      required:
+      - path
+      - content
     ValidationError:
       type: object
       properties:
@@ -141,63 +198,6 @@ components:
       - argument
       - stack
       additionalProperties: {}
-    TaskStatus:
-      type: string
-      enum:
-      - cancelled
-      - completed
-      - failed
-      - open
-      - processing
-      - skipped
-      description: The status of each step of the Task
-    DryRunResult:
-      type: object
-      properties:
-        log:
-          type: array
-          items:
-            type: object
-            properties:
-              body:
-                allOf:
-                - $ref: '#/components/schemas/JsonObject'
-                - type: object
-                  properties:
-                    message:
-                      type: string
-                    status:
-                      $ref: '#/components/schemas/TaskStatus'
-                    stepId:
-                      type: string
-                  required:
-                  - message
-            required:
-            - body
-        directoryContents:
-          type: array
-          items:
-            $ref: '#/components/schemas/SerializedFile'
-        output:
-          $ref: '#/components/schemas/JsonObject'
-      required:
-      - log
-      - directoryContents
-      - output
-    SerializedFile:
-      type: object
-      properties:
-        path:
-          type: string
-        content:
-          type: string
-        executable:
-          type: boolean
-        symlink:
-          type: boolean
-      required:
-      - path
-      - content
     JsonObject:
       type: object
       properties: {}

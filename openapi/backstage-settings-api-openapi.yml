@@ -82,6 +82,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChannelSetting'
+    TopicSetting:
+      type: object
+      required:
+      - id
+      - enabled
+      properties:
+        id:
+          type: string
+        enabled:
+          type: boolean
+    ChannelSetting:
+      type: object
+      required:
+      - id
+      - origins
+      properties:
+        id:
+          type: string
+        enabled:
+          type: boolean
+        origins:
+          type: array
+          items:
+            $ref: '#/components/schemas/OriginSetting'
     Error:
       type: object
       properties:
@@ -116,30 +140,6 @@ components:
       - error
       - request
       - response
-    ChannelSetting:
-      type: object
-      required:
-      - id
-      - origins
-      properties:
-        id:
-          type: string
-        enabled:
-          type: boolean
-        origins:
-          type: array
-          items:
-            $ref: '#/components/schemas/OriginSetting'
-    TopicSetting:
-      type: object
-      required:
-      - id
-      - enabled
-      properties:
-        id:
-          type: string
-        enabled:
-          type: boolean
   responses:
     ErrorResponse:
       description: An error response from the backend.

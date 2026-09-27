@@ -33,13 +33,6 @@ paths:
       summary: Get status
       x-summary-source: derived
 components:
-  responses:
-    ErrorResponse:
-      description: An error response from the backend.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -85,6 +78,13 @@ components:
           type: integer
         read:
           type: integer
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     JWT:
       type: http

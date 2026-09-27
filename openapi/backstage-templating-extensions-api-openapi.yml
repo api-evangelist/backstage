@@ -33,6 +33,49 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    TemplateGlobalValue:
+      type: object
+      properties:
+        description:
+          type: string
+        value:
+          anyOf:
+          - type: object
+          - type: 'null'
+      required:
+      - value
+      description: The response shape for a single global value in the `listTemplatingExtensions` call to the `scaffolder-backend`
+    ScaffolderUsageExample:
+      type: object
+      properties:
+        description:
+          type: string
+        example:
+          type: string
+        notes:
+          type: string
+      required:
+      - example
+      description: A single scaffolder usage example
+    TemplateGlobalFunction:
+      type: object
+      properties:
+        description:
+          type: string
+        schema:
+          type: object
+          properties:
+            arguments:
+              type: array
+              items:
+                $ref: '#/components/schemas/JsonObject'
+            output:
+              $ref: '#/components/schemas/JsonObject'
+        examples:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScaffolderUsageExample'
+      description: The response shape for a single global function in the `listTemplatingExtensions` call to the `scaffolder-backend`
     TemplateFilter:
       type: object
       properties:
@@ -54,54 +97,11 @@ components:
           items:
             $ref: '#/components/schemas/ScaffolderUsageExample'
       description: The response shape for a single filter in the `listTemplatingExtensions` call to the `scaffolder-backend`
-    TemplateGlobalValue:
-      type: object
-      properties:
-        description:
-          type: string
-        value:
-          anyOf:
-          - type: object
-          - type: 'null'
-      required:
-      - value
-      description: The response shape for a single global value in the `listTemplatingExtensions` call to the `scaffolder-backend`
     JsonObject:
       type: object
       properties: {}
       description: A type representing all allowed JSON object values.
       additionalProperties: {}
-    TemplateGlobalFunction:
-      type: object
-      properties:
-        description:
-          type: string
-        schema:
-          type: object
-          properties:
-            arguments:
-              type: array
-              items:
-                $ref: '#/components/schemas/JsonObject'
-            output:
-              $ref: '#/components/schemas/JsonObject'
-        examples:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScaffolderUsageExample'
-      description: The response shape for a single global function in the `listTemplatingExtensions` call to the `scaffolder-backend`
-    ScaffolderUsageExample:
-      type: object
-      properties:
-        description:
-          type: string
-        example:
-          type: string
-        notes:
-          type: string
-      required:
-      - example
-      description: A single scaffolder usage example
     ListTemplatingExtensionsResponse:
       type: object
       properties:
