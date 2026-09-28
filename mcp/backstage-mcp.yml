@@ -50,66 +50,102 @@ tools:
   read_only: true
   idempotent: true
   destructive: false
+  description: Returns the catalog entity and user info for the currently authenticated user. This action
+    requires user credentials and cannot be used with service or unauthenticated credentials.
 - name: catalog.get-catalog-model-description
   title: Get a Catalog Model Description
   read_only: true
   idempotent: true
   destructive: false
+  description: Returns a markdown formatted description of the current catalog model, including all registered
+    entity kinds, annotations, labels, tags, and relations.
 - name: catalog.get-catalog-entity
   title: Get Catalog Entity
   read_only: true
   idempotent: true
   destructive: false
+  description: This allows you to get a single entity from the software catalog. Each entity in the software
+    catalog has a unique name, kind, and namespace. The default namespace is "default". Each entity is
+    identified by a unique entity reference, which
 - name: catalog.validate-entity
   title: Validate Catalog Entity
   read_only: true
   idempotent: true
   destructive: false
+  description: This action can be used to validate catalog-info.yaml file contents meant to be used with
+    the software catalog.       It checks both that the YAML syntax is correct, and that the entity content
+    is valid according to the catalog's rul
 - name: catalog.register-entity
   title: Register entity in the Catalog
   read_only: false
   idempotent: false
   destructive: false
+  description: Registers one or more entities in the Backstage catalog by creating a Location entity that
+    points to a remote catalog-info.yaml file.  This action is similar to the "Register existing component"
+    flow in the Backstage UI, where you provide a
 - name: catalog.unregister-entity
   title: Unregister entity from the Catalog
   read_only: false
   idempotent: true
   destructive: true
+  description: Unregisters a Location entity and all entities it owns from the Backstage catalog.  This
+    action is similar to the "Unregister location" function in the Backstage UI, where you provide the
+    unique identifier (locationId) of a Location entity.
 - name: catalog.query-catalog-entities
   title: Query Catalog Entities
   read_only: true
   idempotent: true
   destructive: false
+  description: 'Query entities from the Backstage Software Catalog using predicate filters.  ## Catalog
+    Model  The catalog contains entities of different kinds. Every entity has "kind", "apiVersion", "metadata",
+    and optionally "spec" and "relations". Fiel'
 - name: catalog.refresh-catalog-entity
   title: Refresh Catalog Entity
   read_only: false
   idempotent: true
   destructive: false
+  description: This allows you to trigger a refresh of a single entity in the software catalog, requeuing
+    it for processing. This is useful immediately after creating or updating an entity (for example via
+    a scaffolder template invoked by an MCP client)
 - name: scaffolder.list-scaffolder-tasks
   title: List Scaffolder Tasks
   read_only: true
   idempotent: true
   destructive: false
+  description: This allows you to list scaffolder tasks that have been created. Each task has a unique
+    id, specification, and status (one of open, processing, completed, failed, cancelled, skipped). Each
+    task includes a timestamp for when it was created,
 - name: scaffolder.dry-run-template
   title: Dry Run Scaffolder Template
   read_only: true
   idempotent: true
   destructive: false
+  description: Dry-runs a scaffolder template to validate it without making changes. Returns success with
+    execution logs, or errors for validation failures.
 - name: scaffolder.list-scaffolder-actions
   title: List Scaffolder Actions
   read_only: true
   idempotent: true
   destructive: false
+  description: 'Lists all installed Scaffolder actions. Each action includes: - id: The action identifier
+    - description: What the action does - schema: Input and output JSON schemas - examples: Usage examples
+    when available'
 - name: scaffolder.execute-template
   title: Execute Scaffolder Template
   read_only: false
   idempotent: false
   destructive: true
+  description: Executes a Scaffolder template with its template ref and input parameter values. The template
+    is run using the credentials provided to this action, and respects any RBAC permissions associated
+    with those credentials. Returns a taskId that c
 - name: scaffolder.get-scaffolder-task-logs
   title: Get Scaffolder Task Logs
   read_only: true
   idempotent: true
   destructive: false
+  description: Retrieve the log events for a scaffolder task. Each log event has a type (log, completion,
+    cancelled, or recovered), a body containing a message and optional step ID and status. Use the after
+    parameter to fetch only events after a specific
 documented_but_not_exposed_on_demo:
   note: https://backstage.io/docs/ai/well-known-actions lists two further well-known actions that the
     demo instance does not have enabled (their plugins are not installed there).
@@ -123,3 +159,5 @@ docs:
 - https://backstage.io/docs/ai/mcp-actions
 - https://backstage.io/docs/ai/well-known-actions
 - https://backstage.io/docs/backend-system/core-services/actions-registry
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
