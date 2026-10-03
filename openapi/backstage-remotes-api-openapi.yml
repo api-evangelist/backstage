@@ -33,6 +33,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Remotes:
+      type: array
+      items:
+        $ref: '#/components/schemas/Remote'
     RemoteInfo:
       description: Definition of a frontend plugin Module Federation remote served by the backend
       externalDocs:
@@ -73,28 +77,6 @@ components:
       required:
       - name
       - entry
-    Remotes:
-      type: array
-      items:
-        $ref: '#/components/schemas/Remote'
-    Remote:
-      description: Definition of a frontend plugin Module Federation remote served by the backend
-      type: object
-      properties:
-        packageName:
-          description: Name of the package exposed through this Module Federation remote
-          type: string
-        remoteInfo:
-          $ref: '#/components/schemas/RemoteInfo'
-        exposedModules:
-          description: Names of modules exposed by this module federation remote
-          type: array
-          items:
-            type: string
-      required:
-      - packageName
-      - remoteInfo
-      - exposedModules
     Error:
       type: object
       properties:
@@ -133,6 +115,24 @@ components:
       - error
       - response
       additionalProperties: {}
+    Remote:
+      description: Definition of a frontend plugin Module Federation remote served by the backend
+      type: object
+      properties:
+        packageName:
+          description: Name of the package exposed through this Module Federation remote
+          type: string
+        remoteInfo:
+          $ref: '#/components/schemas/RemoteInfo'
+        exposedModules:
+          description: Names of modules exposed by this module federation remote
+          type: array
+          items:
+            type: string
+      required:
+      - packageName
+      - remoteInfo
+      - exposedModules
   responses:
     RemotesResponse:
       description: List of Module Federation Remotes exposed by the backend

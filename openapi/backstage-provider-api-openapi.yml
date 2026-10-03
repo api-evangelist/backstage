@@ -194,6 +194,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Nonce-Cookie:
+      type: object
+      properties:
+        provider-nonce:
+          type: string
+        maxAge:
+          type: integer
+        secure:
+          type: boolean
+        sameSite:
+          type: string
+        domain:
+          type: string
+        path:
+          type: string
+        httpOnly:
+          type: boolean
     Refresh-Cookie:
       type: object
       properties:
@@ -241,23 +258,6 @@ components:
               type: number
             scope:
               type: string
-    Nonce-Cookie:
-      type: object
-      properties:
-        provider-nonce:
-          type: string
-        maxAge:
-          type: integer
-        secure:
-          type: boolean
-        sameSite:
-          type: string
-        domain:
-          type: string
-        path:
-          type: string
-        httpOnly:
-          type: boolean
 externalDocs:
   description: Backstage official documentation
   url: https://backstage.io/docs

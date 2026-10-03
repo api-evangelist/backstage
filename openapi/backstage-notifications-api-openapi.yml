@@ -202,110 +202,87 @@ paths:
       summary: Get notification
       x-summary-source: derived
 components:
+  parameters:
+    minimumSeverity:
+      name: minimumSeverity
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        $ref: '#/components/schemas/NotificationSeverity'
+    search:
+      name: search
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+    topic:
+      name: topic
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+    read:
+      name: read
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+    createdAfter:
+      name: createdAfter
+      in: query
+      required: false
+      allowReserved: true
+      description: ISO 8601 date-time string. Validated by the handler.
+      schema:
+        type: string
+    orderField:
+      name: orderField
+      in: query
+      required: false
+      allowReserved: true
+      description: One or more "field,direction" pairs. Direction is "asc" or "desc". Pass multiple to express compound sorts.
+      schema:
+        $ref: '#/components/schemas/OrderField'
+    limit:
+      name: limit
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
+    offset:
+      name: offset
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
+    saved:
+      name: saved
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+    notificationId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
-    NotificationRecipients:
-      oneOf:
-      - type: object
-        required:
-        - type
-        - entityRef
-        properties:
-          type:
-            type: string
-            enum:
-            - entity
-          entityRef:
-            $ref: '#/components/schemas/EntityRef'
-          excludeEntityRef:
-            $ref: '#/components/schemas/EntityRef'
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - broadcast
-    NotificationResponsePayload:
-      description: Response variant of NotificationPayload. Optional string fields may be returned as null when unset.
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        link:
-          type:
-          - string
-          - 'null'
-        severity:
-          $ref: '#/components/schemas/NotificationSeverity'
-        topic:
-          type:
-          - string
-          - 'null'
-        scope:
-          type:
-          - string
-          - 'null'
-        icon:
-          type:
-          - string
-          - 'null'
-        metadata:
-          type: object
-          additionalProperties: true
-    NotificationSeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - normal
-      - low
-    Notification:
-      type: object
-      required:
-      - id
-      - user
-      - created
-      - origin
-      - payload
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the notification.
-        user:
-          type:
-          - string
-          - 'null'
-          description: User entity reference, or null for broadcast notifications.
-        created:
-          type: string
-          format: date-time
-        saved:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        read:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        updated:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        origin:
-          type: string
-          description: Origin of the notification (the sender's reference).
-        payload:
-          $ref: '#/components/schemas/NotificationResponsePayload'
     Error:
       type: object
       properties:
@@ -350,6 +327,46 @@ components:
           $ref: '#/components/schemas/NotificationRecipients'
         payload:
           $ref: '#/components/schemas/NotificationPayload'
+    OrderField:
+      description: One or more "field,direction" pairs, given as a single string or an array of strings.
+      oneOf:
+      - type: string
+      - type: array
+        items:
+          type: string
+    NotificationResponsePayload:
+      description: Response variant of NotificationPayload. Optional string fields may be returned as null when unset.
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        link:
+          type:
+          - string
+          - 'null'
+        severity:
+          $ref: '#/components/schemas/NotificationSeverity'
+        topic:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type: object
+          additionalProperties: true
     ListNotificationsResponse:
       type: object
       required:
@@ -362,20 +379,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Notification'
-    OrderField:
-      description: One or more "field,direction" pairs, given as a single string or an array of strings.
-      oneOf:
-      - type: string
-      - type: array
-        items:
+    Notification:
+      type: object
+      required:
+      - id
+      - user
+      - created
+      - origin
+      - payload
+      properties:
+        id:
           type: string
-    EntityRef:
-      description: A single entity ref, or a list of entity refs.
-      oneOf:
-      - type: string
-      - type: array
-        items:
+          description: Unique identifier for the notification.
+        user:
+          type:
+          - string
+          - 'null'
+          description: User entity reference, or null for broadcast notifications.
+        created:
           type: string
+          format: date-time
+        saved:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        read:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        origin:
+          type: string
+          description: Origin of the notification (the sender's reference).
+        payload:
+          $ref: '#/components/schemas/NotificationResponsePayload'
+    UpdateNotificationsRequest:
+      type: object
+      required:
+      - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+        read:
+          type: boolean
+        saved:
+          type: boolean
     NotificationPayload:
       type: object
       required:
@@ -405,99 +461,43 @@ components:
           type: object
           description: Optional additional customizable metadata.
           additionalProperties: true
-    UpdateNotificationsRequest:
-      type: object
-      required:
-      - ids
-      properties:
-        ids:
-          type: array
-          items:
+    NotificationRecipients:
+      oneOf:
+      - type: object
+        required:
+        - type
+        - entityRef
+        properties:
+          type:
             type: string
-        read:
-          type: boolean
-        saved:
-          type: boolean
-  parameters:
-    saved:
-      name: saved
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-        enum:
-        - 'true'
-        - 'false'
-    read:
-      name: read
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-        enum:
-        - 'true'
-        - 'false'
-    search:
-      name: search
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-    topic:
-      name: topic
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: string
-    notificationId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    orderField:
-      name: orderField
-      in: query
-      required: false
-      allowReserved: true
-      description: One or more "field,direction" pairs. Direction is "asc" or "desc". Pass multiple to express compound sorts.
-      schema:
-        $ref: '#/components/schemas/OrderField'
-    offset:
-      name: offset
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: integer
-        minimum: 0
-    createdAfter:
-      name: createdAfter
-      in: query
-      required: false
-      allowReserved: true
-      description: ISO 8601 date-time string. Validated by the handler.
-      schema:
-        type: string
-    minimumSeverity:
-      name: minimumSeverity
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        $ref: '#/components/schemas/NotificationSeverity'
-    limit:
-      name: limit
-      in: query
-      required: false
-      allowReserved: true
-      schema:
-        type: integer
-        minimum: 0
+            enum:
+            - entity
+          entityRef:
+            $ref: '#/components/schemas/EntityRef'
+          excludeEntityRef:
+            $ref: '#/components/schemas/EntityRef'
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - broadcast
+    EntityRef:
+      description: A single entity ref, or a list of entity refs.
+      oneOf:
+      - type: string
+      - type: array
+        items:
+          type: string
+    NotificationSeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - normal
+      - low
   responses:
     ErrorResponse:
       description: An error response from the backend.

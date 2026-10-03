@@ -49,13 +49,6 @@ components:
           type: array
           items:
             type: string
-    NotificationSeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - normal
-      - low
     Error:
       type: object
       properties:
@@ -90,12 +83,20 @@ components:
       - error
       - request
       - response
+    NotificationSeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - normal
+      - low
   parameters:
-    search:
-      name: search
+    createdAfter:
+      name: createdAfter
       in: query
       required: false
       allowReserved: true
+      description: ISO 8601 date-time string. Validated by the handler.
       schema:
         type: string
     minimumSeverity:
@@ -105,14 +106,6 @@ components:
       allowReserved: true
       schema:
         $ref: '#/components/schemas/NotificationSeverity'
-    createdAfter:
-      name: createdAfter
-      in: query
-      required: false
-      allowReserved: true
-      description: ISO 8601 date-time string. Validated by the handler.
-      schema:
-        type: string
     saved:
       name: saved
       in: query
@@ -133,6 +126,13 @@ components:
         enum:
         - 'true'
         - 'false'
+    search:
+      name: search
+      in: query
+      required: false
+      allowReserved: true
+      schema:
+        type: string
   responses:
     ErrorResponse:
       description: An error response from the backend.

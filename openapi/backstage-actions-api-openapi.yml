@@ -59,11 +59,6 @@ components:
       required:
       - id
       description: The response shape for a single action in the `listActions` call to the `scaffolder-backend`
-    JsonObject:
-      type: object
-      properties: {}
-      description: A type representing all allowed JSON object values.
-      additionalProperties: {}
     ActionExample:
       type: object
       properties:
@@ -75,6 +70,11 @@ components:
       - description
       - example
       description: A single action example
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
     Action_2:
       type: object
       properties:

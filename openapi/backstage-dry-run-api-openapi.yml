@@ -149,6 +149,11 @@ components:
       - processing
       - skipped
       description: The status of each step of the Task
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
     SerializedFile:
       type: object
       properties:
@@ -197,11 +202,6 @@ components:
       - name
       - argument
       - stack
-      additionalProperties: {}
-    JsonObject:
-      type: object
-      properties: {}
-      description: A type representing all allowed JSON object values.
       additionalProperties: {}
   securitySchemes:
     JWT:
