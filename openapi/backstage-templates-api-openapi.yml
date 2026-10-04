@@ -39,25 +39,6 @@ paths:
     servers:
     - url: /
 components:
-  parameters:
-    kind:
-      name: kind
-      in: path
-      required: true
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     TemplateParameterSchema:
       type: object
@@ -132,20 +113,6 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  message:
-                    type: string
     Unauthorized:
       description: Missing or invalid authentication token.
       content:
@@ -160,6 +127,39 @@ components:
                     type: string
                   message:
                     type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  message:
+                    type: string
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    kind:
+      name: kind
+      in: path
+      required: true
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     JWT:
       type: http

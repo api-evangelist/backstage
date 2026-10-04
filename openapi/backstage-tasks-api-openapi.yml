@@ -383,34 +383,14 @@ paths:
       description: Local development server
 components:
   schemas:
-    ScaffolderScaffoldOptions:
-      type: object
-      properties:
-        templateRef:
-          type: string
-        values:
-          type: object
-          additionalProperties: {}
-        secrets:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - templateRef
-      - values
-      description: The input options to the `scaffold` method of the `ScaffolderClient`.
-    ListTasksResponse:
-      type: object
-      properties:
-        tasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/SerializedTask'
-        totalTasks:
-          type: number
-      required:
-      - tasks
-      description: The response shape for the `listTasks` call to the `scaffolder-backend`
+    TaskEventType:
+      type: string
+      description: TaskEventType
+      enum:
+      - cancelled
+      - completion
+      - log
+      - recovered
     Error:
       type: object
       properties:
@@ -449,54 +429,6 @@ components:
       - error
       - response
       additionalProperties: {}
-    TaskStatus:
-      type: string
-      enum:
-      - cancelled
-      - completed
-      - failed
-      - open
-      - processing
-      - skipped
-      description: The status of each step of the Task
-    JsonObject:
-      type: object
-      properties: {}
-      description: A type representing all allowed JSON object values.
-      additionalProperties: {}
-    SerializedTaskEvent:
-      type: object
-      properties:
-        id:
-          type: integer
-        isTaskRecoverable:
-          type: boolean
-        taskId:
-          type: string
-        body:
-          allOf:
-          - $ref: '#/components/schemas/JsonObject'
-          - type: object
-            properties:
-              message:
-                type: string
-              status:
-                $ref: '#/components/schemas/TaskStatus'
-              stepId:
-                type: string
-            required:
-            - message
-        type:
-          $ref: '#/components/schemas/TaskEventType'
-        createdAt:
-          type: string
-      required:
-      - id
-      - taskId
-      - body
-      - type
-      - createdAt
-      description: SerializedTaskEvent
     ValidationError:
       type: object
       properties:
@@ -532,14 +464,11 @@ components:
       - argument
       - stack
       additionalProperties: {}
-    TaskEventType:
-      type: string
-      description: TaskEventType
-      enum:
-      - cancelled
-      - completion
-      - log
-      - recovered
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
     SerializedTask:
       type: object
       properties:
@@ -561,6 +490,77 @@ components:
       - status
       - createdAt
       description: SerializedTask
+    TaskStatus:
+      type: string
+      enum:
+      - cancelled
+      - completed
+      - failed
+      - open
+      - processing
+      - skipped
+      description: The status of each step of the Task
+    SerializedTaskEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        isTaskRecoverable:
+          type: boolean
+        taskId:
+          type: string
+        body:
+          allOf:
+          - $ref: '#/components/schemas/JsonObject'
+          - type: object
+            properties:
+              message:
+                type: string
+              status:
+                $ref: '#/components/schemas/TaskStatus'
+              stepId:
+                type: string
+            required:
+            - message
+        type:
+          $ref: '#/components/schemas/TaskEventType'
+        createdAt:
+          type: string
+      required:
+      - id
+      - taskId
+      - body
+      - type
+      - createdAt
+      description: SerializedTaskEvent
+    ListTasksResponse:
+      type: object
+      properties:
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerializedTask'
+        totalTasks:
+          type: number
+      required:
+      - tasks
+      description: The response shape for the `listTasks` call to the `scaffolder-backend`
+    ScaffolderScaffoldOptions:
+      type: object
+      properties:
+        templateRef:
+          type: string
+        values:
+          type: object
+          additionalProperties: {}
+        secrets:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - templateRef
+      - values
+      description: The input options to the `scaffold` method of the `ScaffolderClient`.
     Task:
       type: object
       properties:
@@ -619,26 +619,6 @@ components:
           type: string
           description: The user who created the task.
   parameters:
-    order:
-      name: order
-      in: query
-      description: Order
-      required: false
-      allowReserved: true
-      schema:
-        type: array
-        items:
-          type: string
-    status:
-      name: status
-      in: query
-      description: Status
-      required: false
-      allowReserved: true
-      schema:
-        type: array
-        items:
-          type: string
     eventsAfter:
       name: after
       in: query
@@ -653,6 +633,16 @@ components:
       required: true
       schema:
         type: string
+    order:
+      name: order
+      in: query
+      description: Order
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
     limit:
       name: limit
       in: query
@@ -681,6 +671,16 @@ components:
         type: array
         items:
           type: string
+    status:
+      name: status
+      in: query
+      description: Status
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
   responses:
     ErrorResponse:
       description: An error response from the backend.
@@ -688,8 +688,8 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid authentication token.
       content:
         application/json:
           schema:
@@ -702,8 +702,8 @@ components:
                     type: string
                   message:
                     type: string
-    Unauthorized:
-      description: Missing or invalid authentication token.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

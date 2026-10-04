@@ -139,35 +139,6 @@ components:
       - log
       - directoryContents
       - output
-    TaskStatus:
-      type: string
-      enum:
-      - cancelled
-      - completed
-      - failed
-      - open
-      - processing
-      - skipped
-      description: The status of each step of the Task
-    JsonObject:
-      type: object
-      properties: {}
-      description: A type representing all allowed JSON object values.
-      additionalProperties: {}
-    SerializedFile:
-      type: object
-      properties:
-        path:
-          type: string
-        content:
-          type: string
-        executable:
-          type: boolean
-        symlink:
-          type: boolean
-      required:
-      - path
-      - content
     ValidationError:
       type: object
       properties:
@@ -203,6 +174,35 @@ components:
       - argument
       - stack
       additionalProperties: {}
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
+    TaskStatus:
+      type: string
+      enum:
+      - cancelled
+      - completed
+      - failed
+      - open
+      - processing
+      - skipped
+      description: The status of each step of the Task
+    SerializedFile:
+      type: object
+      properties:
+        path:
+          type: string
+        content:
+          type: string
+        executable:
+          type: boolean
+        symlink:
+          type: boolean
+      required:
+      - path
+      - content
   securitySchemes:
     JWT:
       type: http

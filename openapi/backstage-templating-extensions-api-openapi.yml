@@ -45,18 +45,6 @@ components:
       required:
       - example
       description: A single scaffolder usage example
-    TemplateGlobalValue:
-      type: object
-      properties:
-        description:
-          type: string
-        value:
-          anyOf:
-          - type: object
-          - type: 'null'
-      required:
-      - value
-      description: The response shape for a single global value in the `listTemplatingExtensions` call to the `scaffolder-backend`
     ListTemplatingExtensionsResponse:
       type: object
       properties:
@@ -82,6 +70,25 @@ components:
       - filters
       - globals
       description: The response shape for the `listTemplatingExtensions` call to the `scaffolder-backend`
+    TemplateGlobalFunction:
+      type: object
+      properties:
+        description:
+          type: string
+        schema:
+          type: object
+          properties:
+            arguments:
+              type: array
+              items:
+                $ref: '#/components/schemas/JsonObject'
+            output:
+              $ref: '#/components/schemas/JsonObject'
+        examples:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScaffolderUsageExample'
+      description: The response shape for a single global function in the `listTemplatingExtensions` call to the `scaffolder-backend`
     TemplateFilter:
       type: object
       properties:
@@ -108,25 +115,18 @@ components:
       properties: {}
       description: A type representing all allowed JSON object values.
       additionalProperties: {}
-    TemplateGlobalFunction:
+    TemplateGlobalValue:
       type: object
       properties:
         description:
           type: string
-        schema:
-          type: object
-          properties:
-            arguments:
-              type: array
-              items:
-                $ref: '#/components/schemas/JsonObject'
-            output:
-              $ref: '#/components/schemas/JsonObject'
-        examples:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScaffolderUsageExample'
-      description: The response shape for a single global function in the `listTemplatingExtensions` call to the `scaffolder-backend`
+        value:
+          anyOf:
+          - type: object
+          - type: 'null'
+      required:
+      - value
+      description: The response shape for a single global value in the `listTemplatingExtensions` call to the `scaffolder-backend`
   securitySchemes:
     JWT:
       type: http

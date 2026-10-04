@@ -32,11 +32,20 @@ paths:
       summary: Get remotes
       x-summary-source: derived
 components:
+  responses:
+    RemotesResponse:
+      description: List of Module Federation Remotes exposed by the backend
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Remotes'
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Remotes:
-      type: array
-      items:
-        $ref: '#/components/schemas/Remote'
     RemoteInfo:
       description: Definition of a frontend plugin Module Federation remote served by the backend
       externalDocs:
@@ -133,19 +142,10 @@ components:
       - packageName
       - remoteInfo
       - exposedModules
-  responses:
-    RemotesResponse:
-      description: List of Module Federation Remotes exposed by the backend
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Remotes'
-    ErrorResponse:
-      description: An error response from the backend.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Remotes:
+      type: array
+      items:
+        $ref: '#/components/schemas/Remote'
   securitySchemes:
     JWT:
       type: http

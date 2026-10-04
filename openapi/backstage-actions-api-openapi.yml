@@ -33,11 +33,22 @@ paths:
     - url: /
 components:
   schemas:
-    ListActionsResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/Action'
-      description: The response shape for the `listActions` call to the `scaffolder-backend`
+    ActionExample:
+      type: object
+      properties:
+        description:
+          type: string
+        example:
+          type: string
+      required:
+      - description
+      - example
+      description: A single action example
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
     Action:
       type: object
       properties:
@@ -59,22 +70,11 @@ components:
       required:
       - id
       description: The response shape for a single action in the `listActions` call to the `scaffolder-backend`
-    ActionExample:
-      type: object
-      properties:
-        description:
-          type: string
-        example:
-          type: string
-      required:
-      - description
-      - example
-      description: A single action example
-    JsonObject:
-      type: object
-      properties: {}
-      description: A type representing all allowed JSON object values.
-      additionalProperties: {}
+    ListActionsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Action'
+      description: The response shape for the `listActions` call to the `scaffolder-backend`
     Action_2:
       type: object
       properties:
