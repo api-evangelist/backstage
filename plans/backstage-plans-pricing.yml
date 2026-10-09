@@ -133,3 +133,45 @@ verification:
     - {url: 'https://backstage.io/docs/overview/what-is-backstage', status: 200}
     - {url: 'https://github.com/backstage/backstage', status: 200, note: 'Apache-2.0 LICENSE'}
   provider_published_paid_plans: 0
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  - period
+  - seat
+  plans:
+  - name: Backstage Open Source
+    access: freemium
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: Spotify Portal for Backstage (Commercial)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: Roadie (Managed Backstage)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: Red Hat Developer Hub (RHDH)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - year
