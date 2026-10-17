@@ -43,39 +43,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NotificationResponsePayload:
-      description: Response variant of NotificationPayload. Optional string fields may be returned as null when unset.
+    UpdateNotificationsRequest:
       type: object
       required:
-      - title
+      - ids
       properties:
-        title:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        link:
-          type:
-          - string
-          - 'null'
-        severity:
-          $ref: '#/components/schemas/NotificationSeverity'
-        topic:
-          type:
-          - string
-          - 'null'
-        scope:
-          type:
-          - string
-          - 'null'
-        icon:
-          type:
-          - string
-          - 'null'
-        metadata:
-          type: object
-          additionalProperties: true
+        ids:
+          type: array
+          items:
+            type: string
+        read:
+          type: boolean
+        saved:
+          type: boolean
     Notification:
       type: object
       required:
@@ -116,19 +96,6 @@ components:
           description: Origin of the notification (the sender's reference).
         payload:
           $ref: '#/components/schemas/NotificationResponsePayload'
-    UpdateNotificationsRequest:
-      type: object
-      required:
-      - ids
-      properties:
-        ids:
-          type: array
-          items:
-            type: string
-        read:
-          type: boolean
-        saved:
-          type: boolean
     Error:
       type: object
       properties:
@@ -163,6 +130,39 @@ components:
       - error
       - request
       - response
+    NotificationResponsePayload:
+      description: Response variant of NotificationPayload. Optional string fields may be returned as null when unset.
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        link:
+          type:
+          - string
+          - 'null'
+        severity:
+          $ref: '#/components/schemas/NotificationSeverity'
+        topic:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type: object
+          additionalProperties: true
     NotificationSeverity:
       type: string
       enum:

@@ -34,6 +34,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    NotificationStatus:
+      type: object
+      required:
+      - unread
+      - read
+      properties:
+        unread:
+          type: integer
+        read:
+          type: integer
     Error:
       type: object
       properties:
@@ -68,16 +78,6 @@ components:
       - error
       - request
       - response
-    NotificationStatus:
-      type: object
-      required:
-      - unread
-      - read
-      properties:
-        unread:
-          type: integer
-        read:
-          type: integer
   responses:
     ErrorResponse:
       description: An error response from the backend.

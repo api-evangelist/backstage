@@ -119,7 +119,18 @@ paths:
       summary: Query
       x-summary-source: derived
 components:
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    JsonObject:
+      type: object
+      properties: {}
+      additionalProperties: {}
     Error:
       type: object
       properties:
@@ -154,17 +165,6 @@ components:
       - error
       - request
       - response
-    JsonObject:
-      type: object
-      properties: {}
-      additionalProperties: {}
-  responses:
-    ErrorResponse:
-      description: An error response from the backend.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     JWT:
       type: http

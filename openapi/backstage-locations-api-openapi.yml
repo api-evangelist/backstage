@@ -291,26 +291,82 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AnalyzeLocationExistingEntity:
+    Location:
       type: object
       properties:
-        entity:
-          $ref: '#/components/schemas/Entity'
-        isRegistered:
-          type: boolean
-        location:
-          $ref: '#/components/schemas/LocationSpec'
+        target:
+          type: string
+        type:
+          type: string
+        id:
+          type: string
+        entityRef:
+          type: string
+          description: The entity ref of the corresponding Location kind entity, e.g. location:default/generated-<sha1hex>.
       required:
+      - target
+      - type
+      - id
+      - entityRef
+      description: Entity location for a specific entity.
+      additionalProperties: false
+    Entity:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRelation'
+          description: The relations that this entity has with other entities.
+        spec:
+          $ref: '#/components/schemas/JsonObject'
+        metadata:
+          $ref: '#/components/schemas/EntityMeta'
+        kind:
+          type: string
+          description: The high level entity type being described.
+        apiVersion:
+          type: string
+          description: 'The version of specification format for this particular entity that
+
+            this is written against.'
+      required:
+      - metadata
+      - kind
+      - apiVersion
+      description: The parts of the format that's common to all versions/kinds of entity.
+    AnalyzeLocationGenerateEntity:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalyzeLocationEntityField'
+        entity:
+          $ref: '#/components/schemas/RecursivePartialEntity'
+      required:
+      - fields
       - entity
-      - isRegistered
-      - location
-      description: 'If the folder pointed to already contained catalog info yaml files, they are
+      description: 'This is some form of representation of what the analyzer could deduce.
 
-        read and emitted like this so that the frontend can inform the user that it
+        We should probably have a chat about how this can best be conveyed to
 
-        located them and can make sure to register them as well if they weren''t
+        the frontend. It''ll probably contain a (possibly incomplete) entity, plus
 
-        already'
+        enough info for the frontend to know what form data to show to the user
+
+        for overriding/completing the info.'
+      additionalProperties: false
+    LocationInput:
+      type: object
+      properties:
+        type:
+          type: string
+        target:
+          type: string
+      required:
+      - type
+      - target
       additionalProperties: false
     RecursivePartialEntityMeta:
       allOf:
@@ -411,67 +467,113 @@ components:
               that do so in such a way that it breaks semantics.'
         description: Metadata fields common to all versions/kinds of entity.
       additionalProperties: false
-    AnalyzeLocationResponse:
+    RecursivePartialEntity:
       type: object
       properties:
-        generateEntities:
-          items:
-            $ref: '#/components/schemas/AnalyzeLocationGenerateEntity'
+        apiVersion:
+          type: string
+          description: 'The version of specification format for this particular entity that
+
+            this is written against.'
+        kind:
+          type: string
+          description: The high level entity type being described.
+        metadata:
+          $ref: '#/components/schemas/RecursivePartialEntityMeta'
+        spec:
+          $ref: '#/components/schemas/JsonObject'
+        relations:
           type: array
-        existingEntityFiles:
           items:
-            $ref: '#/components/schemas/AnalyzeLocationExistingEntity'
-          type: array
-      required:
-      - generateEntities
-      - existingEntityFiles
+            $ref: '#/components/schemas/RecursivePartialEntityRelation'
+          description: The relations that this entity has with other entities.
+      description: Makes all keys of an entire hierarchy optional.
       additionalProperties: false
-    AnalyzeLocationGenerateEntity:
+    AnalyzeLocationExistingEntity:
       type: object
       properties:
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnalyzeLocationEntityField'
         entity:
-          $ref: '#/components/schemas/RecursivePartialEntity'
+          $ref: '#/components/schemas/Entity'
+        isRegistered:
+          type: boolean
+        location:
+          $ref: '#/components/schemas/LocationSpec'
       required:
-      - fields
       - entity
-      description: 'This is some form of representation of what the analyzer could deduce.
+      - isRegistered
+      - location
+      description: 'If the folder pointed to already contained catalog info yaml files, they are
 
-        We should probably have a chat about how this can best be conveyed to
+        read and emitted like this so that the frontend can inform the user that it
 
-        the frontend. It''ll probably contain a (possibly incomplete) entity, plus
+        located them and can make sure to register them as well if they weren''t
 
-        enough info for the frontend to know what form data to show to the user
-
-        for overriding/completing the info.'
+        already'
       additionalProperties: false
-    EntityLink:
+    LocationSpec:
       type: object
       properties:
+        target:
+          type: string
         type:
           type: string
-          description: An optional value to categorize links into specific groups
-        icon:
-          type: string
-          description: An optional semantic key that represents a visual icon.
-        title:
-          type: string
-          description: An optional descriptive title for the link.
-        url:
-          type: string
-          description: The url to the external site, document, etc.
       required:
-      - url
-      description: A link to external information that is related to the entity.
+      - target
+      - type
+      description: Holds the entity location information.
       additionalProperties: false
-    JsonObject:
+    Error:
       type: object
-      properties: {}
-      description: A type representing all allowed JSON object values.
+      properties:
+        error:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+            stack:
+              type: string
+            code:
+              type: string
+          required:
+          - name
+          - message
+        request:
+          type: object
+          properties:
+            method:
+              type: string
+            url:
+              type: string
+          required:
+          - method
+          - url
+        response:
+          type: object
+          properties:
+            statusCode:
+              type: number
+          required:
+          - statusCode
+      required:
+      - error
+      - response
       additionalProperties: {}
+    EntityRelation:
+      type: object
+      properties:
+        targetRef:
+          type: string
+          description: The entity ref of the target of this relation.
+        type:
+          type: string
+          description: The type of the relation.
+      required:
+      - targetRef
+      - type
+      description: A relation of a specific type to another entity in the catalog.
+      additionalProperties: false
     LocationsQueryResponse:
       type: object
       properties:
@@ -493,48 +595,69 @@ components:
       - totalItems
       - pageInfo
       additionalProperties: false
-    MapStringString:
-      type: object
-      properties: {}
-      additionalProperties:
-        type: string
-      description: Construct a type with a set of properties K of type T
-    Entity:
+    RecursivePartialEntityRelation:
       type: object
       properties:
-        relations:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRelation'
-          description: The relations that this entity has with other entities.
-        spec:
-          $ref: '#/components/schemas/JsonObject'
-        metadata:
-          $ref: '#/components/schemas/EntityMeta'
-        kind:
+        targetRef:
           type: string
-          description: The high level entity type being described.
-        apiVersion:
-          type: string
-          description: 'The version of specification format for this particular entity that
-
-            this is written against.'
-      required:
-      - metadata
-      - kind
-      - apiVersion
-      description: The parts of the format that's common to all versions/kinds of entity.
-    LocationSpec:
-      type: object
-      properties:
-        target:
-          type: string
+          description: The entity ref of the target of this relation.
         type:
           type: string
+          description: The type of the relation.
+      description: A relation of a specific type to another entity in the catalog.
+      additionalProperties: false
+    EntityLink:
+      type: object
+      properties:
+        type:
+          type: string
+          description: An optional value to categorize links into specific groups
+        icon:
+          type: string
+          description: An optional semantic key that represents a visual icon.
+        title:
+          type: string
+          description: An optional descriptive title for the link.
+        url:
+          type: string
+          description: The url to the external site, document, etc.
       required:
-      - target
-      - type
-      description: Holds the entity location information.
+      - url
+      description: A link to external information that is related to the entity.
+      additionalProperties: false
+    AnalyzeLocationEntityField:
+      type: object
+      properties:
+        description:
+          type: string
+          description: 'A text to show to the user to inform about the choices made. Like, it could say
+
+            "Found a CODEOWNERS file that covers this target, so we suggest leaving this
+
+            field empty; which would currently make it owned by X" where X is taken from the
+
+            codeowners file.'
+        value:
+          oneOf:
+          - type: string
+          - type: 'null'
+        state:
+          type: string
+          enum:
+          - analysisSuggestedValue
+          - analysisSuggestedNoValue
+          - needsUserInput
+          description: The outcome of the analysis for this particular field
+        field:
+          type: string
+          description: 'e.g. "spec.owner"? The frontend needs to know how to "inject" the field into the
+
+            entity again if the user wants to change it'
+      required:
+      - description
+      - value
+      - state
+      - field
       additionalProperties: false
     EntityMeta:
       type: object
@@ -635,155 +758,32 @@ components:
       - name
       description: Metadata fields common to all versions/kinds of entity.
       additionalProperties: {}
-    RecursivePartialEntity:
+    AnalyzeLocationResponse:
       type: object
       properties:
-        apiVersion:
-          type: string
-          description: 'The version of specification format for this particular entity that
-
-            this is written against.'
-        kind:
-          type: string
-          description: The high level entity type being described.
-        metadata:
-          $ref: '#/components/schemas/RecursivePartialEntityMeta'
-        spec:
-          $ref: '#/components/schemas/JsonObject'
-        relations:
-          type: array
+        generateEntities:
           items:
-            $ref: '#/components/schemas/RecursivePartialEntityRelation'
-          description: The relations that this entity has with other entities.
-      description: Makes all keys of an entire hierarchy optional.
-      additionalProperties: false
-    EntityRelation:
-      type: object
-      properties:
-        targetRef:
-          type: string
-          description: The entity ref of the target of this relation.
-        type:
-          type: string
-          description: The type of the relation.
+            $ref: '#/components/schemas/AnalyzeLocationGenerateEntity'
+          type: array
+        existingEntityFiles:
+          items:
+            $ref: '#/components/schemas/AnalyzeLocationExistingEntity'
+          type: array
       required:
-      - targetRef
-      - type
-      description: A relation of a specific type to another entity in the catalog.
+      - generateEntities
+      - existingEntityFiles
       additionalProperties: false
-    AnalyzeLocationEntityField:
+    MapStringString:
       type: object
-      properties:
-        description:
-          type: string
-          description: 'A text to show to the user to inform about the choices made. Like, it could say
-
-            "Found a CODEOWNERS file that covers this target, so we suggest leaving this
-
-            field empty; which would currently make it owned by X" where X is taken from the
-
-            codeowners file.'
-        value:
-          oneOf:
-          - type: string
-          - type: 'null'
-        state:
-          type: string
-          enum:
-          - analysisSuggestedValue
-          - analysisSuggestedNoValue
-          - needsUserInput
-          description: The outcome of the analysis for this particular field
-        field:
-          type: string
-          description: 'e.g. "spec.owner"? The frontend needs to know how to "inject" the field into the
-
-            entity again if the user wants to change it'
-      required:
-      - description
-      - value
-      - state
-      - field
-      additionalProperties: false
-    Error:
+      properties: {}
+      additionalProperties:
+        type: string
+      description: Construct a type with a set of properties K of type T
+    JsonObject:
       type: object
-      properties:
-        error:
-          type: object
-          properties:
-            name:
-              type: string
-            message:
-              type: string
-            stack:
-              type: string
-            code:
-              type: string
-          required:
-          - name
-          - message
-        request:
-          type: object
-          properties:
-            method:
-              type: string
-            url:
-              type: string
-          required:
-          - method
-          - url
-        response:
-          type: object
-          properties:
-            statusCode:
-              type: number
-          required:
-          - statusCode
-      required:
-      - error
-      - response
+      properties: {}
+      description: A type representing all allowed JSON object values.
       additionalProperties: {}
-    LocationInput:
-      type: object
-      properties:
-        type:
-          type: string
-        target:
-          type: string
-      required:
-      - type
-      - target
-      additionalProperties: false
-    Location:
-      type: object
-      properties:
-        target:
-          type: string
-        type:
-          type: string
-        id:
-          type: string
-        entityRef:
-          type: string
-          description: The entity ref of the corresponding Location kind entity, e.g. location:default/generated-<sha1hex>.
-      required:
-      - target
-      - type
-      - id
-      - entityRef
-      description: Entity location for a specific entity.
-      additionalProperties: false
-    RecursivePartialEntityRelation:
-      type: object
-      properties:
-        targetRef:
-          type: string
-          description: The entity ref of the target of this relation.
-        type:
-          type: string
-          description: The type of the relation.
-      description: A relation of a specific type to another entity in the catalog.
-      additionalProperties: false
   responses:
     ErrorResponse:
       description: An error response from the backend.

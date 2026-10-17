@@ -383,14 +383,133 @@ paths:
       description: Local development server
 components:
   schemas:
-    TaskEventType:
+    ValidationError:
+      type: object
+      properties:
+        path:
+          type: array
+          items:
+            oneOf:
+            - type: string
+            - type: integer
+        property:
+          type: string
+        message:
+          type: string
+        instance:
+          type: object
+        name:
+          type: string
+        argument:
+          oneOf:
+          - type: boolean
+          - type: number
+          - type: object
+          - type: string
+        stack:
+          type: string
+      required:
+      - path
+      - property
+      - message
+      - schema
+      - instance
+      - name
+      - argument
+      - stack
+      additionalProperties: {}
+    SerializedTask:
+      type: object
+      properties:
+        id:
+          type: string
+        spec:
+          type: object
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+        createdAt:
+          type: string
+        lastHeartbeatAt:
+          type: string
+        createdBy:
+          type: string
+      required:
+      - id
+      - spec
+      - status
+      - createdAt
+      description: SerializedTask
+    ScaffolderScaffoldOptions:
+      type: object
+      properties:
+        templateRef:
+          type: string
+        values:
+          type: object
+          additionalProperties: {}
+        secrets:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - templateRef
+      - values
+      description: The input options to the `scaffold` method of the `ScaffolderClient`.
+    TaskStatus:
       type: string
-      description: TaskEventType
       enum:
       - cancelled
-      - completion
-      - log
-      - recovered
+      - completed
+      - failed
+      - open
+      - processing
+      - skipped
+      description: The status of each step of the Task
+    ListTasksResponse:
+      type: object
+      properties:
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerializedTask'
+        totalTasks:
+          type: number
+      required:
+      - tasks
+      description: The response shape for the `listTasks` call to the `scaffolder-backend`
+    SerializedTaskEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        isTaskRecoverable:
+          type: boolean
+        taskId:
+          type: string
+        body:
+          allOf:
+          - $ref: '#/components/schemas/JsonObject'
+          - type: object
+            properties:
+              message:
+                type: string
+              status:
+                $ref: '#/components/schemas/TaskStatus'
+              stepId:
+                type: string
+            required:
+            - message
+        type:
+          $ref: '#/components/schemas/TaskEventType'
+        createdAt:
+          type: string
+      required:
+      - id
+      - taskId
+      - body
+      - type
+      - createdAt
+      description: SerializedTaskEvent
     Error:
       type: object
       properties:
@@ -429,138 +548,19 @@ components:
       - error
       - response
       additionalProperties: {}
-    ValidationError:
-      type: object
-      properties:
-        path:
-          type: array
-          items:
-            oneOf:
-            - type: string
-            - type: integer
-        property:
-          type: string
-        message:
-          type: string
-        instance:
-          type: object
-        name:
-          type: string
-        argument:
-          oneOf:
-          - type: boolean
-          - type: number
-          - type: object
-          - type: string
-        stack:
-          type: string
-      required:
-      - path
-      - property
-      - message
-      - schema
-      - instance
-      - name
-      - argument
-      - stack
-      additionalProperties: {}
+    TaskEventType:
+      type: string
+      description: TaskEventType
+      enum:
+      - cancelled
+      - completion
+      - log
+      - recovered
     JsonObject:
       type: object
       properties: {}
       description: A type representing all allowed JSON object values.
       additionalProperties: {}
-    SerializedTask:
-      type: object
-      properties:
-        id:
-          type: string
-        spec:
-          type: object
-        status:
-          $ref: '#/components/schemas/TaskStatus'
-        createdAt:
-          type: string
-        lastHeartbeatAt:
-          type: string
-        createdBy:
-          type: string
-      required:
-      - id
-      - spec
-      - status
-      - createdAt
-      description: SerializedTask
-    TaskStatus:
-      type: string
-      enum:
-      - cancelled
-      - completed
-      - failed
-      - open
-      - processing
-      - skipped
-      description: The status of each step of the Task
-    SerializedTaskEvent:
-      type: object
-      properties:
-        id:
-          type: integer
-        isTaskRecoverable:
-          type: boolean
-        taskId:
-          type: string
-        body:
-          allOf:
-          - $ref: '#/components/schemas/JsonObject'
-          - type: object
-            properties:
-              message:
-                type: string
-              status:
-                $ref: '#/components/schemas/TaskStatus'
-              stepId:
-                type: string
-            required:
-            - message
-        type:
-          $ref: '#/components/schemas/TaskEventType'
-        createdAt:
-          type: string
-      required:
-      - id
-      - taskId
-      - body
-      - type
-      - createdAt
-      description: SerializedTaskEvent
-    ListTasksResponse:
-      type: object
-      properties:
-        tasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/SerializedTask'
-        totalTasks:
-          type: number
-      required:
-      - tasks
-      description: The response shape for the `listTasks` call to the `scaffolder-backend`
-    ScaffolderScaffoldOptions:
-      type: object
-      properties:
-        templateRef:
-          type: string
-        values:
-          type: object
-          additionalProperties: {}
-        secrets:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - templateRef
-      - values
-      description: The input options to the `scaffold` method of the `ScaffolderClient`.
     Task:
       type: object
       properties:
@@ -618,69 +618,6 @@ components:
         createdBy:
           type: string
           description: The user who created the task.
-  parameters:
-    eventsAfter:
-      name: after
-      in: query
-      description: Offset event ID to stream events after.
-      required: false
-      allowReserved: true
-      schema:
-        type: integer
-    taskId:
-      name: taskId
-      in: path
-      required: true
-      schema:
-        type: string
-    order:
-      name: order
-      in: query
-      description: Order
-      required: false
-      allowReserved: true
-      schema:
-        type: array
-        items:
-          type: string
-    limit:
-      name: limit
-      in: query
-      description: Number of records to return in the response.
-      required: false
-      allowReserved: true
-      schema:
-        type: integer
-        minimum: 0
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip in the query page.
-      required: false
-      allowReserved: true
-      schema:
-        type: integer
-        minimum: 0
-    createdBy:
-      name: createdBy
-      in: query
-      description: Created by
-      required: false
-      allowReserved: true
-      schema:
-        type: array
-        items:
-          type: string
-    status:
-      name: status
-      in: query
-      description: Status
-      required: false
-      allowReserved: true
-      schema:
-        type: array
-        items:
-          type: string
   responses:
     ErrorResponse:
       description: An error response from the backend.
@@ -716,6 +653,69 @@ components:
                     type: string
                   message:
                     type: string
+  parameters:
+    eventsAfter:
+      name: after
+      in: query
+      description: Offset event ID to stream events after.
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+    status:
+      name: status
+      in: query
+      description: Status
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return in the response.
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
+    createdBy:
+      name: createdBy
+      in: query
+      description: Created by
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip in the query page.
+      required: false
+      allowReserved: true
+      schema:
+        type: integer
+        minimum: 0
+    order:
+      name: order
+      in: query
+      description: Order
+      required: false
+      allowReserved: true
+      schema:
+        type: array
+        items:
+          type: string
+    taskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     JWT:
       type: http

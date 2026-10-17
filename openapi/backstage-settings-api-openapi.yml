@@ -58,21 +58,37 @@ paths:
       summary: Update settings
       x-summary-source: derived
 components:
+  responses:
+    ErrorResponse:
+      description: An error response from the backend.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    OriginSetting:
+    ChannelSetting:
       type: object
       required:
       - id
-      - enabled
+      - origins
       properties:
         id:
           type: string
         enabled:
           type: boolean
-        topics:
+        origins:
           type: array
           items:
-            $ref: '#/components/schemas/TopicSetting'
+            $ref: '#/components/schemas/OriginSetting'
+    NotificationSettings:
+      type: object
+      required:
+      - channels
+      properties:
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelSetting'
     Error:
       type: object
       properties:
@@ -107,15 +123,20 @@ components:
       - error
       - request
       - response
-    NotificationSettings:
+    OriginSetting:
       type: object
       required:
-      - channels
+      - id
+      - enabled
       properties:
-        channels:
+        id:
+          type: string
+        enabled:
+          type: boolean
+        topics:
           type: array
           items:
-            $ref: '#/components/schemas/ChannelSetting'
+            $ref: '#/components/schemas/TopicSetting'
     TopicSetting:
       type: object
       required:
@@ -126,27 +147,6 @@ components:
           type: string
         enabled:
           type: boolean
-    ChannelSetting:
-      type: object
-      required:
-      - id
-      - origins
-      properties:
-        id:
-          type: string
-        enabled:
-          type: boolean
-        origins:
-          type: array
-          items:
-            $ref: '#/components/schemas/OriginSetting'
-  responses:
-    ErrorResponse:
-      description: An error response from the backend.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     JWT:
       type: http

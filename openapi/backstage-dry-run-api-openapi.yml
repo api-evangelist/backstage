@@ -106,39 +106,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DryRunResult:
-      type: object
-      properties:
-        log:
-          type: array
-          items:
-            type: object
-            properties:
-              body:
-                allOf:
-                - $ref: '#/components/schemas/JsonObject'
-                - type: object
-                  properties:
-                    message:
-                      type: string
-                    status:
-                      $ref: '#/components/schemas/TaskStatus'
-                    stepId:
-                      type: string
-                  required:
-                  - message
-            required:
-            - body
-        directoryContents:
-          type: array
-          items:
-            $ref: '#/components/schemas/SerializedFile'
-        output:
-          $ref: '#/components/schemas/JsonObject'
-      required:
-      - log
-      - directoryContents
-      - output
     ValidationError:
       type: object
       properties:
@@ -174,11 +141,6 @@ components:
       - argument
       - stack
       additionalProperties: {}
-    JsonObject:
-      type: object
-      properties: {}
-      description: A type representing all allowed JSON object values.
-      additionalProperties: {}
     TaskStatus:
       type: string
       enum:
@@ -203,6 +165,44 @@ components:
       required:
       - path
       - content
+    DryRunResult:
+      type: object
+      properties:
+        log:
+          type: array
+          items:
+            type: object
+            properties:
+              body:
+                allOf:
+                - $ref: '#/components/schemas/JsonObject'
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                    status:
+                      $ref: '#/components/schemas/TaskStatus'
+                    stepId:
+                      type: string
+                  required:
+                  - message
+            required:
+            - body
+        directoryContents:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerializedFile'
+        output:
+          $ref: '#/components/schemas/JsonObject'
+      required:
+      - log
+      - directoryContents
+      - output
+    JsonObject:
+      type: object
+      properties: {}
+      description: A type representing all allowed JSON object values.
+      additionalProperties: {}
   securitySchemes:
     JWT:
       type: http

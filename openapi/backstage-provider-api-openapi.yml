@@ -194,6 +194,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Refresh-Cookie:
+      type: object
+      properties:
+        provider-refresh-token:
+          type: string
+        maxAge:
+          type: integer
+        secure:
+          type: boolean
+        sameSite:
+          type: string
+        domain:
+          type: string
+        path:
+          type: string
+        httpOnly:
+          type: boolean
     AuthResponse:
       type: object
       properties:
@@ -210,10 +227,10 @@ components:
               type: number
             scope:
               type: string
-    Refresh-Cookie:
+    Nonce-Cookie:
       type: object
       properties:
-        provider-refresh-token:
+        provider-nonce:
           type: string
         maxAge:
           type: integer
@@ -241,23 +258,6 @@ components:
               type: string
             stack:
               type: string
-    Nonce-Cookie:
-      type: object
-      properties:
-        provider-nonce:
-          type: string
-        maxAge:
-          type: integer
-        secure:
-          type: boolean
-        sameSite:
-          type: string
-        domain:
-          type: string
-        path:
-          type: string
-        httpOnly:
-          type: boolean
 externalDocs:
   description: Backstage official documentation
   url: https://backstage.io/docs
