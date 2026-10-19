@@ -1,11 +1,18 @@
 generated: '2026-10-13'
 method: searched
 checked:
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
 - https://focus.finops.org/data-generators/
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -65,6 +72,144 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-cloud-native.py
   first_seen: '2026-10-15'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@backstage/backend-defaults
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@backstage/backend-defaults'
+      version: 0.18.0
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/backend-defaults
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/catalog-client'
+      version: 1.16.2
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/catalog-client
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/catalog-model'
+      version: 1.10.1
+      released: '2026-09-28'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/catalog-model
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/cli'
+      version: 0.36.6
+      released: null
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/cli
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/core-plugin-api'
+      version: 1.12.10
+      released: '2026-09-28'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/core-plugin-api
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/create-app'
+      version: 0.9.2
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/create-app
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/plugin-catalog-backend'
+      version: 4.0.0
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/plugin-catalog-backend
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/plugin-events-backend'
+      version: 0.6.6
+      released: '2026-10-06'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/plugin-events-backend
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/plugin-notifications-backend'
+      version: 0.6.9
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/plugin-notifications-backend
+      repo_leg: github-org:backstage
+      publisher_leg: org:backstage
+      matched_by: github-org
+    - name: '@backstage/plugin-scaffolder-backend'
+      version: 4.2.0
+      released: '2026-09-29'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/plugin-scaffolder-backend
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/plugin-search-backend'
+      version: 2.1.7
+      released: '2026-09-29'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/plugin-search-backend
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/repo-tools'
+      version: 0.19.1
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/repo-tools
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    - name: '@backstage/ui'
+      version: 0.18.0
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@backstage/ui
+      repo_leg: domain:backstage.io
+      publisher_leg: org:backstage
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
