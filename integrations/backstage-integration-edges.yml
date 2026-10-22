@@ -24,6 +24,11 @@ checked:
 - https://officialskills.sh/sitemap.xml
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
+- https://api.github.com/repos/backstage/community-plugins/contents/workspaces
+- https://backstage.io/plugins/
+- https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins
+- https://github.com/backstage/community-plugins/blob/main/.github/CODEOWNERS
+- https://registry.npmjs.org/
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -301,6 +306,1610 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-agent-skills.py
   first_seen: '2026-10-20'
+- partner_name: Akeyless
+  app: Akeyless
+  apps:
+  - Akeyless
+  listing_count: 1
+  partner: akeyless
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/akeyless.yaml
+  category: Security
+  partner_url: https://www.akeyless.io
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain akeyless.io from authorUrl; npm package @backstage-community/plugin-akeyless; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Amazon Web Services
+  app: Amazon Elastic Container Registry
+  apps:
+  - AWS CodeBuild
+  - AWS CodePipeline
+  - AWS Config
+  - AWS Security Hub
+  - Amazon Elastic Container Registry
+  - Amazon Elastic Container Service
+  - Generative AI
+  listing_count: 7
+  partner: amazon-web-services
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/aws-amazon-ecr.yaml
+  category: Infrastructure
+  partner_url: https://aws.amazon.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain amazon.com from authorUrl; npm package @aws/amazon-ecr-plugin-for-backstage; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Amplication
+  app: Amplication Resources
+  apps:
+  - Amplication Resources
+  listing_count: 1
+  partner: amplication
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/amplication.yaml
+  category: Development
+  partner_url: https://amplication.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain amplication.com from authorUrl; npm package @backstage-community/plugin-scaffolder-backend-module-amplication;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Apiiro
+  app: Apiiro
+  apps:
+  - Apiiro
+  listing_count: 1
+  partner: apiiro
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/apiiro.yaml
+  category: Security
+  partner_url: https://apiiro.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain apiiro.com from authorUrl; npm package @backstage-community/plugin-apiiro; listing count and
+    plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Buildkite
+  app: Buildkite
+  apps:
+  - Buildkite
+  listing_count: 1
+  partner: buildkite-com
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/buildkite.yaml
+  category: CI/CD
+  partner_url: https://buildkite.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain buildkite.com from authorUrl; npm package @buildkite/backstage-plugin-buildkite; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: CircleCI
+  app: CircleCI
+  apps:
+  - CircleCI
+  listing_count: 1
+  partner: circleci
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/circleci.yaml
+  category: CI/CD
+  partner_url: https://circleci.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain circleci.com from authorUrl; npm package @circleci/backstage-plugin; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Citrix
+  app: Citrix Secure Developer Spaces (SDS)
+  apps:
+  - Citrix Secure Developer Spaces (SDS)
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/sds_workspace.yaml
+  category: Development
+  partner_url: https://github.com/strong-network
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain citrix.com from npm maintainer e-mail (scottcitrix); npm package @citrixcloud/backstage-sds-workspaces;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+  partner_held:
+    candidate: citrix
+    why: 'market-fit gate: partner''s own tags carry no software-delivery / developer-tools term'
+- partner_name: Codacy
+  app: Codacy Repo Adder
+  apps:
+  - Codacy Repo Adder
+  listing_count: 1
+  partner: codacy
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/codacy-repo-adder.yaml
+  category: Quality
+  partner_url: https://www.codacy.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain codacy.com from authorUrl; npm package @codacy/backstage-plugin; listing count and plugin names
+    are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Coder
+  app: Coder
+  apps:
+  - Coder
+  - Dev Containers
+  listing_count: 2
+  partner: coder
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/coder.yaml
+  category: Development
+  partner_url: https://www.coder.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain coder.com from authorUrl; npm package @coder/backstage-plugin-coder; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Cortex
+  app: Cortex Service Quality Scorecards
+  apps:
+  - Cortex Service Quality Scorecards
+  listing_count: 1
+  partner: cortex-idp
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/cortex.yaml
+  category: Monitoring
+  partner_url: https://www.getcortexapp.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain cortex.io from npm maintainer e-mail (dan_cortex); npm package @cortexapps/backstage-plugin;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: datadog
+  app: Datadog Entity Sync
+  apps:
+  - Datadog Entity Sync
+  listing_count: 1
+  partner: datadog
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/datadog-entity-sync.yaml
+  category: Development
+  partner_url: https://www.datadoghq.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain datadoghq.com from authorUrl; npm package @datadog/backstage-plugin-datadog-entity-sync-backend;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Daytona
+  app: Daytona
+  apps:
+  - Daytona
+  listing_count: 1
+  partner: daytona-io
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/daytona.yaml
+  category: Development
+  partner_url: https://www.daytona.io/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain daytona.io from authorUrl; npm package @daytonaio/backstage-plugin-daytona; listing count and
+    plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: DAZN
+  app: GitHub Pull Requests Board
+  apps:
+  - GitHub Pull Requests Board
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/github-pull-requests-board.yaml
+  category: Source Control Mgmt
+  partner_url: https://engineering.dazn.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain dazn.com from authorUrl; npm package @backstage-community/plugin-github-pull-requests-board;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+  partner_held:
+    candidate: dazn
+    why: 'end-user: DAZN (sports streaming) published the GitHub Pull Requests Board plugin from its own engineering'
+- partner_name: Dynatrace
+  app: Dynatrace
+  apps:
+  - Dynatrace
+  listing_count: 1
+  partner: dynatrace
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/dynatrace.yaml
+  category: Monitoring
+  partner_url: https://github.com/dynatrace
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain dynatrace.com from npm maintainer e-mail (dynatrace-nodejs); npm package @dynatrace/backstage-plugin-dql;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Facets.cloud
+  app: Facets.cloud Platform
+  apps:
+  - Facets.cloud Platform
+  listing_count: 1
+  partner: facets
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/facets-cloud.yaml
+  category: Deployment
+  partner_url: https://facets.cloud
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain facets.cloud from authorUrl; npm package @facets-cloud/backstage-plugin; listing count and
+    plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Flagsmith
+  app: Flagsmith
+  apps:
+  - Flagsmith
+  listing_count: 1
+  partner: flagsmith
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/flagsmith.yaml
+  category: Feature Flags
+  partner_url: https://www.flagsmith.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain flagsmith.com from authorUrl; npm package @flagsmith/backstage-plugin; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: FRISS
+  app: Azure Sites
+  apps:
+  - Azure Sites
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/azure-sites.yaml
+  category: Infrastructure
+  partner_url: https://friss.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain friss.com from authorUrl; npm package @backstage-community/plugin-azure-sites; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+  partner_held:
+    candidate: friss
+    why: 'market-fit gate: partner''s own tags carry no software-delivery / developer-tools term'
+- partner_name: harness.io
+  app: Harness Cloud Cost Management
+  apps:
+  - Harness CI/CD
+  - Harness Chaos Engineering
+  - Harness Cloud Cost Management
+  - Harness Feature Flags
+  - Harness Infrastructure as Code Management
+  - Harness Service Reliability Management
+  listing_count: 6
+  partner: harness
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/harness-ccm.yaml
+  category: FinOps
+  partner_url: https://github.com/harness/backstage-plugins
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain harness.io from npm maintainer e-mail (sjois); npm package @harnessio/backstage-plugin-harness-ccm;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Hashicorp
+  app: HCP Consul
+  apps:
+  - HCP Consul
+  listing_count: 1
+  partner: hashicorp
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/hcp-consul.yaml
+  category: Infrastructure
+  partner_url: https://www.hashicorp.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain hashicorp.com from authorUrl; npm package @hashicorp/plugin-hcp-consul; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Humanitec
+  app: Humanitec Platform Orchestrator
+  apps:
+  - Humanitec Platform Orchestrator
+  listing_count: 1
+  partner: humanitec
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/humanitec.yaml
+  category: Deployment
+  partner_url: https://humanitec.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain humanitec.com from authorUrl; npm package @humanitec/backstage-plugin; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: iLert
+  app: iLert
+  apps:
+  - iLert
+  listing_count: 1
+  partner: ilert
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/ilert.yaml
+  category: Monitoring
+  partner_url: https://www.ilert.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain ilert.com from authorUrl; npm package @backstage-community/plugin-ilert; listing count and
+    plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: incident.io
+  app: incident.io
+  apps:
+  - incident.io
+  listing_count: 1
+  partner: incident-io
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/incident-io.yaml
+  category: Monitoring
+  partner_url: https://github.com/incident-io
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain incident.io from npm maintainer e-mail (incident-io); npm package @incident-io/backstage; listing
+    count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Infisical
+  app: Infisical
+  apps:
+  - Infisical
+  listing_count: 1
+  partner: infisical
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/infisical.yaml
+  category: Security
+  partner_url: https://infisical.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain infisical.com from authorUrl; npm package @infisical/backstage-plugin-infisical; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Infosys Limited
+  app: Cloud Service ActionHub
+  apps:
+  - Cloud Service ActionHub
+  - Daily Weather
+  - Holiday Tracker
+  listing_count: 3
+  partner: infosys
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/cloud-service-action-hub.yaml
+  category: Utility
+  partner_url: https://github.com/Infosys
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain infosys.com from npm maintainer e-mail (aditya_kr); npm package @infosys_ltd/resource-actionhub;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Konfig
+  app: API SDK Generator
+  apps:
+  - API SDK Generator
+  listing_count: 1
+  partner: konfig-api
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/api-sdk-generator.yaml
+  category: Development
+  partner_url: https://konfigthis.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain konfigthis.com from authorUrl; npm package backstage-plugin-konfig; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: kpt
+  app: Configuration as Data
+  apps:
+  - Configuration as Data
+  listing_count: 1
+  partner: kpt
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/kpt-config-as-data.yaml
+  category: Configuration Management
+  partner_url: https://kpt.dev
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain kpt.dev from authorUrl; npm package @kpt/backstage-plugin-cad; listing count and plugin names
+    are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Massdriver
+  app: Massdriver
+  apps:
+  - Massdriver
+  listing_count: 1
+  partner: massdriver
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/massdriver.yaml
+  category: Infrastructure
+  partner_url: https://www.massdriver.cloud/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain massdriver.cloud from authorUrl; npm package @massdriver/backstage-plugin; listing count and
+    plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Mend.io
+  app: Mend.io
+  apps:
+  - Mend.io
+  listing_count: 1
+  partner: mend
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/mend.yaml
+  category: Security
+  partner_url: https://www.mend.io/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain mend.io from authorUrl; npm package @backstage-community/plugin-mend; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Mia-Platform
+  app: Mia Platform Sync
+  apps:
+  - Mia Platform Sync
+  listing_count: 1
+  partner: mia-platform
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/mia-platform.yaml
+  category: Discovery
+  partner_url: https://mia-platform.eu
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain mia-platform.eu from authorUrl; npm package @mia-platform/backstage-plugin-frontend; listing
+    count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Microcks
+  app: Microcks
+  apps:
+  - Microcks
+  listing_count: 1
+  partner: microcks
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/microcks.yaml
+  category: Discovery
+  partner_url: https://microcks.io
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain microcks.io from authorUrl; npm package @microcks/microcks-backstage-provider; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Nobl9
+  app: Nobl9
+  apps:
+  - Nobl9
+  listing_count: 1
+  partner: nobl9
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/nobl9.yaml
+  category: Reliability
+  partner_url: https://nobl9.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain nobl9.com from authorUrl; npm package @nobl9/nobl9-backstage-plugin; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: OpsLevel
+  app: Service Maturity
+  apps:
+  - Service Maturity
+  listing_count: 1
+  partner: opslevel
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/opslevel-maturity.yaml
+  category: Quality
+  partner_url: https://www.opslevel.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain opslevel.com from authorUrl; npm package backstage-plugin-opslevel-maturity; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: PagerDuty
+  app: PagerDuty
+  apps:
+  - PagerDuty
+  listing_count: 1
+  partner: pagerduty
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/pager-duty.yaml
+  category: Monitoring
+  partner_url: https://github.com/pagerduty
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain pagerduty.com from npm maintainer e-mail (pagerduty-owner); npm package @pagerduty/backstage-plugin;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Pulumi
+  app: Pulumi
+  apps:
+  - Pulumi
+  listing_count: 1
+  partner: pulumi
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/pulumi.yaml
+  category: Infrastructure
+  partner_url: https://www.pulumi.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain pulumi.com from authorUrl; npm package @pulumi/backstage-plugin-pulumi; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Quantum Metric
+  app: 'Analytics Module: Quantum Metric'
+  apps:
+  - 'Analytics Module: Quantum Metric'
+  listing_count: 1
+  partner: quantum-metric
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/analytics-module-qm.yaml
+  category: Monitoring
+  partner_url: https://github.com/quantummetric
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain quantummetric.com from npm maintainer e-mail (eirwin1124); npm package @quantum-metric/plugin-analytics-module-qm;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Red Hat
+  app: APIs with 3scale
+  apps:
+  - APIs with 3scale
+  - Advanced Cluster Security
+  - 'Analytics Module: Matomo Analytics'
+  - Application Topology for Kubernetes
+  - Argo CD
+  - Authentication and Authorization with Keycloak
+  - Azure Container Registry
+  - Container Image Registry for JFrog Artifactory
+  - Container Image Registry for Quay
+  - Devfile Selector Field Extension
+  listing_count: 25
+  partner: red-hat
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/3scale.yaml
+  category: Scaffolder
+  partner_url: https://redhat.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain redhat.com from authorUrl; npm package @backstage-community/plugin-3scale-backend; listing
+    count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: roadie.io
+  app: AI Assistant - RAG AI
+  apps:
+  - AI Assistant - RAG AI
+  - AWS Lambda
+  - Argo CD
+  - Bugsnag
+  - Cloudsmith
+  - Datadog
+  - Firebase Functions
+  - GitHub Insights
+  - GitHub Pull Requests
+  - Gravatar catalog processor
+  listing_count: 20
+  partner: roadie-io
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/ai-assistant.yaml
+  category: CI/CD
+  partner_url: https://roadie.io
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain roadie.io from authorUrl; npm package @roadiehq/rag-ai; listing count and plugin names are
+    context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Rootly
+  app: Rootly
+  apps:
+  - Rootly
+  listing_count: 1
+  partner: rootly
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/rootly.yaml
+  category: Monitoring
+  partner_url: https://rootly.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain rootly.com from authorUrl; npm package @rootly/backstage-plugin; listing count and plugin names
+    are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Scalr
+  app: Scalr
+  apps:
+  - Scalr
+  listing_count: 1
+  partner: scalr
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/scalr.yaml
+  category: Infrastructure as Code
+  partner_url: https://www.scalr.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain scalr.com from authorUrl; npm package @scalr-io/backstage-plugin-scalr; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Signadot
+  app: Signadot
+  apps:
+  - Signadot
+  listing_count: 1
+  partner: signadot
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/signadot.yaml
+  category: Kubernetes
+  partner_url: https://www.signadot.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain signadot.com from authorUrl; npm package @signadot-lib/backstage-plugin; listing count and
+    plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Snyk Tech Services
+  app: Snyk
+  apps:
+  - Snyk
+  listing_count: 1
+  partner: snyk
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/snyk-security.yaml
+  category: Security
+  partner_url: https://snyk.io
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain snyk.io from authorUrl; npm package backstage-plugin-snyk; listing count and plugin names are
+    context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Solo.io
+  app: Solo.io Gloo Platform Portal
+  apps:
+  - Solo.io Gloo Platform Portal
+  listing_count: 1
+  partner: solo-io
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/solo-io-gloo-platform-portal.yaml
+  category: Infrastructure
+  partner_url: https://solo.io
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain solo.io from authorUrl; npm package @solo.io/dev-portal-backstage-plugin; listing count and
+    plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Spacelift.io
+  app: Spacelift.io
+  apps:
+  - Spacelift.io
+  listing_count: 1
+  partner: spacelift
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/spacelift-io.yaml
+  category: Infrastructure
+  partner_url: https://spacelift.io/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain spacelift.io from authorUrl; npm package @spacelift-io/backstage-integration-frontend; listing
+    count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Stack Overflow
+  app: Stack Overflow for Teams
+  apps:
+  - Stack Overflow for Teams
+  listing_count: 1
+  partner: stack-overflow
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/stackoverflow-teams.yaml
+  category: Discovery
+  partner_url: https://github.com/StackExchange/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain stackoverflow.com from npm maintainer e-mail (itstoragesvc); npm package @stackoverflow/backstage-plugin-stack-overflow-teams;
+    listing count and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Sysdig
+  app: Sysdig
+  apps:
+  - Sysdig
+  listing_count: 1
+  partner: sysdig
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/sysdig.yaml
+  category: Security
+  partner_url: https://sysdig.com/
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain sysdig.com from authorUrl; npm package @sysdig/backstage-plugin-sysdig; listing count and plugin
+    names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: Trivago
+  app: Google Cloud Build
+  apps:
+  - GCP Project Creator
+  - Google Cloud Build
+  listing_count: 2
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/cloud-build.yaml
+  category: CI/CD
+  partner_url: https://www.trivago.com
+  signal_note: backstage.io plugin directory entry (author / authorUrl, data YAML at pinned commit d72327203d5d);
+    publisher domain trivago.com from authorUrl; npm package @backstage-community/plugin-cloudbuild; listing count
+    and plugin names are context, never counted
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+  partner_held:
+    candidate: trivago
+    why: 'end-user: Trivago built Google Cloud Build / GCP Project Creator plugins for its own portal; a hotel metasearch,
+      not a developer-tools vendor (its ''AI Agents'' tag is the fit hit, not the business)'
+- partner_name: airbrake
+  app: community-plugins/airbrake
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/airbrake
+  category: Backstage community plugin workspace
+  partner: airbrake
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'airbrake'; exact normalised match to airbrake's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: akeyless
+  app: community-plugins/akeyless
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/akeyless
+  category: Backstage community plugin workspace
+  partner: akeyless
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'akeyless'; exact normalised match to akeyless's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @baraka-akeyless)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: amplication
+  app: community-plugins/amplication
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/amplication
+  category: Backstage community plugin workspace
+  partner: amplication
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'amplication'; exact normalised match to amplication's apis.yml name
+    (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @itainathaniel)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: apache-airflow
+  app: community-plugins/apache-airflow
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/apache-airflow
+  category: Backstage community plugin workspace
+  partner: apache-airflow
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'apache-airflow'; exact normalised match to apache-airflow's apis.yml
+    name (Kin 2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: apiiro
+  app: community-plugins/apiiro
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/apiiro
+  category: Backstage community plugin workspace
+  partner: apiiro
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'apiiro'; exact normalised match to apiiro's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @IgalKreich, @hetsaliya-crestdata,
+    @shaim-apiiro, @zuberc-cds)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: argo-workflows
+  app: community-plugins/argo-workflows
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/argo-workflows
+  category: Backstage community plugin workspace
+  partner: argo-workflows
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'argo-workflows'; exact normalised match to argo-workflows's apis.yml
+    name (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @fjudith)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: argocd
+  app: community-plugins/argocd
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/argocd
+  category: Backstage community plugin workspace
+  partner: argocd
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'argocd'; exact normalised match to argocd's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @Eswaraiahsapram, @HusneShabbir,
+    @caugello, @christoph-jerolimov)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: azure-devops
+  app: community-plugins/azure-devops
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/azure-devops
+  category: Backstage community plugin workspace
+  partner: microsoft-azure-devops
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'azure-devops'; exact normalised match to microsoft-azure-devops's
+    apis.yml name (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @awanlin)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: bitrise
+  app: community-plugins/bitrise
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/bitrise
+  category: Backstage community plugin workspace
+  partner: bitrise
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'bitrise'; exact normalised match to bitrise's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: checkmarx
+  app: community-plugins/checkmarx
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/checkmarx
+  category: Backstage community plugin workspace
+  partner: checkmarx
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'checkmarx'; exact normalised match to checkmarx's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @Samu-izq)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: code-climate
+  app: community-plugins/code-climate
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/code-climate
+  category: Backstage community plugin workspace
+  partner: codeclimate
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'code-climate'; exact normalised match to codeclimate's apis.yml name
+    (Kin 2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: confluence
+  app: community-plugins/confluence
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/confluence
+  category: Backstage community plugin workspace
+  partner: confluence
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'confluence'; exact normalised match to confluence's apis.yml name
+    (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @fjudith)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: dynatrace
+  app: community-plugins/dynatrace
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/dynatrace
+  category: Backstage community plugin workspace
+  partner: dynatrace
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'dynatrace'; exact normalised match to dynatrace's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: firehydrant
+  app: community-plugins/firehydrant
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/firehydrant
+  category: Backstage community plugin workspace
+  partner: firehydrant
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'firehydrant'; exact normalised match to firehydrant's apis.yml name
+    (Kin 2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: fossa
+  app: community-plugins/fossa
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/fossa
+  category: Backstage community plugin workspace
+  partner: fossa
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'fossa'; exact normalised match to fossa's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: github
+  app: community-plugins/github
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/github
+  category: Backstage community plugin workspace
+  partner: github
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'github'; exact normalised match to github's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: grafana
+  app: community-plugins/grafana
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/grafana
+  category: Backstage community plugin workspace
+  partner: grafana-com
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'grafana'; exact normalised match to grafana-com's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: ilert
+  app: community-plugins/ilert
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/ilert
+  category: Backstage community plugin workspace
+  partner: ilert
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'ilert'; exact normalised match to ilert's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: jaeger
+  app: community-plugins/jaeger
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/jaeger
+  category: Backstage community plugin workspace
+  partner: jaeger
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'jaeger'; exact normalised match to jaeger's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: jenkins
+  app: community-plugins/jenkins
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/jenkins
+  category: Backstage community plugin workspace
+  partner: jenkins
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'jenkins'; exact normalised match to jenkins's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: jfrog-artifactory
+  app: community-plugins/jfrog-artifactory
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/jfrog-artifactory
+  category: Backstage community plugin workspace
+  partner: artifactory
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'jfrog-artifactory'; exact normalised match to artifactory's apis.yml
+    name (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @BethGriggs, @HusneShabbir, @christoph-jerolimov,
+    @ciiay)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: keycloak
+  app: community-plugins/keycloak
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/keycloak
+  category: Backstage community plugin workspace
+  partner: keycloak
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'keycloak'; exact normalised match to keycloak's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @AndrienkoAleksandr, @PatAKnight,
+    @djanickova, @dzemanov)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: linkerd
+  app: community-plugins/linkerd
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/linkerd
+  category: Backstage community plugin workspace
+  partner: linkerd
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'linkerd'; exact normalised match to linkerd's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: n8n
+  app: community-plugins/n8n
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/n8n
+  category: Backstage community plugin workspace
+  partner: n8n
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'n8n'; exact normalised match to n8n's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @andreahlert)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: newrelic
+  app: community-plugins/newrelic
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/newrelic
+  category: Backstage community plugin workspace
+  partner: new-relic
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'newrelic'; exact normalised match to new-relic's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: nexus-repository-manager
+  app: community-plugins/nexus-repository-manager
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/nexus-repository-manager
+  category: Backstage community plugin workspace
+  partner: nexus
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'nexus-repository-manager'; exact normalised match to nexus's apis.yml
+    name (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @HusneShabbir, @christoph-jerolimov,
+    @ciiay, @debsmita1)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: octopus-deploy
+  app: community-plugins/octopus-deploy
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/octopus-deploy
+  category: Backstage community plugin workspace
+  partner: octopus-deploy
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'octopus-deploy'; exact normalised match to octopus-deploy's apis.yml
+    name (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @jmezach)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: opencost
+  app: community-plugins/opencost
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/opencost
+  category: Backstage community plugin workspace
+  partner: opencost
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'opencost'; exact normalised match to opencost's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: pingidentity
+  app: community-plugins/pingidentity
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/pingidentity
+  category: Backstage community plugin workspace
+  partner: ping-identity
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'pingidentity'; exact normalised match to ping-identity's apis.yml
+    name (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @AndrienkoAleksandr, @PatAKnight,
+    @djanickova, @dzemanov)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: quay
+  app: community-plugins/quay
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/quay
+  category: Backstage community plugin workspace
+  partner: quay
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'quay'; exact normalised match to quay's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @Eswaraiahsapram, @HusneShabbir,
+    @caugello, @christoph-jerolimov)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: rollbar
+  app: community-plugins/rollbar
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/rollbar
+  category: Backstage community plugin workspace
+  partner: rollbar
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'rollbar'; exact normalised match to rollbar's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @andrewthauer)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: servicenow
+  app: community-plugins/servicenow
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/servicenow
+  category: Backstage community plugin workspace
+  partner: servicenow
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'servicenow'; exact normalised match to servicenow's apis.yml name
+    (Kin 2026-10-20 decision 2)
+  builder: 'community (backstage/community-plugins; CODEOWNERS name individuals: @AndrienkoAleksandr, @HusneShabbir,
+    @PatAKnight, @christoph-jerolimov)'
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: sonarqube
+  app: community-plugins/sonarqube
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/sonarqube
+  category: Backstage community plugin workspace
+  partner: sonarqube
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'sonarqube'; exact normalised match to sonarqube's apis.yml name (Kin
+    2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: splunk
+  app: community-plugins/splunk
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/splunk
+  category: Backstage community plugin workspace
+  partner: splunk
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'splunk'; exact normalised match to splunk's apis.yml name (Kin 2026-10-20
+    decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
+- partner_name: stack-overflow
+  app: community-plugins/stack-overflow
+  type: coverage
+  relationship: connector-coverage
+  direction: third-party
+  channel: community-built
+  evidence: https://github.com/backstage/community-plugins/tree/main/workspaces/stack-overflow
+  category: Backstage community plugin workspace
+  partner: stack-overflow
+  partner_match: register-name
+  identity_source: register-name
+  identity_note: register gave only the name 'stack-overflow'; exact normalised match to stack-overflow's apis.yml
+    name (Kin 2026-10-20 decision 2)
+  builder: community (backstage/community-plugins; CODEOWNERS name individuals)
+  signal_note: backstage/community-plugins workspace integrating this product; community-built, builder unknown
+    to the vendor -> out of position shares
+  detected_by: sweep-backstage-plugin-directory.py
+  detected: '2026-10-22'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
