@@ -558,6 +558,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/backstage.png
 access: 3rd-Party
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/backstage/overview
   - type: Plans
     url: plans/backstage-plans-pricing.yml
   - type: RateLimits
