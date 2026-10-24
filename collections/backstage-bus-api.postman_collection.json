@@ -1,0 +1,607 @@
+{
+  "info": {
+    "_postman_id": "2615f81a-aa73-4398-9bb2-851a94fe08db",
+    "name": "events Bus API",
+    "description": "The Backstage backend plugin that powers the events system.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:32.000Z",
+    "updatedAt": "2026-10-22T01:11:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2615f81a-aa73-4398-9bb2-851a94fe08db"
+  },
+  "item": [
+    {
+      "name": "bus",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "Post event",
+                  "id": "f35cf833-be67-4689-a1e3-b97474a0a4f6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json; charset=utf-8"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"event\": {\n    \"topic\": \"<string>\",\n    \"payload\": {\n      \"description\": \"The event payload\"\n    }\n  },\n  \"notifiedSubscribers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bus/v1/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bus",
+                        "v1",
+                        "events"
+                      ]
+                    },
+                    "description": "Publish a new event"
+                  },
+                  "response": [
+                    {
+                      "id": "3d44f65f-c806-41b8-ba12-fa076cd5dc6e",
+                      "name": "The event was published successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event\": {\n    \"topic\": \"<string>\",\n    \"payload\": {\n      \"description\": \"The event payload\"\n    }\n  },\n  \"notifiedSubscribers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/bus/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bus",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:11:32.000Z",
+                      "updatedAt": "2026-10-22T01:11:32.000Z",
+                      "uid": "35240-3d44f65f-c806-41b8-ba12-fa076cd5dc6e"
+                    },
+                    {
+                      "id": "ecdc436f-b247-4b75-9ae8-61980db120f6",
+                      "name": "The event did not need to be published as all subscribers have already been notified",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event\": {\n    \"topic\": \"<string>\",\n    \"payload\": {\n      \"description\": \"The event payload\"\n    }\n  },\n  \"notifiedSubscribers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/bus/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bus",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:11:32.000Z",
+                      "updatedAt": "2026-10-22T01:11:32.000Z",
+                      "uid": "35240-ecdc436f-b247-4b75-9ae8-61980db120f6"
+                    },
+                    {
+                      "id": "21014b63-692e-48fe-b63b-58f62e7983b6",
+                      "name": "An error response from the backend.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json; charset=utf-8"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event\": {\n    \"topic\": \"<string>\",\n    \"payload\": {\n      \"description\": \"The event payload\"\n    }\n  },\n  \"notifiedSubscribers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/bus/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bus",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json; charset=utf-8"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:32.000Z",
+                      "updatedAt": "2026-10-22T01:11:32.000Z",
+                      "uid": "35240-21014b63-692e-48fe-b63b-58f62e7983b6"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:11:32.000Z",
+                  "updatedAt": "2026-10-22T01:11:32.000Z",
+                  "uid": "35240-f35cf833-be67-4689-a1e3-b97474a0a4f6"
+                }
+              ],
+              "id": "74d54985-848c-4df9-a5eb-3a444e52b259",
+              "createdAt": "2026-10-22T01:11:32.000Z",
+              "updatedAt": "2026-10-22T01:11:32.000Z",
+              "uid": "35240-74d54985-848c-4df9-a5eb-3a444e52b259"
+            },
+            {
+              "name": "subscriptions",
+              "item": [
+                {
+                  "name": "{subscriptionId}",
+                  "item": [
+                    {
+                      "name": "events",
+                      "item": [
+                        {
+                          "name": "Get subscription events",
+                          "id": "d0abf938-8224-48ed-970f-39f72269ca88",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "noauth"
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/bus/v1/subscriptions/:subscriptionId/events",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "bus",
+                                "v1",
+                                "subscriptions",
+                                ":subscriptionId",
+                                "events"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fec72ee8-136d-4006-8714-7696883d72c1",
+                                  "key": "subscriptionId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get new events for the provided subscription"
+                          },
+                          "response": [
+                            {
+                              "id": "a052dcb7-a18f-49d3-b37f-29eee0739b8a",
+                              "name": "New events",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/bus/v1/subscriptions/:subscriptionId/events",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "bus",
+                                    "v1",
+                                    "subscriptions",
+                                    ":subscriptionId",
+                                    "events"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "subscriptionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"events\": [\n    {\n      \"topic\": \"<string>\",\n      \"payload\": {\n        \"description\": \"The event payload\"\n      }\n    },\n    {\n      \"topic\": \"<string>\",\n      \"payload\": {\n        \"description\": \"The event payload\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:11:32.000Z",
+                              "updatedAt": "2026-10-22T01:11:32.000Z",
+                              "uid": "35240-a052dcb7-a18f-49d3-b37f-29eee0739b8a"
+                            },
+                            {
+                              "id": "32f2df07-863c-4c6f-8dcb-067c31e498bb",
+                              "name": "No new events are available. Response will block until the client should try again.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/bus/v1/subscriptions/:subscriptionId/events",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "bus",
+                                    "v1",
+                                    "subscriptions",
+                                    ":subscriptionId",
+                                    "events"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "subscriptionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:11:32.000Z",
+                              "updatedAt": "2026-10-22T01:11:32.000Z",
+                              "uid": "35240-32f2df07-863c-4c6f-8dcb-067c31e498bb"
+                            },
+                            {
+                              "id": "64196bc4-981d-46b5-84b8-84d71e5eb17e",
+                              "name": "An error response from the backend.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json; charset=utf-8"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/bus/v1/subscriptions/:subscriptionId/events",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "bus",
+                                    "v1",
+                                    "subscriptions",
+                                    ":subscriptionId",
+                                    "events"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "subscriptionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json; charset=utf-8"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:11:32.000Z",
+                              "updatedAt": "2026-10-22T01:11:32.000Z",
+                              "uid": "35240-64196bc4-981d-46b5-84b8-84d71e5eb17e"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:11:32.000Z",
+                          "updatedAt": "2026-10-22T01:11:32.000Z",
+                          "uid": "35240-d0abf938-8224-48ed-970f-39f72269ca88"
+                        }
+                      ],
+                      "id": "f8a3763f-a5c2-4a7a-8e1c-abf9e4a18595",
+                      "createdAt": "2026-10-22T01:11:32.000Z",
+                      "updatedAt": "2026-10-22T01:11:32.000Z",
+                      "uid": "35240-f8a3763f-a5c2-4a7a-8e1c-abf9e4a18595"
+                    },
+                    {
+                      "name": "Put subscription",
+                      "id": "a4c233e3-fb5c-45a5-ae04-45fa412fe086",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "noauth"
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json; charset=utf-8"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"topics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/bus/v1/subscriptions/:subscriptionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "bus",
+                            "v1",
+                            "subscriptions",
+                            ":subscriptionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "119316ae-6eb9-4490-9926-7ece113eda26",
+                              "key": "subscriptionId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Ensures that the subscription exists with the provided configuration"
+                      },
+                      "response": [
+                        {
+                          "id": "12c28ec1-5c6f-4ce0-9e79-126e243b2347",
+                          "name": "The subscription exists or was created successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"topics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/bus/v1/subscriptions/:subscriptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "bus",
+                                "v1",
+                                "subscriptions",
+                                ":subscriptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "subscriptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:11:32.000Z",
+                          "updatedAt": "2026-10-22T01:11:32.000Z",
+                          "uid": "35240-12c28ec1-5c6f-4ce0-9e79-126e243b2347"
+                        },
+                        {
+                          "id": "0bb1ee4d-257a-43e9-9f9a-ef41916370b5",
+                          "name": "An error response from the backend.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json; charset=utf-8"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"topics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/bus/v1/subscriptions/:subscriptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "bus",
+                                "v1",
+                                "subscriptions",
+                                ":subscriptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "subscriptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json; charset=utf-8"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:11:32.000Z",
+                          "updatedAt": "2026-10-22T01:11:32.000Z",
+                          "uid": "35240-0bb1ee4d-257a-43e9-9f9a-ef41916370b5"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:11:32.000Z",
+                      "updatedAt": "2026-10-22T01:11:32.000Z",
+                      "uid": "35240-a4c233e3-fb5c-45a5-ae04-45fa412fe086"
+                    }
+                  ],
+                  "id": "025cf022-9e80-455b-bd7c-d653f29e5b56",
+                  "createdAt": "2026-10-22T01:11:32.000Z",
+                  "updatedAt": "2026-10-22T01:11:32.000Z",
+                  "uid": "35240-025cf022-9e80-455b-bd7c-d653f29e5b56"
+                }
+              ],
+              "id": "177e7c5e-4694-4b1d-ba74-8a5d6aa1702b",
+              "createdAt": "2026-10-22T01:11:32.000Z",
+              "updatedAt": "2026-10-22T01:11:32.000Z",
+              "uid": "35240-177e7c5e-4694-4b1d-ba74-8a5d6aa1702b"
+            }
+          ],
+          "id": "0642b55f-b3d1-415a-99b0-4ae2a744277f",
+          "createdAt": "2026-10-22T01:11:32.000Z",
+          "updatedAt": "2026-10-22T01:11:32.000Z",
+          "uid": "35240-0642b55f-b3d1-415a-99b0-4ae2a744277f"
+        }
+      ],
+      "id": "27630281-5b2f-4012-95fe-15c7ccdfbff8",
+      "createdAt": "2026-10-22T01:11:32.000Z",
+      "updatedAt": "2026-10-22T01:11:32.000Z",
+      "uid": "35240-27630281-5b2f-4012-95fe-15c7ccdfbff8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

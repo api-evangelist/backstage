@@ -1,0 +1,179 @@
+{
+  "info": {
+    "_postman_id": "9ced4dde-cdba-4d43-b2b0-58fea8663359",
+    "name": "notifications Update API",
+    "description": "The Backstage backend plugin that powers user notifications.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:39.000Z",
+    "updatedAt": "2026-10-22T01:12:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9ced4dde-cdba-4d43-b2b0-58fea8663359"
+  },
+  "item": [
+    {
+      "name": "update",
+      "item": [
+        {
+          "name": "Update notifications legacy",
+          "id": "00dcb797-c66d-4e9d-b8ed-b6cdb75ba796",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read\": \"<boolean>\",\n  \"saved\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/update",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "update"
+              ]
+            },
+            "description": "Deprecated alias for `POST /notifications/update`."
+          },
+          "response": [
+            {
+              "id": "5c5e7e45-6420-44b6-8f27-917b664526f1",
+              "name": "The notifications that were updated.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read\": \"<boolean>\",\n  \"saved\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/update",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "update"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"normal\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"fugiat_200\": true,\n        \"dolore_0\": -98036484.03139733\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"low\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"fugiat_d\": 26387819.614478707\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  }\n]",
+              "createdAt": "2026-10-22T01:12:39.000Z",
+              "updatedAt": "2026-10-22T01:12:39.000Z",
+              "uid": "35240-5c5e7e45-6420-44b6-8f27-917b664526f1"
+            },
+            {
+              "id": "5b4364d2-41fd-44e6-b44f-15dc2702e99c",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read\": \"<boolean>\",\n  \"saved\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/update",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "update"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:12:39.000Z",
+              "updatedAt": "2026-10-22T01:12:39.000Z",
+              "uid": "35240-5b4364d2-41fd-44e6-b44f-15dc2702e99c"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:39.000Z",
+          "updatedAt": "2026-10-22T01:12:39.000Z",
+          "uid": "35240-00dcb797-c66d-4e9d-b8ed-b6cdb75ba796"
+        }
+      ],
+      "id": "5a5cd909-d694-4df7-b26d-c4d745a0ab1d",
+      "createdAt": "2026-10-22T01:12:39.000Z",
+      "updatedAt": "2026-10-22T01:12:39.000Z",
+      "uid": "35240-5a5cd909-d694-4df7-b26d-c4d745a0ab1d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

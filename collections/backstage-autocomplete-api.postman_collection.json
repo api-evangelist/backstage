@@ -1,0 +1,242 @@
+{
+  "info": {
+    "_postman_id": "61687b91-b977-4bce-b78a-4f70742f7d35",
+    "name": "scaffolder Autocomplete API",
+    "description": "The Backstage backend plugin that helps you create new things",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:25.000Z",
+    "updatedAt": "2026-10-22T01:11:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-61687b91-b977-4bce-b78a-4f70742f7d35"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "autocomplete",
+          "item": [
+            {
+              "name": "{provider}",
+              "item": [
+                {
+                  "name": "{resource}",
+                  "item": [
+                    {
+                      "name": "Autocomplete",
+                      "id": "98f29011-5a72-47ca-9c4c-8ed133f23e3e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"context\": {\n    \"velit2d7\": \"<string>\",\n    \"ut_1\": \"<string>\"\n  },\n  \"token\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/autocomplete/:provider/:resource",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "autocomplete",
+                            ":provider",
+                            ":resource"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5b35253a-d0b3-429f-8834-e00bfbc6645b",
+                              "key": "provider",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "cf789151-cb65-4124-a850-bf01040b18ae",
+                              "key": "resource",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Perform an autocomplete for the given provider and resource."
+                      },
+                      "response": [
+                        {
+                          "id": "e169d2c1-1845-418f-9aee-2e55ccdc99fc",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"context\": {\n    \"velit2d7\": \"<string>\",\n    \"ut_1\": \"<string>\"\n  },\n  \"token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/autocomplete/:provider/:resource",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "autocomplete",
+                                ":provider",
+                                ":resource"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "provider"
+                                },
+                                {
+                                  "key": "resource"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:11:25.000Z",
+                          "updatedAt": "2026-10-22T01:11:25.000Z",
+                          "uid": "35240-e169d2c1-1845-418f-9aee-2e55ccdc99fc"
+                        },
+                        {
+                          "id": "51a5f7ec-a802-433f-a132-2d39ffb1f977",
+                          "name": "Unsupported provider.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"context\": {\n    \"velit2d7\": \"<string>\",\n    \"ut_1\": \"<string>\"\n  },\n  \"token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/autocomplete/:provider/:resource",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "autocomplete",
+                                ":provider",
+                                ":resource"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "provider"
+                                },
+                                {
+                                  "key": "resource"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:11:25.000Z",
+                          "updatedAt": "2026-10-22T01:11:25.000Z",
+                          "uid": "35240-51a5f7ec-a802-433f-a132-2d39ffb1f977"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:11:25.000Z",
+                      "updatedAt": "2026-10-22T01:11:25.000Z",
+                      "uid": "35240-98f29011-5a72-47ca-9c4c-8ed133f23e3e"
+                    }
+                  ],
+                  "id": "66a556aa-5016-482a-9ff9-35455098cf6f",
+                  "createdAt": "2026-10-22T01:11:25.000Z",
+                  "updatedAt": "2026-10-22T01:11:25.000Z",
+                  "uid": "35240-66a556aa-5016-482a-9ff9-35455098cf6f"
+                }
+              ],
+              "id": "fd2e138c-3d3b-429a-a0eb-c0952aab3ae4",
+              "createdAt": "2026-10-22T01:11:25.000Z",
+              "updatedAt": "2026-10-22T01:11:25.000Z",
+              "uid": "35240-fd2e138c-3d3b-429a-a0eb-c0952aab3ae4"
+            }
+          ],
+          "id": "660070e3-f8e8-4710-847e-bbaff11aba05",
+          "createdAt": "2026-10-22T01:11:25.000Z",
+          "updatedAt": "2026-10-22T01:11:25.000Z",
+          "uid": "35240-660070e3-f8e8-4710-847e-bbaff11aba05"
+        }
+      ],
+      "id": "ae29f563-c327-414d-a1c0-ece1dedb9c92",
+      "createdAt": "2026-10-22T01:11:25.000Z",
+      "updatedAt": "2026-10-22T01:11:25.000Z",
+      "uid": "35240-ae29f563-c327-414d-a1c0-ece1dedb9c92"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

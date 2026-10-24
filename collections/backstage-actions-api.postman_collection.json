@@ -1,164 +1,111 @@
 {
+  "info": {
+    "_postman_id": "64fd7d41-4dc9-41d5-a08d-da3a62b1873e",
+    "name": "Backstage Actions API",
+    "description": "Operations tagged Actions across 2 of this provider's published API definitions: backstage-scaffolder-backend-openapi.yaml, backstage-scaffolder-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:11.000Z",
+    "updatedAt": "2026-10-22T01:10:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-64fd7d41-4dc9-41d5-a08d-da3a62b1873e"
+  },
   "item": [
     {
-      "id": "e013a781-e876-4269-974c-b622952cbdfb",
-      "name": "Actions",
-      "description": {
-        "content": "Endpoints for listing available scaffolder actions.",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "dfb134af-b74a-4cd6-8003-561cd0564ea8",
-          "name": "Backstage List available actions",
-          "request": {
-            "name": "Backstage List available actions",
-            "description": {
-              "content": "Lists all available scaffolder actions that can be used in templates. Each action includes its ID, description, and input/output schemas.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "actions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "actions",
+          "item": [
             {
-              "id": "76fb9cde-29d3-49c3-a253-6dc66470d8c3",
-              "name": "A list of available scaffolder actions.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "actions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+              "name": "List actions",
+              "id": "b1a456e9-2cd5-40dd-8747-9e413ec02765",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
                 },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"fetch:plain\",\n    \"description\": \"string\",\n    \"schema\": {\n      \"input\": {},\n      \"output\": {}\n    }\n  },\n  {\n    \"id\": \"fetch:plain\",\n    \"description\": \"string\",\n    \"schema\": {\n      \"input\": {},\n      \"output\": {}\n    }\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ca336590-9769-449d-b4c9-458c89762395",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "v2",
-                    "actions"
-                  ],
+                  "raw": "{{baseUrl}}/v2/actions",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "v2",
+                    "actions"
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns a list of all installed actions."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "0a962f35-a11e-46a4-80bd-e9bdbd716f3a",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/actions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "actions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"examples\": [\n      {\n        \"description\": \"<string>\",\n        \"example\": \"<string>\"\n      },\n      {\n        \"description\": \"<string>\",\n        \"example\": \"<string>\"\n      }\n    ],\n    \"schema\": {\n      \"input\": {\n        \"essef\": {},\n        \"sed4_\": {}\n      },\n      \"output\": {\n        \"sit_2d\": {},\n        \"officia72b\": {}\n      }\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"examples\": [\n      {\n        \"description\": \"<string>\",\n        \"example\": \"<string>\"\n      },\n      {\n        \"description\": \"<string>\",\n        \"example\": \"<string>\"\n      }\n    ],\n    \"schema\": {\n      \"input\": {\n        \"enime\": {},\n        \"ipsum7\": {}\n      },\n      \"output\": {\n        \"exd2e\": {},\n        \"sint_d60\": {}\n      }\n    }\n  }\n]",
+                  "createdAt": "2026-10-22T01:10:11.000Z",
+                  "updatedAt": "2026-10-22T01:10:11.000Z",
+                  "uid": "35240-0a962f35-a11e-46a4-80bd-e9bdbd716f3a"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:10:11.000Z",
+              "updatedAt": "2026-10-22T01:10:11.000Z",
+              "uid": "35240-b1a456e9-2cd5-40dd-8747-9e413ec02765"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "60b21f46-e7be-4937-b146-46243102c57b",
+          "createdAt": "2026-10-22T01:10:11.000Z",
+          "updatedAt": "2026-10-22T01:10:11.000Z",
+          "uid": "35240-60b21f46-e7be-4937-b146-46243102c57b"
         }
       ],
-      "event": []
+      "id": "880d005b-a9ea-47a2-a0b6-d966b204b0ad",
+      "createdAt": "2026-10-22T01:10:11.000Z",
+      "updatedAt": "2026-10-22T01:10:11.000Z",
+      "uid": "35240-880d005b-a9ea-47a2-a0b6-d966b204b0ad"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "/"
     }
-  ],
-  "info": {
-    "_postman_id": "3a4e4582-2ce0-4640-84b2-637a1399504d",
-    "name": "Backstage Auth Actions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

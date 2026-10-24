@@ -1,0 +1,111 @@
+{
+  "info": {
+    "_postman_id": "cd635a38-b9d2-4335-99d8-5ef202977f1a",
+    "name": "scaffolder Templating Extensions API",
+    "description": "The Backstage backend plugin that helps you create new things",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:29.000Z",
+    "updatedAt": "2026-10-22T01:12:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cd635a38-b9d2-4335-99d8-5ef202977f1a"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "templating-extensions",
+          "item": [
+            {
+              "name": "List templating extensions",
+              "id": "4d16d41d-6693-4776-b3b7-6e24be14b160",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/templating-extensions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "templating-extensions"
+                  ]
+                },
+                "description": "Returns a structure describing the available templating extensions."
+              },
+              "response": [
+                {
+                  "id": "150542c9-df9d-40a8-bbd7-c0170b10c1cb",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/templating-extensions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "templating-extensions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"filters\": {\n    \"non8a\": {\n      \"description\": \"<string>\",\n      \"schema\": {\n        \"input\": {\n          \"Utf1\": {}\n        },\n        \"arguments\": [\n          {\n            \"officia1\": {},\n            \"tempor_6\": {}\n          },\n          {\n            \"eu5b\": {},\n            \"Duis_c67\": {}\n          }\n        ],\n        \"output\": {\n          \"aute_1\": {},\n          \"Excepteur6\": {},\n          \"elit3\": {}\n        }\n      },\n      \"examples\": [\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    },\n    \"incididunt_9f\": {\n      \"description\": \"<string>\",\n      \"schema\": {\n        \"input\": {\n          \"fugiat_18\": {}\n        },\n        \"arguments\": [\n          {\n            \"elita\": {},\n            \"veniama\": {}\n          },\n          {\n            \"consequat_09\": {},\n            \"adc86\": {}\n          }\n        ],\n        \"output\": {\n          \"enim825\": {}\n        }\n      },\n      \"examples\": [\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    },\n    \"occaecat1\": {\n      \"description\": \"<string>\",\n      \"schema\": {\n        \"input\": {\n          \"magnae\": {},\n          \"ut9\": {}\n        },\n        \"arguments\": [\n          {\n            \"exa3\": {},\n            \"Duis_c\": {},\n            \"ea_010\": {},\n            \"irure_a\": {}\n          },\n          {\n            \"consectetur_9e7\": {},\n            \"dolore2\": {}\n          }\n        ],\n        \"output\": {\n          \"dolor_2\": {}\n        }\n      },\n      \"examples\": [\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    },\n    \"aliquip_7\": {\n      \"description\": \"<string>\",\n      \"schema\": {\n        \"input\": {\n          \"ut5f\": {},\n          \"in_1fc\": {},\n          \"dolore_89\": {},\n          \"laborebdb\": {}\n        },\n        \"arguments\": [\n          {\n            \"do_3\": {},\n            \"eu069\": {},\n            \"in_9\": {},\n            \"ind6\": {}\n          },\n          {\n            \"ea_b3\": {},\n            \"enim_b\": {}\n          }\n        ],\n        \"output\": {\n          \"culpa_2fb\": {},\n          \"incididunt_a6e\": {},\n          \"nisi7\": {}\n        }\n      },\n      \"examples\": [\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"example\": \"<string>\",\n          \"description\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"globals\": {\n    \"functions\": {\n      \"doloreb8\": {\n        \"description\": \"<string>\",\n        \"schema\": {\n          \"arguments\": [\n            {\n              \"nulla_b2b\": {}\n            },\n            {\n              \"commodo_5\": {}\n            }\n          ],\n          \"output\": {\n            \"etac\": {},\n            \"eu38\": {}\n          }\n        },\n        \"examples\": [\n          {\n            \"example\": \"<string>\",\n            \"description\": \"<string>\",\n            \"notes\": \"<string>\"\n          },\n          {\n            \"example\": \"<string>\",\n            \"description\": \"<string>\",\n            \"notes\": \"<string>\"\n          }\n        ]\n      }\n    },\n    \"values\": {\n      \"occaecat_a\": {\n        \"value\": {},\n        \"description\": \"<string>\"\n      },\n      \"dolore_46\": {\n        \"value\": {},\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-10-22T01:12:30.000Z",
+                  "updatedAt": "2026-10-22T01:12:30.000Z",
+                  "uid": "35240-150542c9-df9d-40a8-bbd7-c0170b10c1cb"
+                }
+              ],
+              "createdAt": "2026-10-22T01:12:30.000Z",
+              "updatedAt": "2026-10-22T01:12:30.000Z",
+              "uid": "35240-4d16d41d-6693-4776-b3b7-6e24be14b160"
+            }
+          ],
+          "id": "b3a4b9f2-cc84-43b8-b378-af84fa6175b8",
+          "createdAt": "2026-10-22T01:12:30.000Z",
+          "updatedAt": "2026-10-22T01:12:30.000Z",
+          "uid": "35240-b3a4b9f2-cc84-43b8-b378-af84fa6175b8"
+        }
+      ],
+      "id": "8f694c91-bad8-49ce-bceb-72838ec545f4",
+      "createdAt": "2026-10-22T01:12:30.000Z",
+      "updatedAt": "2026-10-22T01:12:30.000Z",
+      "uid": "35240-8f694c91-bad8-49ce-bceb-72838ec545f4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

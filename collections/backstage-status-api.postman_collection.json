@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "6102f1e4-140c-4c6c-ae4d-5f21d838fc9d",
+    "name": "notifications Status API",
+    "description": "The Backstage backend plugin that powers user notifications.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:21.000Z",
+    "updatedAt": "2026-10-22T01:12:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6102f1e4-140c-4c6c-ae4d-5f21d838fc9d"
+  },
+  "item": [
+    {
+      "name": "status",
+      "item": [
+        {
+          "name": "Get status",
+          "id": "e46a3966-3dc9-4ce3-b5b3-631e8d2d0121",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "status"
+              ]
+            },
+            "description": "Get the unread/read counts for the current user."
+          },
+          "response": [
+            {
+              "id": "d34d8a87-d06e-45fb-a5fd-3872f6618904",
+              "name": "The current user's notification status.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"unread\": \"<integer>\",\n  \"read\": \"<integer>\"\n}",
+              "createdAt": "2026-10-22T01:12:21.000Z",
+              "updatedAt": "2026-10-22T01:12:21.000Z",
+              "uid": "35240-d34d8a87-d06e-45fb-a5fd-3872f6618904"
+            },
+            {
+              "id": "ba23b9df-3110-4763-b475-1c119dcaf70d",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:12:21.000Z",
+              "updatedAt": "2026-10-22T01:12:21.000Z",
+              "uid": "35240-ba23b9df-3110-4763-b475-1c119dcaf70d"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:21.000Z",
+          "updatedAt": "2026-10-22T01:12:21.000Z",
+          "uid": "35240-e46a3966-3dc9-4ce3-b5b3-631e8d2d0121"
+        }
+      ],
+      "id": "9f1df549-f84b-4949-bdb1-0e381d1f1bb1",
+      "createdAt": "2026-10-22T01:12:21.000Z",
+      "updatedAt": "2026-10-22T01:12:21.000Z",
+      "uid": "35240-9f1df549-f84b-4949-bdb1-0e381d1f1bb1"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

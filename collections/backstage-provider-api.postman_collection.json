@@ -1,0 +1,565 @@
+{
+  "info": {
+    "_postman_id": "c0f3bfc4-9b72-46b7-9575-196d36373882",
+    "name": "Auth Provider API",
+    "description": "# Backstage's auth-provider API.\n\n**Provided by `@backstage/auth-backend`.**\n\nThe purpose of the Auth APIs in Backstage are to identify the user, and to provide a way for plugins\nto request access to 3rd party services on behalf of that user.\n\nThe API is supplied with a list of providers - such as `Google` or `GitHub` - and will add the endpoints\ndescribed below to each of those providers.\n\nRead more about User Authentication and Authorization in Backstage.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:03.000Z",
+    "updatedAt": "2026-10-22T01:12:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c0f3bfc4-9b72-46b7-9575-196d36373882"
+  },
+  "item": [
+    {
+      "name": "start",
+      "item": [
+        {
+          "name": "Initializes the authorization flow and redirects to a consent screen for the\u2026",
+          "id": "fa4fc419-d259-42d9-b54e-f5fdd2f03729",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/start?scope=<string>&env=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "start"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Scope requested for the auth session. The scope format and handling is specific to each provider",
+                  "key": "scope",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Parameter to indicate runtime environment",
+                  "key": "env",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "The popup window is pointed to the `/start` endpoint of the auth provider in the auth-backend plugin, which then redirects to the OAuth consent screen of the provider."
+          },
+          "response": [
+            {
+              "id": "431f5809-7638-43d7-8652-f11bce2ec5ae",
+              "name": "Redirect to the consent popup",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/start?scope=<string>&env=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "start"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scope requested for the auth session. The scope format and handling is specific to each provider",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Parameter to indicate runtime environment",
+                      "key": "env",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Found",
+              "code": 302,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The url to the consent popup",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Nonce cookie",
+                    "type": "text/plain"
+                  },
+                  "key": "Set-Cookie",
+                  "value": "provider-nonce,<string>,maxAge,<integer>,secure,<boolean>,sameSite,<string>,domain,<string>,path,<string>,httpOnly,<boolean>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:12:04.000Z",
+              "updatedAt": "2026-10-22T01:12:04.000Z",
+              "uid": "35240-431f5809-7638-43d7-8652-f11bce2ec5ae"
+            },
+            {
+              "id": "c7d1adce-2371-4269-8c85-0475568d8b69",
+              "name": "An error occurred",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/start?scope=<string>&env=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "start"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scope requested for the auth session. The scope format and handling is specific to each provider",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Parameter to indicate runtime environment",
+                      "key": "env",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:12:04.000Z",
+              "updatedAt": "2026-10-22T01:12:04.000Z",
+              "uid": "35240-c7d1adce-2371-4269-8c85-0475568d8b69"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:04.000Z",
+          "updatedAt": "2026-10-22T01:12:04.000Z",
+          "uid": "35240-fa4fc419-d259-42d9-b54e-f5fdd2f03729"
+        }
+      ],
+      "id": "48206f10-ca82-4467-8754-0ba78bdb98fd",
+      "createdAt": "2026-10-22T01:12:04.000Z",
+      "updatedAt": "2026-10-22T01:12:04.000Z",
+      "uid": "35240-48206f10-ca82-4467-8754-0ba78bdb98fd"
+    },
+    {
+      "name": "frame",
+      "item": [
+        {
+          "name": "handler",
+          "item": [
+            {
+              "name": "Handles the response from the consent popup for the provider",
+              "id": "a7c06fc6-48e0-4c1b-81e1-905996ce1a32",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/frame/handler?scope=<string>&code=<string>&state=<string>&env=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "frame",
+                    "handler"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scope requested for the auth session",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Short-term authorization code used to be exchanged for access tokens",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Nonce value stored in state",
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Parameter to indicate runtime environment",
+                      "key": "env",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "If the login request is accepted, the popup window will be redirected back to the `/handler/frame` endpoint of the auth backend."
+              },
+              "response": [
+                {
+                  "id": "94dd0290-394b-45cf-aba9-a7f003b3e152",
+                  "name": "Message received from consent popup",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/frame/handler?scope=<string>&code=<string>&state=<string>&env=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "frame",
+                        "handler"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Scope requested for the auth session",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Short-term authorization code used to be exchanged for access tokens",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Nonce value stored in state",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Parameter to indicate runtime environment",
+                          "key": "env",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh cookie",
+                        "type": "text/plain"
+                      },
+                      "key": "Set-Cookie",
+                      "value": "provider-refresh-token,<string>,maxAge,<integer>,secure,<boolean>,sameSite,<string>,domain,<string>,path,<string>,httpOnly,<boolean>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"payload\": {\n    \"accessToken\": \"<string>\",\n    \"idToken\": \"<string>\",\n    \"expiresInSeconds\": \"<number>\",\n    \"scope\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:12:04.000Z",
+                  "updatedAt": "2026-10-22T01:12:04.000Z",
+                  "uid": "35240-94dd0290-394b-45cf-aba9-a7f003b3e152"
+                }
+              ],
+              "createdAt": "2026-10-22T01:12:04.000Z",
+              "updatedAt": "2026-10-22T01:12:04.000Z",
+              "uid": "35240-a7c06fc6-48e0-4c1b-81e1-905996ce1a32"
+            }
+          ],
+          "id": "44c704cf-2c3c-4fe5-a53f-c1b876822f80",
+          "createdAt": "2026-10-22T01:12:04.000Z",
+          "updatedAt": "2026-10-22T01:12:04.000Z",
+          "uid": "35240-44c704cf-2c3c-4fe5-a53f-c1b876822f80"
+        }
+      ],
+      "id": "7ab93819-12cf-4813-af86-d97a0385586a",
+      "createdAt": "2026-10-22T01:12:04.000Z",
+      "updatedAt": "2026-10-22T01:12:04.000Z",
+      "uid": "35240-7ab93819-12cf-4813-af86-d97a0385586a"
+    },
+    {
+      "name": "refresh",
+      "item": [
+        {
+          "name": "Handles refreshing of tokens due to reload or expiry",
+          "id": "5b1d8df6-5e07-4b1d-a9e2-9452688b73c1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) X-Requested-With header preventing CSRF",
+                "key": "x-requested-with",
+                "value": "<string>"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/refresh?scope=<string>&optional=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "refresh"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Scope requested for the auth session",
+                  "key": "scope",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Prevent the popup from being displayed",
+                  "key": "optional",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "If supported by the provider, the `/refresh` endpoint is responsible for refreshing the tokens using a refresh-token stored in a cookie"
+          },
+          "response": [
+            {
+              "id": "8440cda9-4009-4bdd-b955-2b8bdb0a78cf",
+              "name": "Successfully refreshed the session",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) X-Requested-With header preventing CSRF",
+                    "key": "x-requested-with",
+                    "value": "<string>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/refresh?scope=<string>&optional=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refresh"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scope requested for the auth session",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prevent the popup from being displayed",
+                      "key": "optional",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:12:04.000Z",
+              "updatedAt": "2026-10-22T01:12:04.000Z",
+              "uid": "35240-8440cda9-4009-4bdd-b955-2b8bdb0a78cf"
+            },
+            {
+              "id": "a1ad3478-9939-4d34-be81-33c00b7cd1c5",
+              "name": "Validation error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) X-Requested-With header preventing CSRF",
+                    "key": "x-requested-with",
+                    "value": "<string>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/refresh?scope=<string>&optional=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refresh"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scope requested for the auth session",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prevent the popup from being displayed",
+                      "key": "optional",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:12:04.000Z",
+              "updatedAt": "2026-10-22T01:12:04.000Z",
+              "uid": "35240-a1ad3478-9939-4d34-be81-33c00b7cd1c5"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:04.000Z",
+          "updatedAt": "2026-10-22T01:12:04.000Z",
+          "uid": "35240-5b1d8df6-5e07-4b1d-a9e2-9452688b73c1"
+        }
+      ],
+      "id": "2f4b27db-86aa-494a-afe7-e5c56bf228fb",
+      "createdAt": "2026-10-22T01:12:04.000Z",
+      "updatedAt": "2026-10-22T01:12:04.000Z",
+      "uid": "35240-2f4b27db-86aa-494a-afe7-e5c56bf228fb"
+    },
+    {
+      "name": "logout",
+      "item": [
+        {
+          "name": "Logs user out of the current provider",
+          "id": "db9d8aac-3d37-451c-8c5f-1480786b82b8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) X-Requested-With header preventing CSRF",
+                "key": "x-requested-with",
+                "value": "<string>"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            },
+            "description": "When logging out the current session is removed and if present the cookie containing the refresh token is also removed"
+          },
+          "response": [
+            {
+              "id": "598ea734-0df1-4131-97ac-8c3dd65ed6d1",
+              "name": "Successfully logged out",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) X-Requested-With header preventing CSRF",
+                    "key": "x-requested-with",
+                    "value": "<string>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Refresh cookie",
+                    "type": "text/plain"
+                  },
+                  "key": "Set-Cookie",
+                  "value": "provider-refresh-token,<string>,maxAge,<integer>,secure,<boolean>,sameSite,<string>,domain,<string>,path,<string>,httpOnly,<boolean>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:12:04.000Z",
+              "updatedAt": "2026-10-22T01:12:04.000Z",
+              "uid": "35240-598ea734-0df1-4131-97ac-8c3dd65ed6d1"
+            },
+            {
+              "id": "53d505ce-9106-4b73-991f-ed3531f6797b",
+              "name": "Validation error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) X-Requested-With header preventing CSRF",
+                    "key": "x-requested-with",
+                    "value": "<string>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logout"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:12:04.000Z",
+              "updatedAt": "2026-10-22T01:12:04.000Z",
+              "uid": "35240-53d505ce-9106-4b73-991f-ed3531f6797b"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:04.000Z",
+          "updatedAt": "2026-10-22T01:12:04.000Z",
+          "uid": "35240-db9d8aac-3d37-451c-8c5f-1480786b82b8"
+        }
+      ],
+      "id": "52ef7623-103f-48d6-9ad3-6db7ac0fe8e0",
+      "createdAt": "2026-10-22T01:12:04.000Z",
+      "updatedAt": "2026-10-22T01:12:04.000Z",
+      "uid": "35240-52ef7623-103f-48d6-9ad3-6db7ac0fe8e0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7007/api/auth/"
+    }
+  ]
+}

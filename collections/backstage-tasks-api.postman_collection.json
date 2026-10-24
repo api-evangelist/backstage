@@ -1,1403 +1,1702 @@
 {
+  "info": {
+    "_postman_id": "e6d39013-b6f8-448c-9e52-53a1e82309e2",
+    "name": "Backstage Tasks API",
+    "description": "Operations tagged Tasks across 2 of this provider's published API definitions: backstage-scaffolder-backend-openapi.yaml, backstage-scaffolder-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:59.000Z",
+    "updatedAt": "2026-10-22T01:11:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e6d39013-b6f8-448c-9e52-53a1e82309e2"
+  },
   "item": [
     {
-      "id": "aaf8fbfc-598f-4944-a0bc-c96529fd1474",
-      "name": "Tasks",
-      "description": {
-        "content": "Endpoints for creating and managing scaffolder tasks.",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "4bf903e1-2dbe-4d2a-8dd7-fb1ca94026b8",
-          "name": "Backstage List scaffolder tasks",
-          "request": {
-            "name": "Backstage List scaffolder tasks",
-            "description": {
-              "content": "Lists scaffolder tasks, optionally filtered by the user who created them. Returns task metadata and status information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "tasks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "createdBy",
-                  "value": "<string>",
-                  "description": "Filter tasks by the user who created them."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "tasks",
+          "item": [
             {
-              "id": "e6206c04-f7e1-40d6-8b5e-072cad35aa47",
-              "name": "A list of scaffolder tasks.",
-              "originalRequest": {
+              "name": "{taskId}",
+              "item": [
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "Cancel task",
+                      "id": "be9dedff-b90b-4cab-a902-11568d3fbc5d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "noauth"
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/tasks/:taskId/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "tasks",
+                            ":taskId",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2f6714c5-d26c-4a81-a56f-bf85325cd091",
+                              "key": "taskId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Sends a signal to a task broker to cancel the running task by taskId."
+                      },
+                      "response": [
+                        {
+                          "id": "8b65cbee-6e66-41db-85c2-a4c6d0b1afb3",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"cancelled\"\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-8b65cbee-6e66-41db-85c2-a4c6d0b1afb3"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-be9dedff-b90b-4cab-a902-11568d3fbc5d"
+                    }
+                  ],
+                  "id": "e7af43fc-aa2e-4e42-83ae-4835c773275c",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-e7af43fc-aa2e-4e42-83ae-4835c773275c"
+                },
+                {
+                  "name": "retry",
+                  "item": [
+                    {
+                      "name": "Retry",
+                      "id": "54ae63e3-21f8-419e-9fdc-f2e909c619ef",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "noauth"
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"secrets\": {\n    \"Excepteur__3\": \"<string>\",\n    \"anime\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/tasks/:taskId/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "tasks",
+                            ":taskId",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "id": "61e58f1c-e3aa-4da7-806b-98c3fe1be78e",
+                              "key": "taskId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Starts the task again from the point where it failed."
+                      },
+                      "response": [
+                        {
+                          "id": "8eb43f0d-a09d-41bd-ab05-21c769ea0f90",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"secrets\": {\n    \"Excepteur__3\": \"<string>\",\n    \"anime\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/retry",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "retry"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-8eb43f0d-a09d-41bd-ab05-21c769ea0f90"
+                        },
+                        {
+                          "id": "8fa0db07-91bd-475a-99fc-15b4a547929b",
+                          "name": "Validation errors.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"secrets\": {\n    \"Excepteur__3\": \"<string>\",\n    \"anime\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/retry",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "retry"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"property\": \"<string>\",\n      \"message\": \"<string>\",\n      \"schema\": {},\n      \"instance\": {},\n      \"name\": \"<string>\",\n      \"argument\": \"<boolean>\",\n      \"stack\": \"<string>\"\n    },\n    {\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"property\": \"<string>\",\n      \"message\": \"<string>\",\n      \"schema\": {},\n      \"instance\": {},\n      \"name\": \"<string>\",\n      \"argument\": \"<boolean>\",\n      \"stack\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-8fa0db07-91bd-475a-99fc-15b4a547929b"
+                        },
+                        {
+                          "id": "3b406257-491a-4808-be3c-d3e74b19aac3",
+                          "name": "An error response from the backend.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json; charset=utf-8"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"secrets\": {\n    \"Excepteur__3\": \"<string>\",\n    \"anime\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/retry",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "retry"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json; charset=utf-8"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-3b406257-491a-4808-be3c-d3e74b19aac3"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-54ae63e3-21f8-419e-9fdc-f2e909c619ef"
+                    }
+                  ],
+                  "id": "a810779b-a27e-4a93-8ba0-587437930229",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-a810779b-a27e-4a93-8ba0-587437930229"
+                },
+                {
+                  "name": "events",
+                  "item": [
+                    {
+                      "name": "Stream logs polling",
+                      "id": "3ce15f10-420a-4005-b55d-03872d9213ea",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/tasks/:taskId/events?after=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "tasks",
+                            ":taskId",
+                            "events"
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset event ID to stream events after.",
+                              "key": "after",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "85aa157a-58f9-49dd-b263-c44f6667c4e2",
+                              "key": "taskId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get events for a task by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "55bc7252-31d7-4899-8d8c-c5695f7fea42",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/events?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Offset event ID to stream events after.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"taskId\": \"<string>\",\n    \"body\": {\n      \"message\": \"<string>\",\n      \"status\": \"skipped\",\n      \"stepId\": \"<string>\"\n    },\n    \"type\": \"cancelled\",\n    \"createdAt\": \"<string>\",\n    \"isTaskRecoverable\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"taskId\": \"<string>\",\n    \"body\": {\n      \"message\": \"<string>\",\n      \"status\": \"completed\",\n      \"stepId\": \"<string>\"\n    },\n    \"type\": \"completion\",\n    \"createdAt\": \"<string>\",\n    \"isTaskRecoverable\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-55bc7252-31d7-4899-8d8c-c5695f7fea42"
+                        },
+                        {
+                          "id": "b474fd7d-9d3f-4cba-8679-4e105d19b02b",
+                          "name": "An error response from the backend.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json; charset=utf-8"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/events?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Offset event ID to stream events after.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json; charset=utf-8"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-b474fd7d-9d3f-4cba-8679-4e105d19b02b"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-3ce15f10-420a-4005-b55d-03872d9213ea"
+                    }
+                  ],
+                  "id": "989ec525-96bd-4695-9297-4f6037109771",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-989ec525-96bd-4695-9297-4f6037109771"
+                },
+                {
+                  "name": "eventstream",
+                  "item": [
+                    {
+                      "name": "Backstage Get task event stream",
+                      "id": "d080873c-4a85-4172-af13-4d2e4aff5b58",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/event-stream"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/tasks/:taskId/eventstream?after=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "tasks",
+                            ":taskId",
+                            "eventstream"
+                          ],
+                          "query": [
+                            {
+                              "description": "Only return events after this sequence number.",
+                              "key": "after",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "14cb6041-afa3-4587-8d6b-06ef65562be5",
+                              "key": "taskId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns a server-sent event stream of task progress events. This endpoint streams real-time updates about the task execution including step progress, log messages, and completion status."
+                      },
+                      "response": [
+                        {
+                          "id": "99d578e6-9a97-427d-958d-31a5cb96a97c",
+                          "name": "A server-sent event stream of task events.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/event-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/eventstream?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "eventstream"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Only return events after this sequence number.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/event-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-99d578e6-9a97-427d-958d-31a5cb96a97c"
+                        },
+                        {
+                          "id": "271ee917-7d91-44c8-875c-977e0595ea10",
+                          "name": "Missing or invalid authentication token.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/eventstream?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "eventstream"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Only return events after this sequence number.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-271ee917-7d91-44c8-875c-977e0595ea10"
+                        },
+                        {
+                          "id": "5b82200e-7cbb-497c-a167-5f8c8dd5e1a8",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/eventstream?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "eventstream"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Only return events after this sequence number.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-5b82200e-7cbb-497c-a167-5f8c8dd5e1a8"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-d080873c-4a85-4172-af13-4d2e4aff5b58"
+                    }
+                  ],
+                  "id": "1daf19a3-6f8f-4b40-be58-8bb1c38a422f",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-1daf19a3-6f8f-4b40-be58-8bb1c38a422f"
+                },
+                {
+                  "name": "logs",
+                  "item": [
+                    {
+                      "name": "Backstage Get task logs",
+                      "id": "0033650a-ee43-48ab-a676-4abea1b349d6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/tasks/:taskId/logs?after=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "tasks",
+                            ":taskId",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Only return log entries after this sequence number.",
+                              "key": "after",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "b1e7d655-38db-41d1-b8de-702d5082976f",
+                              "key": "taskId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the log entries for a scaffolder task, providing detailed information about each step of template execution."
+                      },
+                      "response": [
+                        {
+                          "id": "69fd182c-9510-42cd-a6f8-4578c5e46b7f",
+                          "name": "Task log entries.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/logs?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Only return log entries after this sequence number.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"type\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"body\": {\n      \"message\": \"<string>\",\n      \"stepId\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  },\n  {\n    \"type\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"body\": {\n      \"message\": \"<string>\",\n      \"stepId\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  }\n]",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-69fd182c-9510-42cd-a6f8-4578c5e46b7f"
+                        },
+                        {
+                          "id": "11ec83ec-6d7f-4da5-a601-f7046a98cb9c",
+                          "name": "Missing or invalid authentication token.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/logs?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Only return log entries after this sequence number.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-11ec83ec-6d7f-4da5-a601-f7046a98cb9c"
+                        },
+                        {
+                          "id": "475749a1-6f9e-447a-8e07-80dd0e4f2f8c",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/tasks/:taskId/logs?after=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "tasks",
+                                ":taskId",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Only return log entries after this sequence number.",
+                                  "key": "after",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "taskId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:11:00.000Z",
+                          "updatedAt": "2026-10-22T01:11:00.000Z",
+                          "uid": "35240-475749a1-6f9e-447a-8e07-80dd0e4f2f8c"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-0033650a-ee43-48ab-a676-4abea1b349d6"
+                    }
+                  ],
+                  "id": "5baec55e-3c68-4274-8f08-aa0591359311",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-5baec55e-3c68-4274-8f08-aa0591359311"
+                },
+                {
+                  "name": "Get task",
+                  "id": "f262d555-52b8-480d-94cb-1cb880db84af",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fa3300b5-3e41-4ad6-8a03-6c0dc6ad2e5f",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Get a task by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "3819cd94-2426-44ee-a418-90e46a0ac348",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/tasks/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "tasks",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"spec\": {},\n  \"status\": \"processing\",\n  \"createdAt\": \"<string>\",\n  \"lastHeartbeatAt\": \"<string>\",\n  \"createdBy\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-3819cd94-2426-44ee-a418-90e46a0ac348"
+                    },
+                    {
+                      "id": "77d66b24-2a82-48d8-8a70-c4b675517b4b",
+                      "name": "An error response from the backend.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json; charset=utf-8"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/tasks/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "tasks",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json; charset=utf-8"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:00.000Z",
+                      "updatedAt": "2026-10-22T01:11:00.000Z",
+                      "uid": "35240-77d66b24-2a82-48d8-8a70-c4b675517b4b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-f262d555-52b8-480d-94cb-1cb880db84af"
+                }
+              ],
+              "id": "d2a97ece-ef71-4d07-a651-b799c1fcbefa",
+              "createdAt": "2026-10-22T01:11:00.000Z",
+              "updatedAt": "2026-10-22T01:11:00.000Z",
+              "uid": "35240-d2a97ece-ef71-4d07-a651-b799c1fcbefa"
+            },
+            {
+              "name": "List tasks",
+              "id": "38397b71-413b-432c-8d15-9b2d72347e59",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v2/tasks?createdBy=<string>&createdBy=<string>&limit=<integer>&offset=<integer>&order=<string>&order=<string>&status=<string>&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2",
                     "tasks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
+                      "description": "Created by",
                       "key": "createdBy",
                       "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"tasks\": [\n    {\n      \"id\": \"string\",\n      \"spec\": {\n        \"apiVersion\": \"string\",\n        \"templateInfo\": {\n          \"entityRef\": \"string\"\n        },\n        \"steps\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"action\": \"string\",\n            \"input\": {}\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"action\": \"string\",\n            \"input\": {}\n          }\n        ],\n        \"output\": {\n          \"key_0\": 1764.8684994310836\n        },\n        \"parameters\": {\n          \"key_0\": 1219.240500406724,\n          \"key_1\": true,\n          \"key_2\": true\n        }\n      },\n      \"status\": \"processing\",\n      \"createdAt\": \"2019-04-01T19:04:35.973Z\",\n      \"lastHeartbeatAt\": \"2019-11-07T05:15:10.182Z\",\n      \"completedAt\": \"1993-12-31T01:09:07.051Z\",\n      \"createdBy\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"spec\": {\n        \"apiVersion\": \"string\",\n        \"templateInfo\": {\n          \"entityRef\": \"string\"\n        },\n        \"steps\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"action\": \"string\",\n            \"input\": {}\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"action\": \"string\",\n            \"input\": {}\n          }\n        ],\n        \"output\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"parameters\": {\n          \"key_0\": 1655.0050014678707,\n          \"key_1\": 7084,\n          \"key_2\": 5295.284273089037\n        }\n      },\n      \"status\": \"cancelled\",\n      \"createdAt\": \"1973-10-22T13:30:09.368Z\",\n      \"lastHeartbeatAt\": \"1964-11-04T06:24:31.354Z\",\n      \"completedAt\": \"1987-11-08T09:35:14.538Z\",\n      \"createdBy\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "71cfc1d8-12b7-4142-890c-dca60f01350a",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
                     {
+                      "description": "Created by",
                       "key": "createdBy",
                       "value": "<string>"
+                    },
+                    {
+                      "description": "Number of records to return in the response.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of records to skip in the query page.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Order",
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Order",
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Status",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of tasks, filtering by ownership and/or status if given."
+              },
+              "response": [
+                {
+                  "id": "acbf5654-b6ad-419a-86e7-1374a66fd423",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/tasks?createdBy=<string>&limit=<integer>&offset=<integer>&order=<string>&status=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "tasks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Created by",
+                          "key": "createdBy",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of records to return in the response.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip in the query page.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Order",
+                          "key": "order",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Status",
+                          "key": "status",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"tasks\": [\n    {\n      \"id\": \"<string>\",\n      \"spec\": {},\n      \"status\": \"skipped\",\n      \"createdAt\": \"<string>\",\n      \"lastHeartbeatAt\": \"<string>\",\n      \"createdBy\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"spec\": {},\n      \"status\": \"completed\",\n      \"createdAt\": \"<string>\",\n      \"lastHeartbeatAt\": \"<string>\",\n      \"createdBy\": \"<string>\"\n    }\n  ],\n  \"totalTasks\": \"<number>\"\n}",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-acbf5654-b6ad-419a-86e7-1374a66fd423"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "id": "65cc72ce-2897-4548-9276-718ee4c919c9",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json; charset=utf-8"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/tasks?createdBy=<string>&limit=<integer>&offset=<integer>&order=<string>&status=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "tasks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Created by",
+                          "key": "createdBy",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of records to return in the response.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip in the query page.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Order",
+                          "key": "order",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Status",
+                          "key": "status",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-65cc72ce-2897-4548-9276-718ee4c919c9"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1d3ca56a-ca91-497d-a154-f7713fcc88e1",
-          "name": "Backstage Create a scaffolder task",
-          "request": {
-            "name": "Backstage Create a scaffolder task",
-            "description": {
-              "content": "Creates a new scaffolder task to execute a software template. The task runs asynchronously and its progress can be monitored through the event stream or logs endpoints.",
-              "type": "text/plain"
+              "createdAt": "2026-10-22T01:11:00.000Z",
+              "updatedAt": "2026-10-22T01:11:00.000Z",
+              "uid": "35240-38397b71-413b-432c-8d15-9b2d72347e59"
             },
-            "url": {
-              "path": [
-                "v2",
-                "tasks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"templateRef\": \"<string>\",\n  \"values\": {\n    \"key_0\": 2823,\n    \"key_1\": 4319\n  },\n  \"secrets\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
             {
-              "id": "f12c52ae-c672-4dae-aaf9-179d878389c2",
-              "name": "Task created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+              "name": "Scaffold",
+              "id": "bd230b94-5f00-4d0a-8d79-08508e343d9c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
                 "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"templateRef\": \"template:default/create-react-app\",\n  \"values\": {\n    \"key_0\": 4282.552089596,\n    \"key_1\": 7618\n  },\n  \"secrets\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "raw": "{\n  \"templateRef\": \"<string>\",\n  \"values\": {\n    \"veniam_31\": {},\n    \"magna92\": {}\n  },\n  \"secrets\": {\n    \"aliquae17\": \"<string>\",\n    \"labore7f\": \"<string>\",\n    \"minim4\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "189a5d36-339c-43f0-adbe-3b06ef4f1813",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/v2/tasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2",
                     "tasks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Executes the scaffolding of a component, given a template and its\nparameter values."
+              },
+              "response": [
+                {
+                  "id": "0240786a-b861-4db2-a3be-8950dc6f0dd8",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"templateRef\": \"<string>\",\n  \"values\": {\n    \"veniam_31\": {},\n    \"magna92\": {}\n  },\n  \"secrets\": {\n    \"aliquae17\": \"<string>\",\n    \"labore7f\": \"<string>\",\n    \"minim4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "tasks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-0240786a-b861-4db2-a3be-8950dc6f0dd8"
+                },
+                {
+                  "id": "0cc82ec8-c60d-4adc-beaf-808b50bfc40c",
+                  "name": "Validation errors.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"templateRef\": \"<string>\",\n  \"values\": {\n    \"veniam_31\": {},\n    \"magna92\": {}\n  },\n  \"secrets\": {\n    \"aliquae17\": \"<string>\",\n    \"labore7f\": \"<string>\",\n    \"minim4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "tasks"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"property\": \"<string>\",\n      \"message\": \"<string>\",\n      \"schema\": {},\n      \"instance\": {},\n      \"name\": \"<string>\",\n      \"argument\": \"<boolean>\",\n      \"stack\": \"<string>\"\n    },\n    {\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"property\": \"<string>\",\n      \"message\": \"<string>\",\n      \"schema\": {},\n      \"instance\": {},\n      \"name\": \"<string>\",\n      \"argument\": \"<boolean>\",\n      \"stack\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-0cc82ec8-c60d-4adc-beaf-808b50bfc40c"
+                }
+              ],
+              "createdAt": "2026-10-22T01:11:00.000Z",
+              "updatedAt": "2026-10-22T01:11:00.000Z",
+              "uid": "35240-bd230b94-5f00-4d0a-8d79-08508e343d9c"
+            }
+          ],
+          "id": "64f52d56-7345-4601-a66a-5afe7ac21075",
+          "createdAt": "2026-10-22T01:11:00.000Z",
+          "updatedAt": "2026-10-22T01:11:00.000Z",
+          "uid": "35240-64f52d56-7345-4601-a66a-5afe7ac21075"
+        },
+        {
+          "name": "dry-run",
+          "item": [
+            {
+              "name": "Backstage Dry-run a template",
+              "id": "22885baa-04a9-4ddb-a7f7-46be6c356953",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"templateRef\": \"template:default/create-react-app\",\n  \"values\": {\n    \"key_0\": 4282.552089596,\n    \"key_1\": 7618\n  },\n  \"secrets\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "raw": "{\n  \"template\": {},\n  \"values\": {\n    \"enime\": -15034274.180330291\n  },\n  \"secrets\": {\n    \"dobef\": \"<string>\",\n    \"eu1fe\": \"<string>\",\n    \"voluptate596\": \"<string>\"\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e6f7b4f3-d8d6-4fa2-b52c-63fb71235153",
-          "name": "Backstage Get task by ID",
-          "request": {
-            "name": "Backstage Get task by ID",
-            "description": {
-              "content": "Retrieves the details and current status of a scaffolder task.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "tasks",
-                ":taskId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) The unique identifier of the task."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "ba95753e-a707-42ea-a21e-e4a388441af4",
-              "name": "The task details.",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId"
-                  ],
+                  "raw": "{{baseUrl}}/v2/dry-run",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"spec\": {\n    \"apiVersion\": \"string\",\n    \"templateInfo\": {\n      \"entityRef\": \"string\"\n    },\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"action\": \"string\",\n        \"input\": {}\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"action\": \"string\",\n        \"input\": {}\n      }\n    ],\n    \"output\": {\n      \"key_0\": \"string\"\n    },\n    \"parameters\": {\n      \"key_0\": 2766.089837356406\n    }\n  },\n  \"status\": \"processing\",\n  \"createdAt\": \"1981-12-01T03:27:48.797Z\",\n  \"lastHeartbeatAt\": \"1997-01-18T05:44:25.473Z\",\n  \"completedAt\": \"1956-01-08T01:29:08.906Z\",\n  \"createdBy\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "854db4e2-6f4d-4ef1-892e-379c3cf613a1",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5f34d983-f4a2-4f9f-a35a-6e7e0aa3c4d7",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "704dba11-c1ee-43a5-9407-8258edb9da46",
-          "name": "Backstage Cancel a task",
-          "request": {
-            "name": "Backstage Cancel a task",
-            "description": {
-              "content": "Requests cancellation of a running scaffolder task.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "tasks",
-                ":taskId",
-                "cancel"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "218e8326-81da-431a-914b-ce4ffa316107",
-              "name": "Cancellation requested successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "cancel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "cd4a4ccd-3f6e-4437-a919-2e9b9ec7f423",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "cancel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e7242be6-6ea1-4bf8-9b98-da768481a042",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "cancel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f3c30aa1-7957-4597-ab9d-cdb89acc7299",
-          "name": "Backstage Get task event stream",
-          "request": {
-            "name": "Backstage Get task event stream",
-            "description": {
-              "content": "Returns a server-sent event stream of task progress events. This endpoint streams real-time updates about the task execution including step progress, log messages, and completion status.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "tasks",
-                ":taskId",
-                "eventstream"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<integer>",
-                  "description": "Only return events after this sequence number."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "text/event-stream"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "c51a0656-13e8-4849-bc2d-90f5128e00a9",
-              "name": "A server-sent event stream of task events.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "eventstream"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "after",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/event-stream"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/event-stream"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "53526d4c-b6a5-4d93-9c63-242bf55de9cf",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "eventstream"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "after",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "22c14dc5-f43d-4d6d-a140-5223e6f88092",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "eventstream"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "after",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8d19e57b-efc5-4354-b7d7-8bda1de62911",
-          "name": "Backstage Get task logs",
-          "request": {
-            "name": "Backstage Get task logs",
-            "description": {
-              "content": "Retrieves the log entries for a scaffolder task, providing detailed information about each step of template execution.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "tasks",
-                ":taskId",
-                "logs"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<integer>",
-                  "description": "Only return log entries after this sequence number."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "654cfccc-1869-48de-87e2-7d5d53ba6fe4",
-              "name": "Task log entries.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "after",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"type\": \"string\",\n    \"createdAt\": \"1948-12-02T22:29:26.851Z\",\n    \"body\": {\n      \"message\": \"string\",\n      \"stepId\": \"string\",\n      \"status\": \"string\"\n    }\n  },\n  {\n    \"type\": \"string\",\n    \"createdAt\": \"2007-03-21T09:56:15.934Z\",\n    \"body\": {\n      \"message\": \"string\",\n      \"stepId\": \"string\",\n      \"status\": \"string\"\n    }\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4b12f895-e250-43fe-bb57-5660191dc609",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "after",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5d636b1c-322e-4a8a-8633-b0fb6e1e3d0d",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "tasks",
-                    ":taskId",
-                    "logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "after",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a5bbb2dc-8fc3-4de5-91c1-3e40dd038c21",
-          "name": "Backstage Dry-run a template",
-          "request": {
-            "name": "Backstage Dry-run a template",
-            "description": {
-              "content": "Executes a template as a dry run without actually performing any side effects. Useful for testing and validating templates before actual execution.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "dry-run"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"template\": \"<object>\",\n  \"values\": {\n    \"key_0\": 240,\n    \"key_1\": \"string\",\n    \"key_2\": 5551,\n    \"key_3\": 289\n  },\n  \"secrets\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3610c7c6-b9ce-4efa-83dc-4250cb2dcd76",
-              "name": "Dry-run result.",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "v2",
                     "dry-run"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"template\": \"<object>\",\n  \"values\": {\n    \"key_0\": true,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"secrets\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Executes a template as a dry run without actually performing any side effects. Useful for testing and validating templates before actual execution."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "55280da1-4be7-4591-89a5-e18bce166248",
+                  "name": "Dry-run result.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"template\": {},\n  \"values\": {\n    \"enime\": -15034274.180330291\n  },\n  \"secrets\": {\n    \"dobef\": \"<string>\",\n    \"eu1fe\": \"<string>\",\n    \"voluptate596\": \"<string>\"\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/dry-run",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "dry-run"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"log\": [\n    {\n      \"type\": \"<string>\",\n      \"body\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"body\": {}\n    }\n  ],\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"output\": {\n    \"esse_d9\": true,\n    \"nulla0fd\": 75302692\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-55280da1-4be7-4591-89a5-e18bce166248"
+                },
+                {
+                  "id": "4ea496c7-ab23-49f0-9789-23f3c6618a55",
+                  "name": "Missing or invalid authentication token.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"template\": {},\n  \"values\": {\n    \"enime\": -15034274.180330291\n  },\n  \"secrets\": {\n    \"dobef\": \"<string>\",\n    \"eu1fe\": \"<string>\",\n    \"voluptate596\": \"<string>\"\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/dry-run",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "dry-run"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:00.000Z",
+                  "updatedAt": "2026-10-22T01:11:00.000Z",
+                  "uid": "35240-4ea496c7-ab23-49f0-9789-23f3c6618a55"
                 }
               ],
-              "body": "{\n  \"log\": [\n    {\n      \"type\": \"string\",\n      \"body\": {}\n    },\n    {\n      \"type\": \"string\",\n      \"body\": {}\n    }\n  ],\n  \"directoryContents\": [\n    {\n      \"path\": \"string\",\n      \"base64Content\": \"string\"\n    },\n    {\n      \"path\": \"string\",\n      \"base64Content\": \"string\"\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"output\": {\n    \"key_0\": 6832,\n    \"key_1\": false\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4c17cafa-eb60-4bd8-93bc-211d8f4d5768",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "dry-run"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"template\": \"<object>\",\n  \"values\": {\n    \"key_0\": true,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"secrets\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:11:00.000Z",
+              "updatedAt": "2026-10-22T01:11:00.000Z",
+              "uid": "35240-22885baa-04a9-4ddb-a7f7-46be6c356953"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1ec633d4-3ecb-44bb-b65e-51aff4d4d863",
+          "createdAt": "2026-10-22T01:11:00.000Z",
+          "updatedAt": "2026-10-22T01:11:00.000Z",
+          "uid": "35240-1ec633d4-3ecb-44bb-b65e-51aff4d4d863"
         }
       ],
-      "event": []
+      "id": "535b5d2b-746f-4087-99da-7772692f68bd",
+      "createdAt": "2026-10-22T01:11:00.000Z",
+      "updatedAt": "2026-10-22T01:11:00.000Z",
+      "uid": "35240-535b5d2b-746f-4087-99da-7772692f68bd"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "/"
     }
-  ],
-  "info": {
-    "_postman_id": "813e19ca-3626-473c-81a9-a5efe19d0732",
-    "name": "Backstage Auth Actions Tasks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

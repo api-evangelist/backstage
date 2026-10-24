@@ -1,0 +1,174 @@
+{
+  "info": {
+    "_postman_id": "d67b788b-48d1-4435-8e4f-5fe34c72131e",
+    "name": ".backstage/dynamic-features Remotes API",
+    "description": "The Backstage backend plugin that serves the frontend plugins module federation manifests and assets",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:09.000Z",
+    "updatedAt": "2026-10-22T01:12:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d67b788b-48d1-4435-8e4f-5fe34c72131e"
+  },
+  "item": [
+    {
+      "name": "remotes",
+      "item": [
+        {
+          "name": "Get remotes",
+          "id": "2bec3cac-c10c-46ff-9bd8-f87e4c9045f0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/remotes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "remotes"
+              ]
+            },
+            "description": "Get the Module Federation remote definitions."
+          },
+          "response": [
+            {
+              "id": "92e3cb00-9cc4-465a-b95d-b59dd37ea18e",
+              "name": "List of Module Federation Remotes exposed by the backend",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/remotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "remotes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"packageName\": \"<string>\",\n    \"remoteInfo\": {\n      \"name\": \"<string>\",\n      \"entry\": \"<string>\",\n      \"entryGlobalName\": \"<string>\",\n      \"shareScope\": \"<string>\",\n      \"type\": \"assign\"\n    },\n    \"exposedModules\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"packageName\": \"<string>\",\n    \"remoteInfo\": {\n      \"name\": \"<string>\",\n      \"entry\": \"<string>\",\n      \"entryGlobalName\": \"<string>\",\n      \"shareScope\": \"<string>\",\n      \"type\": \"jsonp\"\n    },\n    \"exposedModules\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-10-22T01:12:10.000Z",
+              "updatedAt": "2026-10-22T01:12:10.000Z",
+              "uid": "35240-92e3cb00-9cc4-465a-b95d-b59dd37ea18e"
+            },
+            {
+              "id": "5cc0752b-f195-4944-91ef-5feb19c98b75",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/remotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "remotes"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:12:10.000Z",
+              "updatedAt": "2026-10-22T01:12:10.000Z",
+              "uid": "35240-5cc0752b-f195-4944-91ef-5feb19c98b75"
+            },
+            {
+              "id": "b7d2e54c-1083-4b6c-9865-92b893a2a435",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/remotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "remotes"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:12:10.000Z",
+              "updatedAt": "2026-10-22T01:12:10.000Z",
+              "uid": "35240-b7d2e54c-1083-4b6c-9865-92b893a2a435"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:10.000Z",
+          "updatedAt": "2026-10-22T01:12:10.000Z",
+          "uid": "35240-2bec3cac-c10c-46ff-9bd8-f87e4c9045f0"
+        }
+      ],
+      "id": "62fa034a-f928-475f-9196-e66884718934",
+      "createdAt": "2026-10-22T01:12:10.000Z",
+      "updatedAt": "2026-10-22T01:12:10.000Z",
+      "uid": "35240-62fa034a-f928-475f-9196-e66884718934"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

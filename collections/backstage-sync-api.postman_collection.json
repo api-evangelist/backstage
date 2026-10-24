@@ -1,232 +1,223 @@
 {
+  "info": {
+    "_postman_id": "c84bf68f-80c0-48cf-87d4-fa55f187f4de",
+    "name": "Backstage TechDocs Sync API",
+    "description": "The Backstage TechDocs API provides endpoints for generating, publishing, and serving technical documentation for catalog entities. TechDocs uses MkDocs under the hood to render Markdown documentation into static HTML pages. The API supports fetching rendered documentation, syncing docs from external storage, retrieving metadata, and managing documentation lifecycle.\n\nContact Support:\n Name: Backstage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:55.000Z",
+    "updatedAt": "2026-10-22T01:10:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c84bf68f-80c0-48cf-87d4-fa55f187f4de"
+  },
   "item": [
     {
-      "id": "c571ee39-8619-40e7-ac86-615fc8ed3f3f",
-      "name": "Sync",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "sync",
       "item": [
         {
-          "id": "724a1f21-302e-47d0-9a80-3852c39d3962",
-          "name": "Backstage Trigger TechDocs sync",
-          "request": {
-            "name": "Backstage Trigger TechDocs sync",
-            "description": {
-              "content": "Triggers a synchronization of the TechDocs content for the specified entity from the configured external storage provider.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sync",
-                ":namespace",
-                ":kind",
-                ":name"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "namespace",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "kind",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "name",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{namespace}",
+          "item": [
             {
-              "id": "4c63bd63-aaf5-420d-9d41-f74553677395",
-              "name": "Sync completed successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sync",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{kind}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Backstage Trigger TechDocs sync",
+                      "id": "49b4c9bb-570d-491b-af3f-f5025e565662",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sync/:namespace/:kind/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sync",
+                            ":namespace",
+                            ":kind",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2fb37a3f-eb02-454a-971f-059eb6a0cbb0",
+                              "key": "namespace",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "7d408eaa-5779-4cd9-9589-1178692dc2fe",
+                              "key": "kind",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "c0a5947a-8c08-44b5-aa17-26adcb2bd195",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Triggers a synchronization of the TechDocs content for the specified entity from the configured external storage provider."
+                      },
+                      "response": [
+                        {
+                          "id": "fa2a745c-532a-4108-bba3-dbdd0982a21f",
+                          "name": "Sync completed successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sync/:namespace/:kind/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sync",
+                                ":namespace",
+                                ":kind",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespace"
+                                },
+                                {
+                                  "key": "kind"
+                                },
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:10:56.000Z",
+                          "updatedAt": "2026-10-22T01:10:56.000Z",
+                          "uid": "35240-fa2a745c-532a-4108-bba3-dbdd0982a21f"
+                        },
+                        {
+                          "id": "b1f0be45-1b9c-455c-974b-a9ac3c0e4db5",
+                          "name": "Entity not found.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sync/:namespace/:kind/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sync",
+                                ":namespace",
+                                ":kind",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespace"
+                                },
+                                {
+                                  "key": "kind"
+                                },
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:10:56.000Z",
+                          "updatedAt": "2026-10-22T01:10:56.000Z",
+                          "uid": "35240-b1f0be45-1b9c-455c-974b-a9ac3c0e4db5"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:10:56.000Z",
+                      "updatedAt": "2026-10-22T01:10:56.000Z",
+                      "uid": "35240-49b4c9bb-570d-491b-af3f-f5025e565662"
+                    }
+                  ],
+                  "id": "56c91460-32c8-4475-8571-85685b42e3be",
+                  "createdAt": "2026-10-22T01:10:55.000Z",
+                  "updatedAt": "2026-10-22T01:10:55.000Z",
+                  "uid": "35240-56c91460-32c8-4475-8571-85685b42e3be"
                 }
               ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8ed59b69-2ecb-44ec-ac56-dc0426b68abe",
-              "name": "Entity not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sync",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "532942ad-53f7-448a-930d-ca7aa4865e84",
+              "createdAt": "2026-10-22T01:10:55.000Z",
+              "updatedAt": "2026-10-22T01:10:55.000Z",
+              "uid": "35240-532942ad-53f7-448a-930d-ca7aa4865e84"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e645e4cd-5eab-4f2a-a309-e08d5c316637",
+          "createdAt": "2026-10-22T01:10:55.000Z",
+          "updatedAt": "2026-10-22T01:10:55.000Z",
+          "uid": "35240-e645e4cd-5eab-4f2a-a309-e08d5c316637"
         }
       ],
-      "event": []
+      "id": "79067074-01f6-417a-bb9a-ef3cec989130",
+      "createdAt": "2026-10-22T01:10:55.000Z",
+      "updatedAt": "2026-10-22T01:10:55.000Z",
+      "uid": "35240-79067074-01f6-417a-bb9a-ef3cec989130"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://localhost:7007/api/techdocs"
     }
-  ],
-  "info": {
-    "_postman_id": "4ef6355c-676d-4aaa-981b-1e3e6d2b81ce",
-    "name": "Backstage Auth Actions Sync API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

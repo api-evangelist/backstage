@@ -1,616 +1,621 @@
 {
+  "info": {
+    "_postman_id": "0e292227-5189-48f4-8ca5-5ccf3ab98a68",
+    "name": "Backstage Auth Authentication API",
+    "description": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:16.000Z",
+    "updatedAt": "2026-10-22T01:10:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0e292227-5189-48f4-8ca5-5ccf3ab98a68"
+  },
   "item": [
     {
-      "id": "a8a7ce4f-74e8-4b2b-80df-7de5b5e20a0b",
-      "name": "Authentication",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "{provider}",
       "item": [
         {
-          "id": "4d5e1d49-833c-4638-a584-f42898421518",
-          "name": "Backstage Start authentication flow",
-          "request": {
-            "name": "Backstage Start authentication flow",
-            "description": {
-              "content": "Initiates the OAuth or authentication flow for the specified provider. Redirects the user to the provider's login page. The flow type can be specified as either a popup-based or redirect-based flow.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":provider",
-                "start"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "flow",
-                  "value": "<string>",
-                  "description": "The authentication flow type."
-                },
-                {
-                  "disabled": false,
-                  "key": "env",
-                  "value": "<string>",
-                  "description": "The target environment for the authentication flow."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "provider",
-                  "description": "(Required) The authentication provider identifier (e.g., github, google, okta)."
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "start",
+          "item": [
             {
-              "id": "9a5bbbd0-5283-4a9e-83fe-9ec5bbf3baff",
-              "name": "Redirect to the authentication provider's login page.",
-              "originalRequest": {
+              "name": "Backstage Start authentication flow",
+              "id": "ca691e06-0d0a-4010-9c03-fd2f27775c1f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
                 "url": {
+                  "raw": "{{baseUrl}}/:provider/start?flow=redirect&env=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":provider",
                     "start"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "The authentication flow type.",
                       "key": "flow",
-                      "value": "<string>"
+                      "value": "redirect"
                     },
                     {
+                      "description": "The target environment for the authentication flow.",
                       "key": "env",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "348f8705-4058-4e9e-b075-06e4a5895721",
                       "key": "provider",
+                      "value": "<string>",
                       "description": "(Required) The authentication provider identifier (e.g., github, google, okta)."
                     }
                   ]
                 },
-                "method": "GET",
-                "body": {}
+                "description": "Initiates the OAuth or authentication flow for the specified provider. Redirects the user to the provider's login page. The flow type can be specified as either a popup-based or redirect-based flow."
               },
-              "status": "Found",
-              "code": 302,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ca3b13c2-8cf1-4e14-bb2d-73e032b9f4da",
-              "name": "The specified authentication provider is not configured.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":provider",
-                    "start"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "flow",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "env",
-                      "value": "<string>"
+                  "id": "cc7ab48a-1a97-4cf3-9cf6-fd16697b928e",
+                  "name": "Redirect to the authentication provider's login page.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/:provider/start?flow=redirect&env=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":provider",
+                        "start"
+                      ],
+                      "query": [
+                        {
+                          "description": "The authentication flow type.",
+                          "key": "flow",
+                          "value": "redirect"
+                        },
+                        {
+                          "description": "The target environment for the authentication flow.",
+                          "key": "env",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider"
+                        }
+                      ]
                     }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "provider",
-                      "description": "(Required) The authentication provider identifier (e.g., github, google, okta)."
-                    }
-                  ]
-                },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7e8c3675-7144-49e1-972e-e364b5d0cfe0",
-          "name": "Backstage Handle authentication callback (popup flow)",
-          "request": {
-            "name": "Backstage Handle authentication callback (popup flow)",
-            "description": {
-              "content": "Handles the callback from the authentication provider during the popup-based login flow. Processes the authorization code, exchanges it for tokens, and posts the result back to the parent window.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":provider",
-                "handler",
-                "frame"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "code",
-                  "value": "<string>",
-                  "description": "The authorization code returned by the provider."
-                },
-                {
-                  "disabled": false,
-                  "key": "state",
-                  "value": "<string>",
-                  "description": "The state parameter for CSRF protection."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "provider",
-                  "description": "(Required) The authentication provider identifier."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "text/html"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fd327250-5e77-4001-b691-4741dc383de9",
-              "name": "Returns an HTML page that posts the authentication result to the parent window.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":provider",
-                    "handler",
-                    "frame"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "code",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "provider",
-                      "description": "(Required) The authentication provider identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0c1fa15f-5482-4805-8e8c-117a407a23cb",
-          "name": "Backstage Refresh authentication token",
-          "request": {
-            "name": "Backstage Refresh authentication token",
-            "description": {
-              "content": "Refreshes the access token for the specified authentication provider using a stored refresh token. Returns a new Backstage token and updated provider tokens.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":provider",
-                "refresh"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "optional",
-                  "value": "<boolean>",
-                  "description": "If set, the refresh will not fail if no refresh token is available but will return an empty response instead."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "provider",
-                  "description": "(Required) The authentication provider identifier."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "backstage-auth"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "1fd1a2e9-dc6b-4cd2-a4fb-5e911818233b",
-              "name": "Refreshed token response.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":provider",
-                    "refresh"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "optional",
-                      "value": "<boolean>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "provider",
-                      "description": "(Required) The authentication provider identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "backstage-auth",
-                    "value": "<API Key>"
                   },
+                  "status": "Found",
+                  "code": 302,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:10:17.000Z",
+                  "updatedAt": "2026-10-22T01:10:17.000Z",
+                  "uid": "35240-cc7ab48a-1a97-4cf3-9cf6-fd16697b928e"
+                },
+                {
+                  "id": "c7691b92-ce17-4602-a0b5-664717323a98",
+                  "name": "The specified authentication provider is not configured.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/:provider/start?flow=redirect&env=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":provider",
+                        "start"
+                      ],
+                      "query": [
+                        {
+                          "description": "The authentication flow type.",
+                          "key": "flow",
+                          "value": "redirect"
+                        },
+                        {
+                          "description": "The target environment for the authentication flow.",
+                          "key": "env",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:10:17.000Z",
+                  "updatedAt": "2026-10-22T01:10:17.000Z",
+                  "uid": "35240-c7691b92-ce17-4602-a0b5-664717323a98"
+                }
+              ],
+              "createdAt": "2026-10-22T01:10:17.000Z",
+              "updatedAt": "2026-10-22T01:10:17.000Z",
+              "uid": "35240-ca691e06-0d0a-4010-9c03-fd2f27775c1f"
+            }
+          ],
+          "id": "ed2dd3d3-a570-4443-ab31-3b115ecaaf6f",
+          "createdAt": "2026-10-22T01:10:17.000Z",
+          "updatedAt": "2026-10-22T01:10:17.000Z",
+          "uid": "35240-ed2dd3d3-a570-4443-ab31-3b115ecaaf6f"
+        },
+        {
+          "name": "handler",
+          "item": [
+            {
+              "name": "frame",
+              "item": [
+                {
+                  "name": "Backstage Handle authentication callback (popup flow)",
+                  "id": "25403c6f-47d6-4d48-a65c-13393c3149a0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/html"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:provider/handler/frame?code=<string>&state=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":provider",
+                        "handler",
+                        "frame"
+                      ],
+                      "query": [
+                        {
+                          "description": "The authorization code returned by the provider.",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The state parameter for CSRF protection.",
+                          "key": "state",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "6ad04d64-6090-4b09-a92d-41adbcab4874",
+                          "key": "provider",
+                          "value": "<string>",
+                          "description": "(Required) The authentication provider identifier."
+                        }
+                      ]
+                    },
+                    "description": "Handles the callback from the authentication provider during the popup-based login flow. Processes the authorization code, exchanges it for tokens, and posts the result back to the parent window."
+                  },
+                  "response": [
+                    {
+                      "id": "25a7c565-de69-4040-babf-2cca819334b6",
+                      "name": "Returns an HTML page that posts the authentication result to the parent window.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/html"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:provider/handler/frame?code=<string>&state=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":provider",
+                            "handler",
+                            "frame"
+                          ],
+                          "query": [
+                            {
+                              "description": "The authorization code returned by the provider.",
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The state parameter for CSRF protection.",
+                              "key": "state",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "provider"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/html"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T01:10:17.000Z",
+                      "updatedAt": "2026-10-22T01:10:17.000Z",
+                      "uid": "35240-25a7c565-de69-4040-babf-2cca819334b6"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:10:17.000Z",
+                  "updatedAt": "2026-10-22T01:10:17.000Z",
+                  "uid": "35240-25403c6f-47d6-4d48-a65c-13393c3149a0"
+                }
+              ],
+              "id": "dec3e3b8-3e10-4372-98a2-f8791940560a",
+              "createdAt": "2026-10-22T01:10:17.000Z",
+              "updatedAt": "2026-10-22T01:10:17.000Z",
+              "uid": "35240-dec3e3b8-3e10-4372-98a2-f8791940560a"
+            }
+          ],
+          "id": "8bdc4066-16ed-4065-9b3e-61c993795ee1",
+          "createdAt": "2026-10-22T01:10:17.000Z",
+          "updatedAt": "2026-10-22T01:10:17.000Z",
+          "uid": "35240-8bdc4066-16ed-4065-9b3e-61c993795ee1"
+        },
+        {
+          "name": "refresh",
+          "item": [
+            {
+              "name": "Backstage Refresh authentication token",
+              "id": "d48309f0-bef5-476d-b61e-b332fa8ea8b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "backstage-auth",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"backstageIdentity\": {\n    \"token\": \"string\",\n    \"identity\": {\n      \"type\": \"string\",\n      \"userEntityRef\": \"string\",\n      \"ownershipEntityRefs\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"profile\": {\n    \"email\": \"string\",\n    \"displayName\": \"string\",\n    \"picture\": \"string\"\n  },\n  \"providerInfo\": {\n    \"accessToken\": \"string\",\n    \"expiresInSeconds\": 4813.190297245526\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0c1865a5-6e2d-4c88-b66e-1396202764dc",
-              "name": "No valid session or refresh token available.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/:provider/refresh?optional=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":provider",
                     "refresh"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "If set, the refresh will not fail if no refresh token is available but will return an empty response instead.",
                       "key": "optional",
                       "value": "<boolean>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "5227a31e-fa75-4fc4-aafc-e2a0b3e3ec2c",
                       "key": "provider",
+                      "value": "<string>",
                       "description": "(Required) The authentication provider identifier."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "backstage-auth",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Refreshes the access token for the specified authentication provider using a stored refresh token. Returns a new Backstage token and updated provider tokens."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "0e98b545-41d8-4494-86d2-d8af4791304e",
+                  "name": "Refreshed token response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "backstage-auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:provider/refresh?optional=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":provider",
+                        "refresh"
+                      ],
+                      "query": [
+                        {
+                          "description": "If set, the refresh will not fail if no refresh token is available but will return an empty response instead.",
+                          "key": "optional",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"backstageIdentity\": {\n    \"token\": \"<string>\",\n    \"identity\": {\n      \"type\": \"<string>\",\n      \"userEntityRef\": \"<string>\",\n      \"ownershipEntityRefs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"profile\": {\n    \"email\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"picture\": \"<string>\"\n  },\n  \"providerInfo\": {\n    \"accessToken\": \"<string>\",\n    \"expiresInSeconds\": \"<number>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:10:17.000Z",
+                  "updatedAt": "2026-10-22T01:10:17.000Z",
+                  "uid": "35240-0e98b545-41d8-4494-86d2-d8af4791304e"
+                },
+                {
+                  "id": "e5edfbb7-db1c-4a03-b090-46a750da38a7",
+                  "name": "No valid session or refresh token available.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "backstage-auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:provider/refresh?optional=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":provider",
+                        "refresh"
+                      ],
+                      "query": [
+                        {
+                          "description": "If set, the refresh will not fail if no refresh token is available but will return an empty response instead.",
+                          "key": "optional",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:10:17.000Z",
+                  "updatedAt": "2026-10-22T01:10:17.000Z",
+                  "uid": "35240-e5edfbb7-db1c-4a03-b090-46a750da38a7"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:10:17.000Z",
+              "updatedAt": "2026-10-22T01:10:17.000Z",
+              "uid": "35240-d48309f0-bef5-476d-b61e-b332fa8ea8b6"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "47623c90-d9bd-4815-8d3c-823aa78b1a65",
+          "createdAt": "2026-10-22T01:10:17.000Z",
+          "updatedAt": "2026-10-22T01:10:17.000Z",
+          "uid": "35240-47623c90-d9bd-4815-8d3c-823aa78b1a65"
         },
         {
-          "id": "7f452d61-6a38-4f3a-b8ca-e8279d3a3528",
-          "name": "Backstage Logout from provider",
-          "request": {
-            "name": "Backstage Logout from provider",
-            "description": {
-              "content": "Logs the user out from the specified authentication provider by clearing the session cookie and revoking tokens where supported.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":provider",
-                "logout"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "provider",
-                  "description": "(Required) The authentication provider identifier."
-                }
-              ]
-            },
-            "method": "POST",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "backstage-auth"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "logout",
+          "item": [
             {
-              "id": "cb872610-022b-4363-999b-d48db39375bd",
-              "name": "Successfully logged out.",
-              "originalRequest": {
+              "name": "Backstage Logout from provider",
+              "id": "a3eeb214-8394-4de3-b56c-bf444b44107c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "backstage-auth",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
                 "url": {
+                  "raw": "{{baseUrl}}/:provider/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":provider",
                     "logout"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "3e447bf7-bb5d-4db2-ba02-209459806096",
                       "key": "provider",
+                      "value": "<string>",
                       "description": "(Required) The authentication provider identifier."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "backstage-auth",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
+                "description": "Logs the user out from the specified authentication provider by clearing the session cookie and revoking tokens where supported."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "27101354-1c50-44de-bb16-2ebb38353368",
-              "name": "No active session found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":provider",
-                    "logout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "provider",
-                      "description": "(Required) The authentication provider identifier."
+                  "id": "5d3b963a-3212-403c-a947-f8da3e5bf96f",
+                  "name": "Successfully logged out.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "backstage-auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:provider/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":provider",
+                        "logout"
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider"
+                        }
+                      ]
                     }
-                  ]
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:10:17.000Z",
+                  "updatedAt": "2026-10-22T01:10:17.000Z",
+                  "uid": "35240-5d3b963a-3212-403c-a947-f8da3e5bf96f"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "backstage-auth",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "0a731ea4-9b7d-4778-b15c-37815e29cbc4",
+                  "name": "No active session found.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "backstage-auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:provider/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":provider",
+                        "logout"
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:10:17.000Z",
+                  "updatedAt": "2026-10-22T01:10:17.000Z",
+                  "uid": "35240-0a731ea4-9b7d-4778-b15c-37815e29cbc4"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:10:17.000Z",
+              "updatedAt": "2026-10-22T01:10:17.000Z",
+              "uid": "35240-a3eeb214-8394-4de3-b56c-bf444b44107c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f46e52cf-d301-4ff1-bd67-2062ac13960c",
+          "createdAt": "2026-10-22T01:10:17.000Z",
+          "updatedAt": "2026-10-22T01:10:17.000Z",
+          "uid": "35240-f46e52cf-d301-4ff1-bd67-2062ac13960c"
         }
       ],
-      "event": []
+      "id": "3b87543b-8e79-438d-a59c-89e43b9e1fd2",
+      "createdAt": "2026-10-22T01:10:17.000Z",
+      "updatedAt": "2026-10-22T01:10:17.000Z",
+      "uid": "35240-3b87543b-8e79-438d-a59c-89e43b9e1fd2"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://localhost:7007/api/auth"
     }
-  ],
-  "info": {
-    "_postman_id": "f05b4bc8-dcbd-45b6-815c-55e6d547ab1c",
-    "name": "Backstage Auth Actions Authentication API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

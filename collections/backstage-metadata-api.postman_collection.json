@@ -1,438 +1,441 @@
 {
+  "info": {
+    "_postman_id": "e9e78f29-ead4-44d6-9cd3-3ae978c13081",
+    "name": "Backstage TechDocs Metadata API",
+    "description": "The Backstage TechDocs API provides endpoints for generating, publishing, and serving technical documentation for catalog entities. TechDocs uses MkDocs under the hood to render Markdown documentation into static HTML pages. The API supports fetching rendered documentation, syncing docs from external storage, retrieving metadata, and managing documentation lifecycle.\n\nContact Support:\n Name: Backstage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:40.000Z",
+    "updatedAt": "2026-10-22T01:10:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9e78f29-ead4-44d6-9cd3-3ae978c13081"
+  },
   "item": [
     {
-      "id": "88f7a697-70b6-441e-a154-0a272da437f7",
-      "name": "Metadata",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "metadata",
       "item": [
         {
-          "id": "937e63d8-516f-406a-95c7-6c7b040c015d",
-          "name": "Backstage Get TechDocs metadata for an entity",
-          "request": {
-            "name": "Backstage Get TechDocs metadata for an entity",
-            "description": {
-              "content": "Returns the TechDocs metadata for a specific catalog entity, including the site name, description, and build information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "metadata",
-                "techdocs",
-                ":namespace",
-                ":kind",
-                ":name"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "default",
-                  "key": "namespace",
-                  "description": "(Required) The entity namespace."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "kind",
-                  "description": "(Required) The entity kind (e.g., Component, API)."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "name",
-                  "description": "(Required) The entity name."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "techdocs",
+          "item": [
             {
-              "id": "3b31766c-dafe-4fca-adbc-68157fc53222",
-              "name": "TechDocs metadata for the entity.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "metadata",
-                    "techdocs",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "default",
-                      "key": "namespace",
-                      "description": "(Required) The entity namespace."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) The entity kind (e.g., Component, API)."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) The entity name."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{namespace}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{kind}",
+                  "item": [
+                    {
+                      "name": "{name}",
+                      "item": [
+                        {
+                          "name": "Backstage Get TechDocs metadata for an entity",
+                          "id": "f8790d1d-fe3f-4048-8129-0c5da84f1f57",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metadata/techdocs/:namespace/:kind/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metadata",
+                                "techdocs",
+                                ":namespace",
+                                ":kind",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "845e7fd0-18f8-4aff-9618-b151d0fd2ab4",
+                                  "key": "namespace",
+                                  "value": "default",
+                                  "description": "(Required) The entity namespace."
+                                },
+                                {
+                                  "id": "77ac436f-ebef-45aa-9e9c-063a6191dd50",
+                                  "key": "kind",
+                                  "value": "<string>",
+                                  "description": "(Required) The entity kind (e.g., Component, API)."
+                                },
+                                {
+                                  "id": "4891973f-15f3-4bec-8d48-561a62e8223c",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) The entity name."
+                                }
+                              ]
+                            },
+                            "description": "Returns the TechDocs metadata for a specific catalog entity, including the site name, description, and build information."
+                          },
+                          "response": [
+                            {
+                              "id": "fbf166ae-2dc2-41f2-a39e-fd007461aee3",
+                              "name": "TechDocs metadata for the entity.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metadata/techdocs/:namespace/:kind/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metadata",
+                                    "techdocs",
+                                    ":namespace",
+                                    ":kind",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"site_name\": \"<string>\",\n  \"site_description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"build_timestamp\": \"<dateTime>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-10-22T01:10:40.000Z",
+                              "updatedAt": "2026-10-22T01:10:40.000Z",
+                              "uid": "35240-fbf166ae-2dc2-41f2-a39e-fd007461aee3"
+                            },
+                            {
+                              "id": "45e1d959-b05d-475b-9aeb-94db208ca01c",
+                              "name": "No TechDocs found for the specified entity.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metadata/techdocs/:namespace/:kind/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metadata",
+                                    "techdocs",
+                                    ":namespace",
+                                    ":kind",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:10:40.000Z",
+                              "updatedAt": "2026-10-22T01:10:40.000Z",
+                              "uid": "35240-45e1d959-b05d-475b-9aeb-94db208ca01c"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:10:40.000Z",
+                          "updatedAt": "2026-10-22T01:10:40.000Z",
+                          "uid": "35240-f8790d1d-fe3f-4048-8129-0c5da84f1f57"
+                        }
+                      ],
+                      "id": "61935265-cb2f-4e13-bede-00eaaa9a9199",
+                      "createdAt": "2026-10-22T01:10:40.000Z",
+                      "updatedAt": "2026-10-22T01:10:40.000Z",
+                      "uid": "35240-61935265-cb2f-4e13-bede-00eaaa9a9199"
+                    }
+                  ],
+                  "id": "19000739-084a-4121-a17b-f2eda75d5b2c",
+                  "createdAt": "2026-10-22T01:10:40.000Z",
+                  "updatedAt": "2026-10-22T01:10:40.000Z",
+                  "uid": "35240-19000739-084a-4121-a17b-f2eda75d5b2c"
                 }
               ],
-              "body": "{\n  \"site_name\": \"string\",\n  \"site_description\": \"string\",\n  \"etag\": \"string\",\n  \"build_timestamp\": \"2000-09-06T16:51:54.858Z\",\n  \"files\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e8915287-363f-4388-8a80-9f05b48e58af",
-              "name": "No TechDocs found for the specified entity.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "metadata",
-                    "techdocs",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "default",
-                      "key": "namespace",
-                      "description": "(Required) The entity namespace."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) The entity kind (e.g., Component, API)."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) The entity name."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "f6e31d4f-69cd-4e95-a277-d9cadb2fd570",
+              "createdAt": "2026-10-22T01:10:40.000Z",
+              "updatedAt": "2026-10-22T01:10:40.000Z",
+              "uid": "35240-f6e31d4f-69cd-4e95-a277-d9cadb2fd570"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a0f524c5-1377-4296-bd33-b5d8a9a9917e",
+          "createdAt": "2026-10-22T01:10:40.000Z",
+          "updatedAt": "2026-10-22T01:10:40.000Z",
+          "uid": "35240-a0f524c5-1377-4296-bd33-b5d8a9a9917e"
         },
         {
-          "id": "05dfd4a1-74c2-4d05-bd4f-3aa7e5d4d4f4",
-          "name": "Backstage Get entity metadata for TechDocs",
-          "request": {
-            "name": "Backstage Get entity metadata for TechDocs",
-            "description": {
-              "content": "Returns catalog entity metadata relevant to TechDocs rendering, including the entity name, description, and TechDocs annotations.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "metadata",
-                "entity",
-                ":namespace",
-                ":kind",
-                ":name"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "namespace",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "kind",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "name",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "entity",
+          "item": [
             {
-              "id": "f6113c3c-47aa-45ed-885d-6018caef777e",
-              "name": "Entity metadata for TechDocs.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "metadata",
-                    "entity",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{namespace}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{kind}",
+                  "item": [
+                    {
+                      "name": "{name}",
+                      "item": [
+                        {
+                          "name": "Backstage Get entity metadata for TechDocs",
+                          "id": "0494bae8-892b-4ceb-b160-084d0ccacf67",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metadata/entity/:namespace/:kind/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metadata",
+                                "entity",
+                                ":namespace",
+                                ":kind",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1e74f2be-df2a-4c88-9887-248af14299c1",
+                                  "key": "namespace",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "3ee17107-d1d4-4c40-b1f9-07d5924f1c21",
+                                  "key": "kind",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "2757d0bf-e2c4-452d-a4a6-c1eea8858f49",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns catalog entity metadata relevant to TechDocs rendering, including the entity name, description, and TechDocs annotations."
+                          },
+                          "response": [
+                            {
+                              "id": "b3a7463a-07c3-406c-a775-744e5f6df984",
+                              "name": "Entity metadata for TechDocs.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metadata/entity/:namespace/:kind/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metadata",
+                                    "entity",
+                                    ":namespace",
+                                    ":kind",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-10-22T01:10:40.000Z",
+                              "updatedAt": "2026-10-22T01:10:40.000Z",
+                              "uid": "35240-b3a7463a-07c3-406c-a775-744e5f6df984"
+                            },
+                            {
+                              "id": "bef72704-2947-434b-9fdf-a625e21528a9",
+                              "name": "Entity not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metadata/entity/:namespace/:kind/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metadata",
+                                    "entity",
+                                    ":namespace",
+                                    ":kind",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:10:40.000Z",
+                              "updatedAt": "2026-10-22T01:10:40.000Z",
+                              "uid": "35240-bef72704-2947-434b-9fdf-a625e21528a9"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:10:40.000Z",
+                          "updatedAt": "2026-10-22T01:10:40.000Z",
+                          "uid": "35240-0494bae8-892b-4ceb-b160-084d0ccacf67"
+                        }
+                      ],
+                      "id": "02bc307c-5359-4230-bad0-935c144aa293",
+                      "createdAt": "2026-10-22T01:10:40.000Z",
+                      "updatedAt": "2026-10-22T01:10:40.000Z",
+                      "uid": "35240-02bc307c-5359-4230-bad0-935c144aa293"
+                    }
+                  ],
+                  "id": "312c6805-1c31-4c6b-bb82-d009f439f391",
+                  "createdAt": "2026-10-22T01:10:40.000Z",
+                  "updatedAt": "2026-10-22T01:10:40.000Z",
+                  "uid": "35240-312c6805-1c31-4c6b-bb82-d009f439f391"
                 }
               ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ab6c03ba-8f62-408b-b9c3-c00032ffe7a4",
-              "name": "Entity not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "metadata",
-                    "entity",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "0bff6063-fc6c-47be-bdaf-a2a1147d078b",
+              "createdAt": "2026-10-22T01:10:40.000Z",
+              "updatedAt": "2026-10-22T01:10:40.000Z",
+              "uid": "35240-0bff6063-fc6c-47be-bdaf-a2a1147d078b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6ecc7d67-ae67-44b5-80d1-d7f87ef91f8a",
+          "createdAt": "2026-10-22T01:10:40.000Z",
+          "updatedAt": "2026-10-22T01:10:40.000Z",
+          "uid": "35240-6ecc7d67-ae67-44b5-80d1-d7f87ef91f8a"
         }
       ],
-      "event": []
+      "id": "d346b1c2-f8cc-4e2d-bfc2-9b6b5e1f37d3",
+      "createdAt": "2026-10-22T01:10:40.000Z",
+      "updatedAt": "2026-10-22T01:10:40.000Z",
+      "uid": "35240-d346b1c2-f8cc-4e2d-bfc2-9b6b5e1f37d3"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://localhost:7007/api/techdocs"
     }
-  ],
-  "info": {
-    "_postman_id": "0e8fe1b9-5b63-4e71-9591-acd3ebebe89c",
-    "name": "Backstage Auth Actions Metadata API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

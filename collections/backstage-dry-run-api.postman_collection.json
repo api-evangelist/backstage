@@ -1,0 +1,188 @@
+{
+  "info": {
+    "_postman_id": "ffffc3e1-1158-4e46-8118-7e559e07f793",
+    "name": "scaffolder Dry Run API",
+    "description": "The Backstage backend plugin that helps you create new things",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:39.000Z",
+    "updatedAt": "2026-10-22T01:11:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ffffc3e1-1158-4e46-8118-7e559e07f793"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "dry-run",
+          "item": [
+            {
+              "name": "Dry run",
+              "id": "88b57746-921c-4aac-82ad-f20dc8af0786",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template\": {},\n  \"values\": {\n    \"in_a26\": {},\n    \"anim_e\": {}\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ],\n  \"secrets\": {\n    \"consequat_6\": \"<string>\",\n    \"adipisicing_a\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/dry-run",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "dry-run"
+                  ]
+                },
+                "description": "Perform a dry-run of a template"
+              },
+              "response": [
+                {
+                  "id": "518e2bf6-cc27-47c4-9594-edc3030f0289",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"template\": {},\n  \"values\": {\n    \"in_a26\": {},\n    \"anim_e\": {}\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ],\n  \"secrets\": {\n    \"consequat_6\": \"<string>\",\n    \"adipisicing_a\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/dry-run",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "dry-run"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"directoryContents\": [\n    {\n      \"base64Content\": \"<string>\",\n      \"content\": \"<string>\",\n      \"path\": \"<string>\",\n      \"executable\": \"<boolean>\",\n      \"symlink\": \"<boolean>\"\n    },\n    {\n      \"base64Content\": \"<string>\",\n      \"content\": \"<string>\",\n      \"path\": \"<string>\",\n      \"executable\": \"<boolean>\",\n      \"symlink\": \"<boolean>\"\n    }\n  ],\n  \"log\": [\n    {\n      \"body\": {\n        \"message\": \"<string>\",\n        \"status\": \"processing\",\n        \"stepId\": \"<string>\"\n      }\n    },\n    {\n      \"body\": {\n        \"message\": \"<string>\",\n        \"status\": \"cancelled\",\n        \"stepId\": \"<string>\"\n      }\n    }\n  ],\n  \"output\": {},\n  \"steps\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"action\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"action\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:11:40.000Z",
+                  "updatedAt": "2026-10-22T01:11:40.000Z",
+                  "uid": "35240-518e2bf6-cc27-47c4-9594-edc3030f0289"
+                },
+                {
+                  "id": "9e5070f3-0822-433b-9ee4-7c796384d0c5",
+                  "name": "Validation errors.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"template\": {},\n  \"values\": {\n    \"in_a26\": {},\n    \"anim_e\": {}\n  },\n  \"directoryContents\": [\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"base64Content\": \"<string>\"\n    }\n  ],\n  \"secrets\": {\n    \"consequat_6\": \"<string>\",\n    \"adipisicing_a\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/dry-run",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "dry-run"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"property\": \"<string>\",\n      \"message\": \"<string>\",\n      \"schema\": {},\n      \"instance\": {},\n      \"name\": \"<string>\",\n      \"argument\": \"<boolean>\",\n      \"stack\": \"<string>\"\n    },\n    {\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"property\": \"<string>\",\n      \"message\": \"<string>\",\n      \"schema\": {},\n      \"instance\": {},\n      \"name\": \"<string>\",\n      \"argument\": \"<boolean>\",\n      \"stack\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:11:40.000Z",
+                  "updatedAt": "2026-10-22T01:11:40.000Z",
+                  "uid": "35240-9e5070f3-0822-433b-9ee4-7c796384d0c5"
+                }
+              ],
+              "createdAt": "2026-10-22T01:11:40.000Z",
+              "updatedAt": "2026-10-22T01:11:40.000Z",
+              "uid": "35240-88b57746-921c-4aac-82ad-f20dc8af0786"
+            }
+          ],
+          "id": "49dc1ea8-05da-4846-bb5c-a2c074ab3581",
+          "createdAt": "2026-10-22T01:11:40.000Z",
+          "updatedAt": "2026-10-22T01:11:40.000Z",
+          "uid": "35240-49dc1ea8-05da-4846-bb5c-a2c074ab3581"
+        }
+      ],
+      "id": "beb2803f-6e86-428c-9ecb-6d2261bea585",
+      "createdAt": "2026-10-22T01:11:40.000Z",
+      "updatedAt": "2026-10-22T01:11:40.000Z",
+      "uid": "35240-beb2803f-6e86-428c-9ecb-6d2261bea585"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

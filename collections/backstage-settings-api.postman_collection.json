@@ -1,0 +1,287 @@
+{
+  "info": {
+    "_postman_id": "e0a929a8-89a1-478e-8902-c7afc3e7d4b0",
+    "name": "notifications Settings API",
+    "description": "The Backstage backend plugin that powers user notifications.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:15.000Z",
+    "updatedAt": "2026-10-22T01:12:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e0a929a8-89a1-478e-8902-c7afc3e7d4b0"
+  },
+  "item": [
+    {
+      "name": "settings",
+      "item": [
+        {
+          "name": "Get settings",
+          "id": "821b158e-08ff-4398-96ae-1d74c44f7a6f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/settings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "settings"
+              ]
+            },
+            "description": "Get the current user's notification settings, merged with defaults."
+          },
+          "response": [
+            {
+              "id": "ce6050b1-f8a0-4785-88ed-564ed5c91661",
+              "name": "Effective notification settings for the user.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/settings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settings"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"channels\": [\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:12:15.000Z",
+              "updatedAt": "2026-10-22T01:12:15.000Z",
+              "uid": "35240-ce6050b1-f8a0-4785-88ed-564ed5c91661"
+            },
+            {
+              "id": "0e80d243-641e-435b-b80d-1e07d8e3917e",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/settings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settings"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:12:15.000Z",
+              "updatedAt": "2026-10-22T01:12:15.000Z",
+              "uid": "35240-0e80d243-641e-435b-b80d-1e07d8e3917e"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:15.000Z",
+          "updatedAt": "2026-10-22T01:12:15.000Z",
+          "uid": "35240-821b158e-08ff-4398-96ae-1d74c44f7a6f"
+        },
+        {
+          "name": "Update settings",
+          "id": "6eb18702-0f6f-4316-a7ea-557906e5f51f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channels\": [\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/settings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "settings"
+              ]
+            },
+            "description": "Update the current user's notification settings."
+          },
+          "response": [
+            {
+              "id": "f1fbfc66-3bab-4cc1-9f7b-61fa424bd08c",
+              "name": "Effective notification settings for the user.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channels\": [\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/settings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settings"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"channels\": [\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:12:15.000Z",
+              "updatedAt": "2026-10-22T01:12:15.000Z",
+              "uid": "35240-f1fbfc66-3bab-4cc1-9f7b-61fa424bd08c"
+            },
+            {
+              "id": "34218078-8820-45e7-aec6-297626acbd20",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channels\": [\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"origins\": [\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"enabled\": \"<boolean>\",\n          \"topics\": [\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"enabled\": \"<boolean>\"\n            }\n          ]\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/settings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settings"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:12:15.000Z",
+              "updatedAt": "2026-10-22T01:12:15.000Z",
+              "uid": "35240-34218078-8820-45e7-aec6-297626acbd20"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:15.000Z",
+          "updatedAt": "2026-10-22T01:12:15.000Z",
+          "uid": "35240-6eb18702-0f6f-4316-a7ea-557906e5f51f"
+        }
+      ],
+      "id": "03a44914-0bb1-4cb0-976f-ae12a73ec6b8",
+      "createdAt": "2026-10-22T01:12:15.000Z",
+      "updatedAt": "2026-10-22T01:12:15.000Z",
+      "uid": "35240-03a44914-0bb1-4cb0-976f-ae12a73ec6b8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

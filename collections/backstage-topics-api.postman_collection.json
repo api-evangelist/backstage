@@ -1,0 +1,206 @@
+{
+  "info": {
+    "_postman_id": "5b11ec48-e42d-49ef-a628-ea8c7d438c44",
+    "name": "notifications Topics API",
+    "description": "The Backstage backend plugin that powers user notifications.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:12:34.000Z",
+    "updatedAt": "2026-10-22T01:12:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5b11ec48-e42d-49ef-a628-ea8c7d438c44"
+  },
+  "item": [
+    {
+      "name": "topics",
+      "item": [
+        {
+          "name": "Get topics",
+          "id": "2a6e8a62-d236-4038-b158-d182b13eeb52",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/topics?search=<string>&read=false&saved=false&createdAfter=<string>&minimumSeverity=low",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "topics"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "key": "read",
+                  "value": "false"
+                },
+                {
+                  "key": "saved",
+                  "value": "false"
+                },
+                {
+                  "description": "ISO 8601 date-time string. Validated by the handler.",
+                  "key": "createdAfter",
+                  "value": "<string>"
+                },
+                {
+                  "key": "minimumSeverity",
+                  "value": "low"
+                }
+              ]
+            },
+            "description": "List notification topics that the user has received notifications on."
+          },
+          "response": [
+            {
+              "id": "cb575110-fbe3-4518-bb1d-69480691b5a6",
+              "name": "The list of topics.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/topics?search=<string>&read=false&saved=false&createdAfter=<string>&minimumSeverity=low",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "read",
+                      "value": "false"
+                    },
+                    {
+                      "key": "saved",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 8601 date-time string. Validated by the handler.",
+                      "key": "createdAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumSeverity",
+                      "value": "low"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"topics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-10-22T01:12:34.000Z",
+              "updatedAt": "2026-10-22T01:12:34.000Z",
+              "uid": "35240-cb575110-fbe3-4518-bb1d-69480691b5a6"
+            },
+            {
+              "id": "a9040fad-1fe8-4fc1-a731-4e22e8e21f7d",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/topics?search=<string>&read=false&saved=false&createdAfter=<string>&minimumSeverity=low",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "read",
+                      "value": "false"
+                    },
+                    {
+                      "key": "saved",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 8601 date-time string. Validated by the handler.",
+                      "key": "createdAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumSeverity",
+                      "value": "low"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:12:34.000Z",
+              "updatedAt": "2026-10-22T01:12:34.000Z",
+              "uid": "35240-a9040fad-1fe8-4fc1-a731-4e22e8e21f7d"
+            }
+          ],
+          "createdAt": "2026-10-22T01:12:34.000Z",
+          "updatedAt": "2026-10-22T01:12:34.000Z",
+          "uid": "35240-2a6e8a62-d236-4038-b158-d182b13eeb52"
+        }
+      ],
+      "id": "7abf9d7a-e683-4548-b1a8-5b92e680277d",
+      "createdAt": "2026-10-22T01:12:34.000Z",
+      "updatedAt": "2026-10-22T01:12:34.000Z",
+      "uid": "35240-7abf9d7a-e683-4548-b1a8-5b92e680277d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

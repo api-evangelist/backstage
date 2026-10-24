@@ -1,0 +1,1229 @@
+{
+  "info": {
+    "_postman_id": "36e78470-3fe4-4e47-a965-d30826233a07",
+    "name": "Notifications API",
+    "description": "The Backstage backend plugin that powers user notifications.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:57.000Z",
+    "updatedAt": "2026-10-22T01:11:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-36e78470-3fe4-4e47-a965-d30826233a07"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "List notifications legacy",
+          "id": "94dcbe9a-f3e5-4681-bedd-ebd5395ca606",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?offset=<integer>&limit=<integer>&orderField=<string>&topic=<string>&search=<string>&read=true&saved=true&createdAfter=<string>&minimumSeverity=normal",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "One or more \"field,direction\" pairs. Direction is \"asc\" or \"desc\". Pass multiple to express compound sorts.",
+                  "key": "orderField",
+                  "value": "<string>"
+                },
+                {
+                  "key": "topic",
+                  "value": "<string>"
+                },
+                {
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "key": "read",
+                  "value": "true"
+                },
+                {
+                  "key": "saved",
+                  "value": "true"
+                },
+                {
+                  "description": "ISO 8601 date-time string. Validated by the handler.",
+                  "key": "createdAfter",
+                  "value": "<string>"
+                },
+                {
+                  "key": "minimumSeverity",
+                  "value": "normal"
+                }
+              ]
+            },
+            "description": "Deprecated alias for `GET /notifications`."
+          },
+          "response": [
+            {
+              "id": "1b4b42f0-3e62-45d0-a17b-1f18803a17c3",
+              "name": "A page of notifications for the current user.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?offset=<integer>&limit=<integer>&orderField=<string>&topic=<string>&search=<string>&read=true&saved=true&createdAfter=<string>&minimumSeverity=normal",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "One or more \"field,direction\" pairs. Direction is \"asc\" or \"desc\". Pass multiple to express compound sorts.",
+                      "key": "orderField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "topic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "read",
+                      "value": "true"
+                    },
+                    {
+                      "key": "saved",
+                      "value": "true"
+                    },
+                    {
+                      "description": "ISO 8601 date-time string. Validated by the handler.",
+                      "key": "createdAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumSeverity",
+                      "value": "normal"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"notifications\": [\n    {\n      \"id\": \"<string>\",\n      \"user\": \"<string,null>\",\n      \"created\": \"<dateTime>\",\n      \"origin\": \"<string>\",\n      \"payload\": {\n        \"title\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"link\": \"<string,null>\",\n        \"severity\": \"high\",\n        \"topic\": \"<string,null>\",\n        \"scope\": \"<string,null>\",\n        \"icon\": \"<string,null>\",\n        \"metadata\": {\n          \"consecteturb0\": -30721939,\n          \"dolor_15\": 57572893.11037135\n        }\n      },\n      \"saved\": \"<string,null-date-time>\",\n      \"read\": \"<string,null-date-time>\",\n      \"updated\": \"<string,null-date-time>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"user\": \"<string,null>\",\n      \"created\": \"<dateTime>\",\n      \"origin\": \"<string>\",\n      \"payload\": {\n        \"title\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"link\": \"<string,null>\",\n        \"severity\": \"normal\",\n        \"topic\": \"<string,null>\",\n        \"scope\": \"<string,null>\",\n        \"icon\": \"<string,null>\",\n        \"metadata\": {\n          \"culpa_9\": -47726100,\n          \"officia_97\": 67898462\n        }\n      },\n      \"saved\": \"<string,null-date-time>\",\n      \"read\": \"<string,null-date-time>\",\n      \"updated\": \"<string,null-date-time>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-1b4b42f0-3e62-45d0-a17b-1f18803a17c3"
+            },
+            {
+              "id": "3560ef56-5318-4585-8fed-bd3760157ec1",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?offset=<integer>&limit=<integer>&orderField=<string>&topic=<string>&search=<string>&read=true&saved=true&createdAfter=<string>&minimumSeverity=normal",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "One or more \"field,direction\" pairs. Direction is \"asc\" or \"desc\". Pass multiple to express compound sorts.",
+                      "key": "orderField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "topic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "read",
+                      "value": "true"
+                    },
+                    {
+                      "key": "saved",
+                      "value": "true"
+                    },
+                    {
+                      "description": "ISO 8601 date-time string. Validated by the handler.",
+                      "key": "createdAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumSeverity",
+                      "value": "normal"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-3560ef56-5318-4585-8fed-bd3760157ec1"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-94dcbe9a-f3e5-4681-bedd-ebd5395ca606"
+        },
+        {
+          "name": "Create notifications legacy",
+          "id": "607a6bbc-056f-4c6c-ae97-65ed044ee56e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": {\n    \"type\": \"entity\",\n    \"entityRef\": \"<string>\",\n    \"excludeEntityRef\": \"<string>\"\n  },\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"link\": \"<string>\",\n    \"severity\": \"normal\",\n    \"topic\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"metadata\": {\n      \"nulla59\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Deprecated alias for `POST /notifications`."
+          },
+          "response": [
+            {
+              "id": "d78ad345-8978-455a-99ce-0578b9fbdbc1",
+              "name": "The notifications that were created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": {\n    \"type\": \"entity\",\n    \"entityRef\": \"<string>\",\n    \"excludeEntityRef\": \"<string>\"\n  },\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"link\": \"<string>\",\n    \"severity\": \"normal\",\n    \"topic\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"metadata\": {\n      \"nulla59\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"critical\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"esse4f9\": true\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"critical\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"ut_d3\": -29268530.318481073,\n        \"adipisicing_e3\": -72800952.7910448,\n        \"culpa96c\": 38569921.913243055,\n        \"eu_59b\": -61638262\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  }\n]",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-d78ad345-8978-455a-99ce-0578b9fbdbc1"
+            },
+            {
+              "id": "69f38224-fa1a-458e-be41-2824875d1c9c",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": {\n    \"type\": \"entity\",\n    \"entityRef\": \"<string>\",\n    \"excludeEntityRef\": \"<string>\"\n  },\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"link\": \"<string>\",\n    \"severity\": \"normal\",\n    \"topic\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"metadata\": {\n      \"nulla59\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-69f38224-fa1a-458e-be41-2824875d1c9c"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-607a6bbc-056f-4c6c-ae97-65ed044ee56e"
+        }
+      ],
+      "id": "5cbaffc7-4cd4-4df7-93b2-edc2a3039b3f",
+      "createdAt": "2026-10-22T01:11:58.000Z",
+      "updatedAt": "2026-10-22T01:11:58.000Z",
+      "uid": "35240-5cbaffc7-4cd4-4df7-93b2-edc2a3039b3f"
+    },
+    {
+      "name": "notifications",
+      "item": [
+        {
+          "name": "update",
+          "item": [
+            {
+              "name": "Update notifications",
+              "id": "1526b1da-92ac-4d2c-a0e4-ce4a4adc7142",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read\": \"<boolean>\",\n  \"saved\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notifications/update",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications",
+                    "update"
+                  ]
+                },
+                "description": "Mark notifications as read/unread or saved/unsaved."
+              },
+              "response": [
+                {
+                  "id": "671a7ff6-5d9e-48f6-8a69-59c09067955c",
+                  "name": "The notifications that were updated.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read\": \"<boolean>\",\n  \"saved\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/update",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        "update"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"critical\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"esse4f9\": true\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"critical\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"ut_d3\": -29268530.318481073,\n        \"adipisicing_e3\": -72800952.7910448,\n        \"culpa96c\": 38569921.913243055,\n        \"eu_59b\": -61638262\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  }\n]",
+                  "createdAt": "2026-10-22T01:11:58.000Z",
+                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                  "uid": "35240-671a7ff6-5d9e-48f6-8a69-59c09067955c"
+                },
+                {
+                  "id": "fd8fd65e-9414-4da4-8300-0dddcee7f002",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json; charset=utf-8"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read\": \"<boolean>\",\n  \"saved\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/update",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        "update"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:58.000Z",
+                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                  "uid": "35240-fd8fd65e-9414-4da4-8300-0dddcee7f002"
+                }
+              ],
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-1526b1da-92ac-4d2c-a0e4-ce4a4adc7142"
+            }
+          ],
+          "id": "7ad91974-3d07-4713-bbe1-c453bd8f4022",
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-7ad91974-3d07-4713-bbe1-c453bd8f4022"
+        },
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get notification",
+              "id": "8f346c7c-fab3-461f-a562-7a154cf0adfa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notifications/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "124eb840-7bd3-4090-8865-2230542f67ef",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get a single notification by id for the current user."
+              },
+              "response": [
+                {
+                  "id": "01df99c1-26f8-4d6e-aaa9-0e829c54ee72",
+                  "name": "The requested notification.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"user\": \"<string,null>\",\n  \"created\": \"<dateTime>\",\n  \"origin\": \"<string>\",\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"link\": \"<string,null>\",\n    \"severity\": \"critical\",\n    \"topic\": \"<string,null>\",\n    \"scope\": \"<string,null>\",\n    \"icon\": \"<string,null>\",\n    \"metadata\": {\n      \"adb_6\": false,\n      \"ullamcof\": true,\n      \"fugiat08\": \"incididunt pariatur\",\n      \"ullamcoeb\": 68214695\n    }\n  },\n  \"saved\": \"<string,null-date-time>\",\n  \"read\": \"<string,null-date-time>\",\n  \"updated\": \"<string,null-date-time>\"\n}",
+                  "createdAt": "2026-10-22T01:11:58.000Z",
+                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                  "uid": "35240-01df99c1-26f8-4d6e-aaa9-0e829c54ee72"
+                },
+                {
+                  "id": "a84ec23b-0edc-4a9f-9436-cbcd671c4a4b",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json; charset=utf-8"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:58.000Z",
+                  "updatedAt": "2026-10-22T01:11:58.000Z",
+                  "uid": "35240-a84ec23b-0edc-4a9f-9436-cbcd671c4a4b"
+                }
+              ],
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-8f346c7c-fab3-461f-a562-7a154cf0adfa"
+            }
+          ],
+          "id": "ff581556-39ff-4d90-be07-48f2e49307c1",
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-ff581556-39ff-4d90-be07-48f2e49307c1"
+        },
+        {
+          "name": "List notifications",
+          "id": "1c135f12-a006-4de2-8f11-d970eb78f2e5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications?offset=<integer>&limit=<integer>&orderField=<string>&topic=<string>&search=<string>&read=true&saved=true&createdAfter=<string>&minimumSeverity=normal",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "One or more \"field,direction\" pairs. Direction is \"asc\" or \"desc\". Pass multiple to express compound sorts.",
+                  "key": "orderField",
+                  "value": "<string>"
+                },
+                {
+                  "key": "topic",
+                  "value": "<string>"
+                },
+                {
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "key": "read",
+                  "value": "true"
+                },
+                {
+                  "key": "saved",
+                  "value": "true"
+                },
+                {
+                  "description": "ISO 8601 date-time string. Validated by the handler.",
+                  "key": "createdAfter",
+                  "value": "<string>"
+                },
+                {
+                  "key": "minimumSeverity",
+                  "value": "normal"
+                }
+              ]
+            },
+            "description": "List notifications for the current user."
+          },
+          "response": [
+            {
+              "id": "04074ec4-b38c-4785-a3cd-d72777363f66",
+              "name": "A page of notifications for the current user.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notifications?offset=<integer>&limit=<integer>&orderField=<string>&topic=<string>&search=<string>&read=true&saved=true&createdAfter=<string>&minimumSeverity=normal",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "One or more \"field,direction\" pairs. Direction is \"asc\" or \"desc\". Pass multiple to express compound sorts.",
+                      "key": "orderField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "topic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "read",
+                      "value": "true"
+                    },
+                    {
+                      "key": "saved",
+                      "value": "true"
+                    },
+                    {
+                      "description": "ISO 8601 date-time string. Validated by the handler.",
+                      "key": "createdAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumSeverity",
+                      "value": "normal"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"notifications\": [\n    {\n      \"id\": \"<string>\",\n      \"user\": \"<string,null>\",\n      \"created\": \"<dateTime>\",\n      \"origin\": \"<string>\",\n      \"payload\": {\n        \"title\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"link\": \"<string,null>\",\n        \"severity\": \"high\",\n        \"topic\": \"<string,null>\",\n        \"scope\": \"<string,null>\",\n        \"icon\": \"<string,null>\",\n        \"metadata\": {\n          \"consecteturb0\": -30721939,\n          \"dolor_15\": 57572893.11037135\n        }\n      },\n      \"saved\": \"<string,null-date-time>\",\n      \"read\": \"<string,null-date-time>\",\n      \"updated\": \"<string,null-date-time>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"user\": \"<string,null>\",\n      \"created\": \"<dateTime>\",\n      \"origin\": \"<string>\",\n      \"payload\": {\n        \"title\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"link\": \"<string,null>\",\n        \"severity\": \"normal\",\n        \"topic\": \"<string,null>\",\n        \"scope\": \"<string,null>\",\n        \"icon\": \"<string,null>\",\n        \"metadata\": {\n          \"culpa_9\": -47726100,\n          \"officia_97\": 67898462\n        }\n      },\n      \"saved\": \"<string,null-date-time>\",\n      \"read\": \"<string,null-date-time>\",\n      \"updated\": \"<string,null-date-time>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-04074ec4-b38c-4785-a3cd-d72777363f66"
+            },
+            {
+              "id": "ff12e44a-a418-45ce-8872-201b2cd8b65d",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notifications?offset=<integer>&limit=<integer>&orderField=<string>&topic=<string>&search=<string>&read=true&saved=true&createdAfter=<string>&minimumSeverity=normal",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "One or more \"field,direction\" pairs. Direction is \"asc\" or \"desc\". Pass multiple to express compound sorts.",
+                      "key": "orderField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "topic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "read",
+                      "value": "true"
+                    },
+                    {
+                      "key": "saved",
+                      "value": "true"
+                    },
+                    {
+                      "description": "ISO 8601 date-time string. Validated by the handler.",
+                      "key": "createdAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumSeverity",
+                      "value": "normal"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-ff12e44a-a418-45ce-8872-201b2cd8b65d"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-1c135f12-a006-4de2-8f11-d970eb78f2e5"
+        },
+        {
+          "name": "Create notifications",
+          "id": "dc9462c9-7698-4f36-bafb-f5d9d3747de6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": {\n    \"type\": \"entity\",\n    \"entityRef\": \"<string>\",\n    \"excludeEntityRef\": \"<string>\"\n  },\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"link\": \"<string>\",\n    \"severity\": \"normal\",\n    \"topic\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"metadata\": {\n      \"nulla59\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications"
+              ]
+            },
+            "description": "Send a notification to one or more recipients (service credentials required)."
+          },
+          "response": [
+            {
+              "id": "48c3ed46-abee-40f4-97da-b056e1db18a0",
+              "name": "The notifications that were created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": {\n    \"type\": \"entity\",\n    \"entityRef\": \"<string>\",\n    \"excludeEntityRef\": \"<string>\"\n  },\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"link\": \"<string>\",\n    \"severity\": \"normal\",\n    \"topic\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"metadata\": {\n      \"nulla59\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"critical\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"esse4f9\": true\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"user\": \"<string,null>\",\n    \"created\": \"<dateTime>\",\n    \"origin\": \"<string>\",\n    \"payload\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"link\": \"<string,null>\",\n      \"severity\": \"critical\",\n      \"topic\": \"<string,null>\",\n      \"scope\": \"<string,null>\",\n      \"icon\": \"<string,null>\",\n      \"metadata\": {\n        \"ut_d3\": -29268530.318481073,\n        \"adipisicing_e3\": -72800952.7910448,\n        \"culpa96c\": 38569921.913243055,\n        \"eu_59b\": -61638262\n      }\n    },\n    \"saved\": \"<string,null-date-time>\",\n    \"read\": \"<string,null-date-time>\",\n    \"updated\": \"<string,null-date-time>\"\n  }\n]",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-48c3ed46-abee-40f4-97da-b056e1db18a0"
+            },
+            {
+              "id": "54baef69-9c4b-4baf-8b56-978b6e641ec7",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": {\n    \"type\": \"entity\",\n    \"entityRef\": \"<string>\",\n    \"excludeEntityRef\": \"<string>\"\n  },\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"link\": \"<string>\",\n    \"severity\": \"normal\",\n    \"topic\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"metadata\": {\n      \"nulla59\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-54baef69-9c4b-4baf-8b56-978b6e641ec7"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-dc9462c9-7698-4f36-bafb-f5d9d3747de6"
+        }
+      ],
+      "id": "a807e1ec-3848-4507-8d20-5369708c3a18",
+      "createdAt": "2026-10-22T01:11:58.000Z",
+      "updatedAt": "2026-10-22T01:11:58.000Z",
+      "uid": "35240-a807e1ec-3848-4507-8d20-5369708c3a18"
+    },
+    {
+      "name": "{id}",
+      "item": [
+        {
+          "name": "Get notification legacy",
+          "id": "f993b44d-b412-4585-a26e-68bcf2b2d582",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "id": "52bff1ce-ff96-4fc8-9f4b-4835f76997bc",
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "description": "Deprecated alias for `GET /notifications/{id}`."
+          },
+          "response": [
+            {
+              "id": "562557bf-37ea-4eb6-a7ca-4bace675353c",
+              "name": "The requested notification.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"user\": \"<string,null>\",\n  \"created\": \"<dateTime>\",\n  \"origin\": \"<string>\",\n  \"payload\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"link\": \"<string,null>\",\n    \"severity\": \"critical\",\n    \"topic\": \"<string,null>\",\n    \"scope\": \"<string,null>\",\n    \"icon\": \"<string,null>\",\n    \"metadata\": {\n      \"adb_6\": false,\n      \"ullamcof\": true,\n      \"fugiat08\": \"incididunt pariatur\",\n      \"ullamcoeb\": 68214695\n    }\n  },\n  \"saved\": \"<string,null-date-time>\",\n  \"read\": \"<string,null-date-time>\",\n  \"updated\": \"<string,null-date-time>\"\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-562557bf-37ea-4eb6-a7ca-4bace675353c"
+            },
+            {
+              "id": "93627ee1-6f79-4477-9b8a-6c554ceb8326",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json; charset=utf-8"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:58.000Z",
+              "updatedAt": "2026-10-22T01:11:58.000Z",
+              "uid": "35240-93627ee1-6f79-4477-9b8a-6c554ceb8326"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:58.000Z",
+          "updatedAt": "2026-10-22T01:11:58.000Z",
+          "uid": "35240-f993b44d-b412-4585-a26e-68bcf2b2d582"
+        }
+      ],
+      "id": "89439c85-7ad1-49c4-9847-b04ed86ac1f3",
+      "createdAt": "2026-10-22T01:11:58.000Z",
+      "updatedAt": "2026-10-22T01:11:58.000Z",
+      "uid": "35240-89439c85-7ad1-49c4-9847-b04ed86ac1f3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

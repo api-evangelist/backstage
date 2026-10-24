@@ -1,446 +1,400 @@
 {
+  "info": {
+    "_postman_id": "b13bce79-9145-4028-971b-27693952a7c8",
+    "name": "Backstage TechDocs Documentation API",
+    "description": "The Backstage TechDocs API provides endpoints for generating, publishing, and serving technical documentation for catalog entities. TechDocs uses MkDocs under the hood to render Markdown documentation into static HTML pages. The API supports fetching rendered documentation, syncing docs from external storage, retrieving metadata, and managing documentation lifecycle.\n\nContact Support:\n Name: Backstage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:28.000Z",
+    "updatedAt": "2026-10-22T01:10:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b13bce79-9145-4028-971b-27693952a7c8"
+  },
   "item": [
     {
-      "id": "1e9c9461-984b-4e0c-902f-1492909d10ba",
-      "name": "Documentation",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "docs",
       "item": [
         {
-          "id": "4ae23ce7-deff-497b-8f29-94364720c15e",
-          "name": "Backstage Get TechDocs index page",
-          "request": {
-            "name": "Backstage Get TechDocs index page",
-            "description": {
-              "content": "Returns the root index page of the rendered TechDocs documentation for the specified entity. May trigger a sync if the documentation is out of date.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "docs",
-                ":namespace",
-                ":kind",
-                ":name"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "namespace",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "kind",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "name",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "text/html"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{namespace}",
+          "item": [
             {
-              "id": "879326d9-228e-470b-83bf-e04797fbeb33",
-              "name": "The rendered documentation HTML page.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "docs",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{kind}",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
+                      "name": "{path}",
+                      "item": [
+                        {
+                          "name": "Backstage Get a specific TechDocs page or asset",
+                          "id": "6f418385-293a-4a58-b091-4604b4296a70",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/docs/:namespace/:kind/:name/:path",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "docs",
+                                ":namespace",
+                                ":kind",
+                                ":name",
+                                ":path"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4923e7df-089f-4bea-82e7-1cd8bd210984",
+                                  "key": "namespace",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "c29c1284-1d59-4977-93bf-8febb18260c9",
+                                  "key": "kind",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "a1ee10fd-88e3-4397-ad47-dcd742ac324e",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "b0340fd7-d97c-4276-88cd-af4283fba03f",
+                                  "key": "path",
+                                  "value": "<string>",
+                                  "description": "(Required) Path to the documentation page or asset."
+                                }
+                              ]
+                            },
+                            "description": "Returns a specific page or static asset from the rendered TechDocs for the specified entity. The path is relative to the documentation root."
+                          },
+                          "response": [
+                            {
+                              "id": "b8418461-fc6a-442c-8a1c-1f5d1e6f8c05",
+                              "name": "The requested documentation page or asset.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/docs/:namespace/:kind/:name/:path",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "docs",
+                                    ":namespace",
+                                    ":kind",
+                                    ":name",
+                                    ":path"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "path"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:10:29.000Z",
+                              "updatedAt": "2026-10-22T01:10:29.000Z",
+                              "uid": "35240-b8418461-fc6a-442c-8a1c-1f5d1e6f8c05"
+                            },
+                            {
+                              "id": "b76f9cb1-c573-41de-bd98-2792d1af1bb9",
+                              "name": "Page or asset not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/docs/:namespace/:kind/:name/:path",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "docs",
+                                    ":namespace",
+                                    ":kind",
+                                    ":name",
+                                    ":path"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "path"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:10:29.000Z",
+                              "updatedAt": "2026-10-22T01:10:29.000Z",
+                              "uid": "35240-b76f9cb1-c573-41de-bd98-2792d1af1bb9"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:10:29.000Z",
+                          "updatedAt": "2026-10-22T01:10:29.000Z",
+                          "uid": "35240-6f418385-293a-4a58-b091-4604b4296a70"
+                        }
+                      ],
+                      "id": "a2600adb-df88-401e-858e-005b263cada1",
+                      "createdAt": "2026-10-22T01:10:29.000Z",
+                      "updatedAt": "2026-10-22T01:10:29.000Z",
+                      "uid": "35240-a2600adb-df88-401e-858e-005b263cada1"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
+                      "name": "Backstage Get TechDocs index page",
+                      "id": "d5fcd5ac-2fed-43e0-a5ca-2fe99e047f72",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/html"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/docs/:namespace/:kind/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "docs",
+                            ":namespace",
+                            ":kind",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c6dbd80f-5579-49d6-8cb7-93ab8246e823",
+                              "key": "namespace",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "5b754b2f-3059-4009-96df-19cc2fae23bf",
+                              "key": "kind",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "e720c656-cd23-4876-9095-e8537a1b1a24",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns the root index page of the rendered TechDocs documentation for the specified entity. May trigger a sync if the documentation is out of date."
+                      },
+                      "response": [
+                        {
+                          "id": "8fe47044-a3c9-4c58-8bb9-1cf8386cdad4",
+                          "name": "The rendered documentation HTML page.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/docs/:namespace/:kind/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "docs",
+                                ":namespace",
+                                ":kind",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespace"
+                                },
+                                {
+                                  "key": "kind"
+                                },
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T01:10:29.000Z",
+                          "updatedAt": "2026-10-22T01:10:29.000Z",
+                          "uid": "35240-8fe47044-a3c9-4c58-8bb9-1cf8386cdad4"
+                        },
+                        {
+                          "id": "7e27a7a0-c884-4cad-8852-95511c766cb5",
+                          "name": "Documentation not found for the entity.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/docs/:namespace/:kind/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "docs",
+                                ":namespace",
+                                ":kind",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespace"
+                                },
+                                {
+                                  "key": "kind"
+                                },
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:10:29.000Z",
+                          "updatedAt": "2026-10-22T01:10:29.000Z",
+                          "uid": "35240-7e27a7a0-c884-4cad-8852-95511c766cb5"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:10:29.000Z",
+                      "updatedAt": "2026-10-22T01:10:29.000Z",
+                      "uid": "35240-d5fcd5ac-2fed-43e0-a5ca-2fe99e047f72"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
+                  ],
+                  "id": "1eb4bffd-5dd3-41bb-b14f-99718b9a825d",
+                  "createdAt": "2026-10-22T01:10:29.000Z",
+                  "updatedAt": "2026-10-22T01:10:29.000Z",
+                  "uid": "35240-1eb4bffd-5dd3-41bb-b14f-99718b9a825d"
                 }
               ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "d711c053-1d9a-4e06-8870-e04abc01c2bb",
-              "name": "Documentation not found for the entity.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "docs",
-                    ":namespace",
-                    ":kind",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8370718a-54a1-4ef7-a3c2-f7f9a91c6038",
-          "name": "Backstage Get a specific TechDocs page or asset",
-          "request": {
-            "name": "Backstage Get a specific TechDocs page or asset",
-            "description": {
-              "content": "Returns a specific page or static asset from the rendered TechDocs for the specified entity. The path is relative to the documentation root.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "docs",
-                ":namespace",
-                ":kind",
-                ":name",
-                ":path"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "namespace",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "kind",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "name",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "path",
-                  "description": "(Required) Path to the documentation page or asset."
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "d932db14-5f29-4e39-9860-fa2d39d77300",
-              "name": "The requested documentation page or asset.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "docs",
-                    ":namespace",
-                    ":kind",
-                    ":name",
-                    ":path"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "path",
-                      "description": "(Required) Path to the documentation page or asset."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "6d9f3801-ad73-47db-b862-bd1e51563fe6",
-              "name": "Page or asset not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "docs",
-                    ":namespace",
-                    ":kind",
-                    ":name",
-                    ":path"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "path",
-                      "description": "(Required) Path to the documentation page or asset."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "e52d366c-2d0f-4389-890a-c96df00cdb0d",
+              "createdAt": "2026-10-22T01:10:29.000Z",
+              "updatedAt": "2026-10-22T01:10:29.000Z",
+              "uid": "35240-e52d366c-2d0f-4389-890a-c96df00cdb0d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "677f8d0e-2643-43e9-aed1-bb65ea1525bf",
+          "createdAt": "2026-10-22T01:10:29.000Z",
+          "updatedAt": "2026-10-22T01:10:29.000Z",
+          "uid": "35240-677f8d0e-2643-43e9-aed1-bb65ea1525bf"
         }
       ],
-      "event": []
+      "id": "1be6a852-a13b-4a64-90ee-2d2857396c21",
+      "createdAt": "2026-10-22T01:10:29.000Z",
+      "updatedAt": "2026-10-22T01:10:29.000Z",
+      "uid": "35240-1be6a852-a13b-4a64-90ee-2d2857396c21"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://localhost:7007/api/techdocs"
     }
-  ],
-  "info": {
-    "_postman_id": "79a6f357-4e47-40a8-8ab5-6b2f7246fbfa",
-    "name": "Backstage Auth Actions Documentation API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

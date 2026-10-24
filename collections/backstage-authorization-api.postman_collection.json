@@ -1,474 +1,497 @@
 {
+  "info": {
+    "_postman_id": "e64845a3-ba87-4fb0-ac00-ffbd785d002e",
+    "name": "Backstage Permissions Authorization API",
+    "description": "The Backstage Permissions API provides endpoints for evaluating and managing authorization decisions within Backstage. It enables plugins to check whether a given user or service has permission to perform a specific action. The framework supports policy-based authorization with conditional rules that can be applied to resources.\n\nContact Support:\n Name: Backstage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:10:22.000Z",
+    "updatedAt": "2026-10-22T01:10:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e64845a3-ba87-4fb0-ac00-ffbd785d002e"
+  },
   "item": [
     {
-      "id": "a32ed415-77df-40d3-ab8d-f719057ecec3",
-      "name": "Authorization",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "authorize",
       "item": [
         {
-          "id": "311d9ed1-008c-40ea-aba6-a2b9b4be6976",
           "name": "Backstage Evaluate permission requests",
+          "id": "a6dc2d3a-5a71-48b3-b607-37d6a5cf529f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Backstage Evaluate permission requests",
-            "description": {
-              "content": "Evaluates one or more permission requests and returns authorization decisions. Each request specifies a permission and optionally a resource reference. The permission policy is consulted to determine whether each request should be allowed, denied, or conditionally allowed with additional resource-level rules.",
-              "type": "text/plain"
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"resource\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
             },
             "url": {
+              "raw": "{{baseUrl}}/authorize",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "authorize"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
               ]
             },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"<string>\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"<string>\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "description": "Evaluates one or more permission requests and returns authorization decisions. Each request specifies a permission and optionally a resource reference. The permission policy is consulted to determine whether each request should be allowed, denied, or conditionally allowed with additional resource-level rules."
           },
           "response": [
             {
-              "id": "208aa8f9-cc09-4806-85c3-8d8e722f8db6",
+              "id": "ee945270-ca32-403b-94fb-a0ea12f9699c",
               "name": "Authorization decisions for each request.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "authorize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"read\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"resource\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/authorize",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authorize"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"items\": [\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    },\n    {\n      \"result\": \"CONDITIONAL\",\n      \"pluginId\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-ee945270-ca32-403b-94fb-a0ea12f9699c"
             },
             {
-              "id": "fa3bf9f7-bc69-4458-a315-f949502dfbb4",
+              "id": "46089ce1-028a-4820-ab60-02e63f9c30c2",
               "name": "Invalid request format.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "authorize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
                 "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"read\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "60770997-ff1a-42dd-926c-07b2d3c8b82a",
-              "name": "Authentication required.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "authorize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"string\",\n        \"resourceType\": \"string\",\n        \"attributes\": {\n          \"action\": \"read\"\n        }\n      },\n      \"resourceRef\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "97c3d0fc-b574-49f8-a6d1-c3334c687aef",
-          "name": "Backstage Apply conditional permission rules",
-          "request": {
-            "name": "Backstage Apply conditional permission rules",
-            "description": {
-              "content": "Applies conditional authorization rules for a specific plugin. When a permission decision includes conditions, those conditions must be evaluated against the actual resource data. This endpoint allows plugins to resolve conditional decisions into final allow/deny results.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "plugins",
-                ":pluginId",
-                "apply-conditions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "pluginId",
-                  "description": "(Required) The plugin identifier that owns the resource type."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": \"<object>\"\n    },\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": \"<object>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c2ece5c1-4ef8-4468-add7-1b617557991b",
-              "name": "Resolved authorization decisions.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plugins",
-                    ":pluginId",
-                    "apply-conditions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "pluginId",
-                      "description": "(Required) The plugin identifier that owns the resource type."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5728948e-e138-4147-9cb0-4c42d0e0ed96",
-              "name": "Invalid request format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "plugins",
-                    ":pluginId",
-                    "apply-conditions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "pluginId",
-                      "description": "(Required) The plugin identifier that owns the resource type."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: bearer",
                     "key": "Authorization",
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"resource\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/authorize",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authorize"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-46089ce1-028a-4820-ab60-02e63f9c30c2"
             },
             {
-              "id": "8726785b-0ef6-47ee-926c-31001f8e846f",
+              "id": "8ea44001-5b9c-42de-ba3d-1853826d4b5d",
               "name": "Authentication required.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "plugins",
-                    ":pluginId",
-                    "apply-conditions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "pluginId",
-                      "description": "(Required) The plugin identifier that owns the resource type."
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
                     "key": "Authorization",
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"string\",\n      \"resourceType\": \"string\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                  "raw": "{\n  \"items\": [\n    {\n      \"permission\": {\n        \"type\": \"basic\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    },\n    {\n      \"permission\": {\n        \"type\": \"resource\",\n        \"name\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"attributes\": {\n          \"action\": \"update\"\n        }\n      },\n      \"resourceRef\": \"<string>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/authorize",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authorize"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-8ea44001-5b9c-42de-ba3d-1853826d4b5d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:10:23.000Z",
+          "updatedAt": "2026-10-22T01:10:23.000Z",
+          "uid": "35240-a6dc2d3a-5a71-48b3-b607-37d6a5cf529f"
         }
       ],
-      "event": []
+      "id": "84ce14b6-64e9-4a0e-883a-33a6cc4697cc",
+      "createdAt": "2026-10-22T01:10:23.000Z",
+      "updatedAt": "2026-10-22T01:10:23.000Z",
+      "uid": "35240-84ce14b6-64e9-4a0e-883a-33a6cc4697cc"
+    },
+    {
+      "name": "plugins",
+      "item": [
+        {
+          "name": "{pluginId}",
+          "item": [
+            {
+              "name": "apply-conditions",
+              "item": [
+                {
+                  "name": "Backstage Apply conditional permission rules",
+                  "id": "103a489c-0764-43cc-a630-ca595870e23a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/plugins/:pluginId/apply-conditions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plugins",
+                        ":pluginId",
+                        "apply-conditions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "71969c25-b7db-4251-9f3e-05e4f9124b76",
+                          "key": "pluginId",
+                          "value": "<string>",
+                          "description": "(Required) The plugin identifier that owns the resource type."
+                        }
+                      ]
+                    },
+                    "description": "Applies conditional authorization rules for a specific plugin. When a permission decision includes conditions, those conditions must be evaluated against the actual resource data. This endpoint allows plugins to resolve conditional decisions into final allow/deny results."
+                  },
+                  "response": [
+                    {
+                      "id": "4f3e3aaf-b5ae-49c1-a4e0-5b2bac82b19f",
+                      "name": "Resolved authorization decisions.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/plugins/:pluginId/apply-conditions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "plugins",
+                            ":pluginId",
+                            "apply-conditions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pluginId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"result\": \"DENY\",\n      \"pluginId\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    },\n    {\n      \"result\": \"CONDITIONAL\",\n      \"pluginId\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:10:23.000Z",
+                      "updatedAt": "2026-10-22T01:10:23.000Z",
+                      "uid": "35240-4f3e3aaf-b5ae-49c1-a4e0-5b2bac82b19f"
+                    },
+                    {
+                      "id": "302e0c2d-180a-48dc-9ea6-246deae5bfc5",
+                      "name": "Invalid request format.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/plugins/:pluginId/apply-conditions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "plugins",
+                            ":pluginId",
+                            "apply-conditions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pluginId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:10:23.000Z",
+                      "updatedAt": "2026-10-22T01:10:23.000Z",
+                      "uid": "35240-302e0c2d-180a-48dc-9ea6-246deae5bfc5"
+                    },
+                    {
+                      "id": "20db535f-7273-4353-af54-1e97439ff325",
+                      "name": "Authentication required.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"items\": [\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    },\n    {\n      \"resourceRef\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"conditions\": {}\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/plugins/:pluginId/apply-conditions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "plugins",
+                            ":pluginId",
+                            "apply-conditions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pluginId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:10:23.000Z",
+                      "updatedAt": "2026-10-22T01:10:23.000Z",
+                      "uid": "35240-20db535f-7273-4353-af54-1e97439ff325"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:10:23.000Z",
+                  "updatedAt": "2026-10-22T01:10:23.000Z",
+                  "uid": "35240-103a489c-0764-43cc-a630-ca595870e23a"
+                }
+              ],
+              "id": "820393fa-1e09-4a31-97a5-9e7eae2b8960",
+              "createdAt": "2026-10-22T01:10:23.000Z",
+              "updatedAt": "2026-10-22T01:10:23.000Z",
+              "uid": "35240-820393fa-1e09-4a31-97a5-9e7eae2b8960"
+            }
+          ],
+          "id": "645bbc11-0ba2-4ab6-87ca-37c78a1c2721",
+          "createdAt": "2026-10-22T01:10:23.000Z",
+          "updatedAt": "2026-10-22T01:10:23.000Z",
+          "uid": "35240-645bbc11-0ba2-4ab6-87ca-37c78a1c2721"
+        }
+      ],
+      "id": "f54dddd4-4c55-4a62-a349-11f514b85665",
+      "createdAt": "2026-10-22T01:10:23.000Z",
+      "updatedAt": "2026-10-22T01:10:23.000Z",
+      "uid": "35240-f54dddd4-4c55-4a62-a349-11f514b85665"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://localhost:7007/api/permission"
     }
-  ],
-  "info": {
-    "_postman_id": "7dcc4b31-3430-4294-81fc-34bd1cb85f87",
-    "name": "Backstage Auth Actions Authorization API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

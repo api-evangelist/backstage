@@ -1,0 +1,2716 @@
+{
+  "info": {
+    "_postman_id": "eae177e3-ab31-4cc9-883d-4aa1229d64fd",
+    "name": "catalog Entity API",
+    "description": "The API surface consists of a few distinct groups of functionality.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:47.000Z",
+    "updatedAt": "2026-10-22T01:11:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-eae177e3-ab31-4cc9-883d-4aa1229d64fd"
+  },
+  "item": [
+    {
+      "name": "refresh",
+      "item": [
+        {
+          "name": "Refresh entity",
+          "id": "d8b4be0a-d974-48ae-85ba-363fdf4d2b89",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityRef\": \"<string>\",\n  \"authorizationToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/refresh",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "refresh"
+              ]
+            },
+            "description": "Refresh the entity related to entityRef."
+          },
+          "response": [
+            {
+              "id": "89443884-22d4-44f1-b3c4-36abab69e881",
+              "name": "Refreshed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityRef\": \"<string>\",\n  \"authorizationToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/refresh",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refresh"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-89443884-22d4-44f1-b3c4-36abab69e881"
+            },
+            {
+              "id": "39c33a84-9d03-430a-87c9-d2a323d6d31e",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityRef\": \"<string>\",\n  \"authorizationToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/refresh",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refresh"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-39c33a84-9d03-430a-87c9-d2a323d6d31e"
+            },
+            {
+              "id": "29a14174-7c7f-4bcf-8639-d98047c6fade",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityRef\": \"<string>\",\n  \"authorizationToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/refresh",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refresh"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-29a14174-7c7f-4bcf-8639-d98047c6fade"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-d8b4be0a-d974-48ae-85ba-363fdf4d2b89"
+        }
+      ],
+      "id": "0be98e89-6b4a-4126-a2aa-a7d4cef36b8a",
+      "createdAt": "2026-10-22T01:11:47.000Z",
+      "updatedAt": "2026-10-22T01:11:47.000Z",
+      "uid": "35240-0be98e89-6b4a-4126-a2aa-a7d4cef36b8a"
+    },
+    {
+      "name": "entities",
+      "item": [
+        {
+          "name": "by-uid",
+          "item": [
+            {
+              "name": "{uid}",
+              "item": [
+                {
+                  "name": "Get entity by uid",
+                  "id": "7c9c4ae0-b9d3-4f1f-8b5e-e2d49ffb2a7d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-uid",
+                        ":uid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2c4f5be2-28b4-48ff-9a84-5e5f0f1fb435",
+                          "key": "uid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Get a single entity by the UID."
+                  },
+                  "response": [
+                    {
+                      "id": "177a8a98-49a5-40c1-b301-659eb45481b3",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            "by-uid",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"links\": [\n      {\n        \"url\": \"<string>\",\n        \"type\": \"<string>\",\n        \"icon\": \"<string>\",\n        \"title\": \"<string>\"\n      },\n      {\n        \"url\": \"<string>\",\n        \"type\": \"<string>\",\n        \"icon\": \"<string>\",\n        \"title\": \"<string>\"\n      }\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"annotations\": {\n      \"laboris3\": \"<string>\",\n      \"laborum_df0\": \"<string>\"\n    },\n    \"labels\": {\n      \"minimf8_\": \"<string>\",\n      \"laborum4\": \"<string>\",\n      \"aliqua__\": \"<string>\"\n    },\n    \"description\": \"<string>\",\n    \"title\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"etag\": \"<string>\",\n    \"uid\": \"<string>\"\n  },\n  \"kind\": \"<string>\",\n  \"apiVersion\": \"<string>\",\n  \"relations\": [\n    {\n      \"targetRef\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"targetRef\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"spec\": {\n    \"ea_d0\": {},\n    \"doloref3b\": {}\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:48.000Z",
+                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                      "uid": "35240-177a8a98-49a5-40c1-b301-659eb45481b3"
+                    },
+                    {
+                      "id": "0d0d6086-c792-4a97-8f94-7b9ccc992bae",
+                      "name": "An error response from the backend.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            "by-uid",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:48.000Z",
+                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                      "uid": "35240-0d0d6086-c792-4a97-8f94-7b9ccc992bae"
+                    },
+                    {
+                      "id": "241c516c-3115-4e0b-a509-0cc3601a91da",
+                      "name": "An error response from the backend.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            "by-uid",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:48.000Z",
+                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                      "uid": "35240-241c516c-3115-4e0b-a509-0cc3601a91da"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:11:47.000Z",
+                  "updatedAt": "2026-10-22T01:11:47.000Z",
+                  "uid": "35240-7c9c4ae0-b9d3-4f1f-8b5e-e2d49ffb2a7d"
+                },
+                {
+                  "name": "Delete entity by uid",
+                  "id": "e4fd9d92-442b-40a3-957d-ef64f026a1d2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-uid",
+                        ":uid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "80e0d988-77ca-451c-960f-f67d34584227",
+                          "key": "uid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a single entity by UID."
+                  },
+                  "response": [
+                    {
+                      "id": "6111e5c6-8611-4a34-8534-0b29670e2833",
+                      "name": "Deleted successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            "by-uid",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:11:48.000Z",
+                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                      "uid": "35240-6111e5c6-8611-4a34-8534-0b29670e2833"
+                    },
+                    {
+                      "id": "64e4bb30-097d-4984-b852-d3c83f468097",
+                      "name": "An error response from the backend.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            "by-uid",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:48.000Z",
+                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                      "uid": "35240-64e4bb30-097d-4984-b852-d3c83f468097"
+                    },
+                    {
+                      "id": "596cc2e8-f706-47ec-aa3a-11eb05ccd873",
+                      "name": "An error response from the backend.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/by-uid/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            "by-uid",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:11:48.000Z",
+                      "updatedAt": "2026-10-22T01:11:48.000Z",
+                      "uid": "35240-596cc2e8-f706-47ec-aa3a-11eb05ccd873"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:11:47.000Z",
+                  "updatedAt": "2026-10-22T01:11:47.000Z",
+                  "uid": "35240-e4fd9d92-442b-40a3-957d-ef64f026a1d2"
+                }
+              ],
+              "id": "1ae651bb-1c58-4592-b1c0-f42ae6a20aec",
+              "createdAt": "2026-10-22T01:11:47.000Z",
+              "updatedAt": "2026-10-22T01:11:47.000Z",
+              "uid": "35240-1ae651bb-1c58-4592-b1c0-f42ae6a20aec"
+            }
+          ],
+          "id": "20e0e7a8-5d21-4cd4-b041-540b5a38ea6b",
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-20e0e7a8-5d21-4cd4-b041-540b5a38ea6b"
+        },
+        {
+          "name": "by-name",
+          "item": [
+            {
+              "name": "{kind}",
+              "item": [
+                {
+                  "name": "{namespace}",
+                  "item": [
+                    {
+                      "name": "{name}",
+                      "item": [
+                        {
+                          "name": "ancestry",
+                          "item": [
+                            {
+                              "name": "Get entity ancestry by name",
+                              "id": "af2ea2ed-ae08-45c0-9dee-1bd92e40fb5c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "noauth"
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name/ancestry",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "entities",
+                                    "by-name",
+                                    ":kind",
+                                    ":namespace",
+                                    ":name",
+                                    "ancestry"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c4821c8d-4525-403b-8ca9-60e820cfb152",
+                                      "key": "kind",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "2f3ee2f9-ab24-462b-af16-d9981d43462f",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "aac0a6b4-b1d8-4164-bf6b-698b1d737dc7",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get an entity's ancestry by entity ref."
+                              },
+                              "response": [
+                                {
+                                  "id": "aace2cfe-607c-44d5-a79b-667897fd0b76",
+                                  "name": "Ok",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name/ancestry",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "entities",
+                                        "by-name",
+                                        ":kind",
+                                        ":namespace",
+                                        ":name",
+                                        "ancestry"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "kind"
+                                        },
+                                        {
+                                          "key": "namespace"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"parentEntityRefs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"entity\": {\n        \"metadata\": {\n          \"name\": \"<string>\",\n          \"links\": [\n            {\n              \"url\": \"<string>\",\n              \"type\": \"<string>\",\n              \"icon\": \"<string>\",\n              \"title\": \"<string>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"type\": \"<string>\",\n              \"icon\": \"<string>\",\n              \"title\": \"<string>\"\n            }\n          ],\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"annotations\": {\n            \"culpac_1\": \"<string>\",\n            \"in_a4\": \"<string>\",\n            \"consequat7d\": \"<string>\"\n          },\n          \"labels\": {\n            \"ipsum_af0\": \"<string>\",\n            \"labore_6\": \"<string>\"\n          },\n          \"description\": \"<string>\",\n          \"title\": \"<string>\",\n          \"namespace\": \"<string>\",\n          \"etag\": \"<string>\",\n          \"uid\": \"<string>\"\n        },\n        \"kind\": \"<string>\",\n        \"apiVersion\": \"<string>\",\n        \"relations\": [\n          {\n            \"targetRef\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"targetRef\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"spec\": {\n          \"do_d5\": {},\n          \"dolore__\": {},\n          \"Ut_4\": {}\n        }\n      }\n    },\n    {\n      \"parentEntityRefs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"entity\": {\n        \"metadata\": {\n          \"name\": \"<string>\",\n          \"links\": [\n            {\n              \"url\": \"<string>\",\n              \"type\": \"<string>\",\n              \"icon\": \"<string>\",\n              \"title\": \"<string>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"type\": \"<string>\",\n              \"icon\": \"<string>\",\n              \"title\": \"<string>\"\n            }\n          ],\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"annotations\": {\n            \"nisi_e42\": \"<string>\",\n            \"non_b6\": \"<string>\",\n            \"voluptate_ec\": \"<string>\"\n          },\n          \"labels\": {\n            \"in_c55\": \"<string>\",\n            \"Excepteur_5\": \"<string>\",\n            \"do_afb\": \"<string>\"\n          },\n          \"description\": \"<string>\",\n          \"title\": \"<string>\",\n          \"namespace\": \"<string>\",\n          \"etag\": \"<string>\",\n          \"uid\": \"<string>\"\n        },\n        \"kind\": \"<string>\",\n        \"apiVersion\": \"<string>\",\n        \"relations\": [\n          {\n            \"targetRef\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"targetRef\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"spec\": {\n          \"sint_a\": {},\n          \"velitcca\": {}\n        }\n      }\n    }\n  ],\n  \"rootEntityRef\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:11:48.000Z",
+                                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                                  "uid": "35240-aace2cfe-607c-44d5-a79b-667897fd0b76"
+                                },
+                                {
+                                  "id": "550188b1-1f61-4119-9b92-2d9c2448ebb0",
+                                  "name": "An error response from the backend.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name/ancestry",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "entities",
+                                        "by-name",
+                                        ":kind",
+                                        ":namespace",
+                                        ":name",
+                                        "ancestry"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "kind"
+                                        },
+                                        {
+                                          "key": "namespace"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:11:48.000Z",
+                                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                                  "uid": "35240-550188b1-1f61-4119-9b92-2d9c2448ebb0"
+                                },
+                                {
+                                  "id": "8483d12c-9197-49de-8fce-295e10960f4a",
+                                  "name": "An error response from the backend.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name/ancestry",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "entities",
+                                        "by-name",
+                                        ":kind",
+                                        ":namespace",
+                                        ":name",
+                                        "ancestry"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "kind"
+                                        },
+                                        {
+                                          "key": "namespace"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:11:48.000Z",
+                                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                                  "uid": "35240-8483d12c-9197-49de-8fce-295e10960f4a"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:47.000Z",
+                              "updatedAt": "2026-10-22T01:11:47.000Z",
+                              "uid": "35240-af2ea2ed-ae08-45c0-9dee-1bd92e40fb5c"
+                            }
+                          ],
+                          "id": "47342061-139b-4a78-ae8a-05433bb9ef73",
+                          "createdAt": "2026-10-22T01:11:47.000Z",
+                          "updatedAt": "2026-10-22T01:11:47.000Z",
+                          "uid": "35240-47342061-139b-4a78-ae8a-05433bb9ef73"
+                        },
+                        {
+                          "name": "Get entity by name",
+                          "id": "2e64aa22-a387-4e4f-99a2-2edca9b7d529",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "noauth"
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "entities",
+                                "by-name",
+                                ":kind",
+                                ":namespace",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7f564194-51ca-40b0-912c-8f6bd045c583",
+                                  "key": "kind",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "8fad3401-861f-4959-9a77-17ed3c72f832",
+                                  "key": "namespace",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "42c3f52c-6045-49c9-8991-9e8737af97b1",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get an entity by an entity ref."
+                          },
+                          "response": [
+                            {
+                              "id": "14f8ca94-049c-4013-8056-b400ba270354",
+                              "name": "Ok",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "entities",
+                                    "by-name",
+                                    ":kind",
+                                    ":namespace",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"links\": [\n      {\n        \"url\": \"<string>\",\n        \"type\": \"<string>\",\n        \"icon\": \"<string>\",\n        \"title\": \"<string>\"\n      },\n      {\n        \"url\": \"<string>\",\n        \"type\": \"<string>\",\n        \"icon\": \"<string>\",\n        \"title\": \"<string>\"\n      }\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"annotations\": {\n      \"laboris3\": \"<string>\",\n      \"laborum_df0\": \"<string>\"\n    },\n    \"labels\": {\n      \"minimf8_\": \"<string>\",\n      \"laborum4\": \"<string>\",\n      \"aliqua__\": \"<string>\"\n    },\n    \"description\": \"<string>\",\n    \"title\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"etag\": \"<string>\",\n    \"uid\": \"<string>\"\n  },\n  \"kind\": \"<string>\",\n  \"apiVersion\": \"<string>\",\n  \"relations\": [\n    {\n      \"targetRef\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"targetRef\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"spec\": {\n    \"ea_d0\": {},\n    \"doloref3b\": {}\n  }\n}",
+                              "createdAt": "2026-10-22T01:11:48.000Z",
+                              "updatedAt": "2026-10-22T01:11:48.000Z",
+                              "uid": "35240-14f8ca94-049c-4013-8056-b400ba270354"
+                            },
+                            {
+                              "id": "702622ee-dc84-4563-b60c-310a4b9bc68c",
+                              "name": "An error response from the backend.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "entities",
+                                    "by-name",
+                                    ":kind",
+                                    ":namespace",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:11:48.000Z",
+                              "updatedAt": "2026-10-22T01:11:48.000Z",
+                              "uid": "35240-702622ee-dc84-4563-b60c-310a4b9bc68c"
+                            },
+                            {
+                              "id": "afb6097c-3dcb-43c5-beaa-9066c610dcca",
+                              "name": "An error response from the backend.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/entities/by-name/:kind/:namespace/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "entities",
+                                    "by-name",
+                                    ":kind",
+                                    ":namespace",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "kind"
+                                    },
+                                    {
+                                      "key": "namespace"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-22T01:11:48.000Z",
+                              "updatedAt": "2026-10-22T01:11:48.000Z",
+                              "uid": "35240-afb6097c-3dcb-43c5-beaa-9066c610dcca"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:11:47.000Z",
+                          "updatedAt": "2026-10-22T01:11:47.000Z",
+                          "uid": "35240-2e64aa22-a387-4e4f-99a2-2edca9b7d529"
+                        }
+                      ],
+                      "id": "75f87487-af20-4fec-b457-e7f477298265",
+                      "createdAt": "2026-10-22T01:11:47.000Z",
+                      "updatedAt": "2026-10-22T01:11:47.000Z",
+                      "uid": "35240-75f87487-af20-4fec-b457-e7f477298265"
+                    }
+                  ],
+                  "id": "6955048a-f893-4299-aa77-59e2a003eb5b",
+                  "createdAt": "2026-10-22T01:11:47.000Z",
+                  "updatedAt": "2026-10-22T01:11:47.000Z",
+                  "uid": "35240-6955048a-f893-4299-aa77-59e2a003eb5b"
+                }
+              ],
+              "id": "05011678-32ec-4378-b8d3-beccfdbe8c01",
+              "createdAt": "2026-10-22T01:11:47.000Z",
+              "updatedAt": "2026-10-22T01:11:47.000Z",
+              "uid": "35240-05011678-32ec-4378-b8d3-beccfdbe8c01"
+            }
+          ],
+          "id": "dcc0e38e-c66c-4408-9647-dc9263ab0630",
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-dcc0e38e-c66c-4408-9647-dc9263ab0630"
+        },
+        {
+          "name": "by-refs",
+          "item": [
+            {
+              "name": "Get entities by refs",
+              "id": "2412e5d3-16e4-4c6f-a7f0-f60307c3fb3f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"ipsum37b\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entities/by-refs?filter=<string>&filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities",
+                    "by-refs"
+                  ],
+                  "query": [
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get a batch set of entities given an array of entityRefs."
+              },
+              "response": [
+                {
+                  "id": "a72710ab-3da3-4544-8f97-addc8d8378ff",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"entityRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"ipsum37b\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-refs?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-refs"
+                      ],
+                      "query": [
+                        {
+                          "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"links\": [\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"magna_5\": \"<string>\"\n        },\n        \"labels\": {\n          \"dolore_48\": \"<string>\",\n          \"occaecat__ec\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"title\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"etag\": \"<string>\",\n        \"uid\": \"<string>\"\n      },\n      \"kind\": \"<string>\",\n      \"apiVersion\": \"<string>\",\n      \"relations\": [\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"spec\": {\n        \"labore4\": {},\n        \"Utf\": {}\n      }\n    },\n    {\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"links\": [\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"culpa_5\": \"<string>\",\n          \"voluptate_5a\": \"<string>\",\n          \"enim_c\": \"<string>\",\n          \"consequat_a7e\": \"<string>\"\n        },\n        \"labels\": {\n          \"proident_22\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"title\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"etag\": \"<string>\",\n        \"uid\": \"<string>\"\n      },\n      \"kind\": \"<string>\",\n      \"apiVersion\": \"<string>\",\n      \"relations\": [\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"spec\": {\n        \"nulla_b8\": {},\n        \"auted9\": {}\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-a72710ab-3da3-4544-8f97-addc8d8378ff"
+                },
+                {
+                  "id": "657b18fa-a839-4e3c-ad53-409b7ab200a5",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"entityRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"ipsum37b\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-refs?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-refs"
+                      ],
+                      "query": [
+                        {
+                          "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-657b18fa-a839-4e3c-ad53-409b7ab200a5"
+                },
+                {
+                  "id": "e8500adb-9cef-41c3-969c-61b3402cde5b",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"entityRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"ipsum37b\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-refs?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-refs"
+                      ],
+                      "query": [
+                        {
+                          "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-e8500adb-9cef-41c3-969c-61b3402cde5b"
+                }
+              ],
+              "createdAt": "2026-10-22T01:11:47.000Z",
+              "updatedAt": "2026-10-22T01:11:47.000Z",
+              "uid": "35240-2412e5d3-16e4-4c6f-a7f0-f60307c3fb3f"
+            }
+          ],
+          "id": "0c8fcb82-69cc-4bc6-b34c-ef5867e4e21f",
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-0c8fcb82-69cc-4bc6-b34c-ef5867e4e21f"
+        },
+        {
+          "name": "by-query",
+          "item": [
+            {
+              "name": "Get entities by query",
+              "id": "0e09181d-1c09-49a9-8dd4-2beb8ef53723",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities/by-query?fields=<string>,<string>&limit=<integer>&offset=<integer>&orderField=<string>&orderField=<string>&cursor=<string>&filter=<string>&filter=<string>&totalItems=include&fullTextFilterTerm=<string>&fullTextFilterFields=<string>,<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities",
+                    "by-query"
+                  ],
+                  "query": [
+                    {
+                      "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Number of records to return in the response.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of records to skip in the query page.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "By default the entities are returned ordered by their internal uid. You can\ncustomize the `orderField` query parameters to affect that ordering.\n\nFor example, to return entities by their name:\n\n`/entities/by-query?orderField=metadata.name,asc`\n\nEach parameter can be followed by `asc` for ascending lexicographical order or\n`desc` for descending (reverse) lexicographical order.\n",
+                      "key": "orderField",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "By default the entities are returned ordered by their internal uid. You can\ncustomize the `orderField` query parameters to affect that ordering.\n\nFor example, to return entities by their name:\n\n`/entities/by-query?orderField=metadata.name,asc`\n\nEach parameter can be followed by `asc` for ascending lexicographical order or\n`desc` for descending (reverse) lexicographical order.\n",
+                      "key": "orderField",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "You may pass the `cursor` query parameters to perform cursor based pagination\nthrough the set of entities. The value of `cursor` will be returned in the response, under the `pageInfo` property:\n\n```json\n  \"pageInfo\": {\n    \"nextCursor\": \"a-cursor\",\n    \"prevCursor\": \"another-cursor\"\n  }\n```\n\nIf `nextCursor` exists, it can be used to retrieve the next batch of entities. Following the same approach,\nif `prevCursor` exists, it can be used to retrieve the previous batch of entities.\n\n- [`filter`](#filtering), for selecting only a subset of all entities\n- [`fields`](#field-selection), for selecting only parts of the full data\n  structure of each entity\n- `limit` for limiting the number of entities returned (20 is the default)\n- [`orderField`](#ordering), for deciding the order of the entities\n- `fullTextFilter`\n  **NOTE**: [`filter`, `orderField`, `fullTextFilter`] and `cursor` are mutually exclusive. This means that,\n  it isn't possible to change any of [`filter`, `orderField`, `fullTextFilter`] when passing `cursor` as query parameters,\n  as changing any of these properties will affect pagination. If any of `filter`, `orderField`, `fullTextFilter` is specified together with `cursor`, only the latter is taken into consideration.\n",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Controls whether the response's `totalItems` field is computed. Computing\nthe total may be expensive for large catalogs; pass `exclude` if the\ncaller does not need it (e.g. cursor-paginated UIs that only display the\ncount cosmetically). Defaults to `include`. New values may be added in\nthe future, such as an approximate mode.\n",
+                      "key": "totalItems",
+                      "value": "include"
+                    },
+                    {
+                      "description": "Text search term.",
+                      "key": "fullTextFilterTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A comma separated list of fields to sort returned results by.",
+                      "key": "fullTextFilterFields",
+                      "value": "<string>,<string>"
+                    }
+                  ]
+                },
+                "description": "Search for entities by a given query."
+              },
+              "response": [
+                {
+                  "id": "20774eec-10e4-466c-a311-1f79dc157058",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-query?fields=<string>,<string>&limit=<integer>&offset=<integer>&orderField=<string>&cursor=<string>&filter=<string>&totalItems=include&fullTextFilterTerm=<string>&fullTextFilterFields=<string>,<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-query"
+                      ],
+                      "query": [
+                        {
+                          "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                          "key": "fields",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Number of records to return in the response.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip in the query page.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "By default the entities are returned ordered by their internal uid. You can\ncustomize the `orderField` query parameters to affect that ordering.\n\nFor example, to return entities by their name:\n\n`/entities/by-query?orderField=metadata.name,asc`\n\nEach parameter can be followed by `asc` for ascending lexicographical order or\n`desc` for descending (reverse) lexicographical order.\n",
+                          "key": "orderField",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "You may pass the `cursor` query parameters to perform cursor based pagination\nthrough the set of entities. The value of `cursor` will be returned in the response, under the `pageInfo` property:\n\n```json\n  \"pageInfo\": {\n    \"nextCursor\": \"a-cursor\",\n    \"prevCursor\": \"another-cursor\"\n  }\n```\n\nIf `nextCursor` exists, it can be used to retrieve the next batch of entities. Following the same approach,\nif `prevCursor` exists, it can be used to retrieve the previous batch of entities.\n\n- [`filter`](#filtering), for selecting only a subset of all entities\n- [`fields`](#field-selection), for selecting only parts of the full data\n  structure of each entity\n- `limit` for limiting the number of entities returned (20 is the default)\n- [`orderField`](#ordering), for deciding the order of the entities\n- `fullTextFilter`\n  **NOTE**: [`filter`, `orderField`, `fullTextFilter`] and `cursor` are mutually exclusive. This means that,\n  it isn't possible to change any of [`filter`, `orderField`, `fullTextFilter`] when passing `cursor` as query parameters,\n  as changing any of these properties will affect pagination. If any of `filter`, `orderField`, `fullTextFilter` is specified together with `cursor`, only the latter is taken into consideration.\n",
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Controls whether the response's `totalItems` field is computed. Computing\nthe total may be expensive for large catalogs; pass `exclude` if the\ncaller does not need it (e.g. cursor-paginated UIs that only display the\ncount cosmetically). Defaults to `include`. New values may be added in\nthe future, such as an approximate mode.\n",
+                          "key": "totalItems",
+                          "value": "include"
+                        },
+                        {
+                          "description": "Text search term.",
+                          "key": "fullTextFilterTerm",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A comma separated list of fields to sort returned results by.",
+                          "key": "fullTextFilterFields",
+                          "value": "<string>,<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"links\": [\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"nostrud_d\": \"<string>\",\n          \"sunt_47\": \"<string>\",\n          \"dolore_7\": \"<string>\"\n        },\n        \"labels\": {\n          \"pariatur4\": \"<string>\",\n          \"aliqua18\": \"<string>\",\n          \"Ut_45\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"title\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"etag\": \"<string>\",\n        \"uid\": \"<string>\"\n      },\n      \"kind\": \"<string>\",\n      \"apiVersion\": \"<string>\",\n      \"relations\": [\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"spec\": {\n        \"irure_1b\": {},\n        \"ut_5c\": {}\n      }\n    },\n    {\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"links\": [\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"culpa_bd2\": \"<string>\"\n        },\n        \"labels\": {\n          \"reprehenderit_3\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"title\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"etag\": \"<string>\",\n        \"uid\": \"<string>\"\n      },\n      \"kind\": \"<string>\",\n      \"apiVersion\": \"<string>\",\n      \"relations\": [\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"spec\": {\n        \"nonf7\": {},\n        \"minim79\": {},\n        \"officiad07\": {}\n      }\n    }\n  ],\n  \"totalItems\": \"<number>\",\n  \"pageInfo\": {\n    \"nextCursor\": \"<string>\",\n    \"prevCursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-20774eec-10e4-466c-a311-1f79dc157058"
+                },
+                {
+                  "id": "c18840d5-1433-4e75-b2c2-b053c911cebf",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-query?fields=<string>,<string>&limit=<integer>&offset=<integer>&orderField=<string>&cursor=<string>&filter=<string>&totalItems=include&fullTextFilterTerm=<string>&fullTextFilterFields=<string>,<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-query"
+                      ],
+                      "query": [
+                        {
+                          "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                          "key": "fields",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Number of records to return in the response.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip in the query page.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "By default the entities are returned ordered by their internal uid. You can\ncustomize the `orderField` query parameters to affect that ordering.\n\nFor example, to return entities by their name:\n\n`/entities/by-query?orderField=metadata.name,asc`\n\nEach parameter can be followed by `asc` for ascending lexicographical order or\n`desc` for descending (reverse) lexicographical order.\n",
+                          "key": "orderField",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "You may pass the `cursor` query parameters to perform cursor based pagination\nthrough the set of entities. The value of `cursor` will be returned in the response, under the `pageInfo` property:\n\n```json\n  \"pageInfo\": {\n    \"nextCursor\": \"a-cursor\",\n    \"prevCursor\": \"another-cursor\"\n  }\n```\n\nIf `nextCursor` exists, it can be used to retrieve the next batch of entities. Following the same approach,\nif `prevCursor` exists, it can be used to retrieve the previous batch of entities.\n\n- [`filter`](#filtering), for selecting only a subset of all entities\n- [`fields`](#field-selection), for selecting only parts of the full data\n  structure of each entity\n- `limit` for limiting the number of entities returned (20 is the default)\n- [`orderField`](#ordering), for deciding the order of the entities\n- `fullTextFilter`\n  **NOTE**: [`filter`, `orderField`, `fullTextFilter`] and `cursor` are mutually exclusive. This means that,\n  it isn't possible to change any of [`filter`, `orderField`, `fullTextFilter`] when passing `cursor` as query parameters,\n  as changing any of these properties will affect pagination. If any of `filter`, `orderField`, `fullTextFilter` is specified together with `cursor`, only the latter is taken into consideration.\n",
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Controls whether the response's `totalItems` field is computed. Computing\nthe total may be expensive for large catalogs; pass `exclude` if the\ncaller does not need it (e.g. cursor-paginated UIs that only display the\ncount cosmetically). Defaults to `include`. New values may be added in\nthe future, such as an approximate mode.\n",
+                          "key": "totalItems",
+                          "value": "include"
+                        },
+                        {
+                          "description": "Text search term.",
+                          "key": "fullTextFilterTerm",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A comma separated list of fields to sort returned results by.",
+                          "key": "fullTextFilterFields",
+                          "value": "<string>,<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-c18840d5-1433-4e75-b2c2-b053c911cebf"
+                },
+                {
+                  "id": "51beb7f3-585e-4028-a159-42e1a1eb7b44",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-query?fields=<string>,<string>&limit=<integer>&offset=<integer>&orderField=<string>&cursor=<string>&filter=<string>&totalItems=include&fullTextFilterTerm=<string>&fullTextFilterFields=<string>,<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-query"
+                      ],
+                      "query": [
+                        {
+                          "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                          "key": "fields",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Number of records to return in the response.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip in the query page.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "By default the entities are returned ordered by their internal uid. You can\ncustomize the `orderField` query parameters to affect that ordering.\n\nFor example, to return entities by their name:\n\n`/entities/by-query?orderField=metadata.name,asc`\n\nEach parameter can be followed by `asc` for ascending lexicographical order or\n`desc` for descending (reverse) lexicographical order.\n",
+                          "key": "orderField",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "You may pass the `cursor` query parameters to perform cursor based pagination\nthrough the set of entities. The value of `cursor` will be returned in the response, under the `pageInfo` property:\n\n```json\n  \"pageInfo\": {\n    \"nextCursor\": \"a-cursor\",\n    \"prevCursor\": \"another-cursor\"\n  }\n```\n\nIf `nextCursor` exists, it can be used to retrieve the next batch of entities. Following the same approach,\nif `prevCursor` exists, it can be used to retrieve the previous batch of entities.\n\n- [`filter`](#filtering), for selecting only a subset of all entities\n- [`fields`](#field-selection), for selecting only parts of the full data\n  structure of each entity\n- `limit` for limiting the number of entities returned (20 is the default)\n- [`orderField`](#ordering), for deciding the order of the entities\n- `fullTextFilter`\n  **NOTE**: [`filter`, `orderField`, `fullTextFilter`] and `cursor` are mutually exclusive. This means that,\n  it isn't possible to change any of [`filter`, `orderField`, `fullTextFilter`] when passing `cursor` as query parameters,\n  as changing any of these properties will affect pagination. If any of `filter`, `orderField`, `fullTextFilter` is specified together with `cursor`, only the latter is taken into consideration.\n",
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Controls whether the response's `totalItems` field is computed. Computing\nthe total may be expensive for large catalogs; pass `exclude` if the\ncaller does not need it (e.g. cursor-paginated UIs that only display the\ncount cosmetically). Defaults to `include`. New values may be added in\nthe future, such as an approximate mode.\n",
+                          "key": "totalItems",
+                          "value": "include"
+                        },
+                        {
+                          "description": "Text search term.",
+                          "key": "fullTextFilterTerm",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A comma separated list of fields to sort returned results by.",
+                          "key": "fullTextFilterFields",
+                          "value": "<string>,<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-51beb7f3-585e-4028-a159-42e1a1eb7b44"
+                }
+              ],
+              "createdAt": "2026-10-22T01:11:47.000Z",
+              "updatedAt": "2026-10-22T01:11:47.000Z",
+              "uid": "35240-0e09181d-1c09-49a9-8dd4-2beb8ef53723"
+            },
+            {
+              "name": "Query entities by predicate",
+              "id": "aa0612c1-e6cc-4ff6-a762-9bfd77cf63ca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cursor\": \"<string>\",\n  \"limit\": \"<number>\",\n  \"offset\": \"<number>\",\n  \"orderBy\": [\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"fullTextFilter\": {\n    \"term\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"totalItems\": \"exclude\",\n  \"query\": {\n    \"magnafa\": {},\n    \"nisi38\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entities/by-query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities",
+                    "by-query"
+                  ]
+                },
+                "description": "Query entities using predicate-based filters."
+              },
+              "response": [
+                {
+                  "id": "d10a56a3-6ac1-4b14-9f38-b684919e6e98",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cursor\": \"<string>\",\n  \"limit\": \"<number>\",\n  \"offset\": \"<number>\",\n  \"orderBy\": [\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"fullTextFilter\": {\n    \"term\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"totalItems\": \"exclude\",\n  \"query\": {\n    \"magnafa\": {},\n    \"nisi38\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-query"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"links\": [\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"nostrud_d\": \"<string>\",\n          \"sunt_47\": \"<string>\",\n          \"dolore_7\": \"<string>\"\n        },\n        \"labels\": {\n          \"pariatur4\": \"<string>\",\n          \"aliqua18\": \"<string>\",\n          \"Ut_45\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"title\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"etag\": \"<string>\",\n        \"uid\": \"<string>\"\n      },\n      \"kind\": \"<string>\",\n      \"apiVersion\": \"<string>\",\n      \"relations\": [\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"spec\": {\n        \"irure_1b\": {},\n        \"ut_5c\": {}\n      }\n    },\n    {\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"links\": [\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"url\": \"<string>\",\n            \"type\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"culpa_bd2\": \"<string>\"\n        },\n        \"labels\": {\n          \"reprehenderit_3\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"title\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"etag\": \"<string>\",\n        \"uid\": \"<string>\"\n      },\n      \"kind\": \"<string>\",\n      \"apiVersion\": \"<string>\",\n      \"relations\": [\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"targetRef\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"spec\": {\n        \"nonf7\": {},\n        \"minim79\": {},\n        \"officiad07\": {}\n      }\n    }\n  ],\n  \"totalItems\": \"<number>\",\n  \"pageInfo\": {\n    \"nextCursor\": \"<string>\",\n    \"prevCursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-d10a56a3-6ac1-4b14-9f38-b684919e6e98"
+                },
+                {
+                  "id": "c1f78c83-f866-43bb-9c16-5c88b0f46964",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cursor\": \"<string>\",\n  \"limit\": \"<number>\",\n  \"offset\": \"<number>\",\n  \"orderBy\": [\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"fullTextFilter\": {\n    \"term\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"totalItems\": \"exclude\",\n  \"query\": {\n    \"magnafa\": {},\n    \"nisi38\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-query"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-c1f78c83-f866-43bb-9c16-5c88b0f46964"
+                },
+                {
+                  "id": "1a2b7570-5dc4-496b-9a4c-f0924c2d47d4",
+                  "name": "An error response from the backend.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cursor\": \"<string>\",\n  \"limit\": \"<number>\",\n  \"offset\": \"<number>\",\n  \"orderBy\": [\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"fullTextFilter\": {\n    \"term\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"totalItems\": \"exclude\",\n  \"query\": {\n    \"magnafa\": {},\n    \"nisi38\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/by-query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        "by-query"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:11:48.000Z",
+                  "updatedAt": "2026-10-22T01:11:48.000Z",
+                  "uid": "35240-1a2b7570-5dc4-496b-9a4c-f0924c2d47d4"
+                }
+              ],
+              "createdAt": "2026-10-22T01:11:47.000Z",
+              "updatedAt": "2026-10-22T01:11:47.000Z",
+              "uid": "35240-aa0612c1-e6cc-4ff6-a762-9bfd77cf63ca"
+            }
+          ],
+          "id": "aa79b312-9684-416a-a57a-c6d0871ab028",
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-aa79b312-9684-416a-a57a-c6d0871ab028"
+        },
+        {
+          "name": "Get entities",
+          "id": "e8f2a942-df85-4afd-b5b5-2f6f4fc9414f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/entities?fields=<string>,<string>&limit=<integer>&filter=<string>&filter=<string>&offset=<integer>&after=<string>&order=<string>&order=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "entities"
+              ],
+              "query": [
+                {
+                  "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                  "key": "fields",
+                  "value": "<string>,<string>"
+                },
+                {
+                  "description": "Number of records to return in the response.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Number of records to skip in the query page.",
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pointer to the previous page of results.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "key": "order",
+                  "value": "<string>"
+                },
+                {
+                  "key": "order",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get all entities matching a given filter."
+          },
+          "response": [
+            {
+              "id": "59737538-2dce-481f-9b4e-a5743c6bc8de",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?fields=<string>,<string>&limit=<integer>&filter=<string>&offset=<integer>&after=<string>&order=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Number of records to return in the response.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of records to skip in the query page.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pointer to the previous page of results.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"metadata\": {\n      \"name\": \"<string>\",\n      \"links\": [\n        {\n          \"url\": \"<string>\",\n          \"type\": \"<string>\",\n          \"icon\": \"<string>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"type\": \"<string>\",\n          \"icon\": \"<string>\",\n          \"title\": \"<string>\"\n        }\n      ],\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"annotations\": {\n        \"officia_aa\": \"<string>\"\n      },\n      \"labels\": {\n        \"sed_d69\": \"<string>\",\n        \"veniam_253\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"title\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"uid\": \"<string>\"\n    },\n    \"kind\": \"<string>\",\n    \"apiVersion\": \"<string>\",\n    \"relations\": [\n      {\n        \"targetRef\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"targetRef\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"spec\": {\n      \"occaecat_e\": {}\n    }\n  },\n  {\n    \"metadata\": {\n      \"name\": \"<string>\",\n      \"links\": [\n        {\n          \"url\": \"<string>\",\n          \"type\": \"<string>\",\n          \"icon\": \"<string>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"url\": \"<string>\",\n          \"type\": \"<string>\",\n          \"icon\": \"<string>\",\n          \"title\": \"<string>\"\n        }\n      ],\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"annotations\": {\n        \"aute_2d9\": \"<string>\",\n        \"occaecat_f\": \"<string>\",\n        \"Lorem_707\": \"<string>\",\n        \"ea_5\": \"<string>\"\n      },\n      \"labels\": {\n        \"inb\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"title\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"uid\": \"<string>\"\n    },\n    \"kind\": \"<string>\",\n    \"apiVersion\": \"<string>\",\n    \"relations\": [\n      {\n        \"targetRef\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"targetRef\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"spec\": {\n      \"sit031\": {}\n    }\n  }\n]",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-59737538-2dce-481f-9b4e-a5743c6bc8de"
+            },
+            {
+              "id": "542bda82-2fb7-4a91-8186-2879a287bd28",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?fields=<string>,<string>&limit=<integer>&filter=<string>&offset=<integer>&after=<string>&order=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Number of records to return in the response.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of records to skip in the query page.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pointer to the previous page of results.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-542bda82-2fb7-4a91-8186-2879a287bd28"
+            },
+            {
+              "id": "b5cc2146-b5b5-42fd-bbf9-6be06eb23ae8",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?fields=<string>,<string>&limit=<integer>&filter=<string>&offset=<integer>&after=<string>&order=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "By default the full entities are returned, but you can pass in a `fields` query\nparameter which selects what parts of the entity data to retain. This makes the\nresponse smaller and faster to transfer, and may allow the catalog to perform\nmore efficient queries.\n\nThe query parameter value is a comma separated list of simplified JSON paths\nlike above. Each path corresponds to the key of either a value, or of a subtree\nroot that you want to keep in the output. The rest is pruned away. For example,\nspecifying `?fields=metadata.name,metadata.annotations,spec` retains only the\n`name` and `annotations` fields of the `metadata` of each entity (it'll be an\nobject with at most two keys), keeps the entire `spec` unchanged, and cuts out\nall other roots such as `relations`.\n\nSome more real world usable examples:\n\n- Return only enough data to form the full ref of each entity:\n\n  `/entities/by-query?fields=kind,metadata.namespace,metadata.name`\n",
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Number of records to return in the response.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of records to skip in the query page.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pointer to the previous page of results.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-b5cc2146-b5b5-42fd-bbf9-6be06eb23ae8"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-e8f2a942-df85-4afd-b5b5-2f6f4fc9414f"
+        }
+      ],
+      "id": "fb6e14bb-fd8b-40af-bffd-312469646481",
+      "createdAt": "2026-10-22T01:11:47.000Z",
+      "updatedAt": "2026-10-22T01:11:47.000Z",
+      "uid": "35240-fb6e14bb-fd8b-40af-bffd-312469646481"
+    },
+    {
+      "name": "entity-facets",
+      "item": [
+        {
+          "name": "Get entity facets",
+          "id": "804ea192-0379-4ec1-8b5d-be6704e170e8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/entity-facets?facet=<string>&facet=<string>&filter=<string>&filter=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "entity-facets"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "facet",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "facet",
+                  "value": "<string>"
+                },
+                {
+                  "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                  "key": "filter",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get all entity facets that match the given filters."
+          },
+          "response": [
+            {
+              "id": "c76ffd8c-bba7-4467-acef-9dd931a7dff3",
+              "name": "Ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entity-facets?facet=<string>&filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entity-facets"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "facet",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"facets\": {\n    \"sunt_a\": [\n      {\n        \"value\": \"<string>\",\n        \"count\": \"<number>\"\n      },\n      {\n        \"value\": \"<string>\",\n        \"count\": \"<number>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-c76ffd8c-bba7-4467-acef-9dd931a7dff3"
+            },
+            {
+              "id": "8878b870-1211-4086-8114-7d7bc5b16e81",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entity-facets?facet=<string>&filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entity-facets"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "facet",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-8878b870-1211-4086-8114-7d7bc5b16e81"
+            },
+            {
+              "id": "d7033e68-7ac0-46e3-bc37-2da88bf7f605",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entity-facets?facet=<string>&filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entity-facets"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "facet",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "You can pass in one or more filter sets that get matched against each entity.\nEach filter set is a number of conditions that all have to match for the\ncondition to be true (conditions effectively have an AND between them). At least\none filter set has to be true for the entity to be part of the result set\n(filter sets effectively have an OR between them).\n\nExample:\n\n```text\n/entities/by-query?filter=kind=user,metadata.namespace=default&filter=kind=group,spec.type\n\n  Return entities that match\n\n    Filter set 1:\n      Condition 1: kind = user\n                  AND\n      Condition 2: metadata.namespace = default\n\n    OR\n\n    Filter set 2:\n      Condition 1: kind = group\n                  AND\n      Condition 2: spec.type exists\n```\n\nEach condition is either on the form `<key>`, or on the form `<key>=<value>`.\nThe first form asserts on the existence of a certain key (with any value), and\nthe second asserts that the key exists and has a certain value. All checks are\nalways case _insensitive_.\n\nIn all cases, the key is a simplified JSON path in a given piece of entity data.\nEach part of the path is a key of an object, and the traversal also descends\nthrough arrays. There are two special forms:\n\n- Array items that are simple value types (such as strings) match on a key-value\n  pair where the key is the item as a string, and the value is the string `true`\n- Relations can be matched on a `relations.<type>=<targetRef>` form\n\nLet's look at a simplified example to illustrate the concept:\n\n```json\n{\n  \"a\": {\n    \"b\": [\"c\", { \"d\": 1 }],\n    \"e\": 7\n  }\n}\n```\n\nThis would match any one of the following conditions:\n\n- `a`\n- `a.b`\n- `a.b.c`\n- `a.b.c=true`\n- `a.b.d`\n- `a.b.d=1`\n- `a.e`\n- `a.e=7`\n\nSome more real world usable examples:\n\n- Return all orphaned entities:\n\n  `/entities/by-query?filter=metadata.annotations.backstage.io/orphan=true`\n\n- Return all users and groups:\n\n  `/entities/by-query?filter=kind=user&filter=kind=group`\n\n- Return all service components:\n\n  `/entities/by-query?filter=kind=component,spec.type=service`\n\n- Return all entities with the `java` tag:\n\n  `/entities/by-query?filter=metadata.tags.java`\n\n- Return all users who are members of the `ops` group (note that the full\n  [reference](references.md) of the group is used):\n\n  `/entities/by-query?filter=kind=user,relations.memberof=group:default/ops`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-d7033e68-7ac0-46e3-bc37-2da88bf7f605"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-804ea192-0379-4ec1-8b5d-be6704e170e8"
+        },
+        {
+          "name": "Query entity facets by predicate",
+          "id": "e3803faf-32b6-42b2-9694-2eb5bf6f5244",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"facets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"eiusmod_d5\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/entity-facets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "entity-facets"
+              ]
+            },
+            "description": "Get entity facets using predicate-based filters."
+          },
+          "response": [
+            {
+              "id": "91e41789-5c5b-44dd-b5d5-4167a47965e5",
+              "name": "Ok",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"eiusmod_d5\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entity-facets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entity-facets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"facets\": {\n    \"sunt_a\": [\n      {\n        \"value\": \"<string>\",\n        \"count\": \"<number>\"\n      },\n      {\n        \"value\": \"<string>\",\n        \"count\": \"<number>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-91e41789-5c5b-44dd-b5d5-4167a47965e5"
+            },
+            {
+              "id": "0d06899b-5957-4555-86c6-d27b376dcf47",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"eiusmod_d5\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entity-facets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entity-facets"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-0d06899b-5957-4555-86c6-d27b376dcf47"
+            },
+            {
+              "id": "e46bebaf-0e53-4498-b535-538829e55b3a",
+              "name": "An error response from the backend.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"facets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"eiusmod_d5\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entity-facets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entity-facets"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-e46bebaf-0e53-4498-b535-538829e55b3a"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-e3803faf-32b6-42b2-9694-2eb5bf6f5244"
+        }
+      ],
+      "id": "ec1cd8fc-ff04-45a6-bd57-0f54c25880dd",
+      "createdAt": "2026-10-22T01:11:47.000Z",
+      "updatedAt": "2026-10-22T01:11:47.000Z",
+      "uid": "35240-ec1cd8fc-ff04-45a6-bd57-0f54c25880dd"
+    },
+    {
+      "name": "validate-entity",
+      "item": [
+        {
+          "name": "Validate entity",
+          "id": "3d0bbee1-8544-4d75-8735-76952d3883d7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"<string>\",\n  \"entity\": {\n    \"minim51\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/validate-entity",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "validate-entity"
+              ]
+            },
+            "description": "Validate that a passed in entity has no errors in schema."
+          },
+          "response": [
+            {
+              "id": "8fd7196f-98b2-4f5e-aedb-639014b2f4ff",
+              "name": "Ok",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"entity\": {\n    \"minim51\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/validate-entity",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "validate-entity"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-8fd7196f-98b2-4f5e-aedb-639014b2f4ff"
+            },
+            {
+              "id": "62903c0f-fb56-4844-bb18-8d7ed665b160",
+              "name": "Validation errors.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"entity\": {\n    \"minim51\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/validate-entity",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "validate-entity"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"name\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:11:48.000Z",
+              "updatedAt": "2026-10-22T01:11:48.000Z",
+              "uid": "35240-62903c0f-fb56-4844-bb18-8d7ed665b160"
+            }
+          ],
+          "createdAt": "2026-10-22T01:11:47.000Z",
+          "updatedAt": "2026-10-22T01:11:47.000Z",
+          "uid": "35240-3d0bbee1-8544-4d75-8735-76952d3883d7"
+        }
+      ],
+      "id": "da00c165-904d-4d69-931b-e15a8c315999",
+      "createdAt": "2026-10-22T01:11:47.000Z",
+      "updatedAt": "2026-10-22T01:11:47.000Z",
+      "uid": "35240-da00c165-904d-4d69-931b-e15a8c315999"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

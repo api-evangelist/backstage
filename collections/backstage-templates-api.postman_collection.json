@@ -1,312 +1,292 @@
 {
+  "info": {
+    "_postman_id": "1098609d-8302-465d-9b86-9201ccc9d567",
+    "name": "Backstage Templates API",
+    "description": "Operations tagged Templates across 2 of this provider's published API definitions: backstage-scaffolder-backend-openapi.yaml, backstage-scaffolder-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:11:06.000Z",
+    "updatedAt": "2026-10-22T01:11:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1098609d-8302-465d-9b86-9201ccc9d567"
+  },
   "item": [
     {
-      "id": "1904babf-9383-49b6-83df-d2483a32db0b",
-      "name": "Templates",
-      "description": {
-        "content": "Endpoints for template metadata and parameter schemas.",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "5df2c973-5685-457f-bce7-971764ac5277",
-          "name": "Backstage Get template parameter schema",
-          "request": {
-            "name": "Backstage Get template parameter schema",
-            "description": {
-              "content": "Retrieves the parameter schema for a specific template. This describes the input parameters the template accepts and their validation rules.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "templates",
-                ":namespace",
-                ":kind",
-                ":name",
-                "parameter-schema"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "namespace",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "kind",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "name",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "templates",
+          "item": [
             {
-              "id": "454f36cf-64db-4669-b051-7feebcfc3d93",
-              "name": "The parameter schema for the template.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "templates",
-                    ":namespace",
-                    ":kind",
-                    ":name",
-                    "parameter-schema"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{namespace}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{kind}",
+                  "item": [
+                    {
+                      "name": "{name}",
+                      "item": [
+                        {
+                          "name": "parameter-schema",
+                          "item": [
+                            {
+                              "name": "Get template parameter schema",
+                              "id": "cebeac70-c86d-4798-b8fe-9e210539570c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "noauth"
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/templates/:namespace/:kind/:name/parameter-schema",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "templates",
+                                    ":namespace",
+                                    ":kind",
+                                    ":name",
+                                    "parameter-schema"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e0c09a03-474f-473f-84f6-d29a3a7f2a5d",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "8878cb1a-8911-4607-a37e-88a03001c1cb",
+                                      "key": "kind",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "1b029e27-d8dd-4889-9a41-f6f712aa1d5c",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get template parameter schema."
+                              },
+                              "response": [
+                                {
+                                  "id": "ea241a7b-657c-4126-b800-b004ccdd79ae",
+                                  "name": "Ok",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/templates/:namespace/:kind/:name/parameter-schema",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "templates",
+                                        ":namespace",
+                                        ":kind",
+                                        ":name",
+                                        "parameter-schema"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        },
+                                        {
+                                          "key": "kind"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"title\": \"<string>\",\n  \"steps\": [\n    {\n      \"title\": \"<string>\",\n      \"schema\": {},\n      \"description\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"schema\": {},\n      \"description\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T01:11:07.000Z",
+                                  "updatedAt": "2026-10-22T01:11:07.000Z",
+                                  "uid": "35240-ea241a7b-657c-4126-b800-b004ccdd79ae"
+                                },
+                                {
+                                  "id": "271bc0c6-1d7d-409b-a92f-b068b00eea92",
+                                  "name": "An error response from the backend.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json; charset=utf-8"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/templates/:namespace/:kind/:name/parameter-schema",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "templates",
+                                        ":namespace",
+                                        ":kind",
+                                        ":name",
+                                        "parameter-schema"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        },
+                                        {
+                                          "key": "kind"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json; charset=utf-8"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:11:07.000Z",
+                                  "updatedAt": "2026-10-22T01:11:07.000Z",
+                                  "uid": "35240-271bc0c6-1d7d-409b-a92f-b068b00eea92"
+                                },
+                                {
+                                  "id": "dc6f6556-f907-4966-907b-93cc2c8751b7",
+                                  "name": "An error response from the backend.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json; charset=utf-8"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/templates/:namespace/:kind/:name/parameter-schema",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "templates",
+                                        ":namespace",
+                                        ":kind",
+                                        ":name",
+                                        "parameter-schema"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        },
+                                        {
+                                          "key": "kind"
+                                        },
+                                        {
+                                          "key": "name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json; charset=utf-8"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"stack\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"response\": {\n    \"statusCode\": \"<number>\"\n  },\n  \"request\": {\n    \"method\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T01:11:07.000Z",
+                                  "updatedAt": "2026-10-22T01:11:07.000Z",
+                                  "uid": "35240-dc6f6556-f907-4966-907b-93cc2c8751b7"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:11:07.000Z",
+                              "updatedAt": "2026-10-22T01:11:07.000Z",
+                              "uid": "35240-cebeac70-c86d-4798-b8fe-9e210539570c"
+                            }
+                          ],
+                          "id": "5e9bfe09-2427-4fba-9c17-4b411129e401",
+                          "createdAt": "2026-10-22T01:11:07.000Z",
+                          "updatedAt": "2026-10-22T01:11:07.000Z",
+                          "uid": "35240-5e9bfe09-2427-4fba-9c17-4b411129e401"
+                        }
+                      ],
+                      "id": "b8492514-f6b1-4e1f-9641-f3087946920d",
+                      "createdAt": "2026-10-22T01:11:07.000Z",
+                      "updatedAt": "2026-10-22T01:11:07.000Z",
+                      "uid": "35240-b8492514-f6b1-4e1f-9641-f3087946920d"
+                    }
+                  ],
+                  "id": "90cb9fee-0281-4c98-ac8c-5291a8efe1f1",
+                  "createdAt": "2026-10-22T01:11:07.000Z",
+                  "updatedAt": "2026-10-22T01:11:07.000Z",
+                  "uid": "35240-90cb9fee-0281-4c98-ac8c-5291a8efe1f1"
                 }
               ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0509ab15-9d28-49e3-b5b0-05ecb406d1ba",
-              "name": "Missing or invalid authentication token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "templates",
-                    ":namespace",
-                    ":kind",
-                    ":name",
-                    "parameter-schema"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c59f8a24-db52-44ec-bd07-107a66e1715e",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "templates",
-                    ":namespace",
-                    ":kind",
-                    ":name",
-                    "parameter-schema"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "namespace",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "kind",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"name\": \"string\",\n    \"message\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "38af59db-86e0-45ce-b7f7-a986d397a2a3",
+              "createdAt": "2026-10-22T01:11:07.000Z",
+              "updatedAt": "2026-10-22T01:11:07.000Z",
+              "uid": "35240-38af59db-86e0-45ce-b7f7-a986d397a2a3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "fa39d676-8f50-417c-b309-2fabd8238138",
+          "createdAt": "2026-10-22T01:11:07.000Z",
+          "updatedAt": "2026-10-22T01:11:07.000Z",
+          "uid": "35240-fa39d676-8f50-417c-b309-2fabd8238138"
         }
       ],
-      "event": []
+      "id": "6f8c9bff-0968-44a0-9188-74247ca93390",
+      "createdAt": "2026-10-22T01:11:07.000Z",
+      "updatedAt": "2026-10-22T01:11:07.000Z",
+      "uid": "35240-6f8c9bff-0968-44a0-9188-74247ca93390"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://localhost:7007/api/auth",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "/"
     }
-  ],
-  "info": {
-    "_postman_id": "b86c3336-7da6-422a-b8be-d781b2148fb9",
-    "name": "Backstage Auth Actions Templates API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.\n\nContact Support:\n Name: Backstage",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
