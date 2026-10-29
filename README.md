@@ -1,4 +1,4 @@
-# Backstage (backstage)
+# Backstage
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,192 +66,283 @@
 
 Backstage is an open-source developer portal platform created by Spotify. It provides a centralized software catalog, software templates (scaffolder), TechDocs, and a plugin ecosystem for building customizable developer portals. Backstage helps organizations manage their software ecosystem by cataloging services, APIs, resources, and infrastructure, and provides tooling for creating new projects from templates.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/backstage/refs/heads/main/apis.yml)
+**Areas:** Developer Portal · Internal Developer Platform · Software Catalog · Open Source · Platform Engineering · Software Templates · CNCF · Cloud-Native · Incubating
 
-## Scope
+## Backstage on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Backstage is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/backstage/](https://apis.io/providers/backstage/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (23)
 
-- Developer Portal
-- Internal Developer Platform
-- Software Catalog
-- Open Source
+- [Backstage Actions API](https://apis.io/apis/backstage/backstage-actions-api/) — Endpoints for listing available scaffolder actions.
+- [Backstage Authentication API](https://apis.io/apis/backstage/backstage-authentication-api/) — The Authentication API from Backstage — 4 operation(s) for authentication.
+- [Backstage Authorization API](https://apis.io/apis/backstage/backstage-authorization-api/) — The Authorization API from Backstage — 2 operation(s) for authorization.
+- [Backstage Documentation API](https://apis.io/apis/backstage/backstage-documentation-api/) — The Documentation API from Backstage — 2 operation(s) for documentation.
+- [Backstage Locations API](https://apis.io/apis/backstage/backstage-locations-api/) — Endpoints for managing catalog locations (entity sources).
+- [Backstage Metadata API](https://apis.io/apis/backstage/backstage-metadata-api/) — The Metadata API from Backstage — 2 operation(s) for metadata.
+- [Backstage Search API](https://apis.io/apis/backstage/backstage-search-api/) — The Search API from Backstage — 1 operation(s) for search.
+- [Backstage Sync API](https://apis.io/apis/backstage/backstage-sync-api/) — The Sync API from Backstage — 1 operation(s) for sync.
+- [Backstage Tasks API](https://apis.io/apis/backstage/backstage-tasks-api/) — Endpoints for creating and managing scaffolder tasks.
+- [Backstage Templates API](https://apis.io/apis/backstage/backstage-templates-api/) — Endpoints for template metadata and parameter schemas.
+- [Backstage Token Verification API](https://apis.io/apis/backstage/backstage-token-verification-api/) — The Token Verification API from Backstage — 1 operation(s) for token verification.
+- [Backstage Autocomplete API](https://apis.io/apis/backstage/backstage-autocomplete-api/) — The Autocomplete API from Backstage — 1 operation(s) for autocomplete.
+- [Backstage Bus API](https://apis.io/apis/backstage/backstage-bus-api/) — The Bus API from Backstage — 3 operation(s) for bus.
+- [Backstage Dry Run API](https://apis.io/apis/backstage/backstage-dry-run-api/) — The Dry Run API from Backstage — 1 operation(s) for dry run.
+- [Backstage Entity API](https://apis.io/apis/backstage/backstage-entity-api/) — The Entity API from Backstage — 9 operation(s) for entity.
+- [Backstage Notifications API](https://apis.io/apis/backstage/backstage-notifications-api/) — The Notifications API from Backstage — 5 operation(s) for notifications.
+- [Backstage Provider API](https://apis.io/apis/backstage/backstage-provider-api/) — List of endpoints per provider
+- [Backstage Remotes API](https://apis.io/apis/backstage/backstage-remotes-api/) — The Remotes API from Backstage — 1 operation(s) for remotes.
+- [Backstage Settings API](https://apis.io/apis/backstage/backstage-settings-api/) — The Settings API from Backstage — 1 operation(s) for settings.
+- [Backstage Status API](https://apis.io/apis/backstage/backstage-status-api/) — The Status API from Backstage — 1 operation(s) for status.
+- [Backstage Templating Extensions API](https://apis.io/apis/backstage/backstage-templating-extensions-api/) — The Templating Extensions API from Backstage — 1 operation(s) for templating extensions.
+- [Backstage Topics API](https://apis.io/apis/backstage/backstage-topics-api/) — The Topics API from Backstage — 1 operation(s) for topics.
+- [Backstage Update API](https://apis.io/apis/backstage/backstage-update-api/) — The Update API from Backstage — 1 operation(s) for update.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-12-01
-- **Modified:** 2026-04-21
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (2)
 
-### Backstage Catalog API
+Event-driven and webhook contracts.
 
-The Backstage Software Catalog REST API provides JSON-based endpoints for managing and querying catalog entities, locations, and related metadata. The catalog stores information about all software components, APIs, resources, systems, domains, groups, and users in an organization. Supports entity CRUD, filtering, full-text search, cursor-based pagination, faceted queries, location management, entity validation, and ancestry lookups.
+- [Backstage Events System](https://apis.io/asyncapis/backstage/backstage-events-asyncapi/)
+- [Backstage Webhooks](https://apis.io/asyncapis/backstage/backstage-webhooks/)
 
-- **Human URL:** [https://backstage.io/docs/features/software-catalog/software-catalog-api/](https://backstage.io/docs/features/software-catalog/software-catalog-api/)
+#### Event channels (4)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Developer Portal
-- Entities
-- Software Catalog
+- [backstage/catalog/entity](https://apis.io/channels/backstage/backstage-catalog-entity/)
+- [backstage/catalog/location](https://apis.io/channels/backstage/backstage-catalog-location/)
+- [backstage/scaffolder/task](https://apis.io/channels/backstage/backstage-scaffolder-task/)
+- [backstage/techdocs/build](https://apis.io/channels/backstage/backstage-techdocs-build/)
 
-#### Properties
+#### MCP servers (1)
 
-- [Documentation](https://backstage.io/docs/features/software-catalog/software-catalog-api/)
-- [OpenAPI](openapi/backstage-catalog-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/backstage-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Model Context Protocol servers that expose the API to agents.
 
-### Backstage Scaffolder API
+- [Backstage MCP Actions Backend](https://apis.io/servers/backstage/backstage-mcp-actions-backend/)
 
-The Backstage Scaffolder (Software Templates) REST API provides endpoints for creating, managing, and monitoring scaffolder tasks. It enables programmatic execution of software templates to bootstrap new projects, components, and other software assets. Supports task creation and cancellation, real-time event streaming, log retrieval, template parameter schema inspection, available action listing, and dry-run execution for template validation.
+#### Agentic access (1)
 
-- **Human URL:** [https://backstage.io/docs/features/software-templates/](https://backstage.io/docs/features/software-templates/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Backstage Agentic Access](https://apis.io/agentic-access/backstage/backstage-agentic-access/)
 
-- Developer Portal
-- Scaffolding
-- Software Templates
+#### JSON Schema (16)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://backstage.io/docs/features/software-templates/)
-- [OpenAPI](openapi/backstage-scaffolder-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/backstage-scaffolder.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-scaffolder.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [AuthResponse](https://apis.io/schemas/backstage/auth-auth-response/)
+- [JwksResponse](https://apis.io/schemas/backstage/auth-jwks-response/)
+- [Backstage Catalog Entity](https://apis.io/schemas/backstage/backstage-entity/)
+- [Entity](https://apis.io/schemas/backstage/catalog-entity/)
+- [EntityMetadata](https://apis.io/schemas/backstage/catalog-entity-metadata/)
+- [EntityRelation](https://apis.io/schemas/backstage/catalog-entity-relation/)
+- [Location](https://apis.io/schemas/backstage/catalog-location/)
+- [ConditionalRequest](https://apis.io/schemas/backstage/permissions-conditional-request/)
+- [PermissionDecision](https://apis.io/schemas/backstage/permissions-permission-decision/)
+- [PermissionRequest](https://apis.io/schemas/backstage/permissions-permission-request/)
+- [Action](https://apis.io/schemas/backstage/scaffolder-action/)
+- [Task](https://apis.io/schemas/backstage/scaffolder-task/)
+- [SearchDocument](https://apis.io/schemas/backstage/search-search-document/)
+- [SearchResult](https://apis.io/schemas/backstage/search-search-result/)
+- [SearchResultSet](https://apis.io/schemas/backstage/search-search-result-set/)
+- [TechDocsMetadata](https://apis.io/schemas/backstage/techdocs-tech-docs-metadata/)
 
-### Backstage Auth API
+#### JSON Structure (16)
 
-The Backstage Auth API provides endpoints for authenticating users and services with the Backstage backend. It supports multiple authentication providers (GitHub, Google, Okta, SAML, etc.) and handles OAuth flows, token issuance, token refresh, and session management. The Auth API is used by the Backstage frontend to initiate login flows and by backend plugins to verify caller identity via Backstage tokens.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://backstage.io/docs/auth/](https://backstage.io/docs/auth/)
+- [Auth Auth Response Structure](https://apis.io/json-structure/backstage/auth-auth-response-structure/)
+- [Auth Jwks Response Structure](https://apis.io/json-structure/backstage/auth-jwks-response-structure/)
+- [Backstage Entity Structure](https://apis.io/json-structure/backstage/backstage-entity-structure/)
+- [Catalog Entity Metadata Structure](https://apis.io/json-structure/backstage/catalog-entity-metadata-structure/)
+- [Catalog Entity Relation Structure](https://apis.io/json-structure/backstage/catalog-entity-relation-structure/)
+- [Catalog Entity Structure](https://apis.io/json-structure/backstage/catalog-entity-structure/)
+- [Catalog Location Structure](https://apis.io/json-structure/backstage/catalog-location-structure/)
+- [Permissions Conditional Request Structure](https://apis.io/json-structure/backstage/permissions-conditional-request-structure/)
+- [Permissions Permission Decision Structure](https://apis.io/json-structure/backstage/permissions-permission-decision-structure/)
+- [Permissions Permission Request Structure](https://apis.io/json-structure/backstage/permissions-permission-request-structure/)
+- [Scaffolder Action Structure](https://apis.io/json-structure/backstage/scaffolder-action-structure/)
+- [Scaffolder Task Structure](https://apis.io/json-structure/backstage/scaffolder-task-structure/)
+- [Search Search Document Structure](https://apis.io/json-structure/backstage/search-search-document-structure/)
+- [Search Search Result Set Structure](https://apis.io/json-structure/backstage/search-search-result-set-structure/)
+- [Search Search Result Structure](https://apis.io/json-structure/backstage/search-search-result-structure/)
+- [Techdocs Tech Docs Metadata Structure](https://apis.io/json-structure/backstage/techdocs-tech-docs-metadata-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Authentication
-- Developer Portal
-- OAuth
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Backstage Context](https://apis.io/jsonld/backstage/backstage-context/)
 
-- [Documentation](https://backstage.io/docs/auth/)
-- [OpenAPI](openapi/backstage-auth-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/backstage-auth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-auth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-### Backstage TechDocs API
+The provider's domain terms, defined.
 
-The Backstage TechDocs API provides endpoints for generating, publishing, and serving technical documentation for catalog entities. TechDocs uses MkDocs under the hood to render Markdown documentation into static HTML pages. The API supports fetching rendered documentation, syncing docs from external storage, retrieving metadata, and managing documentation lifecycle.
+- [Backstage Vocabulary](https://apis.io/vocabularies/backstage/backstage-vocabulary/)
 
-- **Human URL:** [https://backstage.io/docs/features/techdocs/](https://backstage.io/docs/features/techdocs/)
+#### Examples (16)
 
-#### Tags
+Example requests and responses.
 
-- Developer Portal
-- Documentation
-- TechDocs
+- [Auth Auth Response Example](https://apis.io/examples/backstage/auth-auth-response-example/)
+- [Auth Jwks Response Example](https://apis.io/examples/backstage/auth-jwks-response-example/)
+- [Backstage Entity Example](https://apis.io/examples/backstage/backstage-entity-example/)
+- [Catalog Entity Example](https://apis.io/examples/backstage/catalog-entity-example/)
+- [Catalog Entity Metadata Example](https://apis.io/examples/backstage/catalog-entity-metadata-example/)
+- [Catalog Entity Relation Example](https://apis.io/examples/backstage/catalog-entity-relation-example/)
+- [Catalog Location Example](https://apis.io/examples/backstage/catalog-location-example/)
+- [Permissions Conditional Request Example](https://apis.io/examples/backstage/permissions-conditional-request-example/)
+- [Permissions Permission Decision Example](https://apis.io/examples/backstage/permissions-permission-decision-example/)
+- [Permissions Permission Request Example](https://apis.io/examples/backstage/permissions-permission-request-example/)
+- [Scaffolder Action Example](https://apis.io/examples/backstage/scaffolder-action-example/)
+- [Scaffolder Task Example](https://apis.io/examples/backstage/scaffolder-task-example/)
+- [Search Search Document Example](https://apis.io/examples/backstage/search-search-document-example/)
+- [Search Search Result Example](https://apis.io/examples/backstage/search-search-result-example/)
+- [Search Search Result Set Example](https://apis.io/examples/backstage/search-search-result-set-example/)
+- [Techdocs Tech Docs Metadata Example](https://apis.io/examples/backstage/techdocs-tech-docs-metadata-example/)
 
-#### Properties
+#### Collections (18)
 
-- [Documentation](https://backstage.io/docs/features/techdocs/)
-- [OpenAPI](openapi/backstage-techdocs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/backstage-techdocs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-techdocs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Backstage Search API
+- [Backstage Auth Actions API](https://apis.io/collections/backstage/open-backstage-actions-api/)
+- [Backstage Auth API](https://apis.io/collections/backstage/open-backstage-auth/)
+- [Backstage Auth Actions Authentication API](https://apis.io/collections/backstage/open-backstage-authentication-api/)
+- [Backstage Auth Actions Authorization API](https://apis.io/collections/backstage/open-backstage-authorization-api/)
+- [Backstage Catalog API](https://apis.io/collections/backstage/open-backstage-catalog/)
+- [Backstage Auth Actions Documentation API](https://apis.io/collections/backstage/open-backstage-documentation-api/)
+- [Backstage Auth Actions Entities API](https://apis.io/collections/backstage/open-backstage-entities-api/)
+- [Backstage Auth Actions Locations API](https://apis.io/collections/backstage/open-backstage-locations-api/)
+- [Backstage Auth Actions Metadata API](https://apis.io/collections/backstage/open-backstage-metadata-api/)
+- [Backstage Permissions API](https://apis.io/collections/backstage/open-backstage-permissions/)
+- [Backstage Scaffolder API](https://apis.io/collections/backstage/open-backstage-scaffolder/)
+- [Backstage Search API](https://apis.io/collections/backstage/open-backstage-search/)
+- [Backstage Auth Actions Search API](https://apis.io/collections/backstage/open-backstage-search-api/)
+- [Backstage Auth Actions Sync API](https://apis.io/collections/backstage/open-backstage-sync-api/)
+- [Backstage Auth Actions Tasks API](https://apis.io/collections/backstage/open-backstage-tasks-api/)
+- [Backstage TechDocs API](https://apis.io/collections/backstage/open-backstage-techdocs/)
+- [Backstage Auth Actions Templates API](https://apis.io/collections/backstage/open-backstage-templates-api/)
+- [Backstage Auth Actions Token Verification API](https://apis.io/collections/backstage/open-backstage-token-verification-api/)
 
-The Backstage Search API provides endpoints for querying the Backstage search index. It enables full-text search across all indexed content including catalog entities, TechDocs pages, and any other content indexed by search collators. The API supports filtering by document type, pagination via cursors, and term-based queries.
+#### Overlays (6)
 
-- **Human URL:** [https://backstage.io/docs/features/search/](https://backstage.io/docs/features/search/)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Tags
+- [Backstage Catalog Backend Overlay](https://apis.io/overlays/backstage/backstage-catalog-backend-overlay/)
+- [Backstage Dynamic Features Overlay](https://apis.io/overlays/backstage/backstage-dynamic-features-overlay/)
+- [Backstage Events Backend Overlay](https://apis.io/overlays/backstage/backstage-events-backend-overlay/)
+- [Backstage Notifications Backend Overlay](https://apis.io/overlays/backstage/backstage-notifications-backend-overlay/)
+- [Backstage Scaffolder Backend Overlay](https://apis.io/overlays/backstage/backstage-scaffolder-backend-overlay/)
+- [Backstage Search Backend Overlay](https://apis.io/overlays/backstage/backstage-search-backend-overlay/)
 
-- Developer Portal
-- Discovery
-- Search
+#### Governance rules (3)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://backstage.io/docs/features/search/)
-- [OpenAPI](openapi/backstage-search-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/backstage-search.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-search.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Backstage — asyncapi rules](https://apis.io/rules/backstage/backstage-asyncapi-spectral-rules/)
+- [Backstage — jsonschema rules](https://apis.io/rules/backstage/backstage-jsonschema-spectral-rules/)
+- [Backstage API Rules](https://apis.io/rules/backstage/backstage-spectral-rules/)
 
-### Backstage Permissions API
+#### Security (3)
 
-The Backstage Permissions API provides endpoints for evaluating and managing authorization decisions within Backstage. It enables plugins to check whether a given user or service has permission to perform a specific action. The framework supports policy-based authorization with conditional rules that can be applied to resources.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://backstage.io/docs/permissions/overview](https://backstage.io/docs/permissions/overview)
+- [Backstage Authentication](https://apis.io/security/backstage/backstage-authentication/)
+- [Backstage Domain Security](https://apis.io/security/backstage/backstage-domain-security/)
+- [Backstage Vulnerability Disclosure](https://apis.io/security/backstage/backstage-vulnerability-disclosure/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Authorization
-- Developer Portal
-- Permissions
+The permissions the API asks for.
 
-#### Properties
+- [Backstage Scopes](https://apis.io/scopes/backstage/backstage-scopes/)
 
-- [Documentation](https://backstage.io/docs/permissions/overview)
-- [OpenAPI](openapi/backstage-permissions-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/backstage-permissions.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-permissions.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Backstage Events System
+Published plans, tiers and prices.
 
-The Backstage Events system provides a publish-subscribe mechanism for broadcasting and consuming events within a Backstage instance. It enables plugins to emit events when significant actions occur (such as catalog entity changes, scaffolder task completions, or permission policy updates) and allows other plugins or external systems to subscribe to those events via HTTP webhooks or the internal event bus.
+- [Backstage Plans Pricing](https://apis.io/plans/backstage/backstage-plans-pricing/)
 
-- **Human URL:** [https://backstage.io/docs/plugins/backends-and-plugins/](https://backstage.io/docs/plugins/backends-and-plugins/)
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Developer Portal
-- Events
-- Webhooks
+- [Backstage Rate Limits](https://apis.io/rate-limits/backstage/backstage-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://backstage.io/docs/plugins/backends-and-plugins/)
-- [AsyncAPI](asyncapi/backstage-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/backstage-auth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-auth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/backstage-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/backstage-permissions.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-permissions.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/backstage-scaffolder.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-scaffolder.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/backstage-search.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-search.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/backstage-techdocs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/backstage-techdocs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-## Common Properties
+- [Backstage Finops](https://apis.io/finops/backstage/backstage-finops/)
 
-- [LinkedIn](https://www.linkedin.com/showcase/backstage-from-spotify)
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://backstage.io/)
 - [Documentation](https://backstage.io/docs/)
-- [Getting Started](https://backstage.io/docs/getting-started/)
-- [Blog](https://backstage.io/blog/)
-- [GitHub Organization](https://github.com/backstage)
-- [GitHub Repository](https://github.com/backstage/backstage)
+- [Getting started](https://backstage.io/docs/getting-started/)
+- [API reference](https://backstage.io/docs/features/software-catalog/software-catalog-api/)
+- [Support](https://backstage.io/docs/overview/support)
 - [Changelog](https://github.com/backstage/backstage/releases)
-- [Community](https://discord.gg/backstage-687207715902193673)
-- [Developer  Tools](https://backstage.io/plugins/)
-- [JSON Schema](json-schema/backstage-entity-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/backstage-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/backstage-spectral-rules.yml)
-- [Vocabulary](vocabulary/backstage-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Blog](https://backstage.io/blog/)
+- [GitHub](https://github.com/backstage)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 61.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 62.0 |
+| Contract governance | 45.5 |
+| Operational transparency | 60.5 |
+| Developer ergonomics | 86.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 57.3** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | yes |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 32.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/backstage/](https://apis.io/providers/backstage/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Backstage: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/backstage/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
